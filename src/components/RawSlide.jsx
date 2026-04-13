@@ -12,9 +12,6 @@ export const SLIDE_H = 720;
  * to every <p> inside `[data-object-type="textbox"]` and replace handlers
  * to every <img> inside `[data-object-type="image"]`. Edits are persisted
  * to localStorage via the shared editStore, keyed by `pageId + element id`.
- *
- * For PDF export, the parent component sets `data-export="1"` on the wrap
- * which removes the scale transform so html2canvas captures at native res.
  */
 export default function RawSlide({ id, html, editMode, pageNumber }) {
   const wrapRef = useRef(null);
@@ -22,8 +19,6 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
   const [scale, setScale] = useState(1);
   const { get, set } = useEditStore();
 
-  // Helper: apply a transform descriptor {x,y,scale} to an <img> so the
-  // user can pan / zoom a replaced photo within its frame after swapping.
   const applyImgXform = (img, xf) => {
     if (!img) return;
     if (!xf) {
@@ -36,12 +31,8 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
     const s = Number(xf.scale) || 1;
     img.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
     img.style.transformOrigin = 'center center';
-    img.style.willChange = 'transform';
   };
 
-  // Helper: override the <img> object-fit so the user can flip a swapped
-  // photo between cover / contain / fill. Caches the original inline
-  // object-fit on first call so resetting back restores author's intent.
   const applyImgFit = (img, fit) => {
     if (!img) return;
     if (img.dataset.origObjectFit === undefined) {
@@ -54,8 +45,7 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
     }
   };
 
-  // Inject <base href> so relative paths (e.g. genspark_images/foo.png)
-  // resolve against the parent document's origin instead of about:srcdoc.
+  // Inject <base href> so relative paths resolve against the parent origin.
   const baseHref = typeof window !== 'undefined'
     ? window.location.href.replace(/[^/]*$/, '')
     : '/';
@@ -85,14 +75,14 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
       const doc = iframe.contentDocument;
       if (!doc) return;
 
-      // 1) restore persisted text/image edits
+      // 1) restore persisted edits
       const allEdits = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
       Object.keys(allEdits).forEach((k) => {
         if (k.startsWith(`p${id}:text:`)) {
           const objId = k.replace(`p${id}:text:`, '');
           const el = doc.getElementById(objId);
           if (el) el.innerHTML = allEdits[k];
-        } else if (k.startsWith(`p${id}:img:`)) {
+        } else if (k.startsWith(`p${id}:img:`) && !k.includes('imgxform') && !k.includes('imgfit')) {
           const objId = k.replace(`p${id}:img:`, '');
           const el = doc.getElementById(objId);
           if (el) {
@@ -116,10 +106,19 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
         }
       });
 
-      // 2) attach edit handlers if in edit mode
+      // 2) textbox editing
       const textboxes = doc.querySelectorAll('[data-object-type="textbox"]');
       textboxes.forEach((tb) => {
         if (!tb.id) return;
+        // Skip textboxes that contain image elements — don't make them
+        // contentEditable because that swallows clicks on nested images.
+        const hasImages = tb.querySelector('[data-object-type="image"]');
+        if (hasImages) {
+          tb.contentEditable = 'false';
+          tb.style.cursor = '';
+          tb.style.outline = '';
+          return;
+        }
         tb.contentEditable = editMode ? 'true' : 'false';
         tb.style.cursor = editMode ? 'text' : '';
         if (editMode) {
@@ -133,37 +132,51 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
         }
       });
 
-      // 3) Image editing — file replace, fit toggle, pan/zoom
-      // Remove any previous overlays from body
-      const oldOverlays = doc.querySelectorAll('[data-img-overlay]');
-      oldOverlays.forEach((o) => o.remove());
+      // 3) Image editing
+      // Clean up any previous overlays
+      doc.querySelectorAll('[data-img-overlay]').forEach((o) => o.remove());
 
       const images = doc.querySelectorAll('[data-object-type="image"]');
       images.forEach((wrap) => {
         if (!wrap.id) return;
-        wrap.style.outline = editMode ? '1px dashed rgba(74,158,255,0.4)' : '';
-        if (!editMode) return;
 
-        // Mount overlay on <body> with position:fixed to escape z-index stacking
+        // Walk up the DOM to find the card container (the flex:1 div with
+        // overflow:hidden and border-radius). We need to toggle its
+        // overflow in edit mode so the overlay buttons aren't clipped.
+        const card = wrap.closest('[style*="overflow"]') || wrap.parentElement;
+
+        if (editMode) {
+          wrap.style.outline = '2px dashed rgba(74,158,255,0.6)';
+          wrap.style.overflow = 'visible';
+          if (card && card !== wrap) card.style.overflow = 'visible';
+        } else {
+          wrap.style.outline = '';
+          wrap.style.overflow = 'hidden';
+          if (card && card !== wrap) card.style.overflow = 'hidden';
+          return; // No overlay in view mode
+        }
+
+        // Ensure the image wrapper is a positioning context
+        if (getComputedStyle(wrap).position === 'static') {
+          wrap.style.position = 'relative';
+        }
+
         const overlay = doc.createElement('div');
         overlay.setAttribute('data-img-overlay', wrap.id);
         overlay.contentEditable = 'false';
-        const rect = wrap.getBoundingClientRect();
-        const top = Math.max(rect.top + 6, 34);
-        const left = rect.left + 6;
         overlay.style.cssText = [
-          'position:fixed',
-          `top:${top}px`,
-          `left:${left}px`,
+          'position:absolute',
+          'top:6px',
+          'left:6px',
           'display:flex',
           'flex-direction:column',
           'align-items:flex-start',
           'gap:4px',
-          'z-index:2147483647',
+          'z-index:99999',
           'pointer-events:auto',
         ].join(';');
 
-        // Row 1: primary buttons (📁 / 🔗 URL)
+        // Row 1: file + URL buttons
         const row1 = doc.createElement('div');
         row1.contentEditable = 'false';
         row1.style.cssText = 'display:flex;gap:4px;';
@@ -172,13 +185,26 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           const b = doc.createElement('button');
           b.textContent = label;
           b.contentEditable = 'false';
-          b.style.cssText = 'padding:4px 10px;background:rgba(74,158,255,0.98);color:#fff;border:0;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.5);font-family:-apple-system,BlinkMacSystemFont,sans-serif;';
-          b.addEventListener('mousedown', (e) => e.preventDefault());
-          b.onclick = (e) => { e.preventDefault(); e.stopPropagation(); handler(); };
+          b.style.cssText = [
+            'padding:4px 10px',
+            'background:rgba(74,158,255,0.95)',
+            'color:#fff',
+            'border:0',
+            'border-radius:4px',
+            'font-size:11px',
+            'font-weight:700',
+            'cursor:pointer',
+            'box-shadow:0 2px 8px rgba(0,0,0,0.5)',
+            'font-family:-apple-system,BlinkMacSystemFont,sans-serif',
+            'pointer-events:auto',
+            'user-select:none',
+          ].join(';');
+          b.addEventListener('mousedown', (e) => { e.preventDefault(); e.stopPropagation(); });
+          b.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); handler(); });
           return b;
         };
 
-        // Compress uploaded images to fit slide canvas at 2x density
+        // Compress uploaded images
         const compressFileToDataUrl = (file) => new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onerror = () => reject(reader.error || new Error('FileReader failed'));
@@ -212,16 +238,15 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
 
         // Persist image replacement
         const persist = async (src) => {
-          const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
-          if (img) img.src = src;
-          const key = `p${id}:img:${wrap.id}`;
-          const fitK = `p${id}:imgfit:${wrap.id}`;
-          if (img) applyImgFit(img, 'cover');
-          set(fitK, 'cover');
-          set(key, src);
+          const img = wrap.querySelector('img');
+          if (img) {
+            img.src = src;
+            applyImgFit(img, 'cover');
+          }
+          set(`p${id}:img:${wrap.id}`, src);
+          set(`p${id}:imgfit:${wrap.id}`, 'cover');
         };
 
-        overlay.appendChild(row1);
         row1.appendChild(btn('📁', () => {
           const input = doc.createElement('input');
           input.type = 'file'; input.accept = 'image/*';
@@ -231,7 +256,7 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
               const compressed = await compressFileToDataUrl(f);
               await persist(compressed);
             } catch (err) {
-              window.alert('画像の読み込みに失敗しました: ' + (err && err.message ? err.message : err));
+              window.alert('画像の読み込みに失敗しました: ' + (err?.message || err));
             }
           };
           input.click();
@@ -244,9 +269,11 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           if (m) direct = `https://drive.google.com/uc?export=view&id=${m[1]}`;
           await persist(direct);
         }));
+        overlay.appendChild(row1);
 
-        // ---- Pan / zoom controls ------------------------------------------
+        // Pan / zoom controls
         const xfKey = `p${id}:imgxform:${wrap.id}`;
+        const fitKey = `p${id}:imgfit:${wrap.id}`;
         const getXf = () => {
           const cur = get(xfKey);
           if (cur && typeof cur === 'object') {
@@ -255,7 +282,7 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           return { x: 0, y: 0, scale: 1 };
         };
         const nudge = (dx, dy, ds) => {
-          const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
+          const img = wrap.querySelector('img');
           if (!img) return;
           const cur = getXf();
           if (cur.scale === 1 && ds === 0) cur.scale = 1.2;
@@ -266,12 +293,9 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           set(xfKey, cur);
         };
 
-        // Fit-mode toggle: cycles cover → contain → fill
-        const fitKey = `p${id}:imgfit:${wrap.id}`;
         const FIT_CYCLE = ['cover', 'contain', 'fill'];
-        const FIT_LABELS = { cover: 'cover', contain: 'contain', fill: 'fill' };
         const cycleFit = () => {
-          const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
+          const img = wrap.querySelector('img');
           if (!img) return;
           const cur = get(fitKey) || 'cover';
           const idx = FIT_CYCLE.indexOf(cur);
@@ -279,63 +303,86 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           applyImgFit(img, next);
           set(fitKey, next);
           const label = overlay.querySelector('[data-fit-label]');
-          if (label) label.textContent = FIT_LABELS[next] || next;
+          if (label) label.textContent = next;
         };
         const resetXf = () => {
-          const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
+          const img = wrap.querySelector('img');
           if (img) {
             applyImgXform(img, null);
             applyImgFit(img, null);
           }
           set(xfKey, { x: 0, y: 0, scale: 1 });
           set(fitKey, '');
+          const label = overlay.querySelector('[data-fit-label]');
+          if (label) label.textContent = 'cover';
         };
 
-        // Row 2: zoom +/-, fit toggle, reset, drag hint
+        // Row 2: zoom, fit, reset, drag hint
         const row2 = doc.createElement('div');
         row2.contentEditable = 'false';
-        row2.style.cssText = 'display:flex;gap:4px;margin-top:4px;flex-wrap:wrap;align-items:center;';
+        row2.style.cssText = 'display:flex;gap:4px;align-items:center;flex-wrap:wrap;';
+
         const smallBtn = (label, title, handler) => {
           const b = doc.createElement('button');
           b.textContent = label;
           b.title = title;
           b.contentEditable = 'false';
-          b.style.cssText = 'padding:5px 11px;background:rgba(251,146,60,0.98);color:#0a0a0f;border:0;border-radius:4px;font-size:13px;font-weight:900;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.6);font-family:-apple-system,BlinkMacSystemFont,sans-serif;line-height:1;min-width:28px;';
-          b.addEventListener('mousedown', (e) => e.preventDefault());
-          b.onclick = (e) => { e.preventDefault(); e.stopPropagation(); handler(); };
+          b.style.cssText = [
+            'padding:4px 10px',
+            'background:rgba(251,146,60,0.95)',
+            'color:#0a0a0f',
+            'border:0',
+            'border-radius:4px',
+            'font-size:13px',
+            'font-weight:900',
+            'cursor:pointer',
+            'box-shadow:0 2px 8px rgba(0,0,0,0.6)',
+            'font-family:-apple-system,BlinkMacSystemFont,sans-serif',
+            'line-height:1',
+            'min-width:28px',
+            'pointer-events:auto',
+            'user-select:none',
+          ].join(';');
+          b.addEventListener('mousedown', (e) => { e.preventDefault(); e.stopPropagation(); });
+          b.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); handler(); });
           return b;
         };
-        const SCALE_STEP = 0.05;
-        row2.appendChild(smallBtn('＋', 'ズームイン', () => nudge(0, 0, SCALE_STEP)));
-        row2.appendChild(smallBtn('－', 'ズームアウト', () => nudge(0, 0, -SCALE_STEP)));
 
-        const fitBtn = smallBtn('⛶', 'フィット切替（cover / contain / fill）', cycleFit);
-        row2.appendChild(fitBtn);
+        row2.appendChild(smallBtn('＋', 'ズームイン', () => nudge(0, 0, 0.05)));
+        row2.appendChild(smallBtn('－', 'ズームアウト', () => nudge(0, 0, -0.05)));
+        row2.appendChild(smallBtn('⛶', 'フィット切替', cycleFit));
+
         const fitLabel = doc.createElement('span');
         fitLabel.setAttribute('data-fit-label', '1');
-        fitLabel.textContent = FIT_LABELS[get(fitKey) || 'cover'] || 'cover';
-        fitLabel.style.cssText = 'font-size:10px;color:rgba(251,146,60,0.85);font-weight:600;margin-right:2px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;';
+        fitLabel.textContent = get(fitKey) || 'cover';
+        fitLabel.style.cssText = 'font-size:10px;color:rgba(251,146,60,0.9);font-weight:600;font-family:-apple-system,sans-serif;';
         row2.appendChild(fitLabel);
 
         row2.appendChild(smallBtn('↺', 'リセット', resetXf));
 
         const dragHint = doc.createElement('span');
         dragHint.textContent = '✋ ドラッグでパン';
-        dragHint.style.cssText = 'font-size:10px;color:rgba(251,146,60,0.85);font-weight:600;padding:3px 8px;background:rgba(0,0,0,0.5);border-radius:4px;pointer-events:none;white-space:nowrap;font-family:-apple-system,BlinkMacSystemFont,sans-serif;';
+        dragHint.style.cssText = 'font-size:10px;color:rgba(251,146,60,0.9);font-weight:600;padding:3px 8px;background:rgba(0,0,0,0.5);border-radius:4px;white-space:nowrap;font-family:-apple-system,sans-serif;pointer-events:none;';
         row2.appendChild(dragHint);
 
         overlay.appendChild(row2);
 
-        // ---- Drag-to-pan on the image ---
-        const imgEl = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
+        // Append overlay directly inside the image wrapper
+        wrap.appendChild(overlay);
+
+        // Drag-to-pan on image
+        const imgEl = wrap.querySelector('img');
         if (imgEl) {
           imgEl.style.cursor = 'grab';
+          imgEl.draggable = false; // prevent native drag
           let dragging = false;
           let startX = 0, startY = 0;
           let startXf = { x: 0, y: 0, scale: 1 };
 
           const onMouseDown = (e) => {
             if (e.button !== 0) return;
+            // Don't start drag if clicking on overlay buttons
+            if (e.target.closest('[data-img-overlay]')) return;
             e.preventDefault();
             e.stopPropagation();
             dragging = true;
@@ -349,18 +396,14 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           };
           const onMouseMove = (e) => {
             if (!dragging) return;
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            const cur = { x: startXf.x + dx, y: startXf.y + dy, scale: startXf.scale };
+            const cur = { x: startXf.x + (e.clientX - startX), y: startXf.y + (e.clientY - startY), scale: startXf.scale };
             applyImgXform(imgEl, cur);
           };
           const onMouseUp = (e) => {
             if (!dragging) return;
             dragging = false;
             imgEl.style.cursor = 'grab';
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            const cur = { x: startXf.x + dx, y: startXf.y + dy, scale: startXf.scale };
+            const cur = { x: startXf.x + (e.clientX - startX), y: startXf.y + (e.clientY - startY), scale: startXf.scale };
             applyImgXform(imgEl, cur);
             set(xfKey, cur);
             doc.removeEventListener('mousemove', onMouseMove, true);
@@ -368,18 +411,37 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           };
           imgEl.addEventListener('mousedown', onMouseDown, true);
         }
-
-        doc.body.appendChild(overlay);
       });
     };
 
+    // Use a small delay to ensure the iframe DOM is fully ready
+    const trySetup = () => {
+      const doc = iframe.contentDocument;
+      if (doc && doc.readyState === 'complete') {
+        setup();
+      } else {
+        iframe.addEventListener('load', setup, { once: true });
+      }
+    };
+
+    // When editMode changes, the iframe is already loaded but we need to
+    // re-run setup. Use rAF to ensure the DOM is settled.
     if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-      setup();
+      requestAnimationFrame(setup);
     } else {
-      iframe.addEventListener('load', setup);
-      return () => iframe.removeEventListener('load', setup);
+      iframe.addEventListener('load', () => requestAnimationFrame(setup), { once: true });
     }
-  }, [editMode, html, id, set]);
+
+    return () => {
+      // Cleanup: remove overlays if they exist
+      try {
+        const doc = iframe.contentDocument;
+        if (doc) {
+          doc.querySelectorAll('[data-img-overlay]').forEach((o) => o.remove());
+        }
+      } catch {}
+    };
+  }, [editMode, html, id, set, get]);
 
   return (
     <div ref={wrapRef} className="slide-frame" id={`page-${String(id).padStart(2, '0')}`}>

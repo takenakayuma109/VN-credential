@@ -72,7 +72,7 @@
             </p>
 </div>
 </div>
-<div data-object="true" data-object-type="textbox" style="position: absolute; top: 324px; left: 60px; width: 1160px; height: 180px; z-index: 10; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;" id="fabric-obj-6-1775605004066" contenteditable="true">
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 324px; left: 60px; width: 1160px; height: 180px; z-index: 10;" id="fabric-obj-6-1775605004066">
 <div style="display: flex; gap: 16px; height: 100%;">
 <div style="flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid rgba(14,165,233,0.3); box-shadow: 0 4px 20px rgba(14,165,233,0.2); display: flex; flex-direction: column;">
 <div data-object="true" data-object-type="image" id="p02-img-drone" style="height: 120px; position: relative; overflow: hidden;">
