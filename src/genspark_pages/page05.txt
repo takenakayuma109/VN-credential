@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visionoid - The Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            border-bottom: 1px solid rgba(226,232,240,0.8);
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        .header-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a202c;
+            letter-spacing: 0.05em;
+        }
+        .header-divider {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .header-subtitle {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        .page-num {
+            font-size: 11px;
+            color: #64748b;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        .top-banner {
+            background: #0f172a;
+            border-radius: 0 0 16px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            padding-top: 2px;
+        }
+        .banner-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+        .banner-sub {
+            font-size: 14px;
+            color: #cbd5e1;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 14px;
+            padding: 0 36px 20px 36px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .member-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 14px 18px 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .member-photo {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #f1f5f9;
+        }
+        .member-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+        .member-role {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.15;
+            text-align: center;
+        }
+        .member-bio {
+            font-size: 8px;
+            line-height: 1.12;
+            color: #334155;
+            text-align: left;
+            flex: 1;
+            overflow: hidden;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+        .member-tags {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+        }
+        .tag {
+            font-size: 10px;
+            padding: 3px 8px;
+            background: #f8fafc;
+            color: #475569;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .color-cyan .member-photo { border: 3px solid #06b6d4; }
+        .color-cyan .member-role { color: #06b6d4; }
+        .color-teal .member-photo { border: 3px solid #0d9488; }
+        .color-teal .member-role { color: #0d9488; }
+        .color-gold .member-photo { border: 3px solid #d97706; }
+        .color-gold .member-role { color: #d97706; }
+        .color-purple .member-photo { border: 3px solid #7c3aed; }
+        .color-purple .member-role { color: #7c3aed; }
+        .color-orange .member-photo { border: 3px solid #f97316; }
+        .color-orange .member-role { color: #f97316; }
+        .color-red .member-photo { border: 3px solid #dc2626; }
+        .color-red .member-role { color: #dc2626; }
+        .color-navy .member-photo { border: 3px solid #1e40af; }
+        .color-navy .member-role { color: #1e40af; }
+        .color-green .member-photo { border: 3px solid #16a34a; }
+        .color-green .member-role { color: #16a34a; }
+    </style>
+</head>
+<body spellcheck="false" style="user-select: none;">
+<div class="slide-container">
+<div data-object="true" data-object-type="textbox" id="unified-header" style="position: absolute; top: 0; left: 0; width: 1280px; height: 30px; z-index: 100;">
+<div class="header-wrapper">
+<div class="header-left">
+<span class="header-title">VISIONOID</span>
+<span class="header-divider">|</span>
+<span class="header-subtitle">Visionary Technology Company</span>
+</div>
+<div class="page-num">05 / 26</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-1-1775456563863" style="position: absolute; top: 30px; left: 0px; width: 1280px; height: 58px; z-index: 10; transform: none !important;">
+<div class="top-banner" style="height: 58px;">
+<div class="banner-title">各領域のスペシャリストが集結 — The Team</div>
+<div class="banner-sub">エンタメ・産業・防災の各領域で実績を持つ異能の精鋭チーム</div>
+</div>
+</div>
+<div contenteditable="true" data-object="true" data-object-type="textbox" id="fabric-obj-2-1775456563863" style="position: absolute; top: 110px; left: 0px; width: 1280px; height: 580px; z-index: 5; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;">
+<div class="team-grid">
+<div class="member-card color-cyan">
+<img alt="竹中悠満" class="member-photo" data-height-listener-added="true" src="genspark_images/1d71d2d22a80f5be7db9e9e07d328edb.webp"/>
+<div class="member-name"><span style="font-size: 16px;">竹中 悠満｜Yuma Takenaka</span></div>
+<div class="member-role">創業者・代表取締役</div>
+<div class="member-bio">2012年電通ライブ入社。トヨタ自動車・日本自動車工業会等を担当。東京モーターショー2019で国内最多機体のドローンショーをプロデュースし来場者131万人達成。東京2020五輪開会式演出制作チーム。米国NASDAQ上場経験後、2024年独立しVISIONOIDを設立。</div>
+<div class="member-tags">
+<span class="tag">事業プロデュース</span>
+<span class="tag">イベントマーケティング</span>
+</div>
+</div>
+<div class="member-card color-teal">
+<img alt="上関竜矢" class="member-photo" data-height-listener-added="true" src="genspark_images/991760199348ec4dec77f6985ee36c6b.webp"/>
+<div class="member-name"><span style="font-size: 16px;">上関 竜矢｜Ryuya Kamizeki</span></div>
+<div class="member-role">共同創業者・取締役・テクノロジー統括</div>
+<div class="member-bio">元ドローンレース日本代表監督。ドローン・ドロイド・映像・音響・ネットワーク・ソフトウェア開発を横断する幅広い技術力を持つ。鉄腕DASH他、TV番組にも多数出演。DREAMS COME TRUE WONDERLAND 2023、NISSAN SKYLINE NISMO、日本ハム開幕戦2024等のドローン演出を担当。</div>
+<div class="member-tags">
+<span class="tag">ドローン</span>
+<span class="tag">テック統括</span>
+</div>
+</div>
+<div class="member-card color-gold">
+<img alt="安達的海" class="member-photo" data-height-listener-added="true" src="genspark_images/5bd46e3b3c1d7ec4042461f2dd95f9ab.webp"/>
+<div class="member-name"><span style="font-size: 16px;">安達 的海｜Matomi Adachi</span></div>
+<div class="member-role">取締役・PM</div>
+<div class="member-bio">東京2020五輪開会式、YouTube Brandcast Japan、Hermès「彼女と。」展、Cygames展等、国内屈指の大規模イベントを手がけてきたプロジェクトマネジメントのスペシャリスト。卓越した統率力と緻密な現場設計力で数多くのプロジェクトを成功に導く。</div>
+<div class="member-tags">
+<span class="tag">イベントPM</span>
+<span class="tag">大規模イベント</span>
+</div>
+</div>
+<div class="member-card color-purple">
+<img alt="門前龍汰" class="member-photo" data-height-listener-added="true" src="genspark_images/e0cc1ed6cb72e48eaaa9beb9a39ee4ab.webp"/>
+<div class="member-name"><span style="font-size: 16px;">門前 龍汰｜Ryota Monzen</span></div>
+<div class="member-role">取締役・機体開発エンジニア</div>
+<div class="member-bio">27歳にして国産唯一のドローンショー専用機体「unika」を発案・設計・開発。2017年にJAPRADARにパイロット兼開発者として参画。ドローンショー・ジャパンを経て、2024年VISIONOIDに参画。世界に誇る日本のドローンを生み出すことを目指す。</div>
+<div class="member-tags">
+<span class="tag">ハードウェア機体開発</span>
+<span class="tag">エンジニア</span>
+</div>
+</div>
+<div class="member-card color-orange">
+<img alt="中川智博" class="member-photo" data-height-listener-added="true" src="genspark_images/e0a0d332164eafff15778fdf901e9136.webp"/>
+<div class="member-name"><span style="font-size: 16px;">中川 智博｜Tomohiro Nakagawa</span></div>
+<div class="member-role">ドローン事業開発・マスターインストラクター</div>
+<div class="member-bio">楽天ドローン社の前身のあるスカイエステート社の共同ファウンダー。DPAマスターインストラクターとしてスクール受講生を日本一に成長させ、教えた人数は1,000人以上。3,000名超のドローンコミュニティ「ドローンジョブズ」を運営。一等無人航空機操縦士。</div>
+<div class="member-tags">
+<span class="tag">人材育成</span>
+<span class="tag">ドローン事業コンサルティング</span>
+</div>
+</div>
+<div class="member-card color-red">
+<img alt="村田勇人" class="member-photo" data-height-listener-added="true" src="genspark_images/c74c3c88198d51f7771980c2a09dd7f6.webp"/>
+<div class="member-name"><span style="font-size: 16px;">村田 勇人｜Hayato Murata</span></div>
+<div class="member-role">クリエイティブディレクター</div>
+<div class="member-bio">映像制作会社REBORNを設立し、MV・CM・企業VPなど累計約100作品以上のディレクションを担当。SoftBank CM等の広告代理店領域にも進出。ドローン領域では、映像・空撮・事業面からドローン業界の発展に取り組む。VISIONOIDではイベントクリエイティブおよびドローンショー演出等も手掛ける。</div>
+<div class="member-tags">
+<span class="tag">映像制作</span>
+<span class="tag">クリエイティブディレクション</span>
+</div>
+</div>
+<div class="member-card color-navy">
+<img alt="鶴岡悠生" class="member-photo" data-height-listener-added="true" src="genspark_images/4ee48d1572db65e139ff4652599c3dda.webp"/>
+<div class="member-name"><span style="font-size: 16px;">鶴岡 悠生｜Yuki Tsuruoka</span></div>
+<div class="member-role">Creative Visualization Engineer</div>
+<div class="member-bio">最先端の映像ソフトやAI、3Dソフトを駆使し、イベント空間のデジタルツイン構築や映像演出を手がけるクリエイター。XR映像・Unreal Engineの活用を2020年に開始し、JACEイベントアワードにてイベントプロフェッショナル賞・優秀賞を受賞。</div>
+<div class="member-tags">
+<span class="tag">XR映像</span>
+<span class="tag">デジタルツイン</span>
+</div>
+</div>
+<div class="member-card color-green">
+<img alt="上関風雅" class="member-photo" data-height-listener-added="true" src="genspark_images/71e0127ee5eebe705e33266be261af32.webp"/>
+<div class="member-name"><span style="font-size: 16px;">上関 風雅｜Fuga Kamizeki</span></div>
+<div class="member-role">パイロット</div>
+<div class="member-bio">小学3年からドローンレースに参戦。元日本最年少チャンピオン。2019年に日本人初の小学生での日本代表入りを果たし、ワールドゲームズ2022で世界6位を記録。レースで培ったテクニックをドローン空撮や映像制作、演出ドローン等に転用。</div>
+<div class="member-tags">
+<span class="tag">ドローンレース</span>
+<span class="tag">パイロット</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja" style=""><head>
+<meta charset="utf-8"/>
+<title>Visionoid - Industrial Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body spellcheck="false" style="margin: 0px; padding: 0px; background: rgb(248, 250, 252); user-select: none;">
+<div class="slide-container" style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+<div data-object="true" data-object-type="shape" id="fabric-obj-0-1775462123701" style="position: absolute; left: 0; top: 0; width: 1280px; height: 24px; background: rgba(255,255,255,0.95); border-bottom: 1px solid rgba(226,232,240,0.8); z-index: 100;"></div>
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 24px; width: 1280px; height: 4px; background: linear-gradient(90deg, #0f172a 0%, #0ea5e9 50%, #0f172a 100%); z-index: 101;"></div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775462123702" style="position: absolute; left: 48px; top: 5px; width: 360px; height: 16px; z-index: 102; overflow: hidden;">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: #1a202c; line-height: 14px;">
+            VISIONOID <span style="font-weight: 400; color: #94a3b8; margin: 0 8px;">|</span> <span style="font-weight: 400; color: #64748b; font-size: 10px;">Visionary Technology Company</span>
+</p>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-3-1775462123702" style="position: absolute; left: 1140px; top: 5px; width: 92px; height: 16px; z-index: 102; text-align: right; overflow: hidden;">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 10px; color: #64748b; line-height: 12px;">10 / 26</p>
+</div>
+<div data-object="true" data-object-type="shape" style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px); background-size: 20px 20px; opacity: 0.4; z-index: 1;"></div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-4-1775462123702" style="position: absolute; left: 60px; top: 44px; width: 1160px; height: 60px; z-index: 10;">
+<h1 style="margin: 0 0 4px 0; font-size: 24px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 12px;">
+            エンタメで鍛えた技術が、社会インフラを守る
+            <span style="font-size: 14px; color: #64748b; font-weight: 500; font-family: 'Inter', sans-serif;">— Industrial Overview</span>
+</h1>
+<p style="margin: 0; font-size: 14px; color: #475569; line-height: 1.4;">
+            高難度演出で磨いた運用・安全・通信・編隊制御技術を、インフラ点検・防災・産業領域に転用
+        </p>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-5-1775462123702" style="position: absolute; left: 60px; top: 120px; width: 1160px; height: 504px; z-index: 10; overflow: hidden;">
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; height: 242px; display: flex; flex-direction: column; overflow: hidden;">
+<img data-height-listener-added="true" src="genspark_images/8qhu9hJ8.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0;"/>
+<div style="padding: 12px; flex: 1;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+<i class="fas fa-train" style="color: #0ea5e9; font-size: 14px;"></i>
+<span style="font-size: 13px; font-weight: 700; color: #0f172a;">多摩モノレール 床下狭隘部点検</span>
+</div>
+<p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.4;">モノレール走行路の床下狭隘部にドローンを投入し、目視困難な箇所の損傷・劣化を調査</p>
+</div>
+</div>
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; height: 242px; display: flex; flex-direction: column; overflow: hidden;">
+<img data-height-listener-added="true" src="genspark_images/bjkm175v.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0;"/>
+<div style="padding: 12px; flex: 1;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+<i class="fas fa-bridge" style="color: #0ea5e9; font-size: 14px;"></i>
+<span style="font-size: 13px; font-weight: 700; color: #0f172a;">京急本線 鉄道橋点検</span>
+</div>
+<p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.4;">鉄道橋梁の損傷・クラックを高解像度カメラで撮影し報告書を作成</p>
+</div>
+</div>
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; height: 242px; display: flex; flex-direction: column; overflow: hidden;">
+<img data-height-listener-added="true" src="genspark_images/INGoqVPO.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0;"/>
+<div style="padding: 12px; flex: 1;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+<i class="fas fa-water" style="color: #0ea5e9; font-size: 14px;"></i>
+<span style="font-size: 13px; font-weight: 700; color: #0f172a;">三重県内ダム 地下貯水槽点検</span>
+</div>
+<p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.4;">暗闇・GPS不通環境下でドローンを用いた構造物の劣化診断</p>
+</div>
+</div>
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; height: 242px; display: flex; flex-direction: column; overflow: hidden;">
+<img data-height-listener-added="true" src="genspark_images/gcZCQEuB.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0;"/>
+<div style="padding: 12px; flex: 1;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+<i class="fas fa-building" style="color: #0ea5e9; font-size: 14px;"></i>
+<span style="font-size: 13px; font-weight: 700; color: #0f172a;">伊勢丹新宿 外壁調査</span>
+</div>
+<p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.4;">赤外線カメラ搭載ドローンによるタイル剥離・漏水の非破壊検査</p>
+</div>
+</div>
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; height: 242px; display: flex; flex-direction: column; overflow: hidden;">
+<img data-height-listener-added="true" src="genspark_images/o3Zv8Xvx.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0;"/>
+<div style="padding: 12px; flex: 1;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+<i class="fas fa-hotel" style="color: #0ea5e9; font-size: 14px;"></i>
+<span style="font-size: 13px; font-weight: 700; color: #0f172a;">星野リゾート熱海 外壁調査</span>
+</div>
+<p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.4;">リゾート施設の高所外壁を安全に調査し、修繕計画を策定</p>
+</div>
+</div>
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; height: 242px; display: flex; flex-direction: column; overflow: hidden;">
+<img data-height-listener-added="true" src="genspark_images/eIhLFv07.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0;"/>
+<div style="padding: 12px; flex: 1;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+<i class="fas fa-warehouse" style="color: #0ea5e9; font-size: 14px;"></i>
+<span style="font-size: 13px; font-weight: 700; color: #0f172a;">京田辺倉庫 外壁調査</span>
+</div>
+<p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.4;">倉庫施設の外壁劣化を空撮+赤外線で効率的に診断</p>
+</div>
+</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-6-1775462123702" style="position: absolute; left: 60px; top: 650px; width: 1160px; height: 50px; z-index: 10;">
+<div style="background: #0f172a; border-radius: 8px; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; color: white;">
+<div style="font-size: 14px; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 10px;">
+<i class="fas fa-check-circle"></i> One-Stop Operation
+            </div>
+<div style="display: flex; align-items: center; gap: 4px;">
+<span style="font-size: 12px; font-weight: 600; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 4px;">パイロット派遣</span>
+<span style="color: #64748b; font-size: 12px;"><i class="fas fa-chevron-right"></i></span>
+<span style="font-size: 12px; font-weight: 600; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 4px;">安全管理</span>
+<span style="color: #64748b; font-size: 12px;"><i class="fas fa-chevron-right"></i></span>
+<span style="font-size: 12px; font-weight: 600; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 4px;">データ取得</span>
+<span style="color: #64748b; font-size: 12px;"><i class="fas fa-chevron-right"></i></span>
+<span style="font-size: 12px; font-weight: 600; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 4px;">解析レポート</span>
+<span style="color: #64748b; font-size: 12px;"><i class="fas fa-chevron-right"></i></span>
+<span style="font-size: 12px; font-weight: 600; padding: 5px 10px; background: #0ea5e9; color: white; border-radius: 4px;">一気通貫で完結</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

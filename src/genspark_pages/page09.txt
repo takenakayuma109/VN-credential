@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="ja" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Visionoid - Physical AI &amp; Robotics</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid rgba(226,232,240,0.8);
+            z-index: 100;
+            box-sizing: border-box;
+        }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo-text, .logo-separator, .logo-sub, .page-num { font-family: 'Inter', sans-serif; }
+        .logo-text { font-size: 13px; font-weight: 700; color: #1a202c; }
+        .logo-separator { color: #94a3b8; font-size: 13px; font-weight: 400; margin: 0 4px; }
+        .logo-sub { font-size: 11px; color: #64748b; font-weight: 400; }
+        .page-num { font-size: 12px; color: #64748b; }
+        .content {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px 60px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        .title-section { margin-bottom: 16px; }
+        .main-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+        .main-title .en {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+        .main-content { display: flex; gap: 24px; flex: 1; min-height: 0; }
+        .column { flex: 1; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+        .card-image-container {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .card-content { padding: 16px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex: 0 0 auto;
+        }
+        .icon-fox { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+        .icon-sushi { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .card-title { font-size: 18px; font-weight: 700; color: #0f172a; line-height: 1.25; }
+        .card-subtitle { font-size: 13px; color: #64748b; font-weight: 500; }
+        .card-desc { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 10px; flex: 0 0 auto; }
+        .features-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+        .feature-tag {
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .feature-tag i { color: #0ea5e9; }
+        .gold-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+            white-space: nowrap;
+            max-width: 90%;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px 12px;
+            margin-top: auto;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .detail-label { color: #64748b; font-size: 12px; font-weight: 500; }
+        .detail-value { color: #0f172a; font-size: 12px; font-weight: 600; }
+        .highlight { color: #0ea5e9; }
+        .bottom-message {
+            margin-top: 16px;
+            background: white;
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            flex: 0 0 auto;
+        }
+        .message-icon { font-size: 20px; color: #0ea5e9; }
+        .message-text { font-size: 15px; font-weight: 700; color: #0f172a; letter-spacing: 0.02em; }
+        .message-sub { font-size: 13px; color: #64748b; font-weight: 500; font-family: 'Inter', sans-serif; margin-left: 6px; }
+        .fox-label {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<div class="header">
+<div class="logo">
+<div class="logo-text">VISIONOID</div>
+<div class="logo-separator">|</div>
+<div class="logo-sub">Visionary Technology Company</div>
+</div>
+<div class="page-num">09 / 26</div>
+</div>
+<div class="content">
+<div class="title-section">
+<div class="main-title">
+                    ロボットが話し、歌い、踊る時代が始まった
+                    <span class="en">— Physical AI &amp; Robotics</span>
+</div>
+</div>
+<div class="main-content">
+<div class="column">
+<div class="card">
+<div class="card-image-container">
+<img alt="Animanoid FOX" class="card-image" src="genspark_images/4Dzi7yj5.png" data-height-listener-added="true">
+<div class="fox-label">Animanoid FOX Live Performance</div>
+</div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon icon-fox">
+<i class="fas fa-robot"></i>
+</div>
+<div>
+<div class="card-title">フィジカルAI『アニマノイドFOX』</div>
+<div class="card-subtitle">トーク＆ミュージカルショー演出</div>
+</div>
+</div>
+<div class="card-desc">
+                                エンターテインメント領域で独自開発されたパフォーマンスロボット。高度なトーク機能とミュージカルショー演出を実装し、観客との双方向インタラクションを実現するフィジカルAI×IPのエンタメロボット。
+                            </div>
+<div class="features-list">
+<div class="feature-tag"><i class="fas fa-comments"></i> 自然なトーク</div>
+<div class="feature-tag"><i class="fas fa-music"></i> ミュージカル演出</div>
+<div class="feature-tag"><i class="fas fa-users"></i> 観客参加型</div>
+<div class="feature-tag"><i class="fas fa-brain"></i> AI搭載</div>
+</div>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="card">
+<div class="gold-badge">
+<i class="fas fa-check-circle"></i> 出演確定 2026年4月27日〜29日 ＠東京ビッグサイト
+                        </div>
+<div class="card-image-container">
+<img alt="SusHi Tech Tokyo 2026" class="card-image" src="genspark_images/63dab2e8b524451d692d037979bc7cb7.webp" data-height-listener-added="true">
+</div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon icon-sushi">
+<i class="fas fa-calendar-star"></i>
+</div>
+<div>
+<div class="card-title">SusHi Tech TOKYO 2026</div>
+<div class="card-subtitle">アジア最大級のイノベーションカンファレンス</div>
+</div>
+</div>
+<div class="card-desc">
+                                東京都が主催する国際的なテクノロジーイベントに、VISIONOIDのフィジカルAI技術が選出。「フィジカルAI×IP」枠として、ロボットFOXによる次世代のエンターテインメント体験を世界に発信します。
+                            </div>
+<div class="details-grid">
+<div class="detail-label">開催日程</div>
+<div class="detail-value">2026年4月27日(月) 〜 29日(水)</div>
+<div class="detail-label">会場</div>
+<div class="detail-value">東京ビッグサイト</div>
+<div class="detail-label">出演枠</div>
+<div class="detail-value highlight">フィジカルAI × IPショーケース</div>
+<div class="detail-label">規模</div>
+<div class="detail-value">来場者数 50,000人規模（想定）</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bottom-message">
+<i class="fas fa-arrow-right message-icon"></i>
+<div class="message-text">エンタメ起点のロボティクス開発 <i class="fas fa-long-arrow-alt-right" style="margin: 0 8px; color: #94a3b8;"></i> 社会実装</div>
+<div class="message-sub">From Stage to Field</div>
+</div>
+</div>
+</div>
+
+</body></html>

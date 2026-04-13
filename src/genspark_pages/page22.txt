@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .slide-container {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background-color: #f8fafc;
+    }
+    
+    .value-card {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      padding: 32px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .value-number {
+      font-size: 48px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+    .value-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 24px;
+    }
+    .value-title-jp {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .value-title-en {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .value-desc {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.8;
+      text-align: left;
+      width: 100%;
+    }
+
+    .color-cyan { color: #06b6d4; }
+    .bg-cyan-light { background-color: #ecfeff; }
+    .border-cyan { border-top: 8px solid #06b6d4; }
+
+    .color-gold { color: #d97706; }
+    .bg-gold-light { background-color: #fffbeb; }
+    .border-gold { border-top: 8px solid #d97706; }
+
+    .color-teal { color: #0d9488; }
+    .bg-teal-light { background-color: #f0fdfa; }
+    .border-teal { border-top: 8px solid #0d9488; }
+
+    .color-red { color: #dc2626; }
+    .bg-red-light { background-color: #fef2f2; }
+    .border-red { border-top: 8px solid #dc2626; }
+
+    .color-purple { color: #7c3aed; }
+    .bg-purple-light { background-color: #f5f3ff; }
+    .border-purple { border-top: 8px solid #7c3aed; }
+
+  </style>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body spellcheck="false">
+<div class="slide-container">
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; z-index: 1;">
+<div style="width: 100%; height: 100%; background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px); background-size: 24px 24px; opacity: 0.4;"></div>
+<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 0%, rgba(248,250,252,0.8) 100%);"></div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-0-1775555173437" style="position: absolute; left: 0; top: 0; width: 1280px; height: 32px; z-index: 100;">
+<div style="display: flex; align-items: center; justify-content: space-between; height: 100%; padding: 0 48px; box-sizing: border-box; border-bottom: 1px solid rgba(226,232,240,0.8); background: rgba(255,255,255,0.95);">
+<div style="display: flex; align-items: center; white-space: nowrap;">
+<span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: #1a202c; letter-spacing: 0.02em;">VISIONOID</span>
+<span style="color: #94a3b8; margin: 0 10px; font-size: 13px;">|</span>
+<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #64748b;">Visionary Technology Company</span>
+</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 10px; color: #64748b; font-weight: 500;">22 / 26</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-1-1775555173437" style="position: absolute; left: 50px; top: 56px; width: 1180px; height: 44px; z-index: 10;">
+<div style="display: flex; align-items: baseline; gap: 24px;">
+<h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #0F172A; font-family: 'Inter', 'Noto Sans JP', sans-serif;">Values — 5つの信念</h1>
+<p style="margin: 0; font-size: 14px; color: #64748B; font-weight: 500;">VISIONOIDの全員が共有する、揺るがない行動原則</p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775555173437" style="position: absolute; left: 50px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-cyan">
+<div class="value-number color-cyan">01</div>
+<div class="value-icon-circle bg-cyan-light color-cyan">
+<i class="fas fa-map-location-dot"></i>
+</div>
+<div class="value-title-jp">現場で証明する</div>
+<div class="value-title-en color-cyan">PROVE ON SITE</div>
+<div class="value-desc">
+          机上の空論ではなく、実際の現場で技術が機能することを証明することを最優先とします。エンタメや災害現場という過酷な環境での実証こそが、技術への信頼を生み出し、技術が機能することの証明を最優先に。
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-3-1775555173437" style="position: absolute; left: 290px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-gold">
+<div class="value-number color-gold">02</div>
+<div class="value-icon-circle bg-gold-light color-gold">
+<i class="fas fa-users-gear"></i>
+</div>
+<div class="value-title-jp">技術は社会実装されて<br/>こそ価値になる</div>
+<div class="value-title-en color-gold">TECH IN USE CREATES VALUE</div>
+<div class="value-desc">
+          どんなに高度な技術も、社会実装されなければ意味がありません。研究室に留めず、人々の生活や産業の現場に「使える形」で届けることへのこだわり。
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-4-1775555173437" style="position: absolute; left: 530px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-teal">
+<div class="value-number color-teal">03</div>
+<div class="value-icon-circle bg-teal-light color-teal">
+<i class="fas fa-bolt"></i>
+</div>
+<div class="value-title-jp">エンタメは技術を鍛える<br/>最高の現場</div>
+<div class="value-title-en color-teal">ENTERTAINMENT HARDENS TECH</div>
+<div class="value-desc">
+          失敗が許されないライブエンターテインメントの現場は、技術の堅牢性を高める最高の実験場。ここで磨かれた技術が、社会インフラとしての信頼性獲得に大きく貢献できると信じています。
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-5-1775555173437" style="position: absolute; left: 770px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-red">
+<div class="value-number color-red">04</div>
+<div class="value-icon-circle bg-red-light color-red">
+<i class="fas fa-shield-heart"></i>
+</div>
+<div class="value-title-jp">安全は最優先</div>
+<div class="value-title-en color-red">SAFETY FIRST</div>
+<div class="value-desc">
+          ドローンやロボットという物理的な力を伴う技術を扱う以上、安全は何よりも優先されます。法規制の遵守はもちろん、独自の厳格な安全基準を設け、事故ゼロの追求。
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-6-1775555173437" style="position: absolute; left: 1010px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-purple">
+<div class="value-number color-purple">05</div>
+<div class="value-icon-circle bg-purple-light color-purple">
+<i class="fas fa-flag-checkered"></i>
+</div>
+<div class="value-title-jp">最後まで実装する</div>
+<div class="value-title-en color-purple">DELIVER TO THE END</div>
+<div class="value-desc">
+          構想や提案だけで終わらせず、設計、開発、現場での運用まで、すべてのプロセスを一社で完結させます。責任を持って最後までやり遂げる「実装力」が私たちの誇り。
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-7-1775555173437" style="position: absolute; left: 0; top: 660px; width: 1280px; height: 60px; background-color: #0A1628; z-index: 20;"></div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-8-1775555173438" style="position: absolute; left: 0; top: 660px; width: 1280px; height: 60px; z-index: 21;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+<p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 500; letter-spacing: 0.05em;">エンタメという極限の現場で鍛え上げた技術を、社会インフラに実装する。</p>
+</div>
+</div>
+</div>
+</body>
+</html>

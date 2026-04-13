@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visionoid - Entertainment Highlights</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #020617;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+            box-sizing: border-box;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .page-num {
+            font-size: 10px;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+        }
+        .content {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 26px 60px 34px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        .title-section {
+            margin-bottom: 20px;
+        }
+        .main-title {
+            font-size: 27px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .main-title .en {
+            font-size: 15px;
+            color: #06b6d4;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .subtitle {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            flex: 1;
+            min-height: 0;
+        }
+        .highlight-card {
+            background: #1e293b;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+        }
+        .highlight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+        .card-image-container {
+            height: 60%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .highlight-card:hover .card-image {
+            transform: scale(1.05);
+        }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, #1e293b 0%, transparent 100%);
+            z-index: 1;
+        }
+        .card-content {
+            height: 40%;
+            padding: 15px 18px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .card-date {
+            font-size: 12px;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.32;
+            margin-bottom: 8px;
+            min-height: 2.7em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .kpi-wrapper {
+            margin-top: auto;
+        }
+        .kpi-main {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 38px;
+            line-height: 1;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+        .kpi-main.cyan {
+            background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .kpi-unit {
+            font-size: 14px;
+            font-weight: 500;
+            color: #cbd5e1;
+            -webkit-text-fill-color: #cbd5e1;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.4;
+            padding-top: 9px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-dot {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+            top: -180px;
+            right: -160px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .confidential-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+            background: rgba(220, 38, 38, 0.9);
+            color: #ffffff;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<div class="glow-dot"></div>
+<div class="header">
+<div class="logo">
+<span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: #ffffff;">VISIONOID</span>
+<span style="margin: 0 8px; color: rgba(255,255,255,0.3); font-size: 13px;">|</span>
+<span style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.5);">Visionary Technology Company</span>
+</div>
+<div class="page-num">08 / 26</div>
+</div>
+<div class="content">
+<div class="title-section">
+<div class="main-title">
+                エンタメの常識を塗り替える、国内最大級のドローンショー演出
+                <span class="en">— Entertainment Highlights</span>
+</div>
+<div class="subtitle">
+                乃木坂46、江の島、石垣など、国内最大級のエンターテインメントイベントでのドローンショー演出実績
+            </div>
+</div>
+<div class="highlights-grid">
+<div class="highlight-card">
+<div class="card-image-container">
+<img alt="乃木坂46 ドローンショー" class="card-image" id="fabric-obj-0-1775554588181" src="genspark_images/8bc88b7b7acd1d7f7ab2fc6533c43383.webp"/>
+<div class="confidential-badge">
+<i class="fa-solid fa-lock"></i> 非公開
+                </div>
+<div class="image-overlay"></div>
+</div>
+<div class="card-content">
+<div>
+<div class="card-header-row">
+<span class="card-date">2025.09.04-07</span>
+</div>
+<div class="card-title">乃木坂46 真夏の全国ツアー<br/>ファイナル 神宮球場</div>
+<div class="kpi-wrapper">
+<div class="kpi-main">
+                                1,100<span class="kpi-unit">機 総数</span>
+</div>
+</div>
+</div>
+<div class="card-desc">
+                        観客のコール＆レスポンスとドローン文字が完全シンクロする新時代のライブ演出
+                    </div>
+</div>
+</div>
+<div class="highlight-card">
+<div class="card-image-container">
+<img alt="江の島 ドローンショー" class="card-image" id="fabric-obj-1-1775554588181" src="genspark_images/utBoPTD3.png"/>
+<div class="image-overlay"></div>
+</div>
+<div class="card-content">
+<div>
+<div class="card-header-row">
+<span class="card-date">2025.08.19</span>
+</div>
+<div class="card-title">江の島マイアミビーチショー<br/>「天女と龍神」</div>
+<div class="kpi-wrapper">
+<div class="kpi-main cyan">
+                                35,000<span class="kpi-unit">人 来場</span>
+</div>
+</div>
+</div>
+<div class="card-desc">
+                        江の島伝説を夜空に再現。地域文化と最新テクノロジーが融合したナイトスペクタクル
+                    </div>
+</div>
+</div>
+<div class="highlight-card">
+<div class="card-image-container">
+<img alt="seven x seven 石垣" class="card-image" id="fabric-obj-2-1775554588181" src="genspark_images/cd57c29e6f073835491a07f105b7cb24.webp"/>
+<div class="image-overlay"></div>
+</div>
+<div class="card-content">
+<div>
+<div class="card-header-row">
+<span class="card-date">2026.01.01-03</span>
+</div>
+<div class="card-title">seven x seven 石垣<br/>New Year Drone Show</div>
+<div class="kpi-wrapper">
+<div class="kpi-main">
+                                500<span class="kpi-unit">機 ＋ 花火</span>
+</div>
+</div>
+</div>
+<div class="card-desc">
+                        ラグジュアリーリゾートの夜空を彩る、ドローンと花火の共演による祝祭空間
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

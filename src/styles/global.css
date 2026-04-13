@@ -20,11 +20,14 @@ body { overflow-x: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 8px 16px;
   background: rgba(15, 20, 30, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   height: 48px;
+  gap: 12px;
+  flex-wrap: nowrap;
+  min-width: 0;
 }
 .top-toolbar .brand {
   font-family: 'Poppins', sans-serif;
@@ -32,8 +35,72 @@ body { overflow-x: hidden; }
   letter-spacing: 0.05em;
   font-size: 14px;
   color: #e8eaed;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
-.top-toolbar .controls { display: flex; gap: 8px; align-items: center; }
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.brand-text-full,
+.brand-text-short {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.brand-text-short { display: none; }
+.variant-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  flex-shrink: 0;
+}
+.variant-badge.board { color: #fbbf24; background: rgba(251, 191, 36, 0.08); }
+.variant-badge.member { color: #4a9eff; background: rgba(74, 158, 255, 0.10); }
+
+.variant-toggle {
+  display: inline-flex;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+.variant-toggle button {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 6px 12px !important;
+  font-weight: 600;
+}
+.variant-toggle button + button {
+  border-left: 1px solid rgba(255,255,255,0.18) !important;
+}
+.variant-toggle button.active {
+  background: #4a9eff !important;
+  color: #fff !important;
+}
+
+/* Share view: hide layout chrome that recipients shouldn't interact with */
+.share-view .nav-sidebar { opacity: 0.85; }
+
+.top-toolbar .controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
 .top-toolbar button {
   padding: 6px 12px;
   border: 1px solid rgba(255,255,255,0.15);
@@ -44,10 +111,53 @@ body { overflow-x: hidden; }
   cursor: pointer;
   transition: all 0.15s;
   font-family: inherit;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
 }
 .top-toolbar button:hover { background: rgba(255,255,255,0.12); }
 .top-toolbar button.active { background: #4a9eff; border-color: #4a9eff; color: #fff; }
 .top-toolbar button:disabled { opacity: 0.5; cursor: wait; }
+.btn-icon { font-size: 13px; line-height: 1; }
+.btn-label { font-size: 12px; line-height: 1; }
+
+/* ----- Responsive breakpoints ----- */
+
+/* Tablet: drop the long brand subtitle, tighten button padding */
+@media (max-width: 1180px) {
+  .brand-text-full { display: none; }
+  .brand-text-short { display: inline; }
+  .top-toolbar { padding: 8px 12px; gap: 10px; }
+  .top-toolbar button { padding: 6px 10px; }
+}
+
+/* Compact: hide button text labels, keep icons */
+@media (max-width: 920px) {
+  .top-toolbar { gap: 8px; }
+  .top-toolbar .controls { gap: 5px; }
+  .top-toolbar button { padding: 7px 9px; }
+  .btn-label { display: none; }
+  .btn-icon { font-size: 14px; }
+  .variant-toggle button { padding: 6px 9px !important; font-size: 11px; }
+}
+
+/* Mobile: shrink brand mark, allow toolbar to scroll horizontally if it
+   still doesn't fit (last-resort fallback so nothing ever clips). */
+@media (max-width: 640px) {
+  .top-toolbar { padding: 6px 8px; gap: 6px; }
+  .brand-mark { width: 24px; height: 24px; }
+  .top-toolbar .brand { font-size: 12px; gap: 6px; }
+  .brand-text-short { display: none; }
+  .variant-badge { font-size: 9px; padding: 2px 6px; letter-spacing: 0.08em; }
+  .top-toolbar .controls {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .top-toolbar .controls::-webkit-scrollbar { display: none; }
+}
 
 /* ===== SIDE NAV (page numbers) ===== */
 .nav-sidebar {

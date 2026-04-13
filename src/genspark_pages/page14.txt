@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VISIONOID - Disaster Prevention Press Release</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', 'Inter', sans-serif; background: #ffffff; overflow: hidden; }
+        .slide-container { position: relative; width: 1280px; height: 720px; background: #ffffff; overflow: hidden; }
+        
+        /* Header */
+        .header { 
+            position: absolute; 
+            left: 0; 
+            top: 24px; 
+            width: 100%; 
+            height: 24px; 
+            padding: 0 48px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            z-index: 10; 
+            border-bottom: 1px solid rgba(226,232,240,0.8); 
+        }
+
+        /* PR Styles */
+        .pr-meta { border-bottom: 2px solid #0f172a; padding-bottom: 10px; display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; }
+        .pr-badge { background: #64748b; color: white; padding: 3px 10px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; border-radius: 2px; }
+        .pr-date { font-size: 14px; color: #64748b; font-weight: 500; font-family: 'Inter', sans-serif; }
+        
+        .pr-headline { font-size: 25px; font-weight: 700; color: #0f172a; line-height: 1.35; letter-spacing: -0.02em; }
+        .pr-body { font-size: 16px; color: #334155; line-height: 1.8; text-align: justify; margin-top: 20px; font-weight: 500; }
+
+        .logo-row { display: flex; align-items: center; gap: 20px; }
+        .partner-name { font-size: 24px; font-weight: 700; color: #0f172a; letter-spacing: 0.02em; }
+        .cross-mark { font-size: 24px; color: #94a3b8; font-weight: 300; }
+
+        /* Value Cards */
+        .value-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; height: 100%; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        .card-header { display: flex; align-items: center; gap: 12px; }
+        .card-icon { width: 36px; height: 36px; background: #ea580c; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; flex-shrink: 0; }
+        .card-title { font-size: 18px; font-weight: 700; color: #0f172a; }
+        .card-desc { font-size: 14px; color: #475569; line-height: 1.6; font-weight: 500; }
+        .section-label { font-size: 14px; font-weight: 700; color: #ea580c; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; display: block; }
+
+    </style>
+</head>
+<body spellcheck="false" style="user-select: none;">
+<div class="slide-container">
+<!-- Header -->
+<div class="header">
+<div style="display: flex; align-items: center; gap: 12px; font-family: 'Inter', sans-serif;">
+<span style="font-size: 13px; font-weight: 700; color: #1a202c;">VISIONOID</span>
+<span style="font-size: 13px; color: #94a3b8;">|</span>
+<span style="font-size: 11px; font-weight: 500; color: #64748b;">Visionary Technology Company</span>
+</div>
+<div style="font-size: 11px; color: #64748b; font-family: 'Inter', sans-serif;">14 / 26</div>
+</div>
+<!-- Left Column: PR Content -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-0-1775554675732" style="position: absolute; left: 40px; top: 64px; width: 580px; height: 60px;">
+<div class="logo-row">
+<img alt="VISIONOID" data-height-listener-added="true" src="genspark_images/1oa4vgKd.png" style="height: 36px; width: auto; object-fit: contain;"/>
+<span class="cross-mark">×</span>
+<span class="partner-name">東京都江戸川区</span>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-1-1775554675732" style="position: absolute; left: 32px; top: 130px; width: 620px; height: 300px; transform: none !important;">
+<div class="pr-meta">
+<span class="pr-badge">PRESS RELEASE</span>
+<span class="pr-date">2026.3.8</span>
+</div>
+<h1 class="pr-headline">
+            VISIONOID、東京都江戸川区と</h1><h1 class="pr-headline">『無人航空機による情報収集等に関する協定』締結
+        </h1>
+<p class="pr-body">
+            本協定は、地震・風水害等の災害発生時において、ドローンを活用した迅速な情報収集を行い、被害状況の把握および初動対応の高度化を目的とするものです。</p>
+</div>
+<!-- Right Column: Visuals -->
+<div data-object="true" data-object-type="image" id="fabric-obj-2-1775554675732" style="position: absolute; left: 660px; top: 64px; width: 580px; height: 340px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+<img data-height-listener-added="true" src="genspark_images/201afc12eb933a681180d4d52ba743f1.webp" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"/>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-3-1775554675732" style="position: absolute; left: 660px; top: 414px; width: 580px; height: 30px;">
+<p style="font-size: 14px; color: #64748b; text-align: right; font-weight: 500;">右：江戸川区長 斉藤猛 ／ 左：VISIONOID代表 竹中悠満</p>
+</div>
+<!-- Bottom Section: Value Cards -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-4-1775554675732" style="position: absolute; left: 40px; top: 450px; width: 1200px; height: 24px;">
+<span class="section-label">Main Initiatives / 主な取り組み</span>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-5-1775554675732" style="position: absolute; left: 40px; top: 480px; width: 386px; height: 200px;">
+<div class="value-card">
+<div class="card-header">
+<div class="card-icon"><i class="fas fa-users-viewfinder"></i></div>
+<h3 class="card-title">迅速な情報収集体制</h3>
+</div>
+<p class="card-desc">
+                団体でライセンスを取得し、災害時の即応体制を整備。外部事業者に依存せず、発災直後から自律的にドローンを展開し、被害状況を即座に把握します。
+            </p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-6-1775554675732" style="position: absolute; left: 446px; top: 480px; width: 386px; height: 200px;">
+<div class="value-card">
+<div class="card-header">
+<div class="card-icon"><i class="fas fa-layer-group"></i></div>
+<h3 class="card-title">統合PF「SENRIGAN」</h3>
+</div>
+<p class="card-desc" style="font-size: 14.5px;">
+                複数ドローンの映像・位置情報を一元管理する次世代防災プラットフォーム。対策本部と現場をリアルタイムで繋ぎ、意思決定のスピードを劇的に向上させます。
+            </p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-7-1775554675732" style="position: absolute; left: 852px; top: 480px; width: 386px; height: 200px;">
+<div class="value-card">
+<div class="card-header">
+<div class="card-icon"><i class="fas fa-person-chalkboard"></i></div>
+<h3 class="card-title">継続的シミュレーション＆訓練</h3>
+</div>
+<p class="card-desc">
+                機体を導入するだけでなく、平時から地域特性を熟知するための実践訓練を実施。いざという時に確実に「動ける」組織体制と運用フローを構築します。
+            </p>
+</div>
+</div>
+</div>
+</body></html>

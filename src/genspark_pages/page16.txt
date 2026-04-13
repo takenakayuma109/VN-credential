@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Education &amp; Human Development - VISIONOID</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Noto Sans JP', sans-serif; }
+        .slide-container { position: relative; width: 1280px; height: 720px; overflow: hidden; background: #f8fafc; }
+        .bg-pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.03; background-image: radial-gradient(circle, #0f172a 1px, transparent 1px); background-size: 20px 20px; pointer-events: none; }
+        
+        .header { position: absolute; top: 0; left: 0; width: 100%; height: 24px; background: #0f172a; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-sizing: border-box; z-index: 100; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .header-brand { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.02em; }
+        .header-divider { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.3); }
+        .header-tagline { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+        .header-page-number { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+
+        .top-band { 
+            position: absolute; 
+            top: 24px; 
+            left: 0; 
+            width: 1280px; 
+            height: 70px; 
+            background: #0f172a; 
+            border-radius: 0 0 16px 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 40px; 
+            box-sizing: border-box; 
+            z-index: 20; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .band-title { font-size: 28px; font-weight: 700; color: white; letter-spacing: 0.5px; white-space: nowrap; }
+        .band-badges { display: flex; gap: 10px; flex-shrink: 0; }
+        .band-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #38bdf8; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+
+        .main-container {
+            position: absolute;
+            top: 94px;
+            left: 0;
+            width: 1280px;
+            height: 626px;
+            display: flex;
+        }
+
+        .left-col {
+            width: 45%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .stat-large {
+            font-family: 'Inter', sans-serif;
+            font-size: 72px;
+            font-weight: 800;
+            color: #fbbf24;
+            line-height: 1;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .stat-sub {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .stat-detail {
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .right-col {
+            width: 55%;
+            height: 100%;
+            padding: 16px 24px 20px 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 12px;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+        .program-card {
+            background: white;
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #ccc;
+            height: 138px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .program-card.cyan { border-left-color: #06b6d4; }
+        .program-card.gold { border-left-color: #d97706; }
+        .program-card.teal { border-left-color: #0d9488; }
+        .program-card.purple { border-left-color: #7c3aed; }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.2;
+        }
+        .card-icon {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        .card-desc {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        .profile-card {
+            width: 100%;
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 22px 26px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+        }
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03));
+            pointer-events: none;
+        }
+        
+        .profile-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d97706;
+            flex-shrink: 0;
+        }
+        .profile-content { flex: 1; }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        .expert-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .profile-role {
+            font-size: 16px;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .profile-bio {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-pattern"></div>
+<div class="header" data-object="true" data-object-type="textbox" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 24px;">
+<div class="header-left">
+<span class="header-brand">VISIONOID</span>
+<span class="header-divider">|</span>
+<span class="header-tagline">Visionary Technology Company</span>
+</div>
+<div class="header-page-number">16 / 26</div>
+</div>
+<div class="top-band" data-object="true" data-object-type="textbox" style="position: absolute; left: 0px; top: 24px; width: 1280px; height: 70px;">
+<div class="band-title">人材を育て、技術を社会に届ける — Education &amp; Human Development</div>
+<div class="band-badges">
+<div class="band-badge"><i class="fas fa-check"></i> 人材育成</div>
+<div class="band-badge"><i class="fas fa-check"></i> 国家資格</div>
+</div>
+</div>
+<div class="main-container" style="position: absolute; left: 0px; top: 94px; width: 1280px; height: 626px;">
+<div class="left-col" data-object="true" data-object-type="image" style="position: absolute; left: 0px; top: 0px; width: 576px; height: 626px;">
+<img alt="Drone School Team" class="hero-photo" src="genspark_images/0UpwZ65n.png"/>
+<div class="photo-overlay">
+<div class="stat-large">1,000+</div>
+<div class="stat-sub">人以上を育成</div>
+<div class="stat-detail"><i class="fas fa-users"></i> 3,000名超のコミュニティ運営</div>
+</div>
+</div>
+<div class="right-col" style="position: absolute; left: 576px; top: 0px; width: 704px; height: 626px;">
+<div class="programs-grid">
+<div class="program-card cyan" data-object="true" data-object-type="textbox" style="position: absolute; left: 24px; top: 20px; width: 322px; height: 138px;">
+<div class="card-title"><i class="fas fa-school card-icon" style="color:#06b6d4;"></i> 国家資格スクール運営</div>
+<div class="card-desc">一等無人航空機操縦士（国家資格）取得を支援。実践的なカリキュラムで即戦力を育成。</div>
+</div>
+<div class="program-card gold" data-object="true" data-object-type="textbox" style="position: absolute; left: 356px; top: 20px; width: 322px; height: 138px;">
+<div class="card-title"><i class="fas fa-trophy card-icon" style="color:#d97706;"></i> 圧倒的な育成実績</div>
+<div class="card-desc">中川智博による1,000人以上のパイロット育成実績と、3,000名超のコミュニティ運営。</div>
+</div>
+<div class="program-card teal" data-object="true" data-object-type="textbox" style="position: absolute; left: 24px; top: 174px; width: 322px; height: 138px;">
+<div class="card-title"><i class="fas fa-child card-icon" style="color:#0d9488;"></i> JAPRADAR青少年育成</div>
+<div class="card-desc">2017年から続くドローンレーシングチームでの育成活動。レース技術を産業へ転用。</div>
+</div>
+<div class="program-card purple" data-object="true" data-object-type="textbox" style="position: absolute; left: 356px; top: 174px; width: 322px; height: 138px;">
+<div class="card-title"><i class="fas fa-flask card-icon" style="color:#7c3aed;"></i> STEM/STEAM教育</div>
+<div class="card-desc">ドローンを活用した科学・技術・工学・数学の融合教育プログラムを提供。</div>
+</div>
+</div>
+<div class="profile-card" data-object="true" data-object-type="textbox" style="position: absolute; left: 24px; top: 348px; width: 656px; height: 250px;">
+<img alt="Nakagawa Tomohiro" class="profile-icon" src="genspark_images/e0a0d332164eafff15778fdf901e9136.webp"/>
+<div class="profile-content">
+<div class="profile-header">
+<span class="profile-name">中川 智博</span>
+<span class="expert-badge">EXPERT</span>
+</div>
+<div class="profile-role">ドローン事業開発・マスターインストラクター</div>
+<div class="profile-bio">
+                        楽天ドローン前身のスカイエステート立ち上げメンバー。DPAマスターインストラクターとしてスクール受講生を日本一に成長させ、1,000人以上を育成。一等無人航空機操縦士。
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

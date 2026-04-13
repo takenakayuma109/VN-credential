@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visionoid - Vision 2030</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: 'Noto Sans JP', sans-serif;
+        background: #f8fafc;
+    }
+    .slide-container {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        background: #f8fafc;
+    }
+    @keyframes cityRise {
+        from { transform: translateY(100%); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .building {
+        background: #cbd5e1;
+        width: 40px;
+        margin: 0 4px;
+        border-radius: 2px 2px 0 0;
+        opacity: 0.5;
+    }
+</style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<div data-object="true" data-object-type="shape" style="position: absolute; top: 40px; left: 0; width: 1280px; height: 200px; z-index: 1; display: flex; justify-content: center; align-items: center; pointer-events: none;">
+<span style="font-family: 'Inter', sans-serif; font-weight: 900; font-size: 240px; color: #d97706; opacity: 0.08; letter-spacing: -10px; line-height: 1;">2030</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-0-1775555167856" style="position: absolute; bottom: 0; left: 0; width: 1280px; height: 120px; z-index: 1; display: flex; align-items: flex-end; justify-content: center; padding: 0 20px; box-sizing: border-box; overflow: hidden;">
+<div class="building" style="height: 60px; width: 30px;"></div>
+<div class="building" style="height: 90px; width: 40px;"></div>
+<div class="building" style="height: 40px; width: 25px;"></div>
+<div class="building" style="height: 80px; width: 50px;"></div>
+<div class="building" style="height: 110px; width: 35px;"></div>
+<div class="building" style="height: 50px; width: 20px;"></div>
+<div class="building" style="height: 70px; width: 45px;"></div>
+<div class="building" style="height: 100px; width: 60px;"></div>
+<div class="building" style="height: 40px; width: 30px;"></div>
+<div class="building" style="height: 85px; width: 40px;"></div>
+<div class="building" style="height: 65px; width: 25px;"></div>
+<div class="building" style="height: 95px; width: 50px;"></div>
+<div class="building" style="height: 55px; width: 35px;"></div>
+<div class="building" style="height: 75px; width: 40px;"></div>
+<div class="building" style="height: 105px; width: 55px;"></div>
+<div class="building" style="height: 45px; width: 25px;"></div>
+<div class="building" style="height: 85px; width: 40px;"></div>
+<div class="building" style="height: 60px; width: 30px;"></div>
+<div class="building" style="height: 115px; width: 50px;"></div>
+<div class="building" style="height: 50px; width: 20px;"></div>
+<div class="building" style="height: 80px; width: 45px;"></div>
+<div class="building" style="height: 40px; width: 25px;"></div>
+<div class="building" style="height: 90px; width: 50px;"></div>
+<div class="building" style="height: 60px; width: 35px;"></div>
+<div class="building" style="height: 100px; width: 40px;"></div>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-1-1775555167856" style="position: absolute; top: 0; left: 0; width: 1280px; height: 24px; background: #ffffff; border-bottom: 1px solid rgba(226,232,240,0.8); z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-sizing: border-box;">
+<div style="display: flex; align-items: center;">
+<span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: #1a202c;">VISIONOID</span>
+<span style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 13px; color: #94a3b8; margin: 0 10px;">|</span>
+<span style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; color: #64748b;">Visionary Technology Company</span>
+</div>
+<span style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; color: #64748b;">21 / 26</span>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775555167856" style="position: absolute; top: 60px; left: 60px; width: 1160px; height: 60px; z-index: 10;">
+<h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 16px;">
+            Vision 2030
+            <span style="font-size: 20px; font-weight: 500; color: #64748b;">技術と創造力で、社会の可能性を拡張する</span>
+</h1>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-3-1775555167856" style="position: absolute; top: 140px; left: 60px; width: 370px; height: 320px; background: white; border-radius: 12px; border-left: 8px solid #06b6d4; box-shadow: 0 4px 20px rgba(0,0,0,0.06); padding: 30px; box-sizing: border-box; z-index: 5;">
+<div style="width: 64px; height: 64px; background: #ecfeff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: #06b6d4; font-size: 28px;">
+<i class="fas fa-paper-plane"></i>
+</div>
+<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 700; color: #0f172a; line-height: 1.4;">ドローンショーと<br/>ロボットエンタメが日常に</h3>
+<div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #06b6d4; font-weight: 600; margin-bottom: 16px;">Everyday Spectacle</div>
+<p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.6;">
+            エンターテインメントが特別なイベントだけでなく、都市の景観や日常の一部に。誰もが最先端技術の感動を身近に感じる社会の実現。
+        </p>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-4-1775555167856" style="position: absolute; top: 140px; left: 455px; width: 370px; height: 320px; background: white; border-radius: 12px; border-left: 8px solid #d97706; box-shadow: 0 4px 20px rgba(0,0,0,0.06); padding: 30px; box-sizing: border-box; z-index: 5;">
+<div style="width: 64px; height: 64px; background: #fffbeb; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: #d97706; font-size: 28px;">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 700; color: #0f172a; line-height: 1.4;">産業・災害現場に<br/>ドローン・ロボットが先行出動</h3>
+<div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #d97706; font-weight: 600; margin-bottom: 16px;">First Response</div>
+<p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.6;">
+            災害発生時や危険な産業現場において、人が立ち入る前にドローンやロボットが先行して情報収集や作業を実施。人命を守り安全を確保。
+        </p>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-5-1775555167856" style="position: absolute; top: 140px; left: 850px; width: 370px; height: 320px; background: white; border-radius: 12px; border-left: 8px solid #0d9488; box-shadow: 0 4px 20px rgba(0,0,0,0.06); padding: 30px; box-sizing: border-box; z-index: 5;">
+<div style="width: 64px; height: 64px; background: #f0fdfa; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: #0d9488; font-size: 28px;">
+<i class="fas fa-globe-asia"></i>
+</div>
+<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 700; color: #0f172a; line-height: 1.4;">先端技術が<br/>社会と共存</h3>
+<div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #0d9488; font-weight: 600; margin-bottom: 16px;">Coexistence with Society</div>
+<p style="margin: 0; font-size: 13px; color: #475569; line-height: 1.6;">
+            テクノロジーが主張しすぎることなく、社会インフラや生活環境に自然に溶け込み、人々の生活を豊かに拡張する「技術と社会の調和」の実現。
+        </p>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-6-1775555167856" style="position: absolute; top: 500px; left: 60px; width: 1160px; height: 160px; z-index: 10;">
+<div style="display: flex; align-items: center; justify-content: space-between; height: 100%; position: relative;">
+<div style="position: absolute; top: 40px; left: 100px; right: 100px; height: 4px; background: #e2e8f0; z-index: 1;"></div>
+<div style="position: relative; z-index: 2; text-align: center; width: 280px;">
+<div style="width: 24px; height: 24px; background: #06b6d4; border-radius: 50%; margin: 0 auto 16px auto; border: 4px solid #fff; box-shadow: 0 0 0 2px #06b6d4;"></div>
+<div style="font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">2026</div>
+<div style="font-size: 14px; font-weight: 700; color: #06b6d4; margin-bottom: 4px;">SusHi Tech TOKYO 出演</div>
+<div style="font-size: 12px; color: #64748b;">フィジカルAI×IPの実装開始</div>
+</div>
+<div style="position: relative; z-index: 2; color: #94a3b8; font-size: 20px;">
+<i class="fas fa-chevron-right"></i>
+</div>
+<div style="position: relative; z-index: 2; text-align: center; width: 280px;">
+<div style="width: 24px; height: 24px; background: #d97706; border-radius: 50%; margin: 0 auto 16px auto; border: 4px solid #fff; box-shadow: 0 0 0 2px #d97706;"></div>
+<div style="font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">2027-2029</div>
+<div style="font-size: 14px; font-weight: 700; color: #d97706; margin-bottom: 4px;">社会実装の拡張</div>
+<div style="font-size: 12px; color: #64748b;">産業・防災領域での標準化</div>
+</div>
+<div style="position: relative; z-index: 2; color: #94a3b8; font-size: 20px;">
+<i class="fas fa-chevron-right"></i>
+</div>
+<div style="position: relative; z-index: 2; text-align: center; width: 280px;">
+<div style="width: 24px; height: 24px; background: #0d9488; border-radius: 50%; margin: 0 auto 16px auto; border: 4px solid #fff; box-shadow: 0 0 0 2px #0d9488;"></div>
+<div style="font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 900; color: #0f172a; margin-bottom: 8px; letter-spacing: -1px;">2030</div>
+<div style="font-size: 16px; font-weight: 700; color: #0d9488; margin-bottom: 4px;">ビジョン到達</div>
+<div style="font-size: 12px; color: #64748b;">技術と創造力で社会を拡張</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

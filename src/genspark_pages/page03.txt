@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="ja" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Visionoid - Core Competence</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body spellcheck="false" style="user-select: none;">
+<div class="slide-container">
+<div class="header" data-object="true" data-object-type="textbox" id="fabric-obj-0-1775456294666" style="position: absolute; top: 0; left: 0; width: 1280px; height: 24px; padding: 0 48px; border-bottom: 1px solid rgba(226,232,240,0.8); box-sizing: border-box;">
+<div style="display: flex; align-items: center; gap: 10px;">
+<div style="font-size: 13px; font-weight: 700; color: #1a202c; font-family: 'Inter', sans-serif;">VISIONOID</div>
+<div style="color: #94a3b8; font-size: 13px; margin-top: -1px;">|</div>
+<div style="font-size: 11px; color: #64748b; font-family: 'Inter', sans-serif;">Visionary Technology Company</div>
+</div>
+<div style="font-size: 10px; color: #64748b; font-family: 'Inter', sans-serif;">03 / 26</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-1-1775456294666" style="position: absolute; right: 40px; top: 42px; width: 200px; height: 180px; z-index: 1; box-sizing: border-box;">
+<p style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 150px; color: #d97706; opacity: 0.12; margin: 0; line-height: 1; text-align: right;">6</p>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775456294666" style="position: absolute; left: 60px; top: 50px; width: 1160px; height: 84px; z-index: 10; box-sizing: border-box;">
+<h1 style="font-size: 36px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0;">構想から運用まで、すべてを一社で完結 <span style="font-size: 18px; color: #64748b; font-weight: 500; font-family: 'Inter', sans-serif;">— Core Competence</span></h1>
+<p style="font-size: 16px; color: #475569; margin: 0; line-height: 1.35;">6つの力を組み合わせたワンストップ体制。あらゆるフェーズに対応する総合力。</p>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-3-1775456294666" style="position: absolute; left: 60px; top: 140px; width: 382px; height: 140px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #06b6d4; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-4-1775456294666" style="position: absolute; left: 80px; top: 160px; width: 48px; height: 48px; background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: white; font-size: 20px;">
+<i class="fas fa-cogs"></i>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-5-1775456294666" style="position: absolute; left: 144px; top: 155px; width: 300px; height: 105px; z-index: 10; box-sizing: border-box; transform: none !important;">
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0;">技術力</h3>
+<p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.35;">ドローン・ドロイド・AI技術の開発・運用。唯一の国産ドローンショー機体「unika」開発者在籍。</p>
+<span style="font-size: 11px; color: #06b6d4; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; font-weight: 600;">機体開発・ソフト開発</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-6-1775456294666" style="position: absolute; left: 453px; top: 140px; width: 373px; height: 140px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #0d9488; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-7-1775456294666" style="position: absolute; left: 473px; top: 160px; width: 48px; height: 48px; background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: white; font-size: 20px;">
+<i class="fas fa-hard-hat"></i>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-8-1775456294666" style="position: absolute; left: 537px; top: 155px; width: 285.857px; height: 110px; z-index: 10; transform: none !important; box-sizing: border-box;">
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0;">現場力</h3>
+<p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">1,000人以上のパイロット育成、3,000名超のコミュニティ運営実績者在籍。レース技術を転用。</p>
+<span style="font-size: 11px; color: #0d9488; background: #ccfbf1; padding: 2px 6px; border-radius: 4px; font-weight: 600;">安全管理・現場運用</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-9-1775456294666" style="position: absolute; left: 846px; top: 140px; width: 377px; height: 140px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #7c3aed; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-10-1775456294666" style="position: absolute; left: 866px; top: 160px; width: 48px; height: 48px; background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: white; font-size: 20px;">
+<i class="fas fa-palette"></i>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-11-1775456294666" style="position: absolute; left: 930px; top: 155px; width: 270px; height: 110px; z-index: 10; box-sizing: border-box;">
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0;">クリエイティブ力</h3>
+<p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">累計約100作品以上の大規模案件実績。XR映像・Unreal Engine・デジタルツイン。</p>
+<span style="font-size: 11px; color: #7c3aed; background: #ede9fe; padding: 2px 6px; border-radius: 4px; font-weight: 600;">映像演出・デジタルツイン</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-12-1775456294666" style="position: absolute; left: 60px; top: 296px; width: 373px; height: 140px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #d97706; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-13-1775456294666" style="position: absolute; left: 80px; top: 316px; width: 48px; height: 48px; background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: white; font-size: 20px;">
+<i class="fas fa-project-diagram"></i>
+</div>
+<div contenteditable="true" data-object="true" data-object-type="textbox" id="fabric-obj-14-1775456294666" style="position: absolute; left: 144px; top: 311px; width: 270px; height: 110px; z-index: 10; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text; box-sizing: border-box;">
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0;">プロデュース力</h3>
+<p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">東京モーターショー2019、東京2020五輪開会式、乃木坂46神宮球場1,100機ショー。</p>
+<span style="font-size: 11px; color: #d97706; background: #fef3c7; padding: 2px 6px; border-radius: 4px; font-weight: 600;">大規模イベント企画・制作</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-15-1775456294666" style="position: absolute; left: 453px; top: 296px; width: 373px; height: 140px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #f97316; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-16-1775456294666" style="position: absolute; left: 473px; top: 316px; width: 48px; height: 48px; background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: white; font-size: 20px;">
+<i class="fas fa-chess"></i>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-17-1775456294667" style="position: absolute; left: 537px; top: 311px; width: 275.889px; height: 110px; z-index: 10; transform: none !important; box-sizing: border-box;">
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0;">戦略力</h3>
+<p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">電通ライブ・電通ビジネスプロデュース局での企業・政府機関の大規模プロジェクト実績。</p>
+<span style="font-size: 11px; color: #f97316; background: #ffedd5; padding: 2px 6px; border-radius: 4px; font-weight: 600;">戦略企画・マーケティング</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-18-1775456294667" style="position: absolute; left: 846px; top: 296px; width: 373px; height: 140px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid #1e293b; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-19-1775456294667" style="position: absolute; left: 866px; top: 316px; width: 48px; height: 48px; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: white; font-size: 20px;">
+<i class="fas fa-rocket"></i>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-20-1775456294667" style="position: absolute; left: 930px; top: 311px; width: 270px; height: 110px; z-index: 10; box-sizing: border-box;">
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0;">実装力</h3>
+<p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">構想→設計→実行→運用を一社で完結。産業・防災・教育など社会インフラへ実装。</p>
+<span style="font-size: 11px; color: #1e293b; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 600;">エンドツーエンド実装</span>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-21-1775456294668" style="position: absolute; left: 60px; top: 460px; width: 1160px; height: 80px; background: #0f172a; border-radius: 12px; z-index: 5;"></div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-22-1775456294668" style="position: absolute; left: 60px; top: 460px; width: 1160px; height: 80px; display: flex; align-items: center; justify-content: center; gap: 60px; z-index: 10; box-sizing: border-box;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #22d3ee; font-size: 18px;"><i class="fas fa-lightbulb"></i></div>
+<div style="color: white; font-weight: 700; font-size: 18px;">構想 <span style="font-size: 12px; font-weight: 400; opacity: 0.7; margin-left: 4px;">Concept</span></div>
+</div>
+<i class="fas fa-arrow-right" style="color: #64748b; font-size: 16px;"></i>
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #22d3ee; font-size: 18px;"><i class="fas fa-drafting-compass"></i></div>
+<div style="color: white; font-weight: 700; font-size: 18px;">設計 <span style="font-size: 12px; font-weight: 400; opacity: 0.7; margin-left: 4px;">Design</span></div>
+</div>
+<i class="fas fa-arrow-right" style="color: #64748b; font-size: 16px;"></i>
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #22d3ee; font-size: 18px;"><i class="fas fa-running"></i></div>
+<div style="color: white; font-weight: 700; font-size: 18px;">実行 <span style="font-size: 12px; font-weight: 400; opacity: 0.7; margin-left: 4px;">Execute</span></div>
+</div>
+<i class="fas fa-arrow-right" style="color: #64748b; font-size: 16px;"></i>
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #22d3ee; font-size: 18px;"><i class="fas fa-sync-alt"></i></div>
+<div style="color: white; font-weight: 700; font-size: 18px;">運用 <span style="font-size: 12px; font-weight: 400; opacity: 0.7; margin-left: 4px;">Operate</span></div>
+</div>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-23-1775456294668" style="position: absolute; left: 60px; top: 560px; width: 1160px; height: 80px; background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 100%); border: 2px solid #fbbf24; border-radius: 12px; z-index: 5;"></div>
+<div data-object="true" data-object-type="icon" id="fabric-obj-24-1775456294668" style="position: absolute; left: 90px; top: 580px; width: 40px; height: 40px; background: #d97706; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; z-index: 10;">
+<i class="fas fa-star"></i>
+</div>
+<div contenteditable="true" data-object="true" data-object-type="textbox" id="fabric-obj-25-1775456294668" style="position: absolute; left: 150px; top: 570px; width: 1040px; height: 60px; display: flex; align-items: center; z-index: 10; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text; box-sizing: border-box;">
+<p style="font-size: 20px; line-height: 1.35; color: #92400e; margin: 0;">
+<span style="font-weight: 700; color: #b45309; margin-right: 8px;">国内唯一のポジション：</span>
+                エンタメ <span style="font-size: 32px; vertical-align: middle; color: #d97706; font-weight: 700; margin: 0 2px; line-height: 1;">×</span> 産業・防災 の両領域で実績を持ち、直接競合がほぼ存在しない
+            </p>
+</div>
+</div>
+
+</body></html>

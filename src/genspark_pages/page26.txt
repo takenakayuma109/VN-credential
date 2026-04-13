@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Company Profile &amp; Contact</title>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', 'Inter', sans-serif; background: #f8fafc; color: #1a202c; overflow: hidden; }
+        .slide-container { position: relative; width: 1280px; height: 720px; overflow: hidden; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); }
+        
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+        
+        .header { 
+            position: absolute; 
+            top: 12px; 
+            left: 0; 
+            right: 0; 
+            padding: 0 48px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 10; 
+            height: 24px; 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
+        
+        .content { position: absolute; top: 52px; left: 48px; right: 48px; bottom: 44px; display: flex; gap: 24px; z-index: 10; }
+        
+        .left-column { flex: 0.6; display: flex; flex-direction: column; gap: 18px; }
+        .right-column { flex: 0.4; display: flex; flex-direction: column; gap: 18px; }
+        
+        .card { 
+            background: white; 
+            border-radius: 12px; 
+            padding: 14px 18px; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        }
+        
+        .card-title { 
+            font-size: 13px; 
+            font-weight: 600; 
+            color: #1a202c; 
+            margin-bottom: 8px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        .card-title i { 
+            color: #3b82f6; 
+            font-size: 14px; 
+        }
+        
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+        .info-item { display: flex; flex-direction: column; min-width: 0; }
+        .info-label { font-size: 10px; color: #64748b; margin-bottom: 2px; }
+        .info-value { font-size: 12px; font-weight: 500; color: #1a202c; line-height: 1.25; }
+        
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .team-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            padding: 6px 8px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+            min-height: 42px;
+        }
+        .team-avatar { 
+            width: 28px; 
+            height: 28px; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, #3b82f6, #06b6d4); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-size: 10px; 
+            font-weight: 600; 
+            flex-shrink: 0;
+        }
+        .team-info { display: flex; flex-direction: column; min-width: 0; }
+        .team-name { font-size: 11px; font-weight: 600; color: #1a202c; line-height: 1.2; }
+        .team-role { font-size: 9px; color: #64748b; line-height: 1.2; }
+        
+        .location-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+        .location-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            padding: 6px 8px; 
+            background: #f8fafc; 
+            border-radius: 6px; 
+            border-left: 3px solid #06b6d4;
+        }
+        .location-icon { color: #3b82f6; font-size: 12px; flex-shrink: 0; }
+        .location-text { font-size: 11px; color: #1a202c; line-height: 1.35; }
+        
+        .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .partner-item { 
+            padding: 6px; 
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0); 
+            border-radius: 6px; 
+            font-size: 9px; 
+            color: #1a202c; 
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+        
+        .contact-info { display: flex; flex-direction: column; gap: 6px; }
+        .contact-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 11px; 
+            color: #1a202c; 
+            padding: 6px 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid #f59e0b;
+        }
+        .contact-item i { color: #3b82f6; font-size: 12px; flex-shrink: 0; }
+        
+        .facility-grid { display: flex; gap: 10px; width: 100%; }
+        .facility-item { display: flex; flex-direction: column; width: 50%; gap: 4px; }
+        .facility-img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .facility-caption { font-size: 10px; color: #64748b; text-align: center; }
+
+        .footer { 
+            position: absolute; 
+            bottom: 12px; 
+            left: 48px; 
+            right: 48px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 10;
+        }
+        .footer-text { font-size: 10px; color: #64748b; }
+    </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<div class="bg-pattern"></div>
+<div class="header">
+<div style="display: flex; align-items: center;">
+<span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: #1a202c;">VISIONOID</span>
+<span style="margin: 0 10px; color: #94a3b8; font-size: 13px;">|</span>
+<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #64748b;">Visionary Technology Company</span>
+</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #1a202c;">26 / 26</div>
+</div>
+<div class="content">
+<div class="left-column">
+<div class="card">
+<div class="card-title">
+<i class="fas fa-building"></i>
+                    基本情報
+                </div>
+<div class="info-grid">
+<div class="info-item">
+<div class="info-label">会社名</div>
+<div class="info-value">VISIONOID株式会社</div>
+</div>
+<div class="info-item">
+<div class="info-label">設立</div>
+<div class="info-value">2024年7月5日</div>
+</div>
+<div class="info-item">
+<div class="info-label">資本金</div>
+<div class="info-value">1億5000万円</div>
+</div>
+<div class="info-item">
+<div class="info-label">従業員</div>
+<div class="info-value">20名（業務委託含む）</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+<i class="fas fa-users"></i>
+                    役員構成
+                </div>
+<div class="team-grid">
+<div class="team-item">
+<div class="team-avatar">竹</div>
+<div class="team-info">
+<div class="team-name">竹中悠満</div>
+<div class="team-role">代表取締役 CEO</div>
+</div>
+</div>
+<div class="team-item">
+<div class="team-avatar">上</div>
+<div class="team-info">
+<div class="team-name">上関竜矢</div>
+<div class="team-role">取締役・テクノロジー統括</div>
+</div>
+</div>
+<div class="team-item">
+<div class="team-avatar">安</div>
+<div class="team-info">
+<div class="team-name">安達的海</div>
+<div class="team-role">取締役・PM</div>
+</div>
+</div>
+<div class="team-item">
+<div class="team-avatar">門</div>
+<div class="team-info">
+<div class="team-name">門前龍汰</div>
+<div class="team-role">取締役・機体開発</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+<i class="fas fa-map-marker-alt"></i>
+                    所在地
+                </div>
+<div class="location-grid">
+<div class="location-item">
+<i class="fas fa-building location-icon"></i>
+<div class="location-text">
+<strong>本社：</strong>東京都港区芝2-28-11
+                        </div>
+</div>
+<div class="location-item">
+<i class="fas fa-video location-icon"></i>
+<div class="location-text">
+<strong>スタジオ：</strong>埼玉県所沢市林2-477-1
+                        </div>
+</div>
+<div class="location-item">
+<i class="fas fa-briefcase location-icon"></i>
+<div class="location-text">
+<strong>営業所：</strong>東京都江戸川区東葛西9-3-14
+                        </div>
+</div>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="card">
+<div class="card-title">
+<i class="fas fa-handshake"></i>
+                    パートナー企業
+                </div>
+<div class="partner-grid">
+<div class="partner-item">JPアセット証券</div>
+<div class="partner-item">博報堂DYグループ</div>
+<div class="partner-item">THE CHOSEN ONE</div>
+<div class="partner-item">MRC TOKYO</div>
+<div class="partner-item">AERIAL DESIGN</div>
+<div class="partner-item">JAPRADAR</div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+<i class="fas fa-envelope"></i>
+                    連絡先
+                </div>
+<div class="contact-info">
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<span>info@visionoid.co.jp</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-globe"></i>
+<span>www.visionoid.co.jp</span>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+<i class="fas fa-image"></i>
+                    施設紹介
+                </div>
+<div class="facility-grid">
+<div class="facility-item">
+<img alt="本社オフィス" class="facility-img" src="genspark_images/bxzPbgaD.png" id="fabric-obj-0-1775557476489" data-height-listener-added="true">
+<div class="facility-caption">本社オフィス（港区芝）</div>
+</div>
+<div class="facility-item">
+<img alt="スタジオ" class="facility-img" src="genspark_images/Hn11ZYsD.png" id="fabric-obj-1-1775557476490" data-height-listener-added="true">
+<div class="facility-caption">スタジオ（所沢）</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="footer-text">© 2024 VISIONOID株式会社 All Rights Reserved</div>
+<div class="footer-text"></div>
+</div>
+</div>
+
+</body></html>

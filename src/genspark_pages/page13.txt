@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="ja" style=""><head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f8fafc;
+    }
+    p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container" style="position: relative; width: 1280px; height: 720px; overflow: hidden; background-color: #f8fafc;">
+<!-- Left side background image -->
+<div data-object="true" data-object-type="image" id="fabric-obj-0-1775554671781" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 720px; z-index: 1;">
+<img alt="Community Co-Creation" data-height-listener-added="true" src="genspark_images/0AJPx7pX.png" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<!-- Dark overlay for left side text readability -->
+<div data-object="true" data-object-type="shape" id="fabric-obj-1-1775554671781" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 720px; z-index: 2; background-color: rgba(15, 23, 42, 0.65);">
+</div>
+<!-- Left side text content -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775554671782" style="position: absolute; left: 40px; top: 566px; width: 400px; height: 132px; z-index: 10;">
+<p style="font-size: 24px; font-weight: 800; color: #ffffff; line-height: 1.12; margin-bottom: 8px;">子どもたちの夢が、<br/>夜空に輝く</p>
+<p style="font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.9); line-height: 1.3;">テクノロジー × 創造力 × 地域の絆</p>
+</div>
+<!-- Header Line (Right side only) -->
+<div data-object="true" data-object-type="shape" id="fabric-obj-3-1775554671782" style="position: absolute; left: 480px; top: 48px; width: 800px; height: 1px; z-index: 9; background-color: rgba(226, 232, 240, 0.8);"></div>
+<!-- Header Text (Left) -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 528px; top: 16px; width: 420px; height: 24px; z-index: 10;">
+<p style="font-family: 'Noto Sans JP', sans-serif; line-height: 24px; white-space: nowrap;">
+<span style="font-weight: 700; color: #1a202c; font-size: 13px;">VISIONOID</span>
+<span style="color: #94a3b8; font-size: 13px; margin: 0 12px; font-weight: 400;">|</span>
+<span style="font-weight: 400; color: #64748b; font-size: 11px;">Visionary Technology Company</span>
+</p>
+</div>
+<!-- Header Text (Right - Page Number) -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 1182px; top: 16px; width: 70px; height: 24px; z-index: 10;">
+<p style="font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 500; color: #64748b; text-align: right; line-height: 24px; white-space: nowrap;">13 / 26</p>
+</div>
+<!-- Top section: Main Title and Description -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 540px; top: 80px; width: 680px; height: 133px; z-index: 10;">
+<div style="display: inline-block; background-color: #0ea5e9; color: #ffffff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 12px; margin-bottom: 16px;">Community Co-Creation</div>
+<p style="font-size: 24px; font-weight: 800; color: #0f172a; margin-bottom: 16px; line-height: 1.4;">地域の子どもたちと作り上げる、新しいドローンショーの形</p>
+<p style="font-size: 13px; font-weight: 400; color: #64748b; line-height: 1.6;">テクノロジーを通じて子どもたちの創造力を解放し、地域の夢を夜空のキャンバスに描く。ワークショップから本番まで、子どもたちが主役の体験型エンターテインメントを提供します。</p>
+</div>
+<!-- Middle section: Case cards container -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-7-1775554671782" style="position: absolute; left: 540px; top: 230px; width: 680px; height: 250px; z-index: 10;">
+<div style="display: flex; gap: 40px; width: 100%; height: 100%;">
+<!-- Case Card 1 -->
+<div style="flex: 1; display: flex; flex-direction: column;">
+<div style="width: 100%; height: 140px; margin-bottom: 12px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<img alt="桶川ハロウィンドローンショー" data-height-listener-added="true" src="genspark_images/nLeFIQKv.png" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<p style="font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">🎃 桶川ハロウィンドローンショー</p>
+<p style="font-size: 12px; font-weight: 700; color: #0ea5e9; margin-bottom: 8px;">200機 <span style="color: #cbd5e1; margin: 0 4px;">|</span> <span style="color: #64748b; font-weight: 500;">2025.10</span></p>
+<p style="font-size: 12px; font-weight: 400; color: #64748b; line-height: 1.5;">子供たちがワークショップで描いたハロウィンストーリーを200機のドローンで夜空に完全再現。地域の夢を形にしました。</p>
+</div>
+<!-- Case Card 2 -->
+<div style="flex: 1; display: flex; flex-direction: column;">
+<div style="width: 100%; height: 140px; margin-bottom: 12px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<img alt="桐生JC関東大会" data-height-listener-added="true" src="genspark_images/3hE6fyyz.png" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<p style="font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">✨ 桐生JC関東大会</p>
+<p style="font-size: 12px; font-weight: 700; color: #0ea5e9; margin-bottom: 8px;">400機 <span style="color: #cbd5e1; margin: 0 4px;">|</span> <span style="color: #64748b; font-weight: 500;">2025.07</span></p>
+<p style="font-size: 12px; font-weight: 400; color: #64748b; line-height: 1.5;">AI技術を活用した子供たちのワークショップを実施。自ら考えた演出が夜空に輝き、感動の声が上がりました。</p>
+</div>
+</div>
+</div>
+<!-- Bottom section: Pricing -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-8-1775554671782" style="position: absolute; left: 540px; top: 510px; width: 680px; height: 150px; z-index: 10;">
+<!-- Title & Badge -->
+<div style="display: flex; align-items: center; margin-bottom: 16px;">
+<p style="font-size: 16px; font-weight: 700; color: #0f172a; margin-right: 12px;">料金体系</p>
+<div style="background-color: #16a34a; color: #ffffff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;">市場価格の約60%</div>
+</div>
+<!-- Pricing Cards -->
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+<div style="flex: 1; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+<span style="font-size: 14px; font-weight: 700; color: #0f172a;">200機</span>
+<span style="font-size: 16px; font-weight: 800; color: #0ea5e9;">300万円〜</span>
+</div>
+<div style="flex: 1; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+<span style="font-size: 14px; font-weight: 700; color: #0f172a;">300機</span>
+<span style="font-size: 16px; font-weight: 800; color: #0ea5e9;">500万円〜</span>
+</div>
+<div style="flex: 1; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+<span style="font-size: 14px; font-weight: 700; color: #0f172a;">500機</span>
+<span style="font-size: 16px; font-weight: 800; color: #0ea5e9;">800万円〜</span>
+</div>
+</div>
+<!-- Reasons -->
+<div style="background-color: #f1f5f9; border-radius: 6px; padding: 10px 16px; display: flex; justify-content: space-between;">
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="font-size: 14px;">🔧</span>
+<span style="font-size: 11px; font-weight: 500; color: #475569;">独自機体リーススキーム</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="font-size: 14px;">⚡</span>
+<span style="font-size: 11px; font-weight: 500; color: #475569;">生成AIによる制作革新</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="font-size: 14px;">🛡️</span>
+<span style="font-size: 11px; font-weight: 500; color: #475569;">社内安全運用システム</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>
