@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useEditStore } from '../utils/editStore';
+import { imgPut, imgGet, IDB_MARKER } from '../utils/imageStore';
 
 export const SLIDE_W = 1280;
 export const SLIDE_H = 720;
@@ -181,7 +182,16 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         const mFit = k.match(new RegExp(`^p${id}:imgfit:(.+)$`));
         if (mSrc) {
           const img = imgByKey.get(mSrc[1]);
-          if (img) img.src = allEdits[k];
+          if (!img) return;
+          const val = allEdits[k];
+          if (val === IDB_MARKER) {
+            // Fetch data URL from IndexedDB async
+            imgGet(k).then((dataUrl) => {
+              if (dataUrl) img.src = dataUrl;
+            }).catch((err) => console.error('imgGet failed', err));
+          } else if (val) {
+            img.src = val;
+          }
         } else if (mXf) {
           const img = imgByKey.get(mXf[1]);
           if (img) applyImgXform(img, allEdits[k]);
@@ -236,7 +246,31 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     return () => window.removeEventListener('resize', onChange);
   }, [editMode, rescanImages]);
 
-  // Per-image overlay actions
+  // Persist an image replacement. Large data: URLs go to IndexedDB (no 5MB
+  // cap); localStorage only holds a sentinel so the edit store stays small.
+  // Plain URL strings go straight to localStorage.
+  const persistImage = useCallback(async (target, src) => {
+    if (target.img) {
+      target.img.src = src;
+      applyImgFit(target.img, 'cover');
+    }
+    const key = `p${id}:img:${target.key}`;
+    const fitKey = `p${id}:imgfit:${target.key}`;
+    try {
+      if (typeof src === 'string' && src.startsWith('data:')) {
+        await imgPut(key, src);
+        storeRef.current.set(key, IDB_MARKER);
+      } else {
+        storeRef.current.set(key, src);
+      }
+      storeRef.current.set(fitKey, 'cover');
+    } catch (err) {
+      console.error('persistImage failed', err);
+      window.alert('画像保存に失敗: ' + (err?.message || err) +
+        '\n\n対処: もっと小さい画像を使う、または「🔗 URL」で指定してください。');
+    }
+  }, [id]);
+
   const handleFileReplace = useCallback(async (target) => {
     const input = document.createElement('input');
     input.type = 'file'; input.accept = 'image/*';
@@ -244,18 +278,13 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       const f = e.target.files?.[0]; if (!f) return;
       try {
         const compressed = await compressFileToDataUrl(f);
-        if (target.img) {
-          target.img.src = compressed;
-          applyImgFit(target.img, 'cover');
-        }
-        storeRef.current.set(`p${id}:img:${target.key}`, compressed);
-        storeRef.current.set(`p${id}:imgfit:${target.key}`, 'cover');
+        await persistImage(target, compressed);
       } catch (err) {
         window.alert('画像の読み込みに失敗: ' + (err?.message || err));
       }
     };
     input.click();
-  }, [id]);
+  }, [persistImage]);
 
   const handleUrlReplace = useCallback(async (target) => {
     const url = window.prompt('画像URL（Drive 共有リンクOK）:');
@@ -263,13 +292,8 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     let direct = url;
     const m = url.match(/\/d\/([\w-]+)/);
     if (m) direct = `https://drive.google.com/uc?export=view&id=${m[1]}`;
-    if (target.img) {
-      target.img.src = direct;
-      applyImgFit(target.img, 'cover');
-    }
-    storeRef.current.set(`p${id}:img:${target.key}`, direct);
-    storeRef.current.set(`p${id}:imgfit:${target.key}`, 'cover');
-  }, [id]);
+    await persistImage(target, direct);
+  }, [persistImage]);
 
   const handleZoom = useCallback((target, ds) => {
     if (!target.img) return;

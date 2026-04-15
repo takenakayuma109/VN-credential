@@ -12,9 +12,7 @@ function load() {
 }
 
 function save(data) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch {}
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 const cache = load();
