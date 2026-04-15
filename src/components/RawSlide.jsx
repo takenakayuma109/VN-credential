@@ -72,7 +72,7 @@ function getImageKey(img, positionIdx) {
   return `img-${positionIdx}`;
 }
 
-export default function RawSlide({ id, html, editMode, pageNumber }) {
+export default function RawSlide({ id, html, editMode, pageNumber, displayNumber, totalPages }) {
   const wrapRef = useRef(null);
   const innerRef = useRef(null);
   const iframeRef = useRef(null);
@@ -86,9 +86,17 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
     ? window.location.href.replace(/[^/]*$/, '')
     : '/';
   const baseTag = `<base href="${baseHref}">`;
-  const patchedHtml = html.includes('<head')
+  let patchedHtml = html.includes('<head')
     ? html.replace(/<head([^>]*)>/i, `<head$1>${baseTag}`)
     : `<!DOCTYPE html><html><head>${baseTag}</head><body>${html}</body></html>`;
+  // Rewrite the baked-in "XX / 26" page counter so Member variant shows
+  // its own sequential numbering (e.g., "02 / 23" instead of "02 / 26").
+  // Match only "/ 26" (source total) to avoid clobbering other ratio text.
+  if (displayNumber && totalPages) {
+    const newNum = String(displayNumber).padStart(2, '0');
+    const newTot = String(totalPages).padStart(2, '0');
+    patchedHtml = patchedHtml.replace(/>(\s*)(\d{1,2})(\s*\/\s*)26(\s*)</g, `>$1${newNum}$3${newTot}$4<`);
+  }
 
   // Fit to width
   useEffect(() => {

@@ -66,10 +66,14 @@ export default function App() {
   // resolve correctly regardless of variant.
   const filteredPages = useMemo(() => {
     const all = PAGES.map((html, i) => ({ html, pageId: i + 1, idx: i }));
-    return variant === 'board'
+    const base = variant === 'board'
       ? all
       : all.filter((p) => !FINANCE_INDICES.has(p.idx));
+    // displayNumber = sequential 1..N for the current variant (so Member
+    // view doesn't expose the Finance-page gap in page numbering).
+    return base.map((p, i) => ({ ...p, displayNumber: i + 1 }));
   }, [variant]);
+  const totalDisplayPages = filteredPages.length;
 
   // Update URL when variant changes so reload + share both preserve choice.
   const switchVariant = useCallback((v) => {
@@ -205,27 +209,32 @@ export default function App() {
     <span class="warn">⚠️ 印刷する場合は「背景のグラフィック」に必ずチェックを入れてください。確実に背景を保持したい場合は「📥 PDFダウンロード」をお使いください。</span>
   </div>
   <span class="progress" id="dl-progress"></span>
-  <button class="btn-print" onclick="window.print()">🖨 印刷 / PDF保存</button>
+  <button class="btn-print" id="btn-print" onclick="preparePrint()">🖨 印刷 / PDF保存</button>
   <button class="btn-download" id="btn-dl" onclick="directDownload()">📥 PDFダウンロード</button>
 </div>
 ${editedHtmls.map((_, i) => `<div class="slide-print"><iframe id="pf-${i}"></iframe></div>`).join('\n')}
 <script>
-async function directDownload() {
-  var btn = document.getElementById('btn-dl');
+// Pre-render all iframes to images and replace them, then call window.print().
+// Root cause of the old "only 15 pages print" bug: browsers can't reliably
+// paginate 26 iframe elements with 1280×720 content — memory/layout limits
+// caused the print engine to give up partway through. Replacing iframes with
+// raster images lets the print pipeline treat it as ordinary paginated content.
+async function preparePrint() {
+  var btnP = document.getElementById('btn-print');
   var prog = document.getElementById('dl-progress');
-  btn.disabled = true;
-  btn.textContent = '生成中…';
+  btnP.disabled = true;
+  btnP.textContent = '印刷用画像生成中…';
   prog.style.display = 'inline';
   try {
-    var iframes = document.querySelectorAll('.slide-print iframe');
-    var pdf = new jspdf.jsPDF({
-      orientation: 'landscape', unit: 'px',
-      format: [${SLIDE_W}, ${SLIDE_H}],
-      hotfixes: ['px_scaling']
-    });
-    for (var i = 0; i < iframes.length; i++) {
-      prog.textContent = (i+1) + '/' + iframes.length;
-      var idoc = iframes[i].contentDocument;
+    var slides = Array.from(document.querySelectorAll('.slide-print'));
+    for (var i = 0; i < slides.length; i++) {
+      prog.textContent = (i+1) + '/' + slides.length;
+      var container = slides[i];
+      var iframe = container.querySelector('iframe');
+      if (!iframe) continue;
+      // If already converted to img, skip
+      if (container.querySelector('img[data-slide-img]')) continue;
+      var idoc = iframe.contentDocument;
       if (!idoc) continue;
       var target = idoc.querySelector('.slide-container') || idoc.body;
       var canvas = await html2canvas(target, {
@@ -234,9 +243,63 @@ async function directDownload() {
         backgroundColor: null, logging: false,
         windowWidth: ${SLIDE_W}, windowHeight: ${SLIDE_H}
       });
-      var img = canvas.toDataURL('image/jpeg', 0.95);
+      var dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+      var img = document.createElement('img');
+      img.setAttribute('data-slide-img', '1');
+      img.src = dataUrl;
+      img.style.cssText = 'width:${SLIDE_W}px;height:${SLIDE_H}px;display:block;';
+      iframe.remove();
+      container.appendChild(img);
+    }
+    prog.textContent = '印刷ダイアログを開きます…';
+    // Give layout a tick to settle before print
+    await new Promise(function(r) { setTimeout(r, 300); });
+    window.print();
+  } catch(e) {
+    alert('印刷準備に失敗: ' + e.message);
+    console.error(e);
+  } finally {
+    btnP.disabled = false;
+    btnP.textContent = '🖨 印刷 / PDF保存';
+    prog.style.display = 'none';
+  }
+}
+async function directDownload() {
+  var btn = document.getElementById('btn-dl');
+  var prog = document.getElementById('dl-progress');
+  btn.disabled = true;
+  btn.textContent = '生成中…';
+  prog.style.display = 'inline';
+  try {
+    var slides = Array.from(document.querySelectorAll('.slide-print'));
+    var pdf = new jspdf.jsPDF({
+      orientation: 'landscape', unit: 'px',
+      format: [${SLIDE_W}, ${SLIDE_H}],
+      hotfixes: ['px_scaling']
+    });
+    for (var i = 0; i < slides.length; i++) {
+      prog.textContent = (i+1) + '/' + slides.length;
+      var cached = slides[i].querySelector('img[data-slide-img]');
+      var dataUrl;
+      if (cached) {
+        // Already rasterized by preparePrint — reuse
+        dataUrl = cached.src;
+      } else {
+        var iframe = slides[i].querySelector('iframe');
+        if (!iframe) continue;
+        var idoc = iframe.contentDocument;
+        if (!idoc) continue;
+        var target = idoc.querySelector('.slide-container') || idoc.body;
+        var canvas = await html2canvas(target, {
+          width: ${SLIDE_W}, height: ${SLIDE_H},
+          scale: 2, useCORS: true, allowTaint: true,
+          backgroundColor: null, logging: false,
+          windowWidth: ${SLIDE_W}, windowHeight: ${SLIDE_H}
+        });
+        dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      }
       if (i > 0) pdf.addPage();
-      pdf.addImage(img, 'JPEG', 0, 0, ${SLIDE_W}, ${SLIDE_H});
+      pdf.addImage(dataUrl, 'JPEG', 0, 0, ${SLIDE_W}, ${SLIDE_H});
     }
     pdf.save('VISIONOID_Credential_2026_${variantLabel}.pdf');
   } catch(e) {
@@ -386,7 +449,7 @@ async function directDownload() {
             className={active === p.pageId ? 'active' : ''}
             onClick={() => scrollTo(p.pageId)}
           >
-            {String(p.pageId).padStart(2, '0')}
+            {String(p.displayNumber).padStart(2, '0')}
           </button>
         ))}
       </div>
@@ -399,6 +462,8 @@ async function directDownload() {
             html={p.html}
             editMode={editMode && !isShareView}
             pageNumber={p.pageId}
+            displayNumber={p.displayNumber}
+            totalPages={totalDisplayPages}
           />
         ))}
       </div>
