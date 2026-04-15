@@ -60,17 +60,16 @@ function compressFileToDataUrl(file) {
 }
 
 // Pick a stable identifier for an image so edits persist across reloads.
-// Priority: (1) wrap id on data-object-type="image" parent, (2) img id,
-// (3) src-based hash (last path segment + index).
-function getImageKey(img, fallbackIdx) {
+// The key MUST be stable even after the src is replaced — otherwise swapping
+// an image would orphan its edits on the next scan. Priority:
+//   (1) wrap id on data-object-type="image" parent
+//   (2) img id
+//   (3) position index in document (stable across reloads of same HTML)
+function getImageKey(img, positionIdx) {
   const wrap = img.closest('[data-object-type="image"]');
   if (wrap && wrap.id) return wrap.id;
   if (img.id) return img.id;
-  // Stable key from position + src suffix
-  const src = img.getAttribute('src') || '';
-  const m = src.match(/([^/]+?)(\.[a-z]+)?(?:\?.*)?$/i);
-  const base = m ? m[1].slice(-20).replace(/[^a-zA-Z0-9_-]/g, '_') : 'img';
-  return `auto-${fallbackIdx}-${base}`;
+  return `img-${positionIdx}`;
 }
 
 export default function RawSlide({ id, html, editMode, pageNumber }) {
