@@ -243,7 +243,13 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     if (!editMode) return;
     const onChange = () => rescanImages();
     window.addEventListener('resize', onChange);
-    return () => window.removeEventListener('resize', onChange);
+    // Poll a few times after edit mode turns on to catch images that
+    // load asynchronously (srcdoc iframe may not have final layout yet).
+    const timers = [100, 300, 800, 1500, 3000].map((ms) => setTimeout(rescanImages, ms));
+    return () => {
+      window.removeEventListener('resize', onChange);
+      timers.forEach(clearTimeout);
+    };
   }, [editMode, rescanImages]);
 
   // Persist an image replacement. Large data: URLs go to IndexedDB (no 5MB
@@ -441,8 +447,9 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
                 style={{
                   position: 'absolute',
                   left, top, width, height,
-                  outline: '2px dashed rgba(74,158,255,0.7)',
-                  outlineOffset: '-2px',
+                  outline: '3px solid #4a9eff',
+                  outlineOffset: '-3px',
+                  boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.8)',
                   zIndex: 50,
                   pointerEvents: 'none',
                 }}
@@ -483,17 +490,17 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
 
 function btnStyle(bg, fg) {
   return {
-    padding: '3px 8px',
+    padding: '6px 12px',
     background: bg,
     color: fg,
-    border: 0,
-    borderRadius: 4,
-    fontSize: 11,
-    fontWeight: 700,
+    border: '1px solid rgba(255,255,255,0.3)',
+    borderRadius: 6,
+    fontSize: 13,
+    fontWeight: 800,
     cursor: 'pointer',
-    boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+    boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
     lineHeight: 1,
-    minWidth: 26,
+    minWidth: 34,
     userSelect: 'none',
   };
 }
