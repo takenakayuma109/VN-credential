@@ -132,15 +132,15 @@
             text-align: center;
         }
         .member-bio {
-            font-size: 8px;
-            line-height: 1.12;
+            font-size: 11px;
+            line-height: 1.38;
             color: #334155;
             text-align: left;
             flex: 1;
             overflow: hidden;
             width: 100%;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+            -webkit-line-clamp: 7;
             -webkit-box-orient: vertical;
         }
         .member-tags {
