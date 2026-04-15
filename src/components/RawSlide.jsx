@@ -295,7 +295,57 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
     setImageTargets((prev) => [...prev]);
   }, [id]);
 
-  // Drag-to-pan handler attached to the React overlay div (which is over the image).
+  // Attach drag-to-pan handlers directly on the <img> elements inside the
+  // iframe so text overlays (captions on top of images) still receive their
+  // own clicks. Re-attaches whenever imageTargets changes.
+  useEffect(() => {
+    if (!editMode) return;
+    const cleanups = [];
+    imageTargets.forEach((t) => {
+      const img = t.img;
+      if (!img) return;
+      const xfKey = `p${id}:imgxform:${t.key}`;
+      img.style.cursor = 'grab';
+      img.draggable = false;
+      const onDown = (e) => {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const startXf = storeRef.current.get(xfKey) || { x: 0, y: 0, scale: 1 };
+        if (startXf.scale === 1) startXf.scale = 1.2;
+        const startX = e.clientX; const startY = e.clientY;
+        img.style.cursor = 'grabbing';
+        const move = (ev) => {
+          const cur = { x: (Number(startXf.x) || 0) + (ev.clientX - startX), y: (Number(startXf.y) || 0) + (ev.clientY - startY), scale: Number(startXf.scale) || 1 };
+          applyImgXform(img, cur);
+        };
+        const up = (ev) => {
+          img.style.cursor = 'grab';
+          const cur = { x: (Number(startXf.x) || 0) + (ev.clientX - startX), y: (Number(startXf.y) || 0) + (ev.clientY - startY), scale: Number(startXf.scale) || 1 };
+          applyImgXform(img, cur);
+          storeRef.current.set(xfKey, cur);
+          const iframeDoc = iframeRef.current?.contentDocument;
+          if (iframeDoc) {
+            iframeDoc.removeEventListener('mousemove', move, true);
+            iframeDoc.removeEventListener('mouseup', up, true);
+          }
+        };
+        const iframeDoc = iframeRef.current?.contentDocument;
+        if (iframeDoc) {
+          iframeDoc.addEventListener('mousemove', move, true);
+          iframeDoc.addEventListener('mouseup', up, true);
+        }
+      };
+      img.addEventListener('mousedown', onDown, true);
+      cleanups.push(() => {
+        img.removeEventListener('mousedown', onDown, true);
+        img.style.cursor = '';
+      });
+    });
+    return () => cleanups.forEach((fn) => fn());
+  }, [editMode, imageTargets, id]);
+
+  // Legacy drag handler (kept as no-op — replaced by iframe-side listener).
   const handleDragStart = useCallback((target, e) => {
     if (e.button !== 0) return;
     if (!target.img) return;
@@ -353,19 +403,18 @@ export default function RawSlide({ id, html, editMode, pageNumber }) {
           const height = rect.height * scale;
           return (
             <React.Fragment key={key}>
-              {/* Drag surface — catches mouse to pan image */}
+              {/* Visual outline only — pointer-events:none so text/buttons
+                  inside the iframe still receive clicks. Drag-to-pan is
+                  attached directly on the <img> inside the iframe. */}
               <div
                 style={{
                   position: 'absolute',
                   left, top, width, height,
-                  cursor: 'grab',
                   outline: '2px dashed rgba(74,158,255,0.7)',
                   outlineOffset: '-2px',
                   zIndex: 50,
-                  background: 'transparent',
+                  pointerEvents: 'none',
                 }}
-                onMouseDown={(e) => handleDragStart(t, e)}
-                title="ドラッグでパン"
               />
               {/* Toolbar — fixed to top-left of image */}
               <div
