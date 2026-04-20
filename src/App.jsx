@@ -53,6 +53,7 @@ function readQuery() {
 export default function App() {
   const [editMode, setEditMode] = useState(false);
   const [exporting, setExporting] = useState(false);
+  const [exportProgress, setExportProgress] = useState('');
   const [active, setActive] = useState(1);
   const [variant, setVariant] = useState(() => readQuery().variant);
   // Share view = read-only mode for recipients of a shared link. Hides the
@@ -108,227 +109,106 @@ export default function App() {
 
   const handleExportPdf = async () => {
     setExporting(true);
+    setExportProgress('準備中…');
     try {
-      // Inject print-color-adjust into each slide's HTML so backgrounds
-      // survive the browser print dialog. Also grab the latest edited DOM.
-      const printFix = '<style media="all">html,body,div,span,p,img,table,td,th,section,header,footer,nav,main,article,aside,figure,figcaption,*,*::before,*::after{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}@media print{html,body{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}}</style>';
-
-      const onScreen = Array.from(document.querySelectorAll('iframe.slide-canvas'));
-      const editedHtmls = onScreen.map((iframe, i) => {
-        let html;
-        try {
-          const doc = iframe.contentDocument;
-          if (doc && doc.documentElement) {
-            html = '<!DOCTYPE html>' + doc.documentElement.outerHTML;
-          }
-        } catch {}
-        if (!html) html = filteredPages[i]?.html || '';
-        // Inject print-color-adjust fix
-        if (html.includes('</head>')) {
-          html = html.replace('</head>', printFix + '</head>');
-        } else {
-          html = printFix + html;
-        }
-        return html;
-      });
-
-      const w = window.open('', '_blank', 'width=1380,height=820');
-      if (!w) {
-        alert('ポップアップがブロックされました。ポップアップを許可してから再度お試しください。');
-        setExporting(false);
+      const frames = Array.from(document.querySelectorAll('iframe.slide-canvas'));
+      if (frames.length === 0) {
+        alert('スライドが見つかりません。ページを再読込してください。');
         return;
       }
 
-      const variantLabel = variant === 'board' ? 'Board' : 'Member';
-      const totalPages = editedHtmls.length;
-
-      w.document.open();
-      w.document.write(`<!DOCTYPE html>
-<html lang="ja"><head>
-<meta charset="utf-8">
-<title>VISIONOID Credential 2026 (${variantLabel})</title>
-<style>
-  @page { size: ${SLIDE_W}px ${SLIDE_H}px; margin: 0; }
-  *, *::before, *::after {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
-  html, body { margin: 0; padding: 0; background: #0f1520; }
-  .slide-print {
-    width: ${SLIDE_W}px;
-    height: ${SLIDE_H}px;
-    page-break-after: always;
-    break-after: page;
-    overflow: hidden;
-    position: relative;
-  }
-  .slide-print:last-child { page-break-after: auto; break-after: auto; }
-  .slide-print iframe {
-    width: ${SLIDE_W}px;
-    height: ${SLIDE_H}px;
-    border: 0;
-    display: block;
-  }
-  .toolbar-print {
-    position: fixed; top: 0; left: 0; right: 0;
-    background: #1a2744; color: #fff; padding: 14px 20px;
-    font-family: -apple-system, 'Noto Sans JP', sans-serif;
-    font-size: 13px; z-index: 10000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    display: flex; align-items: center; gap: 14px;
-    flex-wrap: wrap;
-  }
-  .toolbar-print .info { flex: 1; }
-  .toolbar-print .warn {
-    display: block; margin-top: 4px;
-    color: #fbbf24; font-weight: 700; font-size: 12px;
-  }
-  .toolbar-print button {
-    padding: 10px 20px; color: #fff;
-    border: 0; border-radius: 6px; font-size: 13px;
-    font-weight: 700; cursor: pointer; font-family: inherit;
-    white-space: nowrap;
-  }
-  .btn-print { background: #4a9eff; }
-  .btn-print:hover { background: #3a8eef; }
-  .btn-download { background: #10b981; }
-  .btn-download:hover { background: #059669; }
-  .btn-download:disabled { background: #555; cursor: wait; }
-  .progress { color: #4a9eff; font-weight: 600; display: none; }
-  @media print {
-    .toolbar-print { display: none !important; }
-  }
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"><\/script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script>
-</head><body>
-<div class="toolbar-print">
-  <div class="info">
-    📄 ${totalPages}ページ [${variantLabel}版]
-    <span class="warn">⚠️ 印刷する場合は「背景のグラフィック」に必ずチェックを入れてください。確実に背景を保持したい場合は「📥 PDFダウンロード」をお使いください。</span>
-  </div>
-  <span class="progress" id="dl-progress"></span>
-  <button class="btn-print" id="btn-print" onclick="preparePrint()">🖨 印刷 / PDF保存</button>
-  <button class="btn-download" id="btn-dl" onclick="directDownload()">📥 PDFダウンロード</button>
-</div>
-${editedHtmls.map((_, i) => `<div class="slide-print"><iframe id="pf-${i}"></iframe></div>`).join('\n')}
-<script>
-// Pre-render all iframes to images and replace them, then call window.print().
-// Root cause of the old "only 15 pages print" bug: browsers can't reliably
-// paginate 26 iframe elements with 1280×720 content — memory/layout limits
-// caused the print engine to give up partway through. Replacing iframes with
-// raster images lets the print pipeline treat it as ordinary paginated content.
-async function preparePrint() {
-  var btnP = document.getElementById('btn-print');
-  var prog = document.getElementById('dl-progress');
-  btnP.disabled = true;
-  btnP.textContent = '印刷用画像生成中…';
-  prog.style.display = 'inline';
-  try {
-    var slides = Array.from(document.querySelectorAll('.slide-print'));
-    for (var i = 0; i < slides.length; i++) {
-      prog.textContent = (i+1) + '/' + slides.length;
-      var container = slides[i];
-      var iframe = container.querySelector('iframe');
-      if (!iframe) continue;
-      // If already converted to img, skip
-      if (container.querySelector('img[data-slide-img]')) continue;
-      var idoc = iframe.contentDocument;
-      if (!idoc) continue;
-      var target = idoc.querySelector('.slide-container') || idoc.body;
-      var canvas = await html2canvas(target, {
-        width: ${SLIDE_W}, height: ${SLIDE_H},
-        scale: 2, useCORS: true, allowTaint: true,
-        backgroundColor: null, logging: false,
-        windowWidth: ${SLIDE_W}, windowHeight: ${SLIDE_H}
-      });
-      var dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-      var img = document.createElement('img');
-      img.setAttribute('data-slide-img', '1');
-      img.src = dataUrl;
-      img.style.cssText = 'width:${SLIDE_W}px;height:${SLIDE_H}px;display:block;';
-      iframe.remove();
-      container.appendChild(img);
-    }
-    prog.textContent = '印刷ダイアログを開きます…';
-    // Give layout a tick to settle before print
-    await new Promise(function(r) { setTimeout(r, 300); });
-    window.print();
-  } catch(e) {
-    alert('印刷準備に失敗: ' + e.message);
-    console.error(e);
-  } finally {
-    btnP.disabled = false;
-    btnP.textContent = '🖨 印刷 / PDF保存';
-    prog.style.display = 'none';
-  }
-}
-async function directDownload() {
-  var btn = document.getElementById('btn-dl');
-  var prog = document.getElementById('dl-progress');
-  btn.disabled = true;
-  btn.textContent = '生成中…';
-  prog.style.display = 'inline';
-  try {
-    var slides = Array.from(document.querySelectorAll('.slide-print'));
-    var pdf = new jspdf.jsPDF({
-      orientation: 'landscape', unit: 'px',
-      format: [${SLIDE_W}, ${SLIDE_H}],
-      hotfixes: ['px_scaling']
-    });
-    for (var i = 0; i < slides.length; i++) {
-      prog.textContent = (i+1) + '/' + slides.length;
-      var cached = slides[i].querySelector('img[data-slide-img]');
-      var dataUrl;
-      if (cached) {
-        // Already rasterized by preparePrint — reuse
-        dataUrl = cached.src;
-      } else {
-        var iframe = slides[i].querySelector('iframe');
-        if (!iframe) continue;
-        var idoc = iframe.contentDocument;
-        if (!idoc) continue;
-        var target = idoc.querySelector('.slide-container') || idoc.body;
-        var canvas = await html2canvas(target, {
-          width: ${SLIDE_W}, height: ${SLIDE_H},
-          scale: 2, useCORS: true, allowTaint: true,
-          backgroundColor: null, logging: false,
-          windowWidth: ${SLIDE_W}, windowHeight: ${SLIDE_H}
-        });
-        dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      // Scroll all slides into view briefly so lazy-loaded images start fetching.
+      // Skipped pages stay empty in the iframe otherwise (observed: pages that
+      // were never scrolled to rendered blank in the PDF).
+      const originalScrollY = window.scrollY;
+      for (const f of frames) {
+        const wrap = f.closest('.slide-frame');
+        if (wrap) wrap.scrollIntoView({ block: 'start', behavior: 'auto' });
+        await new Promise((r) => setTimeout(r, 40));
       }
-      if (i > 0) pdf.addPage();
-      pdf.addImage(dataUrl, 'JPEG', 0, 0, ${SLIDE_W}, ${SLIDE_H});
-    }
-    pdf.save('VISIONOID_Credential_2026_${variantLabel}.pdf');
-  } catch(e) {
-    alert('PDF生成失敗: ' + e.message);
-    console.error(e);
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '📥 PDFダウンロード';
-    prog.style.display = 'none';
-  }
-}
-<\/script>
-</body></html>`);
-      w.document.close();
+      window.scrollTo(0, originalScrollY);
 
-      // Inject srcdoc into each iframe
-      const setupPrint = () => {
-        editedHtmls.forEach((html, i) => {
-          const f = w.document.getElementById('pf-' + i);
-          if (f) f.srcdoc = html;
+      // Wait for every iframe's document + images + fonts to be ready.
+      setExportProgress('画像ロード待ち…');
+      const waitForFrame = (iframe) => new Promise((resolve) => {
+        const finish = () => {
+          const doc = iframe.contentDocument;
+          if (!doc) return resolve();
+          const imgs = Array.from(doc.images || []);
+          const pending = imgs.filter((im) => !im.complete || im.naturalWidth === 0);
+          if (pending.length === 0) {
+            // Also wait for fonts to be ready inside the iframe if supported.
+            const fontsReady = doc.fonts && doc.fonts.ready
+              ? doc.fonts.ready.catch(() => null)
+              : Promise.resolve();
+            fontsReady.then(() => resolve());
+            return;
+          }
+          let left = pending.length;
+          const done = () => { if (--left <= 0) resolve(); };
+          pending.forEach((im) => {
+            im.addEventListener('load', done, { once: true });
+            im.addEventListener('error', done, { once: true });
+          });
+          setTimeout(resolve, 4000); // hard cap per frame
+        };
+        const doc = iframe.contentDocument;
+        if (doc && doc.readyState === 'complete') finish();
+        else iframe.addEventListener('load', finish, { once: true });
+      });
+      await Promise.all(frames.map(waitForFrame));
+
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [SLIDE_W, SLIDE_H],
+        hotfixes: ['px_scaling'],
+        compress: true,
+      });
+
+      for (let i = 0; i < frames.length; i++) {
+        setExportProgress(`描画中 ${i + 1}/${frames.length}`);
+        const iframe = frames[i];
+        const doc = iframe.contentDocument;
+        if (!doc) continue;
+        const target = doc.querySelector('.slide-container') || doc.body;
+
+        // Yield to the browser so the progress overlay actually repaints.
+        await new Promise((r) => requestAnimationFrame(() => r()));
+
+        const canvas = await html2canvas(target, {
+          width: SLIDE_W,
+          height: SLIDE_H,
+          scale: 2,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: '#ffffff',
+          logging: false,
+          windowWidth: SLIDE_W,
+          windowHeight: SLIDE_H,
+          imageTimeout: 8000,
+          removeContainer: true,
         });
-      };
-      if (w.document.readyState === 'complete') setupPrint();
-      else w.addEventListener('load', setupPrint);
+
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+        // Free the canvas backing store immediately — 26 × 2560×1440 RGBA
+        // buffers blow past 400 MB otherwise.
+        canvas.width = 0;
+        canvas.height = 0;
+
+        if (i > 0) pdf.addPage([SLIDE_W, SLIDE_H], 'landscape');
+        pdf.addImage(dataUrl, 'JPEG', 0, 0, SLIDE_W, SLIDE_H, undefined, 'FAST');
+      }
+
+      setExportProgress('保存中…');
+      const variantLabel = variant === 'board' ? 'Board' : 'Member';
+      pdf.save(`VISIONOID_Credential_2026_${variantLabel}.pdf`);
     } catch (err) {
       console.error('PDF export failed:', err);
-      alert('PDF出力に失敗しました: ' + err.message);
+      alert('PDF出力に失敗しました: ' + (err?.message || err));
     } finally {
       setExporting(false);
+      setExportProgress('');
     }
   };
 
@@ -384,6 +264,24 @@ async function directDownload() {
 
   return (
     <div className={`${editMode ? 'edit-mode' : ''}${isShareView ? ' share-view' : ''}`}>
+      {exporting && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 9999,
+          background: 'rgba(10,22,40,0.78)', backdropFilter: 'blur(6px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          flexDirection: 'column', gap: 16, color: '#fff',
+          fontFamily: "'Inter','Noto Sans JP',sans-serif",
+        }}>
+          <div style={{ fontSize: 24, fontWeight: 800 }}>PDF生成中</div>
+          <div style={{ fontSize: 18, color: '#4a9eff', fontWeight: 700 }}>
+            {exportProgress || '準備中…'}
+          </div>
+          <div style={{ fontSize: 13, color: '#cbd5e1', maxWidth: 460, textAlign: 'center', lineHeight: 1.6 }}>
+            全{filteredPages.length}ページを画像化しています。<br/>
+            途中で操作したり閉じたりしないでください（最大 1 分程度）。
+          </div>
+        </div>
+      )}
       <div className="top-toolbar">
         <div className="brand">
           <svg className="brand-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-label="VN">
@@ -437,7 +335,7 @@ async function directDownload() {
           </button>
           <button onClick={handleExportPdf} disabled={exporting} title="PDF出力">
             <span className="btn-icon">📄</span>
-            <span className="btn-label">{exporting ? '準備中…' : 'PDF'}</span>
+            <span className="btn-label">{exporting ? (exportProgress || '準備中…') : 'PDF'}</span>
           </button>
         </div>
       </div>
