@@ -225,13 +225,21 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       const otherLangPrefixes = [`p${id}:ja:text:`, `p${id}:en:text:`];
       const isLegacy = (k) => k.startsWith(legacyPrefix) && !otherLangPrefixes.some((p) => k.startsWith(p));
 
-      // Pass 1: legacy → JA
+      const applied = []; // diagnostic: which edits actually landed
+      const skipped = []; // diagnostic: edits whose target element wasn't found
+
+      // Pass 1: legacy → JA (back-compat for edits saved before lang toggle existed)
       if (lang === 'ja') {
         Object.keys(allEdits).forEach((k) => {
           if (!isLegacy(k)) return;
           const objId = k.slice(legacyPrefix.length);
           const el = doc.getElementById(objId);
-          if (el) el.innerHTML = allEdits[k];
+          if (el) {
+            el.innerHTML = allEdits[k];
+            applied.push({ k, objId, source: 'legacy' });
+          } else {
+            skipped.push({ k, objId, reason: 'no-element' });
+          }
         });
       }
       // Pass 2: lang-scoped (overrides legacy if both exist for same element)
@@ -239,8 +247,24 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         if (!k.startsWith(langScopedPrefix)) return;
         const objId = k.slice(langScopedPrefix.length);
         const el = doc.getElementById(objId);
-        if (el) el.innerHTML = allEdits[k];
+        if (el) {
+          el.innerHTML = allEdits[k];
+          applied.push({ k, objId, source: 'lang-scoped' });
+        } else {
+          skipped.push({ k, objId, reason: 'no-element' });
+        }
       });
+
+      // Diagnostic: print to console once per setup so the user can verify
+      // their text edits are actually being restored. Disabled in tight prod
+      // by checking edit count > 0 to avoid noise on un-edited pages.
+      const total = Object.keys(allEdits).filter((k) =>
+        k.startsWith(`p${id}:`) && (k.includes(':text:'))
+      ).length;
+      if (total > 0 || applied.length > 0 || skipped.length > 0) {
+        // eslint-disable-next-line no-console
+        console.log(`[VN restore] page=${id} lang=${lang} applied=${applied.length} skipped=${skipped.length} total=${total}`, { applied, skipped });
+      }
 
       // Restore image src / xform / fit by scanning ALL images (auto-keyed
       // too). Build a key→img lookup first.

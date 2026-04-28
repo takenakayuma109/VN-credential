@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import html2canvas from 'html2canvas';
+import { toJpeg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 import RawSlide, { SLIDE_W, SLIDE_H } from './components/RawSlide';
 import { useEditStore, exportEdits, importEdits } from './utils/editStore';
@@ -258,37 +258,27 @@ export default function App() {
         // Yield to the browser so the progress overlay actually repaints.
         await new Promise((r) => requestAnimationFrame(() => r()));
 
-        // html2canvas does NOT correctly render `<img>` elements styled with
-        // `object-fit: cover` (or contain) — it draws them stretched/squashed
-        // to the box. Workaround: temporarily replace each such <img> with a
-        // <div> sized identically and using `background-image` + `background-
-        // size:cover` (which html2canvas does handle). Restore afterwards so
-        // the live UI is untouched.
-        const restoreImgs = imgsToBackgroundDivs(doc);
-        let canvas;
-        try {
-          canvas = await html2canvas(target, {
-            width: SLIDE_W,
-            height: SLIDE_H,
-            scale: 2,
-            useCORS: true,
-            allowTaint: false,
-            backgroundColor: '#ffffff',
-            logging: false,
-            windowWidth: SLIDE_W,
-            windowHeight: SLIDE_H,
-            imageTimeout: 8000,
-            removeContainer: true,
-          });
-        } finally {
-          restoreImgs();
-        }
-
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-        // Free the canvas backing store immediately — 26 × 2560×1440 RGBA
-        // buffers blow past 400 MB otherwise.
-        canvas.width = 0;
-        canvas.height = 0;
+        // html-to-image renders via SVG <foreignObject>, which uses the
+        // browser's real layout/render path. That means flex-wrap, gradients,
+        // background-clip:text, and object-fit all match the on-screen
+        // rendering — far more faithful than html2canvas's reimplementation
+        // of CSS, which we previously hit with stretched images, missing
+        // title suffixes, and broken gradient KPIs.
+        const dataUrl = await toJpeg(target, {
+          width: SLIDE_W,
+          height: SLIDE_H,
+          pixelRatio: 2,
+          backgroundColor: '#ffffff',
+          quality: 0.92,
+          cacheBust: false,
+          // Skip elements that aren't part of the slide (e.g., dynamic
+          // overlays we add for edit mode would already have been hidden,
+          // but this is a safety net).
+          filter: (node) => {
+            if (!node || !node.classList) return true;
+            return !node.classList.contains('vn-edit-overlay');
+          },
+        });
 
         if (i > 0) pdf.addPage([SLIDE_W, SLIDE_H], 'landscape');
         pdf.addImage(dataUrl, 'JPEG', 0, 0, SLIDE_W, SLIDE_H, undefined, 'FAST');
