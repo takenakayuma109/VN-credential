@@ -69,6 +69,45 @@ const PAGES_EN = [p01en,p02en,p03en,p04en,p05en,p06en,p07en,p08en,p09en,p10en,p1
 // mode) reflects in both views automatically.
 const FINANCE_INDICES = new Set([22, 23, 24]);
 
+// Walk the iframe document and replace every <img> that uses object-fit
+// (cover/contain) with a same-size <div> that paints the picture via
+// `background-image` + `background-size`. html2canvas can render this
+// correctly, while it stretches `<img object-fit:cover>` to fill the box.
+// Returns a function that undoes every replacement so the live UI is restored.
+function imgsToBackgroundDivs(doc) {
+  const restorations = [];
+  const win = doc.defaultView || window;
+  const imgs = Array.from(doc.querySelectorAll('img'));
+  imgs.forEach((img) => {
+    if (!img.parentNode || !img.src) return;
+    if (!img.complete || !img.naturalWidth) return;
+    const cs = win.getComputedStyle(img);
+    const fit = cs.objectFit;
+    if (fit !== 'cover' && fit !== 'contain' && fit !== 'fill' && fit !== 'scale-down') return;
+    const div = doc.createElement('div');
+    // Carry over inline styles so width/height/transform/etc. are preserved.
+    const inline = img.getAttribute('style') || '';
+    div.setAttribute('style', inline);
+    div.style.backgroundImage = `url("${img.src}")`;
+    div.style.backgroundSize = (fit === 'fill' || fit === 'scale-down') ? '100% 100%' : fit;
+    div.style.backgroundPosition = cs.objectPosition || 'center center';
+    div.style.backgroundRepeat = 'no-repeat';
+    div.style.objectFit = '';
+    // Carry size/box if no explicit inline values (so a flex child still fills).
+    if (!inline.includes('width')) div.style.width = cs.width;
+    if (!inline.includes('height')) div.style.height = cs.height;
+    img.parentNode.insertBefore(div, img);
+    img.style.display = 'none';
+    restorations.push({ img, div, prevDisplay: img.style.display });
+  });
+  return () => {
+    restorations.forEach(({ img, div }) => {
+      try { img.style.display = ''; } catch {}
+      try { div.parentNode && div.parentNode.removeChild(div); } catch {}
+    });
+  };
+}
+
 function readQuery() {
   if (typeof window === 'undefined') return { variant: 'board', share: false, lang: 'ja' };
   const p = new URLSearchParams(window.location.search);
@@ -219,19 +258,31 @@ export default function App() {
         // Yield to the browser so the progress overlay actually repaints.
         await new Promise((r) => requestAnimationFrame(() => r()));
 
-        const canvas = await html2canvas(target, {
-          width: SLIDE_W,
-          height: SLIDE_H,
-          scale: 2,
-          useCORS: true,
-          allowTaint: false,
-          backgroundColor: '#ffffff',
-          logging: false,
-          windowWidth: SLIDE_W,
-          windowHeight: SLIDE_H,
-          imageTimeout: 8000,
-          removeContainer: true,
-        });
+        // html2canvas does NOT correctly render `<img>` elements styled with
+        // `object-fit: cover` (or contain) — it draws them stretched/squashed
+        // to the box. Workaround: temporarily replace each such <img> with a
+        // <div> sized identically and using `background-image` + `background-
+        // size:cover` (which html2canvas does handle). Restore afterwards so
+        // the live UI is untouched.
+        const restoreImgs = imgsToBackgroundDivs(doc);
+        let canvas;
+        try {
+          canvas = await html2canvas(target, {
+            width: SLIDE_W,
+            height: SLIDE_H,
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: '#ffffff',
+            logging: false,
+            windowWidth: SLIDE_W,
+            windowHeight: SLIDE_H,
+            imageTimeout: 8000,
+            removeContainer: true,
+          });
+        } finally {
+          restoreImgs();
+        }
 
         const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
         // Free the canvas backing store immediately — 26 × 2560×1440 RGBA

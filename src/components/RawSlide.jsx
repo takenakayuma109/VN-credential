@@ -213,20 +213,31 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       if (!doc) return;
       const { get, set } = storeRef.current;
 
-      // Restore persisted edits. Text edits are language-scoped so a JA
-      // override doesn't pollute the EN view (and vice versa). Legacy
-      // unscoped keys (`p${id}:text:`) are treated as JA for back-compat.
+      // Restore persisted edits. Text edits are language-scoped (`p<id>:<lang>:text:<objId>`)
+      // so a JA override doesn't pollute the EN view (and vice versa).
+      // Legacy unscoped keys (`p<id>:text:<objId>`, written before the lang
+      // toggle existed) are treated as JA so old work isn't lost. Apply legacy
+      // first, then lang-scoped — so a fresh JA edit wins over the same
+      // element's legacy entry.
       const allEdits = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
       const langScopedPrefix = `p${id}:${lang}:text:`;
       const legacyPrefix = `p${id}:text:`;
+      const otherLangPrefixes = [`p${id}:ja:text:`, `p${id}:en:text:`];
+      const isLegacy = (k) => k.startsWith(legacyPrefix) && !otherLangPrefixes.some((p) => k.startsWith(p));
+
+      // Pass 1: legacy → JA
+      if (lang === 'ja') {
+        Object.keys(allEdits).forEach((k) => {
+          if (!isLegacy(k)) return;
+          const objId = k.slice(legacyPrefix.length);
+          const el = doc.getElementById(objId);
+          if (el) el.innerHTML = allEdits[k];
+        });
+      }
+      // Pass 2: lang-scoped (overrides legacy if both exist for same element)
       Object.keys(allEdits).forEach((k) => {
-        let objId = null;
-        if (k.startsWith(langScopedPrefix)) {
-          objId = k.slice(langScopedPrefix.length);
-        } else if (lang === 'ja' && k.startsWith(legacyPrefix) && !k.startsWith(`p${id}:ja:text:`) && !k.startsWith(`p${id}:en:text:`)) {
-          objId = k.slice(legacyPrefix.length);
-        }
-        if (!objId) return;
+        if (!k.startsWith(langScopedPrefix)) return;
+        const objId = k.slice(langScopedPrefix.length);
         const el = doc.getElementById(objId);
         if (el) el.innerHTML = allEdits[k];
       });
