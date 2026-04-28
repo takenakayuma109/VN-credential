@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en" style="">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visionoid - JAPRADAR Origin</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: 'Noto Sans JP', sans-serif;
+        background: #f8fafc;
+    }
+    .slide-container {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        display: flex;
+        flex-direction: column;
+    }
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        background: rgba(255,255,255,0.95);
+        border-bottom: 1px solid rgba(226,232,240,0.8);
+        z-index: 100;
+        box-sizing: border-box;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0;
+    }
+    .logo-text {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1a202c;
+        font-family: 'Inter', sans-serif;
+    }
+    .logo-divider {
+        color: #94a3b8;
+        margin: 0 10px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+    .logo-sub {
+        font-size: 11px;
+        color: #64748b;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+    }
+    .page-num {
+        font-size: 10px;
+        color: #64748b;
+        font-family: 'Inter', sans-serif;
+    }
+    .content {
+        position: absolute;
+        top: 24px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 16px 54px 18px 54px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+    .title-section { margin-bottom: 8px; }
+    .main-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .main-title .en {
+        font-size: 14px;
+        color: #64748b;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #475569;
+        line-height: 1.5;
+    }
+    .main-content {
+        display: flex;
+        gap: 22px;
+        flex: 1;
+        min-height: 0;
+    }
+    .left-column {
+        flex: 1.3;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .right-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .team-photo-container {
+        width: 100%;
+        height: 340px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        background: #fff;
+    }
+    .team-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 35%;
+        display: block;
+    }
+    .evolution-container {
+        background: white;
+        border-radius: 12px;
+        padding: 8px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        position: relative;
+    }
+    .evolution-diagram {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 6px;
+    }
+    .evo-box {
+        flex: 1;
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .evo-box.visionoid {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border-color: #0ea5e9;
+    }
+    .evo-header {
+        font-size: 13px;
+        font-weight: 700;
+        color: #0369a1;
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    .evo-year {
+        font-size: 11px;
+        color: #64748b;
+        background: rgba(255,255,255,0.5);
+        padding: 2px 6px;
+        border-radius: 4px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .evo-desc {
+        font-size: 10px;
+        color: #475569;
+        line-height: 1.35;
+    }
+    .evo-arrow-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        position: relative;
+        flex-shrink: 0;
+    }
+    .evo-arrow-text {
+        font-size: 9px;
+        font-weight: 700;
+        color: #0ea5e9;
+        white-space: nowrap;
+        position: absolute;
+        top: -12px;
+    }
+    .evo-arrow {
+        font-size: 24px;
+        background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .players-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 8px;
+    }
+    .player-card {
+        background: white;
+        border-radius: 8px;
+        padding: 8px;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+    .player-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 2px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .player-badge {
+        font-size: 9px;
+        background: #0f172a;
+        color: white;
+        padding: 1px 6px;
+        border-radius: 4px;
+        white-space: nowrap;
+    }
+    .player-history {
+        font-size: 10px;
+        color: #64748b;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        line-height: 1.3;
+    }
+    .player-role {
+        font-size: 10px;
+        font-weight: 600;
+        color: #0ea5e9;
+        margin-top: auto;
+        line-height: 1.35;
+    }
+    .achievements-card {
+        background: #0f172a;
+        border-radius: 12px;
+        padding: 16px 18px 16px 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: none;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        gap: 8px;
+        min-height: 0;
+    }
+    .achievements-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        flex: 1;
+        position: relative;
+        padding-left: 0px;
+    }
+    .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        padding: 10px 14px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 6px;
+        border-left: 4px solid #0ea5e9;
+    }
+    .timeline-year {
+        font-size: 12px;
+        font-weight: 700;
+        color: #0ea5e9;
+        font-family: 'Inter', sans-serif;
+        width: 34px;
+        flex-shrink: 0;
+    }
+    .timeline-content {
+        font-size: 10px;
+        color: #94a3b8;
+        line-height: 1.35;
+        flex: 1;
+    }
+    .timeline-highlight {
+        font-weight: 600;
+        color: #fff;
+    }
+    .f1-analogy {
+        margin-top: 0;
+        padding: 12px 14px;
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        border-radius: 8px;
+        border: 1px solid #fcd34d;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-sizing: border-box;
+        min-height: 76px;
+    }
+    .f1-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .f1-text {
+        font-size: 10px;
+        color: #92400e;
+        line-height: 1.35;
+    }
+    .f1-bold {
+        font-weight: 700;
+        color: #b45309;
+    }
+</style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<div class="header">
+<div class="logo">
+<div class="logo-text">VISIONOID</div>
+<div class="logo-divider">|</div>
+<div class="logo-sub">Visionary Technology Company</div>
+</div>
+<div class="page-num">11 / 26</div>
+</div>
+<div class="content">
+<div class="title-section">
+<div class="main-title">
+                Race-forged pilots, transforming the field
+                <span class="en">— JAPRADAR Origin</span>
+</div>
+<div class="subtitle">
+                A drone racing team founded in 2017. We redeploy race-honed expertise into Industry and Disaster Resilience, transforming the front lines of social infrastructure.
+            </div>
+</div>
+<div class="main-content">
+<div class="left-column">
+<div class="team-photo-container">
+<img alt="JAPRADAR Team" class="team-photo" data-height-listener-added="true" id="fabric-obj-0-1775554597564" src="genspark_images/A2DXMxt4.png"/>
+</div>
+<div class="evolution-container">
+<div style="font-size: 12px; font-weight: 700; color: #64748b;">Evolution of technology and organization</div>
+<div class="evolution-diagram">
+<div class="evo-box">
+<div class="evo-header">
+                                JAPRADAR
+                                <span class="evo-year">2017-</span>
+</div>
+<div class="evo-desc">
+                                Professional drone racing team<br/>
+                                Top-tier domestic competition<br/>
+                                track record and pilot development
+                            </div>
+</div>
+<div class="evo-arrow-container">
+<div class="evo-arrow-text">Tech transfer</div>
+<i class="fas fa-arrow-right evo-arrow"></i>
+</div>
+<div class="evo-box visionoid">
+<div class="evo-header">
+                                VISIONOID Tech Team
+                                <span class="evo-year">2024-</span>
+</div>
+<div class="evo-desc">
+                                Race-honed piloting and safety<br/>
+                                expertise deployed across<br/>
+                                Entertainment, Industry and Disaster Resilience
+                            </div>
+</div>
+</div>
+</div>
+<div class="players-grid">
+<div class="player-card">
+<div class="player-name">
+                            Tatsuya Kamiseki <span class="player-badge">Leader</span>
+</div>
+<div class="player-history">
+<i class="fas fa-history"></i> Head Coach, Japan National Drone Racing Team
+                        </div>
+<div class="player-role">
+<i class="fas fa-chevron-right"></i> VISIONOID Co-Founder, Director, Head of Technology
+                        </div>
+</div>
+<div class="player-card">
+<div class="player-name">
+                            Fuga Kamiseki <span class="player-badge">Ace Pilot</span>
+</div>
+<div class="player-history">
+<i class="fas fa-trophy"></i> Youngest champion in Japan / 6th in the world
+                        </div>
+<div class="player-role">
+<i class="fas fa-chevron-right"></i> VISIONOID Pilot
+                        </div>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="achievements-card">
+<div class="achievements-title">
+<i class="fas fa-trophy" style="color: #fbbf24;"></i> Key Race Results
+                    </div>
+<div class="timeline">
+<div class="timeline-item" style="border-left-color: #fbbf24;">
+<div class="timeline-year" style="color: #fbbf24;">2019</div>
+<div class="timeline-content">
+<span class="timeline-highlight">Set Japan's youngest-ever winning record</span><br/>
+                                Fuga Kamiseki (then an elementary school student)
+                            </div>
+</div>
+<div class="timeline-item" style="border-left-color: #f97316;">
+<div class="timeline-year" style="color: #f97316;">2021</div>
+<div class="timeline-content">
+<span class="timeline-highlight">JAPAN DRONE LEAGUE 2021</span><br/>
+                                Series quadruple crown (commanding performance)
+                            </div>
+</div>
+<div class="timeline-item" style="border-left-color: #f97316;">
+<div class="timeline-year" style="color: #f97316;">2021</div>
+<div class="timeline-content">
+<span class="timeline-highlight">SUPER DRONE CHAMPIONSHIP</span><br/>
+                                Winner: Fuga Kamiseki (2nd-ever champion, youngest in Japan)
+                            </div>
+</div>
+<div class="timeline-item" style="border-left-color: #ef4444;">
+<div class="timeline-year" style="color: #ef4444;">2022</div>
+<div class="timeline-content">
+<span class="timeline-highlight">The World Games 2022</span><br/>
+                                Competed for Japan, finished 6th in the world
+                            </div>
+</div>
+<div class="timeline-item" style="border-left-color: #10b981;">
+<div class="timeline-year" style="color: #10b981;">2023</div>
+<div class="timeline-content">
+<span class="timeline-highlight">KAIZUKA Glowing DRONECUP</span><br/>
+                                Runner-up: Yuki Yamamoto
+                            </div>
+</div>
+<div class="timeline-item" style="border-left-color: #10b981;">
+<div class="timeline-year" style="color: #10b981;">2023</div>
+<div class="timeline-content">
+<span class="timeline-highlight">Aso Drone Race 2023</span><br/>
+                                Winner: Yuki Yamamoto
+                            </div>
+</div>
+</div>
+<div class="f1-analogy">
+<div class="f1-icon">
+<svg fill="#d97706" height="28" viewbox="0 0 64 64" width="28" xmlns="http://www.w3.org/2000/svg">
+<rect height="16" rx="3" width="16" x="24" y="24"></rect>
+<rect height="4" rx="1" transform="rotate(-45 18 32)" width="16" x="10" y="30"></rect>
+<rect height="4" rx="1" transform="rotate(45 46 32)" width="16" x="38" y="30"></rect>
+<rect height="4" rx="1" transform="rotate(45 18 32)" width="16" x="10" y="30"></rect>
+<rect height="4" rx="1" transform="rotate(-45 46 32)" width="16" x="38" y="30"></rect>
+<circle cx="12" cy="12" opacity="0.7" r="8"></circle>
+<circle cx="52" cy="12" opacity="0.7" r="8"></circle>
+<circle cx="12" cy="52" opacity="0.7" r="8"></circle>
+<circle cx="52" cy="52" opacity="0.7" r="8"></circle>
+</svg>
+</div>
+<div class="f1-text">
+<span class="f1-bold">Embodying the "motorsport-to-production-car" analogy</span><br/>
+                            Race-forged extreme expertise, redeployed for real-world implementation.<br/>
+                            We transform industrial front lines as "those who prove it through people."
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</div></div></body>
+</html>

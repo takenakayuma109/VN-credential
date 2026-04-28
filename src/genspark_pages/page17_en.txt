@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en" style="">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visionoid - Market Opportunity</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid rgba(226,232,240,0.8);
+            z-index: 100;
+            box-sizing: border-box;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .logo-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a202c;
+            font-family: 'Inter', sans-serif;
+        }
+        .separator {
+            color: #94a3b8;
+            margin: 0 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+        }
+        .logo-sub {
+            font-size: 11px;
+            color: #64748b;
+            font-family: 'Inter', sans-serif;
+        }
+        .page-num {
+            font-size: 10px;
+            color: #64748b;
+            font-family: 'Inter', sans-serif;
+        }
+        .content {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 18px 60px 22px 60px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .title-section {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .main-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+        }
+        .main-title .en {
+            font-size: 15px;
+            color: #64748b;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.5;
+            max-width: 800px;
+        }
+        .highlight-number {
+            font-size: 60px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+            text-align: right;
+            margin-top: -2px;
+        }
+        .highlight-label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            text-align: right;
+            margin-top: -4px;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%);
+        }
+        .kpi-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .kpi-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0284c7;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .kpi-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+        }
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 4px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        .kpi-change {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0ea5e9;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .kpi-change.up { color: #10b981; }
+        .kpi-desc {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        .kpi-source {
+            font-size: 8px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+        .chart-section {
+            display: flex;
+            gap: 24px;
+            height: 300px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        .chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .chart-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+        .h-chart-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            padding: 8px 0;
+        }
+        .h-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .h-bar-label {
+            width: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            font-family: 'Inter', sans-serif;
+        }
+        .h-bar-track {
+            flex: 1;
+            height: 28px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        .h-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #0f172a 0%, #06b6d4 100%);
+            position: relative;
+            transition: width 1s ease-out;
+        }
+        .h-bar-value {
+            width: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f172a;
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+        }
+        .v-chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            flex: 1;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .v-bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            height: 100%;
+            justify-content: flex-end;
+            position: relative;
+            width: 60px;
+        }
+        .v-bar-fill {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: height 1s ease-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .v-bar-fill.cyan {
+            background: linear-gradient(180deg, #22d3ee 0%, #06b6d4 100%);
+            height: 60%;
+        }
+        .v-bar-fill.gold {
+            background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+            height: 75%;
+        }
+        .v-bar-fill.teal {
+            background: linear-gradient(180deg, #2dd4bf 0%, #0f766e 100%);
+            height: 90%;
+        }
+        .v-bar-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #475569;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .v-bar-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: -4px;
+        }
+    </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<div class="header">
+<div class="header-left">
+<span class="logo-text">VISIONOID</span>
+<span class="separator">|</span>
+<span class="logo-sub">Visionary Technology Company</span>
+</div>
+<div class="page-num">17 / 26</div>
+</div>
+<div class="content">
+<div class="title-section">
+<div>
+<div class="main-title">
+                    Dawn of a JPY 1 Trillion Market — Riding Three Waves
+                    <span class="en">— Market Opportunity</span>
+</div>
+<div class="subtitle">
+                    Japan's drone market expands from JPY 437.1B in 2024 to JPY 1.0195T by 2030.<br/>The drone show segment is scaling rapidly, roughly doubling year-over-year.
+                </div>
+</div>
+<div>
+<div class="highlight-number">JPY 1T</div>
+<div class="highlight-label">2030 Market Forecast</div>
+</div>
+</div>
+<div class="main-content">
+<div class="kpi-grid">
+<div class="kpi-card" data-object="true" data-object-type="textbox" id="fabric-obj-0-1775555042846" style="position: relative; width: 100%; height: auto;">
+<div class="kpi-header">
+<div class="kpi-icon"><i class="fas fa-helicopter"></i></div>
+<div class="kpi-title">Drone Market</div>
+</div>
+<div class="kpi-value">JPY 437.1B</div>
+<div class="kpi-change up"><i class="fas fa-arrow-up"></i> 15.2% CAGR</div>
+<div class="kpi-desc">2024 → JPY 1.0195T (2030)</div>
+<div class="kpi-source">Source: Impress Research Institute, "Drone Business Survey Report 2025"</div>
+</div>
+<div class="kpi-card" data-object="true" data-object-type="textbox" id="fabric-obj-1-1775555042846" style="position: relative; width: 100%; height: auto;">
+<div class="kpi-header">
+<div class="kpi-icon"><i class="fas fa-chart-line"></i></div>
+<div class="kpi-title">Drone Show</div>
+</div>
+<div class="kpi-value">2x YoY</div>
+<div class="kpi-change up"><i class="fas fa-arrow-up"></i> Rapid expansion</div>
+<div class="kpi-desc">Surging demand in Entertainment</div>
+<div class="kpi-source">Source: Impress Research Institute, "Drone Business Survey Report 2025"</div>
+</div>
+<div class="kpi-card" data-object="true" data-object-type="textbox" id="fabric-obj-2-1775555042846" style="position: relative; width: 100%; height: auto;">
+<div class="kpi-header">
+<div class="kpi-icon"><i class="fas fa-robot"></i></div>
+<div class="kpi-title">Physical AI</div>
+</div>
+<div class="kpi-value">JPY 2.5T</div>
+<div class="kpi-change up"><i class="fas fa-arrow-up"></i> 2030 forecast</div>
+<div class="kpi-desc">Japan: JPY 780B → JPY 2.5T</div>
+<div class="kpi-source">Source: Mitsubishi Research Institute, "AI Robotics Report 2025"</div>
+</div>
+<div class="kpi-card" data-object="true" data-object-type="textbox" id="fabric-obj-3-1775555042846" style="position: relative; width: 100%; height: auto;">
+<div class="kpi-header">
+<div class="kpi-icon"><i class="fas fa-shield-alt"></i></div>
+<div class="kpi-title">Disaster Resilience DX</div>
+</div>
+<div class="kpi-value">JPY 215.3B</div>
+<div class="kpi-change up"><i class="fas fa-arrow-up"></i> 2025</div>
+<div class="kpi-desc">→ JPY 245.9B (2031)</div>
+<div class="kpi-source">Source: Seed Planning, "Disaster Information Systems & Services Market 2025"</div>
+</div>
+</div>
+<div class="chart-section">
+<div class="chart-card" style="flex: 1.4;">
+<div class="chart-header">
+<div>
+<div class="chart-title">Market Growth Trend</div>
+<div class="chart-subtitle">Drone market expansion forecast (2024-2030)</div>
+</div>
+<div style="text-align: right;">
+<div style="color: #10b981; font-weight: 600; font-size: 13px;"><i class="fas fa-arrow-trend-up"></i> +15.2% YoY</div>
+<div style="font-size: 8px; color: #94a3b8; font-style: italic; margin-top: 4px;">Source: Impress Research Institute</div>
+</div>
+</div>
+<div class="h-chart-container">
+<div class="h-bar-row">
+<div class="h-bar-label">2024</div>
+<div class="h-bar-track">
+<div class="h-bar-fill" style="width: 43%;"></div>
+</div>
+<div class="h-bar-value">JPY 437.1B</div>
+</div>
+<div class="h-bar-row">
+<div class="h-bar-label">2026</div>
+<div class="h-bar-track">
+<div class="h-bar-fill" style="width: 61%;"></div>
+</div>
+<div class="h-bar-value">JPY 620.0B</div>
+</div>
+<div class="h-bar-row">
+<div class="h-bar-label">2028</div>
+<div class="h-bar-track">
+<div class="h-bar-fill" style="width: 83%;"></div>
+</div>
+<div class="h-bar-value">JPY 850.0B</div>
+</div>
+<div class="h-bar-row">
+<div class="h-bar-label">2030</div>
+<div class="h-bar-track">
+<div class="h-bar-fill" style="width: 100%;"></div>
+</div>
+<div class="h-bar-value">JPY 1.0195T</div>
+</div>
+</div>
+</div>
+<div class="chart-card" style="flex: 1;">
+<div class="chart-header">
+<div>
+<div class="chart-title">Three Growth Domains</div>
+<div class="chart-subtitle">Market share and growth potential</div>
+</div>
+</div>
+<div class="v-chart-container">
+<div class="v-bar-group">
+<div class="v-bar-val">60%</div>
+<div class="v-bar-fill cyan"></div>
+<div class="v-bar-label">Entertainment</div>
+</div>
+<div class="v-bar-group">
+<div class="v-bar-val">75%</div>
+<div class="v-bar-fill gold"></div>
+<div class="v-bar-label">Industrial</div>
+</div>
+<div class="v-bar-group">
+<div class="v-bar-val">90%</div>
+<div class="v-bar-fill teal"></div>
+<div class="v-bar-label">Physical AI</div>
+</div>
+</div>
+<div style="text-align: right;">
+<div style="font-size: 8px; color: #94a3b8; font-style: italic; margin-top: 4px;">Source: VISIONOID internal estimates (based on third-party market research)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f8fafc;
+    }
+    p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container" style="position: relative; width: 1280px; height: 720px; overflow: hidden; background-color: #f8fafc;">
+<!-- Left side background image -->
+<div data-object="true" data-object-type="image" id="fabric-obj-0-1775554671781" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 720px; z-index: 1;">
+<img alt="Community Co-Creation" data-height-listener-added="true" src="genspark_images/0AJPx7pX.png" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<!-- Dark overlay for left side text readability -->
+<div data-object="true" data-object-type="shape" id="fabric-obj-1-1775554671781" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 720px; z-index: 2; background-color: rgba(15, 23, 42, 0.65);">
+</div>
+<!-- Left side text content -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775554671782" style="position: absolute; left: 40px; top: 566px; width: 400px; height: 132px; z-index: 10;">
+<p style="font-size: 24px; font-weight: 800; color: #ffffff; line-height: 1.12; margin-bottom: 8px;">Children's dreams,<br/>shining in the night sky</p>
+<p style="font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.9); line-height: 1.3;">Technology x Creativity x Community Bonds</p>
+</div>
+<!-- Header Line (Right side only) -->
+<div data-object="true" data-object-type="shape" id="fabric-obj-3-1775554671782" style="position: absolute; left: 480px; top: 48px; width: 800px; height: 1px; z-index: 9; background-color: rgba(226, 232, 240, 0.8);"></div>
+<!-- Header Text (Left) -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 528px; top: 16px; width: 420px; height: 24px; z-index: 10;">
+<p style="font-family: 'Noto Sans JP', sans-serif; line-height: 24px; white-space: nowrap;">
+<span style="font-weight: 700; color: #1a202c; font-size: 13px;">VISIONOID</span>
+<span style="color: #94a3b8; font-size: 13px; margin: 0 12px; font-weight: 400;">|</span>
+<span style="font-weight: 400; color: #64748b; font-size: 11px;">Visionary Technology Company</span>
+</p>
+</div>
+<!-- Header Text (Right - Page Number) -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 1182px; top: 16px; width: 70px; height: 24px; z-index: 10;">
+<p style="font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 500; color: #64748b; text-align: right; line-height: 24px; white-space: nowrap;">13 / 26</p>
+</div>
+<!-- Top section: Main Title and Description -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 540px; top: 80px; width: 680px; height: 133px; z-index: 10;">
+<div style="display: inline-block; background-color: #0ea5e9; color: #ffffff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 12px; margin-bottom: 16px;">Community Co-Creation</div>
+<p style="font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 16px; line-height: 1.4;">A new form of Drone Show, co-created with local children</p>
+<p style="font-size: 13px; font-weight: 400; color: #64748b; line-height: 1.6;">We unleash children's creativity through technology, painting community dreams onto the canvas of the night sky. From workshop to showtime, we deliver immersive entertainment with kids in the starring role.</p>
+</div>
+<!-- Middle section: Case cards container -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-7-1775554671782" style="position: absolute; left: 540px; top: 230px; width: 680px; height: 250px; z-index: 10;">
+<div style="display: flex; gap: 40px; width: 100%; height: 100%;">
+<!-- Case Card 1 -->
+<div style="flex: 1; display: flex; flex-direction: column;">
+<div style="width: 100%; height: 140px; margin-bottom: 12px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<img alt="Okegawa Halloween Drone Show" data-height-listener-added="true" src="genspark_images/nLeFIQKv.png" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<p style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">🎃 Okegawa Halloween Drone Show</p>
+<p style="font-size: 12px; font-weight: 700; color: #0ea5e9; margin-bottom: 8px;">200 aircraft <span style="color: #cbd5e1; margin: 0 4px;">|</span> <span style="color: #64748b; font-weight: 500;">2025.10</span></p>
+<p style="font-size: 12px; font-weight: 400; color: #64748b; line-height: 1.5;">A Halloween story drawn by children in workshops, fully reproduced in the night sky with 200 drones — turning community dreams into reality.</p>
+</div>
+<!-- Case Card 2 -->
+<div style="flex: 1; display: flex; flex-direction: column;">
+<div style="width: 100%; height: 140px; margin-bottom: 12px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+<img alt="Kiryu JC Kanto Convention" data-height-listener-added="true" src="genspark_images/3hE6fyyz.png" style="width: 100%; height: 100%; object-fit: cover;"/>
+</div>
+<p style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">✨ Kiryu JC Kanto Convention</p>
+<p style="font-size: 12px; font-weight: 700; color: #0ea5e9; margin-bottom: 8px;">400 aircraft <span style="color: #cbd5e1; margin: 0 4px;">|</span> <span style="color: #64748b; font-weight: 500;">2025.07</span></p>
+<p style="font-size: 12px; font-weight: 400; color: #64748b; line-height: 1.5;">An AI-powered children's workshop where their original direction lit up the night sky, drawing waves of awe from the crowd.</p>
+</div>
+</div>
+</div>
+<!-- Bottom section: Pricing -->
+<div data-object="true" data-object-type="textbox" id="fabric-obj-8-1775554671782" style="position: absolute; left: 540px; top: 510px; width: 680px; height: 150px; z-index: 10;">
+<!-- Title & Badge -->
+<div style="display: flex; align-items: center; margin-bottom: 16px;">
+<p style="font-size: 16px; font-weight: 700; color: #0f172a; margin-right: 12px;">Pricing</p>
+<div style="background-color: #16a34a; color: #ffffff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;">Approx. 60% of market price</div>
+</div>
+<!-- Pricing Cards -->
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+<div style="flex: 1; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+<span style="font-size: 14px; font-weight: 700; color: #0f172a;">200 aircraft</span>
+<span style="font-size: 15px; font-weight: 800; color: #0ea5e9;">From JPY 3M</span>
+</div>
+<div style="flex: 1; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+<span style="font-size: 14px; font-weight: 700; color: #0f172a;">300 aircraft</span>
+<span style="font-size: 15px; font-weight: 800; color: #0ea5e9;">From JPY 5M</span>
+</div>
+<div style="flex: 1; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+<span style="font-size: 14px; font-weight: 700; color: #0f172a;">500 aircraft</span>
+<span style="font-size: 15px; font-weight: 800; color: #0ea5e9;">From JPY 8M</span>
+</div>
+</div>
+<!-- Reasons -->
+<div style="background-color: #f1f5f9; border-radius: 6px; padding: 10px 16px; display: flex; justify-content: space-between;">
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="font-size: 14px;">🔧</span>
+<span style="font-size: 11px; font-weight: 500; color: #475569;">Proprietary aircraft leasing scheme</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="font-size: 14px;">⚡</span>
+<span style="font-size: 11px; font-weight: 500; color: #475569;">Generative-AI production breakthroughs</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px;">
+<span style="font-size: 14px;">🛡️</span>
+<span style="font-size: 11px; font-weight: 500; color: #475569;">In-house safety operations system</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

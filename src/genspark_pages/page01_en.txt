@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VISIONOID - Cover</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #0a1628;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a1628 0%, #1e293b 50%, #0f172a 100%);
+        }
+    </style>
+</head>
+<body style="user-select: none;">
+<div class="slide-container">
+<!-- Grid Pattern Background -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; z-index: 1; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
+<!-- Orb Top Left (Cyan) -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: -100px; top: -100px; width: 400px; height: 400px; z-index: 1; border-radius: 50%; background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, rgba(14, 165, 233, 0) 70%); opacity: 0.2;"></div>
+<!-- Orb Bottom Right (Cyan) -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 980px; top: 420px; width: 300px; height: 300px; z-index: 1; border-radius: 50%; background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, rgba(14, 165, 233, 0) 70%); opacity: 0.2;"></div>
+<!-- Orb Bottom Center (Gold) -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 440px; top: 420px; width: 400px; height: 300px; z-index: 1; border-radius: 50%; background: radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, rgba(217, 119, 6, 0) 70%); opacity: 0.2;"></div>
+<!-- Bottom Gradient Line -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 717px; width: 1280px; height: 3px; z-index: 5; background: linear-gradient(90deg, #06b6d4, #0d9488, #d97706);"></div>
+<!-- Confidential Badge -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; right: 48px; top: 20px; width: 150px; height: 20px; z-index: 10; display: flex; align-items: center; justify-content: flex-end; gap: 6px;" id="fabric-obj-0-1775549446159">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.25); letter-spacing: 0.2em; text-transform: uppercase;"><span style="font-size: 11px; margin-right: 4px;">🔒</span>CONFIDENTIAL</p>
+</div>
+<!-- Logo (white text) -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 540px; top: 200px; width: 200px; height: 60px; z-index: 10; display: flex; align-items: center; justify-content: center;" id="cover-logo-text-v2">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 300; color: #ffffff; letter-spacing: 0.25em; text-align: center;">VISIONOID</p>
+</div>
+<!-- Company Name -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 0; top: 280px; width: 1280px; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: center;" id="fabric-obj-2-1775549446160">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 700; color: white; letter-spacing: 0.15em; text-align: center;">VISIONOID</p>
+</div>
+<!-- Subtitle -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 0; top: 370px; width: 1280px; height: 30px; z-index: 10; display: flex; align-items: center; justify-content: center;" id="fabric-obj-3-1775549446160">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 18px; color: white; opacity: 0.6; letter-spacing: 0.3em; text-align: center;">Visionary Technology Company</p>
+</div>
+<!-- Accent Line -->
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 580px; top: 430px; width: 120px; height: 2px; z-index: 10; background: linear-gradient(90deg, #0ea5e9, #d97706);"></div>
+<!-- Deck Title -->
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 0; top: 470px; width: 1280px; height: 60px; z-index: 10; display: flex; align-items: center; justify-content: center;" id="fabric-obj-4-1775549446160">
+<div style="display: inline-block; border: 1px solid #2d3f5e; padding: 10px 32px; border-radius: 30px; background: #1a2744;">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 16px; color: white; letter-spacing: 0.15em; text-align: center;">Credential Deck 2026</p>
+</div>
+</div>
+</div>
+
+</body></html>

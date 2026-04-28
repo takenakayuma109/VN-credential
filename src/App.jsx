@@ -32,7 +32,35 @@ import p24 from 'bundle-text:./genspark_pages/page24.txt';
 import p25 from 'bundle-text:./genspark_pages/page25.txt';
 import p26 from 'bundle-text:./genspark_pages/page26.txt';
 
-const PAGES = [p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26];
+import p01en from 'bundle-text:./genspark_pages/page01_en.txt';
+import p02en from 'bundle-text:./genspark_pages/page02_en.txt';
+import p03en from 'bundle-text:./genspark_pages/page03_en.txt';
+import p04en from 'bundle-text:./genspark_pages/page04_en.txt';
+import p05en from 'bundle-text:./genspark_pages/page05_en.txt';
+import p06en from 'bundle-text:./genspark_pages/page06_en.txt';
+import p07en from 'bundle-text:./genspark_pages/page07_en.txt';
+import p08en from 'bundle-text:./genspark_pages/page08_en.txt';
+import p09en from 'bundle-text:./genspark_pages/page09_en.txt';
+import p10en from 'bundle-text:./genspark_pages/page10_en.txt';
+import p11en from 'bundle-text:./genspark_pages/page11_en.txt';
+import p12en from 'bundle-text:./genspark_pages/page12_en.txt';
+import p13en from 'bundle-text:./genspark_pages/page13_en.txt';
+import p14en from 'bundle-text:./genspark_pages/page14_en.txt';
+import p15en from 'bundle-text:./genspark_pages/page15_en.txt';
+import p16en from 'bundle-text:./genspark_pages/page16_en.txt';
+import p17en from 'bundle-text:./genspark_pages/page17_en.txt';
+import p18en from 'bundle-text:./genspark_pages/page18_en.txt';
+import p19en from 'bundle-text:./genspark_pages/page19_en.txt';
+import p20en from 'bundle-text:./genspark_pages/page20_en.txt';
+import p21en from 'bundle-text:./genspark_pages/page21_en.txt';
+import p22en from 'bundle-text:./genspark_pages/page22_en.txt';
+import p23en from 'bundle-text:./genspark_pages/page23_en.txt';
+import p24en from 'bundle-text:./genspark_pages/page24_en.txt';
+import p25en from 'bundle-text:./genspark_pages/page25_en.txt';
+import p26en from 'bundle-text:./genspark_pages/page26_en.txt';
+
+const PAGES_JA = [p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26];
+const PAGES_EN = [p01en,p02en,p03en,p04en,p05en,p06en,p07en,p08en,p09en,p10en,p11en,p12en,p13en,p14en,p15en,p16en,p17en,p18en,p19en,p20en,p21en,p22en,p23en,p24en,p25en,p26en];
 
 // 0-indexed positions of pages 23, 24, 25 — the Finance section that exists
 // only in the Board variant. Member variant skips these entirely. All other
@@ -42,11 +70,12 @@ const PAGES = [p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12,p13,p14,p15,p16,p
 const FINANCE_INDICES = new Set([22, 23, 24]);
 
 function readQuery() {
-  if (typeof window === 'undefined') return { variant: 'board', share: false };
+  if (typeof window === 'undefined') return { variant: 'board', share: false, lang: 'ja' };
   const p = new URLSearchParams(window.location.search);
   return {
     variant: p.get('v') === 'member' ? 'member' : 'board',
     share: p.get('share') === '1',
+    lang: p.get('lang') === 'en' ? 'en' : 'ja',
   };
 }
 
@@ -56,24 +85,28 @@ export default function App() {
   const [exportProgress, setExportProgress] = useState('');
   const [active, setActive] = useState(1);
   const [variant, setVariant] = useState(() => readQuery().variant);
+  const [lang, setLang] = useState(() => readQuery().lang);
   // Share view = read-only mode for recipients of a shared link. Hides the
   // edit / import / reset / variant-toggle controls so they only see the
   // deck and the PDF download.
   const isShareView = useMemo(() => readQuery().share, []);
   const store = useEditStore();
 
-  // Build the page list for the current variant. Each entry keeps its
-  // original 1-based pageId so edits stored under `p<id>:...` continue to
-  // resolve correctly regardless of variant.
+  // Build the page list for the current variant + language. Each entry keeps
+  // its original 1-based pageId so edits stored under `p<id>:...` continue
+  // to resolve correctly regardless of variant or language. Image edits are
+  // shared between languages (one image, two captions); text edits are
+  // language-scoped (handled in RawSlide).
   const filteredPages = useMemo(() => {
-    const all = PAGES.map((html, i) => ({ html, pageId: i + 1, idx: i }));
+    const SOURCE = lang === 'en' ? PAGES_EN : PAGES_JA;
+    const all = SOURCE.map((html, i) => ({ html, pageId: i + 1, idx: i }));
     const base = variant === 'board'
       ? all
       : all.filter((p) => !FINANCE_INDICES.has(p.idx));
     // displayNumber = sequential 1..N for the current variant (so Member
     // view doesn't expose the Finance-page gap in page numbering).
     return base.map((p, i) => ({ ...p, displayNumber: i + 1 }));
-  }, [variant]);
+  }, [variant, lang]);
   const totalDisplayPages = filteredPages.length;
 
   // Update URL when variant changes so reload + share both preserve choice.
@@ -82,6 +115,16 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       url.searchParams.set('v', v);
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, []);
+
+  // Same persistence pattern for language toggle.
+  const switchLang = useCallback((l) => {
+    setLang(l);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', l);
       window.history.replaceState({}, '', url.toString());
     }
   }, []);
@@ -109,11 +152,11 @@ export default function App() {
 
   const handleExportPdf = async () => {
     setExporting(true);
-    setExportProgress('準備中…');
+    setExportProgress(lang === 'ja' ? '準備中…' : 'Preparing…');
     try {
       const frames = Array.from(document.querySelectorAll('iframe.slide-canvas'));
       if (frames.length === 0) {
-        alert('スライドが見つかりません。ページを再読込してください。');
+        alert(lang === 'ja' ? 'スライドが見つかりません。ページを再読込してください。' : 'No slides found. Please reload the page.');
         return;
       }
 
@@ -129,7 +172,7 @@ export default function App() {
       window.scrollTo(0, originalScrollY);
 
       // Wait for every iframe's document + images + fonts to be ready.
-      setExportProgress('画像ロード待ち…');
+      setExportProgress(lang === 'ja' ? '画像ロード待ち…' : 'Loading images…');
       const waitForFrame = (iframe) => new Promise((resolve) => {
         const finish = () => {
           const doc = iframe.contentDocument;
@@ -167,7 +210,7 @@ export default function App() {
       });
 
       for (let i = 0; i < frames.length; i++) {
-        setExportProgress(`描画中 ${i + 1}/${frames.length}`);
+        setExportProgress(lang === 'ja' ? `描画中 ${i + 1}/${frames.length}` : `Rendering ${i + 1}/${frames.length}`);
         const iframe = frames[i];
         const doc = iframe.contentDocument;
         if (!doc) continue;
@@ -200,12 +243,13 @@ export default function App() {
         pdf.addImage(dataUrl, 'JPEG', 0, 0, SLIDE_W, SLIDE_H, undefined, 'FAST');
       }
 
-      setExportProgress('保存中…');
+      setExportProgress(lang === 'ja' ? '保存中…' : 'Saving…');
       const variantLabel = variant === 'board' ? 'Board' : 'Member';
-      pdf.save(`VISIONOID_Credential_2026_${variantLabel}.pdf`);
+      const langLabel = lang === 'en' ? '_EN' : '';
+      pdf.save(`VISIONOID_Credential_2026_${variantLabel}${langLabel}.pdf`);
     } catch (err) {
       console.error('PDF export failed:', err);
-      alert('PDF出力に失敗しました: ' + (err?.message || err));
+      alert((lang === 'ja' ? 'PDF出力に失敗しました: ' : 'PDF export failed: ') + (err?.message || err));
     } finally {
       setExporting(false);
       setExportProgress('');
@@ -213,7 +257,7 @@ export default function App() {
   };
 
   const handleResetEdits = () => {
-    if (confirm('すべての編集をリセットしますか？')) {
+    if (confirm(lang === 'ja' ? 'すべての編集をリセットしますか？' : 'Reset all edits?')) {
       store.reset();
       window.location.reload();
     }
@@ -246,19 +290,22 @@ export default function App() {
   const handleShare = async () => {
     const url = new URL(window.location.href);
     url.searchParams.set('v', variant);
+    url.searchParams.set('lang', lang);
     url.searchParams.set('share', '1');
     const shareUrl = url.toString();
-    const variantLabel = variant === 'board' ? 'Board（Finance有り）' : 'Member（Finance無し）';
+    const variantLabel = lang === 'ja'
+      ? (variant === 'board' ? 'Board（Finance有り）' : 'Member（Finance無し）')
+      : (variant === 'board' ? 'Board (with Finance)' : 'Member (no Finance)');
+    const langLabel = lang === 'ja' ? '日本語' : 'English';
     try {
       await navigator.clipboard.writeText(shareUrl);
       alert(
-        `共有リンクをクリップボードにコピーしました\n\n` +
-        `バージョン: ${variantLabel}\n\n` +
-        `${shareUrl}\n\n` +
-        `受け取った相手はブラウザで閲覧でき、PDFもダウンロードできます。`
+        lang === 'ja'
+          ? `共有リンクをクリップボードにコピーしました\n\nバージョン: ${variantLabel}\n言語: ${langLabel}\n\n${shareUrl}\n\n受け取った相手はブラウザで閲覧でき、PDFもダウンロードできます。`
+          : `Share link copied to clipboard\n\nVersion: ${variantLabel}\nLanguage: ${langLabel}\n\n${shareUrl}\n\nThe recipient can view in any browser and download the PDF.`
       );
     } catch {
-      window.prompt('共有リンクをコピーしてください:', shareUrl);
+      window.prompt(lang === 'ja' ? '共有リンクをコピーしてください:' : 'Copy the share link:', shareUrl);
     }
   };
 
@@ -272,13 +319,16 @@ export default function App() {
           flexDirection: 'column', gap: 16, color: '#fff',
           fontFamily: "'Inter','Noto Sans JP',sans-serif",
         }}>
-          <div style={{ fontSize: 24, fontWeight: 800 }}>PDF生成中</div>
+          <div style={{ fontSize: 24, fontWeight: 800 }}>{lang === 'ja' ? 'PDF生成中' : 'Generating PDF'}</div>
           <div style={{ fontSize: 18, color: '#4a9eff', fontWeight: 700 }}>
-            {exportProgress || '準備中…'}
+            {exportProgress || (lang === 'ja' ? '準備中…' : 'Preparing…')}
           </div>
           <div style={{ fontSize: 13, color: '#cbd5e1', maxWidth: 460, textAlign: 'center', lineHeight: 1.6 }}>
-            全{filteredPages.length}ページを画像化しています。<br/>
-            途中で操作したり閉じたりしないでください（最大 1 分程度）。
+            {lang === 'ja' ? (
+              <>全{filteredPages.length}ページを画像化しています。<br/>途中で操作したり閉じたりしないでください（最大 1 分程度）。</>
+            ) : (
+              <>Rendering all {filteredPages.length} pages to images.<br/>Please don't interact or close this tab (≤ ~1 minute).</>
+            )}
           </div>
         </div>
       )}
@@ -295,19 +345,35 @@ export default function App() {
           </span>
         </div>
         <div className="controls">
+          <div className="variant-toggle lang-toggle" role="group" aria-label={lang === 'ja' ? '言語切替' : 'Language'}>
+            <button
+              className={lang === 'ja' ? 'active' : ''}
+              onClick={() => switchLang('ja')}
+              title="日本語"
+            >
+              日本語
+            </button>
+            <button
+              className={lang === 'en' ? 'active' : ''}
+              onClick={() => switchLang('en')}
+              title="English"
+            >
+              English
+            </button>
+          </div>
           {!isShareView && (
-            <div className="variant-toggle" role="group" aria-label="バージョン切替">
+            <div className="variant-toggle" role="group" aria-label={lang === 'ja' ? 'バージョン切替' : 'Version'}>
               <button
                 className={variant === 'board' ? 'active' : ''}
                 onClick={() => switchVariant('board')}
-                title="Board: Financeページ有り (P.23-25)"
+                title={lang === 'ja' ? 'Board: Financeページ有り (P.23-25)' : 'Board: includes Finance pages (P.23–25)'}
               >
                 Board
               </button>
               <button
                 className={variant === 'member' ? 'active' : ''}
                 onClick={() => switchVariant('member')}
-                title="Member: Financeページ無し"
+                title={lang === 'ja' ? 'Member: Financeページ無し' : 'Member: no Finance pages'}
               >
                 Member
               </button>
@@ -315,27 +381,27 @@ export default function App() {
           )}
           {!isShareView && (
             <>
-              <button onClick={handleImportEdits} title="編集データをインポート">
+              <button onClick={handleImportEdits} title={lang === 'ja' ? '編集データをインポート' : 'Import edits'}>
                 <span className="btn-icon">⬆</span><span className="btn-label">Import</span>
               </button>
-              <button onClick={handleExportEdits} title="編集データをエクスポート">
+              <button onClick={handleExportEdits} title={lang === 'ja' ? '編集データをエクスポート' : 'Export edits'}>
                 <span className="btn-icon">⬇</span><span className="btn-label">Export</span>
               </button>
-              <button onClick={handleResetEdits} title="編集をリセット">
+              <button onClick={handleResetEdits} title={lang === 'ja' ? '編集をリセット' : 'Reset edits'}>
                 <span className="btn-icon">↺</span><span className="btn-label">Reset</span>
               </button>
-              <button className={editMode ? 'active' : ''} onClick={() => setEditMode((v) => !v)} title="編集モード切替">
+              <button className={editMode ? 'active' : ''} onClick={() => setEditMode((v) => !v)} title={lang === 'ja' ? '編集モード切替' : 'Toggle edit mode'}>
                 <span className="btn-icon">{editMode ? '✓' : '✎'}</span>
-                <span className="btn-label">{editMode ? '編集中' : '編集'}</span>
+                <span className="btn-label">{editMode ? (lang === 'ja' ? '編集中' : 'Editing') : (lang === 'ja' ? '編集' : 'Edit')}</span>
               </button>
             </>
           )}
-          <button onClick={handleShare} title="この版の共有リンクをコピー">
+          <button onClick={handleShare} title={lang === 'ja' ? 'この版の共有リンクをコピー' : 'Copy share link for this version'}>
             <span className="btn-icon">🔗</span><span className="btn-label">Share</span>
           </button>
-          <button onClick={handleExportPdf} disabled={exporting} title="PDF出力">
+          <button onClick={handleExportPdf} disabled={exporting} title={lang === 'ja' ? 'PDF出力' : 'Export PDF'}>
             <span className="btn-icon">📄</span>
-            <span className="btn-label">{exporting ? (exportProgress || '準備中…') : 'PDF'}</span>
+            <span className="btn-label">{exporting ? (exportProgress || (lang === 'ja' ? '準備中…' : 'Preparing…')) : 'PDF'}</span>
           </button>
         </div>
       </div>
@@ -355,9 +421,10 @@ export default function App() {
       <div className="app-pages">
         {filteredPages.map((p) => (
           <RawSlide
-            key={`${variant}-${p.pageId}`}
+            key={`${variant}-${lang}-${p.pageId}`}
             id={p.pageId}
             html={p.html}
+            lang={lang}
             editMode={editMode && !isShareView}
             pageNumber={p.pageId}
             displayNumber={p.displayNumber}

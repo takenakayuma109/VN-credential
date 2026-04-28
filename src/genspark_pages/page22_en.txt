@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .slide-container {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background-color: #f8fafc;
+    }
+
+    .value-card {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      padding: 32px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .value-number {
+      font-size: 48px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+    .value-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 24px;
+    }
+    .value-title-jp {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .value-title-en {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .value-desc {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.8;
+      text-align: left;
+      width: 100%;
+    }
+
+    .color-cyan { color: #06b6d4; }
+    .bg-cyan-light { background-color: #ecfeff; }
+    .border-cyan { border-top: 8px solid #06b6d4; }
+
+    .color-gold { color: #d97706; }
+    .bg-gold-light { background-color: #fffbeb; }
+    .border-gold { border-top: 8px solid #d97706; }
+
+    .color-teal { color: #0d9488; }
+    .bg-teal-light { background-color: #f0fdfa; }
+    .border-teal { border-top: 8px solid #0d9488; }
+
+    .color-red { color: #dc2626; }
+    .bg-red-light { background-color: #fef2f2; }
+    .border-red { border-top: 8px solid #dc2626; }
+
+    .color-purple { color: #7c3aed; }
+    .bg-purple-light { background-color: #f5f3ff; }
+    .border-purple { border-top: 8px solid #7c3aed; }
+
+  </style>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body spellcheck="false">
+<div class="slide-container">
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; z-index: 1;">
+<div style="width: 100%; height: 100%; background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px); background-size: 24px 24px; opacity: 0.4;"></div>
+<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 0%, rgba(248,250,252,0.8) 100%);"></div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-0-1775555173437" style="position: absolute; left: 0; top: 0; width: 1280px; height: 32px; z-index: 100;">
+<div style="display: flex; align-items: center; justify-content: space-between; height: 100%; padding: 0 48px; box-sizing: border-box; border-bottom: 1px solid rgba(226,232,240,0.8); background: rgba(255,255,255,0.95);">
+<div style="display: flex; align-items: center; white-space: nowrap;">
+<span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: #1a202c; letter-spacing: 0.02em;">VISIONOID</span>
+<span style="color: #94a3b8; margin: 0 10px; font-size: 13px;">|</span>
+<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #64748b;">Visionary Technology Company</span>
+</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 10px; color: #64748b; font-weight: 500;">22 / 26</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-1-1775555173437" style="position: absolute; left: 50px; top: 56px; width: 1180px; height: 44px; z-index: 10;">
+<div style="display: flex; align-items: baseline; gap: 24px;">
+<h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #0F172A; font-family: 'Inter', 'Noto Sans JP', sans-serif;">Values — Our Five Beliefs</h1>
+<p style="margin: 0; font-size: 14px; color: #64748B; font-weight: 500;">The unwavering principles every member of VISIONOID lives by</p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-2-1775555173437" style="position: absolute; left: 50px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-cyan">
+<div class="value-number color-cyan">01</div>
+<div class="value-icon-circle bg-cyan-light color-cyan">
+<i class="fas fa-map-location-dot"></i>
+</div>
+<div class="value-title-jp">Prove It On Site</div>
+<div class="value-title-en color-cyan">PROVE ON SITE</div>
+<div class="value-desc">
+          We reject armchair theory. Our top priority is proving that technology actually works in the field. Validation in unforgiving environments — live entertainment and disaster sites — is what earns true trust in technology.
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-3-1775555173437" style="position: absolute; left: 290px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-gold">
+<div class="value-number color-gold">02</div>
+<div class="value-icon-circle bg-gold-light color-gold">
+<i class="fas fa-users-gear"></i>
+</div>
+<div class="value-title-jp">Technology Creates Value<br/>Only When Deployed</div>
+<div class="value-title-en color-gold">TECH IN USE CREATES VALUE</div>
+<div class="value-desc">
+          No matter how advanced, technology is meaningless until it reaches society. We are committed to taking it out of the lab and delivering it in usable form to people's lives and to industry on the ground.
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-4-1775555173437" style="position: absolute; left: 530px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-teal">
+<div class="value-number color-teal">03</div>
+<div class="value-icon-circle bg-teal-light color-teal">
+<i class="fas fa-bolt"></i>
+</div>
+<div class="value-title-jp">Entertainment Is the Ultimate<br/>Proving Ground</div>
+<div class="value-title-en color-teal">ENTERTAINMENT HARDENS TECH</div>
+<div class="value-desc">
+          Live entertainment, where failure is not an option, is the finest testbed for hardening technology. We believe the technology forged here makes a decisive contribution to earning trust as social infrastructure.
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-5-1775555173437" style="position: absolute; left: 770px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-red">
+<div class="value-number color-red">04</div>
+<div class="value-icon-circle bg-red-light color-red">
+<i class="fas fa-shield-heart"></i>
+</div>
+<div class="value-title-jp">Safety Above All</div>
+<div class="value-title-en color-red">SAFETY FIRST</div>
+<div class="value-desc">
+          When working with Drones and Robotics — technologies that exert physical force — safety overrides everything. Beyond regulatory compliance, we set our own rigorous safety standards in pursuit of zero incidents.
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-6-1775555173437" style="position: absolute; left: 1010px; top: 144px; width: 220px; height: 460px; z-index: 10;">
+<div class="value-card border-purple">
+<div class="value-number color-purple">05</div>
+<div class="value-icon-circle bg-purple-light color-purple">
+<i class="fas fa-flag-checkered"></i>
+</div>
+<div class="value-title-jp">Deliver to the Finish Line</div>
+<div class="value-title-en color-purple">DELIVER TO THE END</div>
+<div class="value-desc">
+          We never stop at Concept or proposal. From Design and development to Operate in the field, we own every process in-house. The execution muscle to see things through is our pride.
+        </div>
+</div>
+</div>
+<div data-object="true" data-object-type="shape" id="fabric-obj-7-1775555173437" style="position: absolute; left: 0; top: 660px; width: 1280px; height: 60px; background-color: #0A1628; z-index: 20;"></div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-8-1775555173438" style="position: absolute; left: 0; top: 660px; width: 1280px; height: 60px; z-index: 21;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+<p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 500; letter-spacing: 0.05em;">Deploying technology forged on Entertainment's most demanding stages into society's core infrastructure.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

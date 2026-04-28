@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visionoid - The Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8fafc;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            border-bottom: 1px solid rgba(226,232,240,0.8);
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        .header-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a202c;
+            letter-spacing: 0.05em;
+        }
+        .header-divider {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .header-subtitle {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        .page-num {
+            font-size: 11px;
+            color: #64748b;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        .top-banner {
+            background: #0f172a;
+            border-radius: 0 0 16px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            padding-top: 2px;
+        }
+        .banner-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+        .banner-sub {
+            font-size: 14px;
+            color: #cbd5e1;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 14px;
+            padding: 0 36px 20px 36px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .member-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 14px 18px 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .member-photo {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #f1f5f9;
+        }
+        .member-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+        .member-role {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.15;
+            text-align: center;
+        }
+        .member-bio {
+            font-size: 11px;
+            line-height: 1.38;
+            color: #334155;
+            text-align: left;
+            flex: 1;
+            overflow: hidden;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+        }
+        .member-tags {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+        }
+        .tag {
+            font-size: 10px;
+            padding: 3px 8px;
+            background: #f8fafc;
+            color: #475569;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .color-cyan .member-photo { border: 3px solid #06b6d4; }
+        .color-cyan .member-role { color: #06b6d4; }
+        .color-teal .member-photo { border: 3px solid #0d9488; }
+        .color-teal .member-role { color: #0d9488; }
+        .color-gold .member-photo { border: 3px solid #d97706; }
+        .color-gold .member-role { color: #d97706; }
+        .color-purple .member-photo { border: 3px solid #7c3aed; }
+        .color-purple .member-role { color: #7c3aed; }
+        .color-orange .member-photo { border: 3px solid #f97316; }
+        .color-orange .member-role { color: #f97316; }
+        .color-red .member-photo { border: 3px solid #dc2626; }
+        .color-red .member-role { color: #dc2626; }
+        .color-navy .member-photo { border: 3px solid #1e40af; }
+        .color-navy .member-role { color: #1e40af; }
+        .color-green .member-photo { border: 3px solid #16a34a; }
+        .color-green .member-role { color: #16a34a; }
+    </style>
+</head>
+<body spellcheck="false" style="user-select: none;">
+<div class="slide-container">
+<div data-object="true" data-object-type="textbox" id="unified-header" style="position: absolute; top: 0; left: 0; width: 1280px; height: 30px; z-index: 100;">
+<div class="header-wrapper">
+<div class="header-left">
+<span class="header-title">VISIONOID</span>
+<span class="header-divider">|</span>
+<span class="header-subtitle">Visionary Technology Company</span>
+</div>
+<div class="page-num">05 / 26</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" id="fabric-obj-1-1775456563863" style="position: absolute; top: 30px; left: 0px; width: 1280px; height: 58px; z-index: 10; transform: none !important;">
+<div class="top-banner" style="height: 58px;">
+<div class="banner-title">A Convergence of Domain Specialists — The Team</div>
+<div class="banner-sub">An elite cross-disciplinary team with proven track records across Entertainment, Industry, and Disaster Resilience</div>
+</div>
+</div>
+<div contenteditable="true" data-object="true" data-object-type="textbox" id="fabric-obj-2-1775456563863" style="position: absolute; top: 110px; left: 0px; width: 1280px; height: 580px; z-index: 5; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;">
+<div class="team-grid"><div class="member-card color-cyan">
+<img alt="Yuma Takenaka" class="member-photo" data-height-listener-added="true" src="genspark_images/1d71d2d22a80f5be7db9e9e07d328edb.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Yuma Takenaka</span></div>
+<div class="member-role">Founder &amp; CEO</div>
+<div class="member-bio">Joined Dentsu Live in 2012, leading accounts including Toyota Motor and JAMA. Produced Japan's largest drone show at Tokyo Motor Show 2019, drawing 1.31M visitors. Member of the Tokyo 2020 Olympics opening ceremony production team. Following a NASDAQ-listed company role, founded VISIONOID in 2024.</div>
+<div class="member-tags">
+<span class="tag">Business Production</span>
+<span class="tag">Event Marketing</span>
+</div>
+</div>
+<div class="member-card color-teal">
+<img alt="Ryuya Kamizeki" class="member-photo" data-height-listener-added="true" src="genspark_images/991760199348ec4dec77f6985ee36c6b.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Ryuya Kamizeki</span></div>
+<div class="member-role" style="font-size: 11px;">Co-Founder, Director &amp; Head of Technology</div>
+<div class="member-bio">Former head coach of Japan's national drone racing team. Cross-disciplinary technologist spanning drones, droids, video, audio, networks, and software development. Frequent TV appearances including The Tetsuwan DASH. Drone show credits include DREAMS COME TRUE WONDERLAND 2023, NISSAN SKYLINE NISMO, and the Hokkaido Nippon-Ham Fighters 2024 Opening Game.</div>
+<div class="member-tags">
+<span class="tag">Drones</span>
+<span class="tag">Tech Lead</span>
+</div>
+</div>
+<div class="member-card color-gold">
+<img alt="Matomi Adachi" class="member-photo" data-height-listener-added="true" src="genspark_images/5bd46e3b3c1d7ec4042461f2dd95f9ab.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Matomi Adachi</span></div>
+<div class="member-role">Director &amp; Project Manager</div>
+<div class="member-bio">Project management specialist behind some of Japan's most prominent large-scale events, including the Tokyo 2020 Olympics opening ceremony, YouTube Brandcast Japan, the Hermès "Avec Elle" exhibition, and the Cygames exhibition. Drives projects to success through outstanding leadership and meticulous on-site orchestration.</div>
+<div class="member-tags">
+<span class="tag">Event PM</span>
+<span class="tag">Large-Scale Events</span>
+</div>
+</div>
+<div class="member-card color-purple">
+<img alt="Ryota Monzen" class="member-photo" data-height-listener-added="true" src="genspark_images/e0cc1ed6cb72e48eaaa9beb9a39ee4ab.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Ryota Monzen</span></div>
+<div class="member-role">Director &amp; Aircraft Development Engineer</div>
+<div class="member-bio">At 27, conceived, designed, and developed "unika" — Japan's only domestically produced drone built specifically for drone shows. Joined JAPRADAR in 2017 as pilot and developer, later moved to Drone Show Japan, and joined VISIONOID in 2024. On a mission to build Japanese drones that lead the world.</div>
+<div class="member-tags">
+<span class="tag">Hardware / Aircraft Dev</span>
+<span class="tag">Engineer</span>
+</div>
+</div>
+<div class="member-card color-orange">
+<img alt="Tomohiro Nakagawa" class="member-photo" data-height-listener-added="true" src="genspark_images/e0a0d332164eafff15778fdf901e9136.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Tomohiro Nakagawa</span></div>
+<div class="member-role" style="font-size: 11px;">Drone Business Development &amp; Master Instructor</div>
+<div class="member-bio">Co-founder of Sky Estate, the predecessor of Rakuten Drone. As a DPA Master Instructor, has trained over 1,000 pilots and produced Japan's #1 student. Operates "Drone Jobs," a community of 3,000+ drone professionals. Class 1 certified unmanned aircraft pilot.</div>
+<div class="member-tags">
+<span class="tag">Talent Development</span>
+<span class="tag">Drone Business Consulting</span>
+</div>
+</div>
+<div class="member-card color-red">
+<img alt="Hayato Murata" class="member-photo" data-height-listener-added="true" src="genspark_images/c74c3c88198d51f7771980c2a09dd7f6.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Hayato Murata</span></div>
+<div class="member-role">Creative Director</div>
+<div class="member-bio">Founded video production company REBORN, directing 100+ titles across MVs, commercials, and corporate videos. Expanded into agency work including SoftBank commercials. In the drone domain, advances the industry through video, aerial cinematography, and business development. Leads event creative and drone show direction at VISIONOID.</div>
+<div class="member-tags">
+<span class="tag">Video Production</span>
+<span class="tag">Creative Direction</span>
+</div>
+</div>
+<div class="member-card color-navy">
+<img alt="Yuki Tsuruoka" class="member-photo" data-height-listener-added="true" src="genspark_images/4ee48d1572db65e139ff4652599c3dda.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Yuki Tsuruoka</span></div>
+<div class="member-role">Creative Visualization Engineer</div>
+<div class="member-bio">Creator harnessing cutting-edge video software, AI, and 3D tools to build digital twins of event spaces and craft visual experiences. Began working with XR video and Unreal Engine in 2020, earning the Event Professional Award and Excellence Award at the JACE Event Awards.</div>
+<div class="member-tags">
+<span class="tag">XR Video</span>
+<span class="tag">Digital Twin</span>
+</div>
+</div>
+<div class="member-card color-green">
+<img alt="Fuga Kamizeki" class="member-photo" data-height-listener-added="true" src="genspark_images/71e0127ee5eebe705e33266be261af32.webp"/>
+<div class="member-name"><span style="font-size: 16px;">Fuga Kamizeki</span></div>
+<div class="member-role">Pilot</div>
+<div class="member-bio">Began competitive drone racing in third grade and became Japan's youngest national champion. In 2019, became the first elementary school student selected for Japan's national team, finishing 6th at the World Games 2022. Applies racing-honed precision to aerial cinematography, video production, and show drones.</div>
+<div class="member-tags">
+<span class="tag">Drone Racing</span>
+<span class="tag">Pilot</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

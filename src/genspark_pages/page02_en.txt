@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Visionoid - Our Origin</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background: #0f172a;
+        }
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0f1a 0%, #0f172a 50%, #1a1a2e 100%);
+        }
+        .decoration-line {
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 2px;
+            background: #d97706;
+            content: '';
+        }
+    </style>
+</head>
+<body spellcheck="false" style="user-select: none;">
+<div class="slide-container">
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 60px 60px; z-index: 1;"></div>
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 31px; background-color: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 100;" id="fabric-obj-0-1775605004065"></div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 48px; top: 7px; width: 430px; height: 22px; z-index: 101;" id="fabric-obj-1-1775605004065">
+<p style="margin: 0; line-height: 18px; font-family: 'Inter', sans-serif; white-space: nowrap;">
+<span style="font-size: 13px; font-weight: 700; color: #f1f5f9;">VISIONOID</span>
+<span style="font-size: 13px; color: #64748b; margin: 0 8px;">|</span>
+<span style="font-size: 11px; color: #94a3b8;">Visionary Technology Company</span>
+</p>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 1132px; top: 6px; width: 100px; height: 20px; z-index: 101; text-align: right;" id="fabric-obj-2-1775605004065">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 11px; color: #94a3b8;">02 / 26</p>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 42px; left: 60px; width: 1160px; height: 55px; z-index: 10;" id="fabric-obj-3-1775605004065">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; justify-content: space-between; align-items: baseline;">
+<h1 style="margin: 0; font-size: 22px; font-weight: 700; color: white; line-height: 1.2;">Technology forged in entertainment, deployed across society</h1>
+<p style="margin: 0; font-size: 14px; font-weight: 600; color: #0ea5e9; font-family: 'Inter', sans-serif;">— Our Origin</p>
+</div>
+<p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500;">From entertainment to social infrastructure, powered by drones, robotics, and AI.</p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 112px; left: 40px; width: 1200px; height: 120px; z-index: 10;" id="fabric-obj-4-1775605004066">
+<div style="position: relative; height: 100%; background: linear-gradient(135deg, #0c2d4a 0%, #0c4a6e 40%, #0369a1 70%, #0ea5e9 100%); border-radius: 16px; border-left: 5px solid #d97706; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+<div style="position: absolute; left: 140px; top: 50%; width: 60px; height: 2px; background: #d97706; opacity: 0.8;"></div>
+<div style="position: absolute; right: 140px; top: 50%; width: 60px; height: 2px; background: #d97706; opacity: 0.8;"></div>
+<p style="margin: 0 0 8px 0; font-size: 30px; font-weight: 900; color: white; letter-spacing: 0.06em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                Entertainment and Industry are <span style="color: #fbbf24;">Two Sides of the Same Coin</span>
+            </p>
+<p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'Inter', sans-serif; letter-spacing: 0.05em;">
+                One discipline, two arenas — the same technology, refined for both
+            </p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 246px; left: 60px; width: 1160px; height: 64px; z-index: 10;" id="fabric-obj-5-1775605004066">
+<div style="height: 100%; background: rgba(217,119,6,0.08); border: 1px solid rgba(217,119,6,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 18px;"><p style="margin: 0; font-size: 17px; font-weight: 600; color: white; letter-spacing: 0.03em; line-height: 1.2; text-align: center;">
+                End-to-end, all in-house — <span style="color: #d97706; font-weight: 700;">Japan's Only</span> Visionary Technology Company
+            </p>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 324px; left: 60px; width: 1160px; height: 180px; z-index: 10;" id="fabric-obj-6-1775605004066">
+<div style="display: flex; gap: 16px; height: 100%;">
+<div style="flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid rgba(14,165,233,0.3); box-shadow: 0 4px 20px rgba(14,165,233,0.2); display: flex; flex-direction: column;">
+<div data-object="true" data-object-type="image" id="p02-img-drone" style="height: 120px; position: relative; overflow: hidden;">
+<img src="https://images.unsplash.com/photo-1508444845599-5c89863b1c44?w=600&h=340&fit=crop&crop=center" alt="Drone" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+<div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,15,26,0.1), rgba(10,15,26,0.6)); pointer-events: none;"></div>
+</div>
+<div style="flex: 1; background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(14,165,233,0.05)); padding: 10px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div style="text-align: center;">
+<div style="font-size: 18px; font-weight: 700; color: #38bdf8; margin-bottom: 4px;">Drone Technology</div>
+<div style="font-size: 11px; color: #cbd5e1; font-weight: 500;">Domestic aircraft development to large-scale operations</div>
+</div>
+</div>
+</div>
+<div style="flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid rgba(14,165,233,0.3); box-shadow: 0 4px 20px rgba(14,165,233,0.2); display: flex; flex-direction: column;">
+<div data-object="true" data-object-type="image" id="p02-img-robot" style="height: 120px; position: relative; overflow: hidden;">
+<img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=340&fit=crop&crop=center" alt="Robotics" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+<div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,15,26,0.1), rgba(10,15,26,0.6)); pointer-events: none;"></div>
+</div>
+<div style="flex: 1; background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(14,165,233,0.05)); padding: 10px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div style="text-align: center;">
+<div style="font-size: 18px; font-weight: 700; color: #38bdf8; margin-bottom: 4px;">Robotics</div>
+<div style="font-size: 11px; color: #cbd5e1; font-weight: 500;">Robots that talk, sing, and dance — entertainment redefined</div>
+</div>
+</div>
+</div>
+<div style="flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid rgba(14,165,233,0.3); box-shadow: 0 4px 20px rgba(14,165,233,0.2); display: flex; flex-direction: column;">
+<div data-object="true" data-object-type="image" id="p02-img-ai" style="height: 120px; position: relative; overflow: hidden;">
+<img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop&crop=center" alt="AI and Digital Twin" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+<div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,15,26,0.1), rgba(10,15,26,0.6)); pointer-events: none;"></div>
+</div>
+<div style="flex: 1; background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(14,165,233,0.05)); padding: 10px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div style="text-align: center;">
+<div style="font-size: 18px; font-weight: 700; color: #38bdf8; margin-bottom: 4px;">AI and Digital Twin</div>
+<div style="font-size: 11px; color: #cbd5e1; font-weight: 500;">Disaster-resilience platforms, XR, and simulation</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 516px; left: 60px; width: 1160px; height: 108px; z-index: 10;" id="fabric-obj-7-1775605004066">
+<div style="display: flex; gap: 16px; height: 100%;">
+<div style="flex: 1; background: rgba(217,119,6,0.06); border-left: 3px solid #d97706; border-radius: 0 10px 10px 0; padding: 0 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<h3 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 700; color: #d97706; text-align: center;">
+                    Motorsports vs. Production Cars Analogy
+                </h3>
+<div style="width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; align-items: center;">
+<span style="width: 150px; font-size: 12px; font-weight: 700; color: #fbbf24; text-align: right; margin-right: 12px;">Entertainment = Racing</span>
+<span style="font-size: 11px; color: #cbd5e1;">Forge technology under extreme conditions</span>
+</div>
+<div style="display: flex; align-items: center;">
+<span style="width: 150px; font-size: 12px; font-weight: 700; color: #fbbf24; text-align: right; margin-right: 12px;">Industry = Production Car</span>
+<span style="font-size: 11px; color: #cbd5e1;">Deploy proven tech into social infrastructure</span>
+</div>
+</div>
+</div>
+<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border-radius: 10px;">
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+<div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; box-shadow: 0 4px 12px rgba(14,165,233,0.4);">
+<i class="fas fa-lightbulb"></i>
+</div>
+<div style="text-align: center;">
+<div style="font-size: 13px; font-weight: 700; color: white;">Concept</div>
+<div style="font-size: 10px; color: #94a3b8; font-family: 'Inter', sans-serif;">構想</div>
+</div>
+</div>
+<i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.2); font-size: 12px;"></i>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+<div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; box-shadow: 0 4px 12px rgba(14,165,233,0.4);">
+<i class="fas fa-drafting-compass"></i>
+</div>
+<div style="text-align: center;">
+<div style="font-size: 13px; font-weight: 700; color: white;">Design</div>
+<div style="font-size: 10px; color: #94a3b8; font-family: 'Inter', sans-serif;">設計</div>
+</div>
+</div>
+<i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.2); font-size: 12px;"></i>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+<div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; box-shadow: 0 4px 12px rgba(14,165,233,0.4);">
+<i class="fas fa-play"></i>
+</div>
+<div style="text-align: center;">
+<div style="font-size: 13px; font-weight: 700; color: white;">Execute</div>
+<div style="font-size: 10px; color: #94a3b8; font-family: 'Inter', sans-serif;">実行</div>
+</div>
+</div>
+<i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.2); font-size: 12px;"></i>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+<div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; box-shadow: 0 4px 12px rgba(14,165,233,0.4);">
+<i class="fas fa-sync-alt"></i>
+</div>
+<div style="text-align: center;">
+<div style="font-size: 13px; font-weight: 700; color: white;">Operate</div>
+<div style="font-size: 10px; color: #94a3b8; font-family: 'Inter', sans-serif;">運用</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; top: 634px; left: 60px; width: 1160px; height: 56px; z-index: 10;" id="fabric-obj-8-1775605004066">
+<div style="height: 100%; background: linear-gradient(90deg, #d97706, #b45309); border-radius: 12px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; box-shadow: 0 4px 15px rgba(217,119,6,0.3);">
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">
+<i class="fas fa-star"></i>
+</div>
+<div style="color: white; font-size: 16px; font-weight: 700; display: flex; align-items: center; white-space: nowrap;">
+                    Entertainment <span style="font-size: 22px; font-weight: 900; margin: 0 8px; line-height: 0;">×</span> Industry, Disaster Resilience, Education
+                </div>
+</div>
+<div style="color: white; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; background: rgba(0,0,0,0.15); padding: 6px 14px; border-radius: 6px; white-space: nowrap;">
+                A Singular Position — No Direct Competitor
+            </div>
+</div>
+</div>
+</div>
+
+</body></html>

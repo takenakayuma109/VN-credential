@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=1280, height=720, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; background: #f8fafc; font-family: 'Noto Sans JP', sans-serif; }
+        .slide-container { position: relative; width: 1280px; height: 720px; overflow: hidden; background: #ffffff; }
+        p, h1, h2, h3, h4, h5, h6, ul, li { margin: 0; padding: 0; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+        }
+        .project-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #0f172a;
+            height: 100%;
+        }
+        .card-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+
+        .card-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 65%, rgba(0,0,0,0.8) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .card-date {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: #38bdf8;
+            margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        .card-date::before { content: ''; width: 6px; height: 6px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 8px #38bdf8; flex: 0 0 auto; }
+        .card-title { font-size: 15px; font-weight: 700; color: #ffffff; line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
+
+        .pattern-bg-1 { background: radial-gradient(circle at 50% 120%, #1e293b 0%, #0f172a 100%); }
+
+        .icon-badge {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 56px; height: 56px; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.8); font-size: 20px; border: 1px solid rgba(255,255,255,0.2);
+        }
+        .confidential-badge {
+            position: absolute; top: 10px; right: 10px; background: rgba(220, 38, 38, 0.85);
+            color: #ffffff; font-size: 9px; font-weight: 700; padding: 3px 6px;
+            border-radius: 4px; display: flex; align-items: center; gap: 4px;
+            backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.2); z-index: 10;
+        }
+
+        .past-portfolio {
+            background: #ffffff; border-radius: 8px; padding: 12px 20px;
+            border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 18px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
+        }
+        .past-label {
+            font-size: 13px; font-weight: 700; color: #0ea5e9; font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; gap: 8px; padding-right: 18px; border-right: 2px solid #f1f5f9;
+            flex: 0 0 auto;
+        }
+        .past-list { display: flex; align-items: center; gap: 16px; flex: 1; overflow: hidden; }
+        .past-item { font-size: 12px; color: #64748b; font-weight: 500; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex: 0 0 auto; }
+        .past-item i { color: #cbd5e1; font-size: 8px; }
+    </style>
+</head>
+<body spellcheck="false" style="user-select: none;">
+<div class="slide-container">
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1280px; height: 30px; background-color: #ffffff; border-bottom: 1px solid rgba(226,232,240,0.8); z-index: 100;" id="fabric-obj-0-1775554557268"></div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 48px; top: 6px; width: 400px; height: 20px; z-index: 101; padding-bottom: 2px; box-sizing: border-box;" id="fabric-obj-1-1775554557268">
+<div style="display: flex; align-items: center; height: 100%;">
+<span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: #1a202c;">VISIONOID</span>
+<span style="font-size: 13px; color: #94a3b8; margin: 0 12px;">|</span>
+<span style="font-size: 11px; color: #64748b; font-weight: 500;">Visionary Technology Company</span>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 1132px; top: 6px; width: 100px; height: 20px; z-index: 101; text-align: right; padding-bottom: 2px; box-sizing: border-box;" id="fabric-obj-2-1775554557268">
+<div style="display: flex; align-items: center; justify-content: flex-end; height: 100%;">
+<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #64748b; font-weight: 500;">06 / 26</span>
+</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 30px; width: 1280px; height: 690px; background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); z-index: 1;"></div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 50px; width: 1160px; height: 60px; z-index: 10; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;" id="fabric-obj-3-1775554557268" contenteditable="true">
+<h1 style="font-size: 26px; font-weight: 900; color: #0f172a; margin: 0; display: flex; align-items: baseline; gap: 16px;">
+                Drone Shows Taking Japan's Entertainment to the Next Stage<span style="font-size: 16px; color: #64748b; font-weight: 500; font-family: 'Inter', sans-serif;">Entertainment Overview</span>
+</h1>
+<div style="width: 60px; height: 4px; background: linear-gradient(90deg, #0ea5e9, #0284c7); margin-top: 10px; border-radius: 2px;"></div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 130px; width: 1160px; height: 480px; z-index: 10; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;" id="fabric-obj-4-1775554557268" contenteditable="true">
+<div class="projects-grid">
+<div class="project-card">
+<img alt="DisneySea" class="card-bg" src="genspark_images/U2x8pQPF.png" data-height-listener-added="true">
+<div class="card-overlay">
+<div class="confidential-badge"><i class="fas fa-lock"></i> Confidential</div>
+<div class="card-date">2024.06</div>
+<div class="card-title">Tokyo DisneySea<br>Fantasy Springs Pre-Opening Drone Show</div>
+</div>
+</div>
+<div class="project-card">
+<img alt="Nogizaka46" class="card-bg" src="genspark_images/8bc88b7b7acd1d7f7ab2fc6533c43383.webp" data-height-listener-added="true">
+<div class="card-overlay">
+<div class="confidential-badge"><i class="fas fa-lock"></i> Confidential</div>
+<div class="card-date">2025.09</div>
+<div class="card-title">Nogizaka46 Midsummer National Tour Final<br>@ Meiji Jingu Stadium</div>
+</div>
+</div>
+<div class="project-card">
+<img alt="Enoshima" class="card-bg" src="genspark_images/i6kaAeaW.png" data-height-listener-added="true">
+<div class="card-overlay">
+<div class="card-date">2025.08</div>
+<div class="card-title">Enoshima Miami Beach Show<br>"Celestial Maiden &amp; Dragon God"</div>
+</div>
+</div>
+<div class="project-card">
+<img alt="Suntory" class="card-bg" src="genspark_images/8cucJf2z.png" data-height-listener-added="true">
+<div class="card-overlay">
+<div class="card-date">2025.01</div>
+<div class="card-title">Suntory Holdings<br>Global Conference Opening Production</div>
+</div>
+</div>
+<div class="project-card">
+<img alt="JC Kanto" class="card-bg" src="genspark_images/669774911856da8d52657c00439b5aa4.webp" data-height-listener-added="true">
+<div class="card-overlay">
+<div class="card-date">2025.06</div>
+<div class="card-title">Junior Chamber Kanto Convention<br>Drone Show Production</div>
+</div>
+</div>
+<div class="project-card">
+<img alt="GIRLS GROOVE" class="card-bg" src="genspark_images/df96116dcef37dbb3ed30b16bd52d2b9.webp" data-height-listener-added="true">
+<div class="card-overlay">
+<div class="card-date">2025.04</div>
+<div class="card-title">GIRLS GROOVE INNOVATION Okinawa<br>Drone x Music Festival</div>
+</div>
+</div>
+</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position: absolute; left: 60px; top: 630px; width: 1160px; height: 50px; z-index: 10;" id="fabric-obj-5-1775554557269">
+<div class="past-portfolio">
+<div class="past-label">
+<i class="fas fa-history"></i> Past Portfolio
+                </div>
+<div class="past-list">
+<div class="past-item">Tokyo Motor Show 2019</div>
+<div class="past-item"><i class="fas fa-circle"></i></div>
+<div class="past-item">Tokyo 2020 Olympics</div>
+<div class="past-item"><i class="fas fa-circle"></i></div>
+<div class="past-item">KAT-TUN</div>
+<div class="past-item"><i class="fas fa-circle"></i></div>
+<div class="past-item">Yumi Matsutoya</div>
+<div class="past-item"><i class="fas fa-circle"></i></div>
+<div class="past-item">DREAMS COME TRUE</div>
+<div class="past-item"><i class="fas fa-circle"></i></div>
+<div class="past-item">Nippon-Ham Season Opener</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
