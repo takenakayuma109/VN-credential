@@ -173,19 +173,28 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
   // Scan iframe for editable images and compute their rects (in iframe coords).
   const rescanImages = useCallback(() => {
     const iframe = iframeRef.current;
-    if (!iframe) return;
+    if (!iframe) {
+      console.log(`[VN scan] page=${id}: iframe ref is null`);
+      return;
+    }
     const doc = iframe.contentDocument;
-    if (!doc) return;
+    if (!doc) {
+      console.log(`[VN scan] page=${id}: iframe.contentDocument is null`);
+      return;
+    }
 
     const targets = [];
     const seen = new Set();
+    let rejectedSize = 0;
+    let rejectedNoImg = 0;
 
     // Priority 1: explicit data-object-type="image" wrappers
-    doc.querySelectorAll('[data-object-type="image"]').forEach((wrap, idx) => {
+    const wraps = doc.querySelectorAll('[data-object-type="image"]');
+    wraps.forEach((wrap, idx) => {
       const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
-      if (!img) return;
+      if (!img) { rejectedNoImg++; return; }
       const r = wrap.getBoundingClientRect();
-      if (r.width < 20 || r.height < 20) return;
+      if (r.width < 20 || r.height < 20) { rejectedSize++; return; }
       const key = wrap.id || `wrap-${idx}`;
       seen.add(img);
       targets.push({ key, rect: { left: r.left, top: r.top, width: r.width, height: r.height }, img, wrap });
@@ -200,8 +209,9 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       targets.push({ key, rect: { left: r.left, top: r.top, width: r.width, height: r.height }, img, wrap: null });
     });
 
+    console.log(`[VN scan] page=${id}: wraps=${wraps.length} targets=${targets.length} rejectedSize=${rejectedSize} rejectedNoImg=${rejectedNoImg}`);
     setImageTargets(targets);
-  }, []);
+  }, [id]);
 
   // Main setup: restore edits, attach textbox handlers, scan images
   useEffect(() => {
@@ -434,79 +444,102 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     setImageTargets((prev) => [...prev]);
   }, [id]);
 
-  // Attach drag-to-pan handlers directly on the <img> elements inside the
-  // iframe so text overlays (captions on top of images) still receive their
-  // own clicks. Re-attaches whenever imageTargets changes.
-  // Click vs drag: a mousedown that releases without meaningful movement is
-  // treated as a click → opens the file picker. Otherwise it's a pan drag.
-  // Without this split, every click silently bumped scale 1 → 1.2 and the
-  // user perceived the image as "won't replace, just zooms."
+  // Attach mousedown→click-or-drag handlers directly on every <img> inside
+  // any [data-object-type="image"] wrap, INDEPENDENT of imageTargets state.
+  // The visual toolbar is best-effort (depends on rescan timing), but the
+  // click-to-replace MUST always work — that's the user's primary action,
+  // and we cannot afford it to be invisible if rescan races with iframe
+  // load. A single click → file picker, a drag → pan-with-auto-zoom.
   const DRAG_THRESHOLD = 4;
   useEffect(() => {
     if (!editMode) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
     const cleanups = [];
-    imageTargets.forEach((t) => {
-      const img = t.img;
-      if (!img) return;
-      const xfKey = `p${id}:imgxform:${t.key}`;
-      img.style.cursor = 'pointer';
-      img.draggable = false;
-      img.title = langRef.current === 'en' ? 'Click to replace / drag to pan' : 'クリックで差替 / ドラッグでパン';
-      const onDown = (e) => {
-        if (e.button !== 0) return;
-        e.preventDefault();
-        e.stopPropagation();
-        const startXf = storeRef.current.get(xfKey) || { x: 0, y: 0, scale: 1 };
-        const startX = e.clientX; const startY = e.clientY;
-        let dragged = false;
-        let activeXf = { ...startXf };
-        const move = (ev) => {
-          const dx = ev.clientX - startX;
-          const dy = ev.clientY - startY;
-          if (!dragged && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
-            dragged = true;
-            img.style.cursor = 'grabbing';
-            // First real movement: ensure scale > 1 so panning is visible
-            // (object-fit:cover at scale=1 fills container, leaving no slack).
-            if ((Number(startXf.scale) || 1) === 1) {
-              activeXf = { ...startXf, scale: 1.2 };
+    const attach = () => {
+      const doc = iframe.contentDocument;
+      if (!doc) return;
+      const wraps = doc.querySelectorAll('[data-object-type="image"]');
+      console.log(`[VN clickbind] page=${id}: attaching to ${wraps.length} image wraps`);
+      wraps.forEach((wrap, idx) => {
+        const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
+        if (!img) return;
+        if (img.dataset.vnEditBound === '1') return; // idempotent
+        img.dataset.vnEditBound = '1';
+
+        const wrapId = wrap.id || `wrap-${idx}`;
+        const xfKey = `p${id}:imgxform:${wrapId}`;
+        img.style.cursor = 'pointer';
+        img.draggable = false;
+        img.title = langRef.current === 'en' ? 'Click to replace / drag to pan' : 'クリックで差替 / ドラッグでパン';
+
+        const onDown = (e) => {
+          if (e.button !== 0) return;
+          e.preventDefault();
+          e.stopPropagation();
+          const startXf = storeRef.current.get(xfKey) || { x: 0, y: 0, scale: 1 };
+          const startX = e.clientX; const startY = e.clientY;
+          let dragged = false;
+          let activeXf = { ...startXf };
+          const target = { img, wrap, key: wrapId };
+          const move = (ev) => {
+            const dx = ev.clientX - startX;
+            const dy = ev.clientY - startY;
+            if (!dragged && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
+              dragged = true;
+              img.style.cursor = 'grabbing';
+              if ((Number(startXf.scale) || 1) === 1) {
+                activeXf = { ...startXf, scale: 1.2 };
+              }
             }
-          }
-          if (!dragged) return;
-          const cur = { x: (Number(activeXf.x) || 0) + dx, y: (Number(activeXf.y) || 0) + dy, scale: Number(activeXf.scale) || 1 };
-          applyImgXform(img, cur);
-        };
-        const up = (ev) => {
-          img.style.cursor = 'pointer';
+            if (!dragged) return;
+            const cur = { x: (Number(activeXf.x) || 0) + dx, y: (Number(activeXf.y) || 0) + dy, scale: Number(activeXf.scale) || 1 };
+            applyImgXform(img, cur);
+          };
+          const up = (ev) => {
+            img.style.cursor = 'pointer';
+            const iframeDoc = iframeRef.current?.contentDocument;
+            if (iframeDoc) {
+              iframeDoc.removeEventListener('mousemove', move, true);
+              iframeDoc.removeEventListener('mouseup', up, true);
+            }
+            if (!dragged) {
+              handleFileReplace(target);
+              return;
+            }
+            const cur = { x: (Number(activeXf.x) || 0) + (ev.clientX - startX), y: (Number(activeXf.y) || 0) + (ev.clientY - startY), scale: Number(activeXf.scale) || 1 };
+            applyImgXform(img, cur);
+            storeRef.current.set(xfKey, cur);
+          };
           const iframeDoc = iframeRef.current?.contentDocument;
           if (iframeDoc) {
-            iframeDoc.removeEventListener('mousemove', move, true);
-            iframeDoc.removeEventListener('mouseup', up, true);
+            iframeDoc.addEventListener('mousemove', move, true);
+            iframeDoc.addEventListener('mouseup', up, true);
           }
-          if (!dragged) {
-            // Pure click → open file picker for replacement
-            handleFileReplace(t);
-            return;
-          }
-          const cur = { x: (Number(activeXf.x) || 0) + (ev.clientX - startX), y: (Number(activeXf.y) || 0) + (ev.clientY - startY), scale: Number(activeXf.scale) || 1 };
-          applyImgXform(img, cur);
-          storeRef.current.set(xfKey, cur);
         };
-        const iframeDoc = iframeRef.current?.contentDocument;
-        if (iframeDoc) {
-          iframeDoc.addEventListener('mousemove', move, true);
-          iframeDoc.addEventListener('mouseup', up, true);
-        }
-      };
-      img.addEventListener('mousedown', onDown, true);
-      cleanups.push(() => {
-        img.removeEventListener('mousedown', onDown, true);
-        img.style.cursor = '';
-        img.title = '';
+        img.addEventListener('mousedown', onDown, true);
+        cleanups.push(() => {
+          img.removeEventListener('mousedown', onDown, true);
+          img.style.cursor = '';
+          img.title = '';
+          delete img.dataset.vnEditBound;
+        });
       });
-    });
-    return () => cleanups.forEach((fn) => fn());
-  }, [editMode, imageTargets, id, handleFileReplace]);
+    };
+
+    // Try immediately, then keep polling — handles slow iframe load races.
+    attach();
+    const timers = [100, 300, 800, 1500, 3000].map((ms) => setTimeout(attach, ms));
+    const onLoad = () => attach();
+    iframe.addEventListener('load', onLoad);
+
+    return () => {
+      iframe.removeEventListener('load', onLoad);
+      timers.forEach(clearTimeout);
+      cleanups.forEach((fn) => fn());
+    };
+  }, [editMode, id, handleFileReplace]);
 
   // Legacy drag handler (kept as no-op — replaced by iframe-side listener).
   const handleDragStart = useCallback((target, e) => {
