@@ -304,13 +304,20 @@ export default function App() {
     }
   };
 
-  const handleExportEdits = () => {
-    const json = exportEdits();
-    const blob = new Blob([json], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'visionoid_edits.json'; a.click();
-    URL.revokeObjectURL(url);
+  const handleExportEdits = async () => {
+    try {
+      const json = await exportEdits();
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const stamp = new Date().toISOString().slice(0, 10);
+      a.download = `visionoid_edits_${stamp}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert((lang === 'ja' ? 'エクスポート失敗: ' : 'Export failed: ') + (err?.message || err));
+    }
   };
 
   const handleImportEdits = () => {
@@ -319,9 +326,10 @@ export default function App() {
     input.onchange = (e) => {
       const f = e.target.files?.[0]; if (!f) return;
       const r = new FileReader();
-      r.onload = () => {
-        if (importEdits(r.result)) window.location.reload();
-        else alert('インポートに失敗しました');
+      r.onload = async () => {
+        const ok = await importEdits(r.result);
+        if (ok) window.location.reload();
+        else alert(lang === 'ja' ? 'インポートに失敗しました' : 'Import failed');
       };
       r.readAsText(f);
     };
