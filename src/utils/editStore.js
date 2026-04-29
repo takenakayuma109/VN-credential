@@ -21,7 +21,30 @@ function save(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-const cache = load();
+// One-time migration on boot: drop any leftover `p<n>:img:<key>` entry that
+// points at the original unsplash sample URLs. Without this, a user who saw
+// the deck before the sample-image purge can have their localStorage bake
+// the unsplash URL right back into the iframe srcDoc on every load,
+// regardless of how thoroughly we strip the sample HTML.
+function purgeLegacySampleImageEdits(data) {
+  let changed = false;
+  for (const k of Object.keys(data)) {
+    if (!k.includes(':img:')) continue;
+    const v = data[k];
+    if (typeof v !== 'string') continue;
+    if (v.startsWith('https://images.unsplash.com/') ||
+        v.startsWith('http://images.unsplash.com/')) {
+      delete data[k];
+      changed = true;
+      // eslint-disable-next-line no-console
+      console.log('[VN purge] dropped legacy unsplash sample edit:', k);
+    }
+  }
+  if (changed) save(data);
+  return data;
+}
+
+const cache = purgeLegacySampleImageEdits(load());
 
 export function useEditStore() {
   return {
