@@ -5,7 +5,7 @@
 // of every edit (text + images), letting the user move work between domains
 // (e.g. localhost ↔ Vercel) where browser storage is otherwise scoped.
 
-import { imgGet, imgPut, imgClear, IDB_MARKER } from './imageStore';
+import { imgGet, imgPut, imgClear, imgListKeys, IDB_MARKER } from './imageStore';
 
 const STORAGE_KEY = 'visionoid_credential_edits_v1';
 const MIGRATION_FLAG = 'visionoid_migration_killswitch_v1';
@@ -71,7 +71,62 @@ export function useEditStore() {
     reset: () => {
       for (const k of Object.keys(cache)) delete cache[k];
       save(cache);
+      // Also wipe the killswitch flag so the migration can run again on
+      // next load — useful if the user wants a clean factory state.
+      try { localStorage.removeItem(MIGRATION_FLAG); } catch {}
+      // Fire-and-forget IDB wipe so all image binaries are gone too.
+      imgClear().catch(() => {});
     },
+  };
+}
+
+// Diagnostic helper exposed on window so the user can inspect storage state
+// from DevTools console: window.__VN_DIAG__()
+if (typeof window !== 'undefined') {
+  window.__VN_DIAG__ = async () => {
+    let ls = {};
+    try { ls = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch {}
+    const flag = localStorage.getItem(MIGRATION_FLAG);
+    let idbKeys = [];
+    try { idbKeys = await imgListKeys(); } catch (e) { console.error('imgListKeys failed', e); }
+    const idbContents = {};
+    for (const k of idbKeys) {
+      try {
+        const v = await imgGet(k);
+        idbContents[k] = typeof v === 'string'
+          ? `${v.slice(0, 80)}... (len=${v.length})`
+          : v;
+      } catch (e) { idbContents[k] = `<error: ${e.message}>`; }
+    }
+    const report = {
+      version: 'killswitch3',
+      migrationFlag: flag,
+      localStorageKeys: Object.keys(ls),
+      localStorageEdits: ls,
+      idbKeys,
+      idbContents,
+      iframes: Array.from(document.querySelectorAll('iframe.slide-canvas')).map((f, i) => ({
+        idx: i,
+        srcDocLen: (f.srcdoc || '').length,
+        firstImgs: f.contentDocument
+          ? Array.from(f.contentDocument.querySelectorAll('img')).slice(0, 5).map((im) => ({
+              src: (im.src || '').slice(0, 100),
+              alt: im.alt,
+              parent: im.closest('[data-object-type="image"]')?.id || '',
+            }))
+          : 'no contentDocument',
+      })),
+    };
+    console.log('[VN diag]', report);
+    return report;
+  };
+
+  // Hard factory-reset: nuke everything storage-related and reload.
+  window.__VN_NUKE__ = async () => {
+    try { localStorage.clear(); } catch {}
+    try { sessionStorage.clear(); } catch {}
+    try { await imgClear(); } catch {}
+    location.reload();
   };
 }
 
