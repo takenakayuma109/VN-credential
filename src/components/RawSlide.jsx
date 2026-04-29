@@ -136,6 +136,17 @@ const IFRAME_BRIDGE_SCRIPT = `
     var d = e.data;
     if (!d || typeof d !== 'object') return;
     if (d.type === 'vn-set-edit') { editMode = !!d.editMode; applyOutlines(); }
+    if (d.type === 'vn-set-image' && d.wrapId && d.src) {
+      var w = document.getElementById(d.wrapId);
+      if (w) {
+        var i = w.querySelector('img');
+        if (i) {
+          i.src = d.src;
+          i.style.objectFit = 'cover';
+          i.style.transform = '';
+        }
+      }
+    }
   });
   // Apply current state once DOM is ready.
   if (document.readyState === 'loading') {
@@ -362,6 +373,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         imgByKey.set(getImageKey(img, idx), img);
       });
 
+      const restoredImgSrcs = [];
       Object.keys(allEdits).forEach((k) => {
         const mSrc = k.match(new RegExp(`^p${id}:img:(.+)$`));
         const mXf = k.match(new RegExp(`^p${id}:imgxform:(.+)$`));
@@ -370,13 +382,20 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           const img = imgByKey.get(mSrc[1]);
           if (!img) return;
           const val = allEdits[k];
+          // Skip restoration if the iframe img already has the right src
+          // (i.e., bakeImageEdits already injected it on the iframe srcDoc).
+          // This is the common case after page reload: bake → custom shown,
+          // edit-mode toggle should not touch img.src again.
           if (val === IDB_MARKER) {
-            // Fetch data URL from IndexedDB async
             imgGet(k).then((dataUrl) => {
-              if (dataUrl) img.src = dataUrl;
+              if (dataUrl && img.src !== dataUrl) {
+                img.src = dataUrl;
+                restoredImgSrcs.push({ key: mSrc[1], from: 'idb-async' });
+              }
             }).catch((err) => console.error('imgGet failed', err));
-          } else if (val) {
+          } else if (val && img.src !== val) {
             img.src = val;
+            restoredImgSrcs.push({ key: mSrc[1], from: 'plain-url' });
           }
         } else if (mXf) {
           const img = imgByKey.get(mXf[1]);
@@ -386,6 +405,9 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           if (img) applyImgFit(img, allEdits[k]);
         }
       });
+      if (restoredImgSrcs.length > 0) {
+        console.log(`[VN setup] page=${id} restored ${restoredImgSrcs.length} img srcs`, restoredImgSrcs);
+      }
 
       // Textbox contentEditable handlers (skip ones containing images)
       doc.querySelectorAll('[data-object-type="textbox"]').forEach((tb) => {
@@ -442,9 +464,22 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
   // cap); localStorage only holds a sentinel so the edit store stays small.
   // Plain URL strings go straight to localStorage.
   const persistImage = useCallback(async (target, src) => {
+    // Live update via direct DOM access (works when scan/contentDocument is OK).
     if (target.img) {
       target.img.src = src;
       applyImgFit(target.img, 'cover');
+    }
+    // ALSO send via postMessage to the iframe bridge — this is the path that
+    // works on production where parent-side DOM access has been failing. The
+    // bridge script in the iframe will look up the wrap by id and update the
+    // img.src locally. This guarantees instant visual update without reload.
+    try {
+      const cw = iframeRef.current?.contentWindow;
+      if (cw) {
+        cw.postMessage({ type: 'vn-set-image', wrapId: target.key, src }, '*');
+      }
+    } catch (e) {
+      console.warn('persistImage postMessage failed', e);
     }
     const key = `p${id}:img:${target.key}`;
     const fitKey = `p${id}:imgfit:${target.key}`;
@@ -456,6 +491,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         storeRef.current.set(key, src);
       }
       storeRef.current.set(fitKey, 'cover');
+      console.log(`[VN persistImage] page=${id} key=${target.key} saved (idb=${typeof src === 'string' && src.startsWith('data:')})`);
     } catch (err) {
       console.error('persistImage failed', err);
       window.alert('画像保存に失敗: ' + (err?.message || err) +
