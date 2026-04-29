@@ -504,22 +504,31 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
   // cap); localStorage only holds a sentinel so the edit store stays small.
   // Plain URL strings go straight to localStorage.
   const persistImage = useCallback(async (target, src) => {
-    // Live update via direct DOM access (works when scan/contentDocument is OK).
-    if (target.img) {
-      target.img.src = src;
-      applyImgFit(target.img, 'cover');
+    console.log(`[VN persist] ▶ key=${target?.key} srcLen=${src?.length} hasImg=${!!target?.img}`);
+    // Live update via direct DOM access. If target.img is stale/missing,
+    // re-resolve it from the current iframe doc by wrap id.
+    let img = target?.img || null;
+    if (!img && target?.key && iframeRef.current?.contentDocument) {
+      const wrap = iframeRef.current.contentDocument.getElementById(target.key);
+      img = wrap ? wrap.querySelector('img') : null;
+      if (img) console.log(`[VN persist] ▣ re-resolved img from contentDocument`);
     }
-    // ALSO send via postMessage to the iframe bridge — this is the path that
-    // works on production where parent-side DOM access has been failing. The
-    // bridge script in the iframe will look up the wrap by id and update the
-    // img.src locally. This guarantees instant visual update without reload.
+    if (img) {
+      img.src = src;
+      applyImgFit(img, 'cover');
+      console.log('[VN persist] ✓ DOM src set');
+    } else {
+      console.warn('[VN persist] ⚠ no img element to update');
+    }
+    // ALSO send via postMessage to the iframe bridge as a redundant path.
     try {
       const cw = iframeRef.current?.contentWindow;
       if (cw) {
         cw.postMessage({ type: 'vn-set-image', wrapId: target.key, src }, '*');
+        console.log('[VN persist] ✓ postMessage sent');
       }
     } catch (e) {
-      console.warn('persistImage postMessage failed', e);
+      console.warn('[VN persist] postMessage failed', e);
     }
     const key = `p${id}:img:${target.key}`;
     const fitKey = `p${id}:imgfit:${target.key}`;
@@ -539,18 +548,73 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     }
   }, [id]);
 
-  const handleFileReplace = useCallback(async (target) => {
+  const handleFileReplace = useCallback((target) => {
+    console.log(`[VN replace] ▶ start key=${target?.key} hasImg=${!!target?.img} hasWrap=${!!target?.wrap}`);
+    if (!target || !target.key) {
+      window.alert('差替対象が特定できません（target.key 不在）');
+      return;
+    }
+    // Append the input to document.body — some browsers refuse to open the
+    // file picker for inputs that aren't connected to the DOM, even within
+    // a user-gesture handler. Cleaner up after onchange fires (or focus
+    // returns to window without selection).
     const input = document.createElement('input');
-    input.type = 'file'; input.accept = 'image/*';
-    input.onchange = async (e) => {
-      const f = e.target.files?.[0]; if (!f) return;
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;pointer-events:none;';
+    document.body.appendChild(input);
+
+    const cleanup = () => { try { document.body.removeChild(input); } catch {} };
+
+    input.addEventListener('change', async (e) => {
+      console.log('[VN replace] ◆ change fired');
       try {
-        const compressed = await compressFileToDataUrl(f);
-        await persistImage(target, compressed);
+        const f = e.target.files?.[0];
+        if (!f) { console.log('[VN replace] ✗ no file'); cleanup(); return; }
+        console.log(`[VN replace] ▣ file=${f.name} size=${f.size} type=${f.type}`);
+
+        // Try compression; on failure fall back to raw FileReader data URL so
+        // the upload still goes through.
+        let dataUrl;
+        try {
+          dataUrl = await compressFileToDataUrl(f);
+          console.log(`[VN replace] ▣ compressed len=${dataUrl?.length}`);
+        } catch (err1) {
+          console.warn('[VN replace] compression failed, falling back', err1);
+          dataUrl = await new Promise((resolve, reject) => {
+            const r = new FileReader();
+            r.onload = () => resolve(r.result);
+            r.onerror = () => reject(r.error || new Error('FileReader failed'));
+            r.readAsDataURL(f);
+          });
+          console.log(`[VN replace] ▣ raw len=${dataUrl?.length}`);
+        }
+
+        if (!dataUrl) throw new Error('no dataUrl produced');
+        console.log('[VN replace] ▶ persisting…');
+        await persistImage(target, dataUrl);
+        console.log('[VN replace] ✓ persisted');
       } catch (err) {
-        window.alert((langRef.current === 'en' ? 'Image load failed: ' : '画像の読み込みに失敗: ') + (err?.message || err));
+        console.error('[VN replace] ✗ failed', err);
+        window.alert('画像差替に失敗: ' + (err?.message || String(err)));
+      } finally {
+        cleanup();
       }
-    };
+    });
+
+    // Cancel cleanup if user closes picker without selecting (focus returns).
+    window.addEventListener('focus', function onFocus() {
+      window.removeEventListener('focus', onFocus);
+      // Give onchange a tick to fire if a file was actually selected.
+      setTimeout(() => {
+        if (document.body.contains(input) && !input.files?.length) {
+          console.log('[VN replace] ◇ picker dismissed without selection');
+          cleanup();
+        }
+      }, 500);
+    });
+
+    console.log('[VN replace] ▶ opening picker');
     input.click();
   }, [persistImage]);
 
