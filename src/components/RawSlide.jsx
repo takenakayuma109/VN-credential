@@ -374,6 +374,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       });
 
       const restoredImgSrcs = [];
+      const skippedImgSrcs = [];
       Object.keys(allEdits).forEach((k) => {
         const mSrc = k.match(new RegExp(`^p${id}:img:(.+)$`));
         const mXf = k.match(new RegExp(`^p${id}:imgxform:(.+)$`));
@@ -382,16 +383,26 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           const img = imgByKey.get(mSrc[1]);
           if (!img) return;
           const val = allEdits[k];
-          // Skip restoration if the iframe img already has the right src
-          // (i.e., bakeImageEdits already injected it on the iframe srcDoc).
-          // This is the common case after page reload: bake → custom shown,
-          // edit-mode toggle should not touch img.src again.
+          // CRITICAL: if bakeImageEdits already injected the user's edit into
+          // the iframe srcDoc (img.src starts with `data:` or is the same as
+          // the saved value), DO NOT touch img.src here. We previously had
+          // a regression where edit-mode-toggle re-ran setup, the async IDB
+          // fetch raced with iframe state, and img.src ended up reverting to
+          // the original sample URL. Treat bake's injection as authoritative.
+          const currentSrc = img.src || '';
+          if (currentSrc.startsWith('data:')) {
+            skippedImgSrcs.push({ key: mSrc[1], reason: 'already-data-url' });
+            return;
+          }
           if (val === IDB_MARKER) {
             imgGet(k).then((dataUrl) => {
-              if (dataUrl && img.src !== dataUrl) {
-                img.src = dataUrl;
-                restoredImgSrcs.push({ key: mSrc[1], from: 'idb-async' });
-              }
+              if (!dataUrl) return;
+              // Re-check at fetch resolve time: don't clobber a data: src
+              // that may have been set by bake or postMessage in the meantime.
+              if (img.src && img.src.startsWith('data:')) return;
+              if (img.src === dataUrl) return;
+              img.src = dataUrl;
+              console.log(`[VN setup] page=${id} ${mSrc[1]}: restored from IDB (was non-data)`);
             }).catch((err) => console.error('imgGet failed', err));
           } else if (val && img.src !== val) {
             img.src = val;
@@ -405,8 +416,8 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           if (img) applyImgFit(img, allEdits[k]);
         }
       });
-      if (restoredImgSrcs.length > 0) {
-        console.log(`[VN setup] page=${id} restored ${restoredImgSrcs.length} img srcs`, restoredImgSrcs);
+      if (restoredImgSrcs.length > 0 || skippedImgSrcs.length > 0) {
+        console.log(`[VN setup] page=${id} restored=${restoredImgSrcs.length} skipped=${skippedImgSrcs.length}`, { restoredImgSrcs, skippedImgSrcs });
       }
 
       // Textbox contentEditable handlers (skip ones containing images)
