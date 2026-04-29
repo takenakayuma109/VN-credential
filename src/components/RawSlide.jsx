@@ -117,6 +117,31 @@ const IFRAME_BRIDGE_SCRIPT = `
   if (window.__VN_BRIDGE__) return;
   window.__VN_BRIDGE__ = true;
   var editMode = false;
+  // Hard kill-switch: any image inside this iframe that ends up pointing at
+  // images.unsplash.com (the legacy sample images) is forcibly rewritten to
+  // a transparent 1x1 placeholder. This runs (a) on initial DOM ready, and
+  // (b) via MutationObserver so anything injected later by bake/postMessage/
+  // bridge that somehow leaks an unsplash URL is neutralized within a frame.
+  // Belt-and-suspenders defense against the "sample image keeps coming back"
+  // class of bug regardless of where the URL originated (HTML/localStorage/IDB).
+  var BLANK = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxIDEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxYjM1NTYiLz48L3N2Zz4=';
+  function isSample(src) {
+    return typeof src === 'string' && (
+      src.indexOf('images.unsplash.com') !== -1 ||
+      src.indexOf('1508444845599') !== -1 ||
+      src.indexOf('1485827404703') !== -1 ||
+      src.indexOf('1677442136019') !== -1
+    );
+  }
+  function killSampleImages(root) {
+    var imgs = (root || document).querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+      if (isSample(imgs[i].getAttribute('src')) || isSample(imgs[i].src)) {
+        imgs[i].src = BLANK;
+        imgs[i].setAttribute('src', BLANK);
+      }
+    }
+  }
   function applyOutlines() {
     var wraps = document.querySelectorAll('[data-object-type="image"]');
     for (var i = 0; i < wraps.length; i++) {
@@ -161,10 +186,37 @@ const IFRAME_BRIDGE_SCRIPT = `
     }
   });
   // Apply current state once DOM is ready.
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyOutlines);
-  } else {
+  function bootstrap() {
+    killSampleImages(document);
     applyOutlines();
+    // Catch any post-load DOM mutations that re-introduce a sample URL.
+    try {
+      var mo = new MutationObserver(function(records){
+        for (var r = 0; r < records.length; r++) {
+          var rec = records[r];
+          if (rec.type === 'attributes' && rec.target && rec.target.tagName === 'IMG') {
+            if (isSample(rec.target.getAttribute('src')) || isSample(rec.target.src)) {
+              rec.target.src = BLANK;
+              rec.target.setAttribute('src', BLANK);
+            }
+          } else if (rec.type === 'childList') {
+            for (var n = 0; n < rec.addedNodes.length; n++) {
+              var node = rec.addedNodes[n];
+              if (node.nodeType === 1) killSampleImages(node);
+            }
+          }
+        }
+      });
+      mo.observe(document.documentElement, {
+        subtree: true, childList: true,
+        attributes: true, attributeFilter: ['src'],
+      });
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrap);
+  } else {
+    bootstrap();
   }
   try { parent.postMessage({type:'vn-bridge-ready', wraps: document.querySelectorAll('[data-object-type="image"]').length}, '*'); } catch(e){}
 })();<\/script>
