@@ -392,6 +392,9 @@ export default function App() {
           <span className={`variant-badge ${variant}`}>
             {variant === 'board' ? 'BOARD' : 'MEMBER'}
           </span>
+          <span style={{ fontSize: 10, color: '#64748b', marginLeft: 8, fontFamily: 'monospace' }}>
+            v2026.04.29-clickbind
+          </span>
         </div>
         <div className="controls">
           <div className="variant-toggle lang-toggle" role="group" aria-label={lang === 'ja' ? '言語切替' : 'Language'}>
