@@ -5,9 +5,10 @@
 // of every edit (text + images), letting the user move work between domains
 // (e.g. localhost ↔ Vercel) where browser storage is otherwise scoped.
 
-import { imgGet, imgPut, IDB_MARKER } from './imageStore';
+import { imgGet, imgPut, imgClear, IDB_MARKER } from './imageStore';
 
 const STORAGE_KEY = 'visionoid_credential_edits_v1';
+const MIGRATION_FLAG = 'visionoid_migration_killswitch_v1';
 
 function load() {
   try {
@@ -21,30 +22,39 @@ function save(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-// One-time migration on boot: drop any leftover `p<n>:img:<key>` entry that
-// points at the original unsplash sample URLs. Without this, a user who saw
-// the deck before the sample-image purge can have their localStorage bake
-// the unsplash URL right back into the iframe srcDoc on every load,
-// regardless of how thoroughly we strip the sample HTML.
-function purgeLegacySampleImageEdits(data) {
-  let changed = false;
+// One-time killswitch migration on boot: if not yet applied, wipe ALL image
+// edits — both `p<n>:img:<key>` localStorage entries AND every entry in the
+// IndexedDB `images` store. Reason: even after stripping unsplash URLs from
+// the source HTML and adding string-match cleanups, users were still seeing
+// the legacy sample photos on screen. The only remaining injection path is
+// IDB-resident data: URLs (likely screenshots of the originals saved during
+// earlier sessions, which our string match cannot detect since they're raw
+// pixels). Nuking image storage once is destructive of any legitimate
+// uploaded photos but is the only way to guarantee the samples never come
+// back. The flag prevents this from re-firing and clobbering future uploads.
+function applyKillswitchMigration(data) {
+  try {
+    if (localStorage.getItem(MIGRATION_FLAG) === '1') return data;
+  } catch { return data; }
+
+  let droppedKeys = 0;
   for (const k of Object.keys(data)) {
-    if (!k.includes(':img:')) continue;
-    const v = data[k];
-    if (typeof v !== 'string') continue;
-    if (v.startsWith('https://images.unsplash.com/') ||
-        v.startsWith('http://images.unsplash.com/')) {
-      delete data[k];
-      changed = true;
-      // eslint-disable-next-line no-console
-      console.log('[VN purge] dropped legacy unsplash sample edit:', k);
-    }
+    if (!k.includes(':img:') && !k.includes(':imgxform:') && !k.includes(':imgfit:')) continue;
+    delete data[k];
+    droppedKeys++;
   }
-  if (changed) save(data);
+  // Wipe IDB image store too. Fire-and-forget; the sentinel localStorage
+  // entries are already gone so even if IDB clear races, bake() has nothing
+  // to look up.
+  imgClear().catch((e) => console.warn('[VN killswitch] imgClear failed', e));
+  save(data);
+  try { localStorage.setItem(MIGRATION_FLAG, '1'); } catch {}
+  // eslint-disable-next-line no-console
+  console.log(`[VN killswitch] wiped ${droppedKeys} image edits + IDB image store (one-time)`);
   return data;
 }
 
-const cache = purgeLegacySampleImageEdits(load());
+const cache = applyKillswitchMigration(load());
 
 export function useEditStore() {
   return {
