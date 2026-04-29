@@ -284,11 +284,11 @@
 </div>
 <div class="content">
 <div class="images-row">
-<div class="img-container-left" data-object="true" data-object-type="image" style="position: relative; width: 55%; height: 100%;">
+<div class="img-container-left" data-object="true" data-object-type="image" id="p12-img-left" style="position: relative; width: 55%; height: 100%;">
 <img alt="Drone Show" class="hero-img" src="genspark_images/zZ83U5rP.png" style="object-position: center bottom;"/>
 </div>
 <div class="img-col-right">
-<div class="img-container-right" data-object="true" data-object-type="image" style="position: relative; width: 100%; flex: 1;">
+<div class="img-container-right" data-object="true" data-object-type="image" id="p12-img-right" style="position: relative; width: 100%; flex: 1;">
 <img alt="Kiranah Garden Toyosu" class="hero-img" src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp"/>
 </div>
 <div class="location-text" data-object="true" data-object-type="textbox" style="position: relative; width: 100%;">場所：キラナガーデン豊洲</div>

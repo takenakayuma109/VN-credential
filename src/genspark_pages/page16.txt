@@ -241,7 +241,7 @@
 </div>
 </div>
 <div class="main-container" style="position: absolute; left: 0px; top: 94px; width: 1280px; height: 626px;">
-<div class="left-col" data-object="true" data-object-type="image" style="position: absolute; left: 0px; top: 0px; width: 576px; height: 626px;">
+<div class="left-col" data-object="true" data-object-type="image" id="p16-img-team" style="position: absolute; left: 0px; top: 0px; width: 576px; height: 626px;">
 <img alt="Drone School Team" class="hero-photo" src="genspark_images/0UpwZ65n.png"/>
 <div class="photo-overlay">
 <div class="stat-large">1,000+</div>

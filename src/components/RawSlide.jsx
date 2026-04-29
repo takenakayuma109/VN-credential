@@ -7,6 +7,18 @@ export const SLIDE_H = 720;
 
 const MIN_EDIT_IMG = 60; // Only show edit overlay on images ≥60×60 (skip tiny icons)
 
+// Recognizable prefix of the placeholder SVG baked into page02.txt's three
+// image slots. The placeholder IS a data: URL, so the older "starts with
+// data:" heuristic for "this is the user's image, don't touch" no longer
+// distinguishes user uploads from placeholders. We compare against this
+// prefix to detect placeholder state and force a restore from IDB when
+// localStorage has a saved edit. User uploads are JPEG (compressFileToDataUrl)
+// so their data URL starts with `data:image/jpeg;base64,/9j/`, which never
+// collides with this SVG prefix.
+const PLACEHOLDER_DATA_PREFIX = 'data:image/svg+xml;base64,PHN2Zy';
+const isPlaceholderSrc = (s) => typeof s === 'string' && s.startsWith(PLACEHOLDER_DATA_PREFIX);
+const isUserDataUrl = (s) => typeof s === 'string' && s.startsWith('data:') && !isPlaceholderSrc(s);
+
 function applyImgXform(img, xf) {
   if (!img) return;
   if (!xf) {
@@ -383,26 +395,27 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           const img = imgByKey.get(mSrc[1]);
           if (!img) return;
           const val = allEdits[k];
-          // CRITICAL: if bakeImageEdits already injected the user's edit into
-          // the iframe srcDoc (img.src starts with `data:` or is the same as
-          // the saved value), DO NOT touch img.src here. We previously had
-          // a regression where edit-mode-toggle re-ran setup, the async IDB
-          // fetch raced with iframe state, and img.src ended up reverting to
-          // the original sample URL. Treat bake's injection as authoritative.
           const currentSrc = img.src || '';
-          if (currentSrc.startsWith('data:')) {
-            skippedImgSrcs.push({ key: mSrc[1], reason: 'already-data-url' });
+          // Authoritative skip: img already shows the user's uploaded data URL
+          // (JPEG produced by compressFileToDataUrl). Touching it again risks
+          // a transient revert to the placeholder during async re-render.
+          if (isUserDataUrl(currentSrc)) {
+            skippedImgSrcs.push({ key: mSrc[1], reason: 'user-data-url' });
             return;
           }
+          // Otherwise: img is showing the placeholder SVG (or a sample URL
+          // from a legacy build). Force-restore from store. This is the path
+          // that recovers the user's image after an iframe reload — bake
+          // already would have replaced it in srcDoc on initial load, so we
+          // only get here if the iframe re-evaluated srcDoc mid-session.
           if (val === IDB_MARKER) {
             imgGet(k).then((dataUrl) => {
               if (!dataUrl) return;
-              // Re-check at fetch resolve time: don't clobber a data: src
-              // that may have been set by bake or postMessage in the meantime.
-              if (img.src && img.src.startsWith('data:')) return;
+              // Re-check at fetch resolve: another path may have restored.
+              if (isUserDataUrl(img.src)) return;
               if (img.src === dataUrl) return;
               img.src = dataUrl;
-              console.log(`[VN setup] page=${id} ${mSrc[1]}: restored from IDB (was non-data)`);
+              console.log(`[VN setup] page=${id} ${mSrc[1]}: restored from IDB (was placeholder/sample)`);
             }).catch((err) => console.error('imgGet failed', err));
           } else if (val && img.src !== val) {
             img.src = val;
@@ -448,13 +461,16 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       }
     };
 
-    if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-      setup();
-    } else {
-      const onLoad = () => setup();
-      iframe.addEventListener('load', onLoad);
-      return () => iframe.removeEventListener('load', onLoad);
-    }
+    // Always run setup once and ALSO listen for any future iframe `load`
+    // events — if anything causes the iframe to re-evaluate srcDoc mid-
+    // session (which would reset img.src to the placeholder baked in HTML),
+    // setup re-runs and force-restores the user's image from IDB. This is
+    // the safety net that makes the "edit toggle reverts image" bug
+    // physically impossible regardless of what triggered the reload.
+    setup();
+    const onLoad = () => setup();
+    iframe.addEventListener('load', onLoad);
+    return () => iframe.removeEventListener('load', onLoad);
   }, [editMode, html, id, rescanImages, lang, effectiveHtml]);
 
   // Re-scan on scroll/resize (image rects could change), but only in edit mode
