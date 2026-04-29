@@ -783,6 +783,56 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
             {lang === 'en' ? 'Loading…' : '読み込み中…'}
           </div>
         )}
+        {/* ALWAYS-ON shortcut: a permanent small "📁" button in the top-
+            right corner of every image listed in STATIC_IMAGE_OVERLAYS,
+            visible regardless of editMode. Edit mode is required for inline
+            text editing and image transforms, but image *replacement* on
+            P02 has been the user's biggest friction point — exposing a
+            no-mode-required entry point removes any UX guesswork. */}
+        {(STATIC_IMAGE_OVERLAYS[id] || []).map((p) => {
+          const left = p.left * scale;
+          const top = p.top * scale;
+          const width = p.width * scale;
+          const buildTarget = () => {
+            const doc = iframeRef.current?.contentDocument;
+            const wrap = doc ? doc.getElementById(p.key) : null;
+            const img = wrap ? wrap.querySelector('img') : null;
+            return { key: p.key, img, wrap };
+          };
+          return (
+            <button
+              key={`always-${p.key}`}
+              onMouseDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const t = buildTarget();
+                console.log(`[VN always-btn] page=${id} ${p.key}: opening file picker`, t);
+                handleFileReplace(t);
+              }}
+              title={lang === 'en' ? 'Replace this image' : 'この画像を差し替える'}
+              style={{
+                position: 'absolute',
+                left: left + width - 100,
+                top: top + 6,
+                zIndex: 200,
+                padding: '6px 10px',
+                background: '#4a9eff',
+                color: '#fff',
+                border: '2px solid #fff',
+                borderRadius: 6,
+                fontSize: 12,
+                fontWeight: 800,
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                pointerEvents: 'auto',
+                userSelect: 'none',
+              }}
+            >
+              📁 {lang === 'en' ? 'Replace' : '差替'}
+            </button>
+          );
+        })}
         {editMode && (() => {
           // Combine runtime-scanned image targets with hardcoded fallback
           // positions for pages where the scan has been unreliable. Synthesize
