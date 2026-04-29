@@ -444,97 +444,103 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     setImageTargets((prev) => [...prev]);
   }, [id]);
 
-  // Attach mousedown→click-or-drag handlers directly on every <img> inside
-  // any [data-object-type="image"] wrap, INDEPENDENT of imageTargets state.
-  // The visual toolbar is best-effort (depends on rescan timing), but the
-  // click-to-replace MUST always work — that's the user's primary action,
-  // and we cannot afford it to be invisible if rescan races with iframe
-  // load. A single click → file picker, a drag → pan-with-auto-zoom.
-  const DRAG_THRESHOLD = 4;
+  // Image click-to-replace via EVENT DELEGATION on the iframe document.
+  // A single capture-phase click listener on the iframe doc inspects every
+  // click and, if it lands inside [data-object-type="image"], opens the file
+  // picker. This is robust against:
+  //   - iframe srcDoc reloading (we re-attach on `load` events)
+  //   - timing races (one listener per doc, doesn't depend on per-element rescan)
+  //   - dynamic content additions inside the iframe
+  // Visual outlines are still applied via the rescanImages → imageTargets
+  // path (see toolbar overlay below) but click works even before they appear.
   useEffect(() => {
     if (!editMode) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    const cleanups = [];
+    let attachedDoc = null;
+    let mouseStartX = 0;
+    let mouseStartY = 0;
+    let dragged = false;
+    const DRAG = 4;
+
+    const onMouseDown = (e) => {
+      mouseStartX = e.clientX;
+      mouseStartY = e.clientY;
+      dragged = false;
+    };
+    const onMouseMove = (e) => {
+      if (!dragged && (Math.abs(e.clientX - mouseStartX) > DRAG || Math.abs(e.clientY - mouseStartY) > DRAG)) {
+        dragged = true;
+      }
+    };
+    const onClick = (e) => {
+      const t = e.target;
+      if (!t || !t.closest) return;
+      const wrap = t.closest('[data-object-type="image"]');
+      if (!wrap) return;
+      if (dragged) {
+        console.log(`[VN deleg] page=${id}: drag detected, skipping replace`);
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
+      if (!img) {
+        console.warn(`[VN deleg] page=${id}: wrap matched but no <img> inside`, wrap);
+        return;
+      }
+      const wrapId = wrap.id || 'wrap-anon';
+      console.log(`[VN deleg] page=${id} ${wrapId}: opening file picker`);
+      handleFileReplace({ img, wrap, key: wrapId });
+    };
+
+    const styleAll = (doc) => {
+      // Apply visual hint (dashed outline + pointer cursor) to all image
+      // wraps in the iframe so the user sees what's clickable. Applied via
+      // direct inline styles on the wrap so it's independent of any CSS the
+      // page might define.
+      doc.querySelectorAll('[data-object-type="image"]').forEach((wrap) => {
+        wrap.style.outline = '3px dashed #4a9eff';
+        wrap.style.outlineOffset = '-3px';
+        wrap.style.cursor = 'pointer';
+        wrap.title = langRef.current === 'en' ? 'Click to replace' : 'クリックで差替';
+      });
+    };
+    const unstyleAll = (doc) => {
+      doc.querySelectorAll('[data-object-type="image"]').forEach((wrap) => {
+        wrap.style.outline = '';
+        wrap.style.outlineOffset = '';
+        wrap.style.cursor = '';
+        wrap.title = '';
+      });
+    };
+
     const attach = (whence) => {
       const doc = iframe.contentDocument;
       if (!doc) {
-        console.log(`[VN clickbind] page=${id} from=${whence}: contentDocument is null`);
+        console.log(`[VN deleg] page=${id} from=${whence}: contentDocument is null`);
         return;
       }
-      const wraps = doc.querySelectorAll('[data-object-type="image"]');
-      const newlyBound = [];
-      wraps.forEach((wrap, idx) => {
-        const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
-        if (!img) return;
-        if (img.dataset.vnEditBound === '1') return; // idempotent
-        img.dataset.vnEditBound = '1';
-
-        const wrapId = wrap.id || `wrap-${idx}`;
-        const xfKey = `p${id}:imgxform:${wrapId}`;
-        img.style.cursor = 'pointer';
-        img.style.outline = '2px dashed rgba(74,158,255,0.6)';
-        img.style.outlineOffset = '-2px';
-        img.draggable = false;
-        img.title = langRef.current === 'en' ? 'Click to replace / drag to pan' : 'クリックで差替 / ドラッグでパン';
-
-        let downTime = 0;
-        let downX = 0;
-        let downY = 0;
-        let dragged = false;
-
-        const onDown = (e) => {
-          if (e.button !== 0) return;
-          downTime = Date.now();
-          downX = e.clientX;
-          downY = e.clientY;
-          dragged = false;
-        };
-        const onMove = (e) => {
-          if (!downTime) return;
-          const dx = e.clientX - downX;
-          const dy = e.clientY - downY;
-          if (!dragged && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
-            dragged = true;
-            img.style.cursor = 'grabbing';
-          }
-        };
-        const onClick = (e) => {
-          // Only treat as click if there was no significant drag.
-          if (dragged) {
-            console.log(`[VN clickbind] page=${id} ${wrapId}: drag detected, skipping replace`);
-            dragged = false;
-            downTime = 0;
-            return;
-          }
-          e.preventDefault();
-          e.stopPropagation();
-          console.log(`[VN clickbind] page=${id} ${wrapId}: opening file picker`);
-          handleFileReplace({ img, wrap, key: wrapId });
-          downTime = 0;
-        };
-
-        img.addEventListener('mousedown', onDown, true);
-        img.addEventListener('mousemove', onMove, true);
-        img.addEventListener('click', onClick, true);
-        newlyBound.push(wrapId);
-
-        cleanups.push(() => {
-          img.removeEventListener('mousedown', onDown, true);
-          img.removeEventListener('mousemove', onMove, true);
-          img.removeEventListener('click', onClick, true);
-          img.style.cursor = '';
-          img.style.outline = '';
-          img.style.outlineOffset = '';
-          img.title = '';
-          delete img.dataset.vnEditBound;
-        });
-      });
-      console.log(`[VN clickbind] page=${id} from=${whence}: wraps=${wraps.length} newlyBound=${newlyBound.length}`, newlyBound);
+      // Detach from previous doc if iframe reloaded.
+      if (attachedDoc && attachedDoc !== doc) {
+        try {
+          attachedDoc.removeEventListener('click', onClick, true);
+          attachedDoc.removeEventListener('mousedown', onMouseDown, true);
+          attachedDoc.removeEventListener('mousemove', onMouseMove, true);
+        } catch {}
+      }
+      if (attachedDoc !== doc) {
+        doc.addEventListener('click', onClick, true);
+        doc.addEventListener('mousedown', onMouseDown, true);
+        doc.addEventListener('mousemove', onMouseMove, true);
+        attachedDoc = doc;
+      }
+      const wrapCount = doc.querySelectorAll('[data-object-type="image"]').length;
+      styleAll(doc);
+      console.log(`[VN deleg] page=${id} from=${whence}: attached to doc, wraps=${wrapCount}`);
     };
 
-    // Try immediately, then keep polling — handles slow iframe load races.
     attach('init');
     const timers = [100, 300, 800, 1500, 3000].map((ms) => setTimeout(() => attach(`timer-${ms}`), ms));
     const onLoad = () => attach('iframe-load');
@@ -543,7 +549,14 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     return () => {
       iframe.removeEventListener('load', onLoad);
       timers.forEach(clearTimeout);
-      cleanups.forEach((fn) => fn());
+      if (attachedDoc) {
+        try {
+          attachedDoc.removeEventListener('click', onClick, true);
+          attachedDoc.removeEventListener('mousedown', onMouseDown, true);
+          attachedDoc.removeEventListener('mousemove', onMouseMove, true);
+          unstyleAll(attachedDoc);
+        } catch {}
+      }
     };
   }, [editMode, id, handleFileReplace]);
 
