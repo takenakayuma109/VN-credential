@@ -643,58 +643,28 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
             {lang === 'en' ? 'Loading…' : '読み込み中…'}
           </div>
         )}
-        {/* Hardcoded React-DOM overlays for pages where iframe-side scan
-            historically failed on production. These are clickable React divs
-            positioned over the iframe content, guaranteed to receive clicks. */}
-        {editMode && (STATIC_IMAGE_OVERLAYS[id] || []).map((pos) => {
-          // Skip if the runtime scan already produced a target for this key
-          // (avoid double-rendering).
-          if (imageTargets.some((t) => t.key === pos.key)) return null;
-          // Synthesize a target compatible with handleFileReplace/handleUrlReplace.
+        {editMode && (() => {
+          // Combine runtime-scanned image targets with hardcoded fallback
+          // positions for pages where the scan has been unreliable. Synthesize
+          // entries for any STATIC_IMAGE_OVERLAYS keys not already present in
+          // imageTargets so they get the full toolbar treatment, not the
+          // limited single-button overlay we had before.
+          const dynamicKeys = new Set(imageTargets.map((t) => t.key));
           const doc = iframeRef.current?.contentDocument;
-          const wrap = doc ? doc.getElementById(pos.key) : null;
-          const img = wrap ? wrap.querySelector('img') : null;
-          const synthTarget = { img, wrap, key: pos.key };
-          return (
-            <div
-              key={`static-${pos.key}`}
-              style={{
-                position: 'absolute',
-                left: pos.left * scale,
-                top: pos.top * scale,
-                width: pos.width * scale,
-                height: pos.height * scale,
-                outline: '3px dashed #4a9eff',
-                outlineOffset: '-3px',
-                cursor: 'pointer',
-                zIndex: 60,
-                pointerEvents: 'auto',
-                background: 'rgba(74,158,255,0.04)',
-              }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log(`[VN static-overlay] page=${id} ${pos.key}: opening file picker`);
-                handleFileReplace(synthTarget);
-              }}
-              title={lang === 'en' ? 'Click to replace image' : 'クリックで画像差替'}
-            >
-              <div style={{
-                position: 'absolute',
-                left: 6, top: 6,
-                background: '#4a9eff',
-                color: '#fff',
-                padding: '4px 10px',
-                fontSize: 12,
-                fontWeight: 800,
-                borderRadius: 4,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
-                pointerEvents: 'none',
-              }}>📁 {lang === 'en' ? 'Replace' : '画像差替'}</div>
-            </div>
-          );
-        })}
-        {editMode && imageTargets.map((t) => {
+          const fallbacks = (STATIC_IMAGE_OVERLAYS[id] || [])
+            .filter((p) => !dynamicKeys.has(p.key))
+            .map((p) => {
+              const wrap = doc ? doc.getElementById(p.key) : null;
+              const img = wrap ? wrap.querySelector('img') : null;
+              return {
+                key: p.key,
+                rect: { left: p.left, top: p.top, width: p.width, height: p.height },
+                img,
+                wrap,
+              };
+            });
+          const allTargets = [...imageTargets, ...fallbacks];
+          return allTargets.map((t) => {
           const { key, rect } = t;
           const fit = storeRef.current.get(`p${id}:imgfit:${key}`) || 'cover';
           const left = rect.left * scale;
@@ -703,10 +673,17 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           const height = rect.height * scale;
           return (
             <React.Fragment key={key}>
-              {/* Visual outline only — pointer-events:none so text/buttons
-                  inside the iframe still receive clicks. Drag-to-pan is
-                  attached directly on the <img> inside the iframe. */}
+              {/* Clickable area covering the whole image. One click → file
+                  picker. Toolbar buttons inside use stopPropagation so they
+                  trigger their own action without double-firing this click. */}
               <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log(`[VN overlay-click] page=${id} ${key}: opening file picker`);
+                  handleFileReplace(t);
+                }}
+                title={lang === 'en' ? 'Click to replace image' : 'クリックで画像差替'}
                 style={{
                   position: 'absolute',
                   left, top, width, height,
@@ -714,7 +691,9 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
                   outlineOffset: '-3px',
                   boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.8)',
                   zIndex: 50,
-                  pointerEvents: 'none',
+                  pointerEvents: 'auto',
+                  cursor: 'pointer',
+                  background: 'rgba(74,158,255,0.03)',
                 }}
               />
               {/* Toolbar — fixed to top-left of image */}
@@ -730,22 +709,24 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
                   pointerEvents: 'auto',
                 }}
                 onMouseDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               >
                 <div style={{ display: 'flex', gap: 3 }}>
-                  <button style={btnStyle('#4a9eff', '#fff')} onClick={() => handleFileReplace(t)} title={lang === 'en' ? 'Choose file' : 'ファイル選択'}>📁 {lang === 'en' ? 'Replace' : '画像差替'}</button>
-                  <button style={btnStyle('#4a9eff', '#fff')} onClick={() => handleUrlReplace(t)} title={lang === 'en' ? 'By URL' : 'URL指定'}>🔗 URL</button>
+                  <button style={btnStyle('#4a9eff', '#fff')} onClick={(e) => { e.stopPropagation(); handleFileReplace(t); }} title={lang === 'en' ? 'Choose file' : 'ファイル選択'}>📁 {lang === 'en' ? 'Replace' : '画像差替'}</button>
+                  <button style={btnStyle('#4a9eff', '#fff')} onClick={(e) => { e.stopPropagation(); handleUrlReplace(t); }} title={lang === 'en' ? 'By URL' : 'URL指定'}>🔗 URL</button>
                 </div>
                 <div style={{ display: 'flex', gap: 3, alignItems: 'center', flexWrap: 'wrap' }}>
-                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={() => handleZoom(t, 0.05)} title={lang === 'en' ? 'Zoom in' : 'ズームイン'}>＋</button>
-                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={() => handleZoom(t, -0.05)} title={lang === 'en' ? 'Zoom out' : 'ズームアウト'}>－</button>
-                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={() => handleFitCycle(t)} title={lang === 'en' ? 'Cycle fit mode' : 'フィット切替'}>⛶</button>
+                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={(e) => { e.stopPropagation(); handleZoom(t, 0.05); }} title={lang === 'en' ? 'Zoom in' : 'ズームイン'}>＋</button>
+                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={(e) => { e.stopPropagation(); handleZoom(t, -0.05); }} title={lang === 'en' ? 'Zoom out' : 'ズームアウト'}>－</button>
+                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={(e) => { e.stopPropagation(); handleFitCycle(t); }} title={lang === 'en' ? 'Cycle fit mode' : 'フィット切替'}>⛶</button>
                   <span style={{ fontSize: 9, color: '#fb923c', fontWeight: 700 }}>{fit}</span>
-                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={() => handleReset(t)} title={lang === 'en' ? 'Reset' : 'リセット'}>↺</button>
+                  <button style={btnStyle('#fb923c', '#0a0a0f')} onClick={(e) => { e.stopPropagation(); handleReset(t); }} title={lang === 'en' ? 'Reset' : 'リセット'}>↺</button>
                 </div>
               </div>
             </React.Fragment>
           );
-        })}
+        });
+        })()}
       </div>
     </div>
   );
