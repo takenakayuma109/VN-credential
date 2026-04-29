@@ -77,6 +77,24 @@ function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// Hardcoded fallback overlays for pages whose editable images live in flex
+// layouts (positions computed by browser, not in inline styles). The runtime
+// iframe scan has been failing on the production deployment for reasons we
+// can't reproduce locally, so this React-DOM-side overlay guarantees the
+// user can always click an image to replace it. Coordinates are in iframe's
+// 1280×720 internal coordinate space.
+const STATIC_IMAGE_OVERLAYS = {
+  // page02 "Our Origin" — 3 tech cards (drone / robot / AI). fabric-obj-6
+  // is at top:324, left:60, width:1160, height:180. Inside it: flex row
+  // with gap:16, so each card width = (1160-32)/3 = 376. Image wrap at
+  // top of card has height:120.
+  2: [
+    { key: 'p02-img-drone', left: 60,  top: 324, width: 376, height: 120 },
+    { key: 'p02-img-robot', left: 452, top: 324, width: 376, height: 120 },
+    { key: 'p02-img-ai',    left: 844, top: 324, width: 376, height: 120 },
+  ],
+};
+
 // Inline script injected INTO each iframe's <head>. Runs in the iframe's own
 // realm where DOM access is guaranteed — parent-side iframe.contentDocument
 // access has been failing intermittently on the production deploy, so we move
@@ -625,6 +643,57 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
             {lang === 'en' ? 'Loading…' : '読み込み中…'}
           </div>
         )}
+        {/* Hardcoded React-DOM overlays for pages where iframe-side scan
+            historically failed on production. These are clickable React divs
+            positioned over the iframe content, guaranteed to receive clicks. */}
+        {editMode && (STATIC_IMAGE_OVERLAYS[id] || []).map((pos) => {
+          // Skip if the runtime scan already produced a target for this key
+          // (avoid double-rendering).
+          if (imageTargets.some((t) => t.key === pos.key)) return null;
+          // Synthesize a target compatible with handleFileReplace/handleUrlReplace.
+          const doc = iframeRef.current?.contentDocument;
+          const wrap = doc ? doc.getElementById(pos.key) : null;
+          const img = wrap ? wrap.querySelector('img') : null;
+          const synthTarget = { img, wrap, key: pos.key };
+          return (
+            <div
+              key={`static-${pos.key}`}
+              style={{
+                position: 'absolute',
+                left: pos.left * scale,
+                top: pos.top * scale,
+                width: pos.width * scale,
+                height: pos.height * scale,
+                outline: '3px dashed #4a9eff',
+                outlineOffset: '-3px',
+                cursor: 'pointer',
+                zIndex: 60,
+                pointerEvents: 'auto',
+                background: 'rgba(74,158,255,0.04)',
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log(`[VN static-overlay] page=${id} ${pos.key}: opening file picker`);
+                handleFileReplace(synthTarget);
+              }}
+              title={lang === 'en' ? 'Click to replace image' : 'クリックで画像差替'}
+            >
+              <div style={{
+                position: 'absolute',
+                left: 6, top: 6,
+                background: '#4a9eff',
+                color: '#fff',
+                padding: '4px 10px',
+                fontSize: 12,
+                fontWeight: 800,
+                borderRadius: 4,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                pointerEvents: 'none',
+              }}>📁 {lang === 'en' ? 'Replace' : '画像差替'}</div>
+            </div>
+          );
+        })}
         {editMode && imageTargets.map((t) => {
           const { key, rect } = t;
           const fit = storeRef.current.get(`p${id}:imgfit:${key}`) || 'cover';
