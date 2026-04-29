@@ -77,6 +77,58 @@ function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// Inline script injected INTO each iframe's <head>. Runs in the iframe's own
+// realm where DOM access is guaranteed — parent-side iframe.contentDocument
+// access has been failing intermittently on the production deploy, so we move
+// the click-detection logic to where it can't fail. Communicates with parent
+// via postMessage.
+const IFRAME_BRIDGE_SCRIPT = `
+<script>(function(){
+  if (window.__VN_BRIDGE__) return;
+  window.__VN_BRIDGE__ = true;
+  var editMode = false;
+  function applyOutlines() {
+    var wraps = document.querySelectorAll('[data-object-type="image"]');
+    for (var i = 0; i < wraps.length; i++) {
+      var w = wraps[i];
+      if (editMode) {
+        w.style.outline = '3px dashed #4a9eff';
+        w.style.outlineOffset = '-3px';
+        w.style.cursor = 'pointer';
+        w.title = 'クリックで差替 / Click to replace';
+      } else {
+        w.style.outline = '';
+        w.style.outlineOffset = '';
+        w.style.cursor = '';
+        w.title = '';
+      }
+    }
+    try { parent.postMessage({type:'vn-bridge-ready', wraps: wraps.length}, '*'); } catch(e){}
+  }
+  document.addEventListener('click', function(e){
+    if (!editMode) return;
+    var t = e.target;
+    var w = t && t.closest && t.closest('[data-object-type="image"]');
+    if (!w) return;
+    e.preventDefault();
+    e.stopPropagation();
+    try { parent.postMessage({type:'vn-image-click', wrapId: w.id || ''}, '*'); } catch(err){}
+  }, true);
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if (!d || typeof d !== 'object') return;
+    if (d.type === 'vn-set-edit') { editMode = !!d.editMode; applyOutlines(); }
+  });
+  // Apply current state once DOM is ready.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyOutlines);
+  } else {
+    applyOutlines();
+  }
+  try { parent.postMessage({type:'vn-bridge-ready', wraps: document.querySelectorAll('[data-object-type="image"]').length}, '*'); } catch(e){}
+})();<\/script>
+`;
+
 // Bake stored image edits into the HTML string by rewriting the `src=` of any
 // <img> inside a wrap whose id matches a saved edit. Async because IDB-backed
 // data URLs need to be fetched. Doing this BEFORE the iframe renders ensures
@@ -138,9 +190,13 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         ? window.location.href.replace(/[^/]*$/, '')
         : '/';
       const baseTag = `<base href="${baseHref}">`;
+      // Inject base tag AND the bridge script into <head>. The bridge runs
+      // inside the iframe's own realm and posts messages to parent, sidestepping
+      // any weirdness with parent-side contentDocument access.
+      const headInjection = baseTag + IFRAME_BRIDGE_SCRIPT;
       let patched = html.includes('<head')
-        ? html.replace(/<head([^>]*)>/i, `<head$1>${baseTag}`)
-        : `<!DOCTYPE html><html><head>${baseTag}</head><body>${html}</body></html>`;
+        ? html.replace(/<head([^>]*)>/i, `<head$1>${headInjection}`)
+        : `<!DOCTYPE html><html><head>${headInjection}</head><body>${html}</body></html>`;
       // Rewrite "XX / 26" → variant's own numbering (e.g. Member "02 / 23").
       if (displayNumber && totalPages) {
         const newNum = String(displayNumber).padStart(2, '0');
@@ -444,119 +500,62 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     setImageTargets((prev) => [...prev]);
   }, [id]);
 
-  // Image click-to-replace via EVENT DELEGATION on the iframe document.
-  // A single capture-phase click listener on the iframe doc inspects every
-  // click and, if it lands inside [data-object-type="image"], opens the file
-  // picker. This is robust against:
-  //   - iframe srcDoc reloading (we re-attach on `load` events)
-  //   - timing races (one listener per doc, doesn't depend on per-element rescan)
-  //   - dynamic content additions inside the iframe
-  // Visual outlines are still applied via the rescanImages → imageTargets
-  // path (see toolbar overlay below) but click works even before they appear.
+  // Image click-to-replace via postMessage bridge.
+  // The script injected in iframe HEAD listens for clicks INSIDE the iframe
+  // (where DOM access always works) and posts messages back to us. Here we:
+  //   1. Listen for 'vn-image-click' messages from any iframe
+  //   2. Find the matching iframe (compare event.source to our iframe's
+  //      contentWindow) and look up the wrap by id in that doc
+  //   3. Open the file picker
+  //   4. Push edit-mode state to iframe via postMessage when it changes
   useEffect(() => {
-    if (!editMode) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    let attachedDoc = null;
-    let mouseStartX = 0;
-    let mouseStartY = 0;
-    let dragged = false;
-    const DRAG = 4;
-
-    const onMouseDown = (e) => {
-      mouseStartX = e.clientX;
-      mouseStartY = e.clientY;
-      dragged = false;
+    const sendEditMode = () => {
+      try {
+        if (iframe.contentWindow) {
+          iframe.contentWindow.postMessage({ type: 'vn-set-edit', editMode: !!editMode }, '*');
+        }
+      } catch (e) {}
     };
-    const onMouseMove = (e) => {
-      if (!dragged && (Math.abs(e.clientX - mouseStartX) > DRAG || Math.abs(e.clientY - mouseStartY) > DRAG)) {
-        dragged = true;
-      }
-    };
-    const onClick = (e) => {
-      const t = e.target;
-      if (!t || !t.closest) return;
-      const wrap = t.closest('[data-object-type="image"]');
-      if (!wrap) return;
-      if (dragged) {
-        console.log(`[VN deleg] page=${id}: drag detected, skipping replace`);
-        return;
-      }
-      e.preventDefault();
-      e.stopPropagation();
-      const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
-      if (!img) {
-        console.warn(`[VN deleg] page=${id}: wrap matched but no <img> inside`, wrap);
-        return;
-      }
-      const wrapId = wrap.id || 'wrap-anon';
-      console.log(`[VN deleg] page=${id} ${wrapId}: opening file picker`);
-      handleFileReplace({ img, wrap, key: wrapId });
-    };
-
-    const styleAll = (doc) => {
-      // Apply visual hint (dashed outline + pointer cursor) to all image
-      // wraps in the iframe so the user sees what's clickable. Applied via
-      // direct inline styles on the wrap so it's independent of any CSS the
-      // page might define.
-      doc.querySelectorAll('[data-object-type="image"]').forEach((wrap) => {
-        wrap.style.outline = '3px dashed #4a9eff';
-        wrap.style.outlineOffset = '-3px';
-        wrap.style.cursor = 'pointer';
-        wrap.title = langRef.current === 'en' ? 'Click to replace' : 'クリックで差替';
-      });
-    };
-    const unstyleAll = (doc) => {
-      doc.querySelectorAll('[data-object-type="image"]').forEach((wrap) => {
-        wrap.style.outline = '';
-        wrap.style.outlineOffset = '';
-        wrap.style.cursor = '';
-        wrap.title = '';
-      });
-    };
-
-    const attach = (whence) => {
-      const doc = iframe.contentDocument;
-      if (!doc) {
-        console.log(`[VN deleg] page=${id} from=${whence}: contentDocument is null`);
-        return;
-      }
-      // Detach from previous doc if iframe reloaded.
-      if (attachedDoc && attachedDoc !== doc) {
-        try {
-          attachedDoc.removeEventListener('click', onClick, true);
-          attachedDoc.removeEventListener('mousedown', onMouseDown, true);
-          attachedDoc.removeEventListener('mousemove', onMouseMove, true);
-        } catch {}
-      }
-      if (attachedDoc !== doc) {
-        doc.addEventListener('click', onClick, true);
-        doc.addEventListener('mousedown', onMouseDown, true);
-        doc.addEventListener('mousemove', onMouseMove, true);
-        attachedDoc = doc;
-      }
-      const wrapCount = doc.querySelectorAll('[data-object-type="image"]').length;
-      styleAll(doc);
-      console.log(`[VN deleg] page=${id} from=${whence}: attached to doc, wraps=${wrapCount}`);
-    };
-
-    attach('init');
-    const timers = [100, 300, 800, 1500, 3000].map((ms) => setTimeout(() => attach(`timer-${ms}`), ms));
-    const onLoad = () => attach('iframe-load');
+    // Send on init AND whenever the iframe finishes loading (srcDoc may
+    // change e.g. on language switch and the bridge state resets).
+    sendEditMode();
+    const timers = [50, 200, 500, 1200, 2500].map((ms) => setTimeout(sendEditMode, ms));
+    const onLoad = () => sendEditMode();
     iframe.addEventListener('load', onLoad);
+
+    const onMessage = (ev) => {
+      // Only accept messages from our own iframe contentWindow.
+      if (ev.source !== iframe.contentWindow) return;
+      const d = ev.data;
+      if (!d || typeof d !== 'object') return;
+      if (d.type === 'vn-bridge-ready') {
+        console.log(`[VN bridge] page=${id} ready, wraps=${d.wraps}`);
+        sendEditMode();
+        return;
+      }
+      if (d.type === 'vn-image-click') {
+        if (!editMode) return;
+        const doc = iframe.contentDocument;
+        const wrapId = d.wrapId || '';
+        let wrap = null;
+        let img = null;
+        if (doc && wrapId) {
+          wrap = doc.getElementById(wrapId);
+          if (wrap) img = wrap.querySelector('img');
+        }
+        console.log(`[VN bridge] page=${id} click on ${wrapId}: opening file picker`);
+        handleFileReplace({ img, wrap, key: wrapId || 'wrap-anon' });
+      }
+    };
+    window.addEventListener('message', onMessage);
 
     return () => {
       iframe.removeEventListener('load', onLoad);
+      window.removeEventListener('message', onMessage);
       timers.forEach(clearTimeout);
-      if (attachedDoc) {
-        try {
-          attachedDoc.removeEventListener('click', onClick, true);
-          attachedDoc.removeEventListener('mousedown', onMouseDown, true);
-          attachedDoc.removeEventListener('mousemove', onMouseMove, true);
-          unstyleAll(attachedDoc);
-        } catch {}
-      }
     };
   }, [editMode, id, handleFileReplace]);
 
