@@ -457,11 +457,14 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     if (!iframe) return;
 
     const cleanups = [];
-    const attach = () => {
+    const attach = (whence) => {
       const doc = iframe.contentDocument;
-      if (!doc) return;
+      if (!doc) {
+        console.log(`[VN clickbind] page=${id} from=${whence}: contentDocument is null`);
+        return;
+      }
       const wraps = doc.querySelectorAll('[data-object-type="image"]');
-      console.log(`[VN clickbind] page=${id}: attaching to ${wraps.length} image wraps`);
+      const newlyBound = [];
       wraps.forEach((wrap, idx) => {
         const img = wrap.tagName === 'IMG' ? wrap : wrap.querySelector('img');
         if (!img) return;
@@ -471,67 +474,70 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         const wrapId = wrap.id || `wrap-${idx}`;
         const xfKey = `p${id}:imgxform:${wrapId}`;
         img.style.cursor = 'pointer';
+        img.style.outline = '2px dashed rgba(74,158,255,0.6)';
+        img.style.outlineOffset = '-2px';
         img.draggable = false;
         img.title = langRef.current === 'en' ? 'Click to replace / drag to pan' : 'クリックで差替 / ドラッグでパン';
 
+        let downTime = 0;
+        let downX = 0;
+        let downY = 0;
+        let dragged = false;
+
         const onDown = (e) => {
           if (e.button !== 0) return;
-          e.preventDefault();
-          e.stopPropagation();
-          const startXf = storeRef.current.get(xfKey) || { x: 0, y: 0, scale: 1 };
-          const startX = e.clientX; const startY = e.clientY;
-          let dragged = false;
-          let activeXf = { ...startXf };
-          const target = { img, wrap, key: wrapId };
-          const move = (ev) => {
-            const dx = ev.clientX - startX;
-            const dy = ev.clientY - startY;
-            if (!dragged && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
-              dragged = true;
-              img.style.cursor = 'grabbing';
-              if ((Number(startXf.scale) || 1) === 1) {
-                activeXf = { ...startXf, scale: 1.2 };
-              }
-            }
-            if (!dragged) return;
-            const cur = { x: (Number(activeXf.x) || 0) + dx, y: (Number(activeXf.y) || 0) + dy, scale: Number(activeXf.scale) || 1 };
-            applyImgXform(img, cur);
-          };
-          const up = (ev) => {
-            img.style.cursor = 'pointer';
-            const iframeDoc = iframeRef.current?.contentDocument;
-            if (iframeDoc) {
-              iframeDoc.removeEventListener('mousemove', move, true);
-              iframeDoc.removeEventListener('mouseup', up, true);
-            }
-            if (!dragged) {
-              handleFileReplace(target);
-              return;
-            }
-            const cur = { x: (Number(activeXf.x) || 0) + (ev.clientX - startX), y: (Number(activeXf.y) || 0) + (ev.clientY - startY), scale: Number(activeXf.scale) || 1 };
-            applyImgXform(img, cur);
-            storeRef.current.set(xfKey, cur);
-          };
-          const iframeDoc = iframeRef.current?.contentDocument;
-          if (iframeDoc) {
-            iframeDoc.addEventListener('mousemove', move, true);
-            iframeDoc.addEventListener('mouseup', up, true);
+          downTime = Date.now();
+          downX = e.clientX;
+          downY = e.clientY;
+          dragged = false;
+        };
+        const onMove = (e) => {
+          if (!downTime) return;
+          const dx = e.clientX - downX;
+          const dy = e.clientY - downY;
+          if (!dragged && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
+            dragged = true;
+            img.style.cursor = 'grabbing';
           }
         };
+        const onClick = (e) => {
+          // Only treat as click if there was no significant drag.
+          if (dragged) {
+            console.log(`[VN clickbind] page=${id} ${wrapId}: drag detected, skipping replace`);
+            dragged = false;
+            downTime = 0;
+            return;
+          }
+          e.preventDefault();
+          e.stopPropagation();
+          console.log(`[VN clickbind] page=${id} ${wrapId}: opening file picker`);
+          handleFileReplace({ img, wrap, key: wrapId });
+          downTime = 0;
+        };
+
         img.addEventListener('mousedown', onDown, true);
+        img.addEventListener('mousemove', onMove, true);
+        img.addEventListener('click', onClick, true);
+        newlyBound.push(wrapId);
+
         cleanups.push(() => {
           img.removeEventListener('mousedown', onDown, true);
+          img.removeEventListener('mousemove', onMove, true);
+          img.removeEventListener('click', onClick, true);
           img.style.cursor = '';
+          img.style.outline = '';
+          img.style.outlineOffset = '';
           img.title = '';
           delete img.dataset.vnEditBound;
         });
       });
+      console.log(`[VN clickbind] page=${id} from=${whence}: wraps=${wraps.length} newlyBound=${newlyBound.length}`, newlyBound);
     };
 
     // Try immediately, then keep polling — handles slow iframe load races.
-    attach();
-    const timers = [100, 300, 800, 1500, 3000].map((ms) => setTimeout(attach, ms));
-    const onLoad = () => attach();
+    attach('init');
+    const timers = [100, 300, 800, 1500, 3000].map((ms) => setTimeout(() => attach(`timer-${ms}`), ms));
+    const onLoad = () => attach('iframe-load');
     iframe.addEventListener('load', onLoad);
 
     return () => {
