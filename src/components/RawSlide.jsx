@@ -602,18 +602,6 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       }
     });
 
-    // Cancel cleanup if user closes picker without selecting (focus returns).
-    window.addEventListener('focus', function onFocus() {
-      window.removeEventListener('focus', onFocus);
-      // Give onchange a tick to fire if a file was actually selected.
-      setTimeout(() => {
-        if (document.body.contains(input) && !input.files?.length) {
-          console.log('[VN replace] ◇ picker dismissed without selection');
-          cleanup();
-        }
-      }, 500);
-    });
-
     console.log('[VN replace] ▶ opening picker');
     input.click();
   }, [persistImage]);
@@ -783,56 +771,6 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
             {lang === 'en' ? 'Loading…' : '読み込み中…'}
           </div>
         )}
-        {/* ALWAYS-ON shortcut: a permanent small "📁" button in the top-
-            right corner of every image listed in STATIC_IMAGE_OVERLAYS,
-            visible regardless of editMode. Edit mode is required for inline
-            text editing and image transforms, but image *replacement* on
-            P02 has been the user's biggest friction point — exposing a
-            no-mode-required entry point removes any UX guesswork. */}
-        {(STATIC_IMAGE_OVERLAYS[id] || []).map((p) => {
-          const left = p.left * scale;
-          const top = p.top * scale;
-          const width = p.width * scale;
-          const buildTarget = () => {
-            const doc = iframeRef.current?.contentDocument;
-            const wrap = doc ? doc.getElementById(p.key) : null;
-            const img = wrap ? wrap.querySelector('img') : null;
-            return { key: p.key, img, wrap };
-          };
-          return (
-            <button
-              key={`always-${p.key}`}
-              onMouseDown={(e) => e.stopPropagation()}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const t = buildTarget();
-                console.log(`[VN always-btn] page=${id} ${p.key}: opening file picker`, t);
-                handleFileReplace(t);
-              }}
-              title={lang === 'en' ? 'Replace this image' : 'この画像を差し替える'}
-              style={{
-                position: 'absolute',
-                left: left + width - 100,
-                top: top + 6,
-                zIndex: 200,
-                padding: '6px 10px',
-                background: '#4a9eff',
-                color: '#fff',
-                border: '2px solid #fff',
-                borderRadius: 6,
-                fontSize: 12,
-                fontWeight: 800,
-                cursor: 'pointer',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
-                pointerEvents: 'auto',
-                userSelect: 'none',
-              }}
-            >
-              📁 {lang === 'en' ? 'Replace' : '差替'}
-            </button>
-          );
-        })}
         {editMode && (() => {
           // Combine runtime-scanned image targets with hardcoded fallback
           // positions for pages where the scan has been unreliable. Synthesize
@@ -902,7 +840,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
                 onClick={(e) => e.stopPropagation()}
               >
                 <div style={{ display: 'flex', gap: 3 }}>
-                  <button style={btnStyle('#4a9eff', '#fff')} onClick={(e) => { e.stopPropagation(); handleFileReplace(t); }} title={lang === 'en' ? 'Choose file' : 'ファイル選択'}>📁 {lang === 'en' ? 'Replace' : '画像差替'}</button>
+                  <button style={btnStyle('#4a9eff', '#fff')} onClick={(e) => { console.log(`[VN btn-clicked] page=${id} key=${t.key}`); e.stopPropagation(); handleFileReplace(t); }} title={lang === 'en' ? 'Choose file' : 'ファイル選択'}>📁 {lang === 'en' ? 'Replace' : '画像差替'}</button>
                   <button style={btnStyle('#4a9eff', '#fff')} onClick={(e) => { e.stopPropagation(); handleUrlReplace(t); }} title={lang === 'en' ? 'By URL' : 'URL指定'}>🔗 URL</button>
                 </div>
                 <div style={{ display: 'flex', gap: 3, alignItems: 'center', flexWrap: 'wrap' }}>
