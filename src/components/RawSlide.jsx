@@ -229,14 +229,6 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
   const [scale, setScale] = useState(1);
   const [imageTargets, setImageTargets] = useState([]); // [{key, rect, img}]
   const [effectiveHtml, setEffectiveHtml] = useState(null);
-  // Bumped after every image edit persists. Forcing this into the build
-  // effect's deps re-runs bakeImageEdits and pushes the user's new src into
-  // the iframe srcDoc string itself, so any subsequent iframe load shows
-  // the user's image instead of the original sample. Without this, our
-  // direct DOM mutation (target.img.src = src) was reverting on the user's
-  // browser for reasons we couldn't pin down — re-baking makes the
-  // replacement durable regardless of what's clobbering the live DOM.
-  const [imgRevision, setImgRevision] = useState(0);
   const store = useEditStore();
   const storeRef = useRef(store);
   storeRef.current = store;
@@ -275,7 +267,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     };
     build();
     return () => { cancelled = true; };
-  }, [html, id, displayNumber, totalPages, imgRevision]);
+  }, [html, id, displayNumber, totalPages]);
 
   // Fit to width
   useEffect(() => {
@@ -550,12 +542,6 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       }
       storeRef.current.set(fitKey, 'cover');
       console.log(`[VN persistImage] page=${id} key=${target.key} saved (idb=${typeof src === 'string' && src.startsWith('data:')})`);
-      // Force the iframe srcDoc to be re-baked with the user's new image so
-      // the change survives any subsequent reload of the iframe (e.g., from
-      // re-renders, dev tools, or browser quirks). Without this, our direct
-      // DOM mutation (target.img.src = src) above can be silently reverted.
-      setImgRevision((r) => r + 1);
-      console.log('[VN persistImage] ▶ bumped imgRevision → triggers re-bake');
     } catch (err) {
       console.error('persistImage failed', err);
       window.alert('画像保存に失敗: ' + (err?.message || err) +
@@ -693,8 +679,18 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       const d = ev.data;
       if (!d || typeof d !== 'object') return;
       if (d.type === 'vn-bridge-ready') {
+        // CRITICAL: do NOT call sendEditMode() here. Doing so creates an
+        // infinite postMessage loop:
+        //   parent → vn-set-edit → bridge.applyOutlines → posts vn-bridge-ready
+        //   parent ← vn-bridge-ready → parent calls sendEditMode → vn-set-edit
+        //   …
+        // Profiling showed ~13k messages/sec, blocking the iframe so badly
+        // that FontAwesome icons couldn't paint and 画像差替 button clicks
+        // never reached our handler. The setup useEffect already sends the
+        // current editMode via 5 staggered timers + the iframe `load` event,
+        // so the bridge gets the state without needing parent to respond to
+        // its readiness ping.
         console.log(`[VN bridge] page=${id} ready, wraps=${d.wraps}`);
-        sendEditMode();
         return;
       }
       if (d.type === 'vn-image-click') {
