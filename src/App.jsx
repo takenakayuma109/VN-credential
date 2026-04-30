@@ -393,7 +393,7 @@ export default function App() {
             {variant === 'board' ? 'BOARD' : 'MEMBER'}
           </span>
           <span style={{ fontSize: 10, color: '#64748b', marginLeft: 8, fontFamily: 'monospace' }}>
-            v2026.04.30-trace
+            v2026.04.30-rebake
           </span>
         </div>
         <div className="controls">
