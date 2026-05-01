@@ -229,6 +229,12 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
   const [scale, setScale] = useState(1);
   const [imageTargets, setImageTargets] = useState([]); // [{key, rect, img}]
   const [effectiveHtml, setEffectiveHtml] = useState(null);
+  // Bumped after a successful image upload. Forces the build effect to
+  // re-run bake so the user's freshly-saved data: URL is baked into the
+  // iframe srcDoc string. Without this, our DOM mutation via target.img.src
+  // can be reverted by anything that re-renders the iframe; with it, the
+  // user's image is part of the iframe's HTML itself and survives reloads.
+  const [imgRevision, setImgRevision] = useState(0);
   const store = useEditStore();
   const storeRef = useRef(store);
   storeRef.current = store;
@@ -267,7 +273,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     };
     build();
     return () => { cancelled = true; };
-  }, [html, id, displayNumber, totalPages]);
+  }, [html, id, displayNumber, totalPages, imgRevision]);
 
   // Fit to width
   useEffect(() => {
@@ -542,6 +548,10 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       }
       storeRef.current.set(fitKey, 'cover');
       console.log(`[VN persistImage] page=${id} key=${target.key} saved (idb=${typeof src === 'string' && src.startsWith('data:')})`);
+      // Bump revision to force the build effect to re-bake. This pushes
+      // the user's data: URL into the iframe srcDoc string, ensuring the
+      // change can't be reverted by any subsequent iframe re-evaluation.
+      setImgRevision((r) => r + 1);
     } catch (err) {
       console.error('persistImage failed', err);
       window.alert('画像保存に失敗: ' + (err?.message || err) +
