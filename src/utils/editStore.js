@@ -21,6 +21,56 @@ function save(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
+// One-shot migration: on the very first load with this build, purge
+// every storage entry related to P02's image wraps. Reason: a non-trivial
+// number of installs are showing the original unsplash sample images in
+// P02 even though the bundle has none — meaning the user's localStorage
+// or IDB still references them from a prior session, and bake() injects
+// them on every page load. The flag prevents re-firing so any image
+// uploads after this migration are preserved.
+const P02_RESET_FLAG = 'visionoid_p02_oneshot_reset_v1';
+function applyP02OneShotReset() {
+  try {
+    if (localStorage.getItem(P02_RESET_FLAG) === '1') return;
+  } catch { return; }
+  let raw = {};
+  try { raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch {}
+  const removed = [];
+  // Known textbox ids on P02 that wrap the editable image cards. If any of
+  // these have a saved text edit, the saved innerHTML almost certainly
+  // contains a stale <img src="https://images.unsplash.com/..."> and will
+  // re-poison the page on every reload. Nuke them here.
+  const P02_POISONED_TEXTBOX_IDS = ['fabric-obj-6-1775605004066'];
+  for (const k of Object.keys(raw)) {
+    const isImgKey = k.startsWith('p2:img:') || k.startsWith('p2:imgxform:') || k.startsWith('p2:imgfit:');
+    const isPoisonedText = P02_POISONED_TEXTBOX_IDS.some((tid) =>
+      k === `p2:text:${tid}` || k === `p2:ja:text:${tid}` || k === `p2:en:text:${tid}`
+    );
+    if (isImgKey || isPoisonedText) {
+      removed.push(k);
+      delete raw[k];
+    }
+  }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(raw)); } catch {}
+  // Wipe the IDB entries that backed those `:img:` markers via the proper
+  // imageStore API (which knows how to upgrade-create the object store).
+  // CRITICAL: we previously called indexedDB.open() directly here without
+  // an onupgradeneeded handler, which silently created the database with
+  // NO object store on first run. Subsequent imgPut calls then threw
+  // "object stores was not found" inside persistImage's try/catch, so
+  // uploads never made it to IDB and disappeared on reload. Routing
+  // through imgDelete fixes that.
+  Promise.all(
+    removed.filter((k) => k.startsWith('p2:img:')).map((k) =>
+      imgDelete(k).catch((e) => console.warn('[VN p02-reset] imgDelete failed', k, e))
+    )
+  ).catch(() => {});
+  try { localStorage.setItem(P02_RESET_FLAG, '1'); } catch {}
+  // eslint-disable-next-line no-console
+  console.log(`[VN p02-reset] one-shot wiped ${removed.length} P02 image entries:`, removed);
+}
+applyP02OneShotReset();
+
 const cache = load();
 
 export function useEditStore() {
@@ -43,26 +93,34 @@ export function useEditStore() {
   };
 }
 
-// Surgical reset: clears ONLY the image edits for a single page. Other
-// pages' images, all text edits, transforms etc. stay intact. Used by the
-// "Pxx 画像のみリセット" button so the user can recover a single page's
-// image state without losing everything else they've edited.
+// Surgical reset: clears the image edits for a single page AND any text
+// edits on textboxes whose innerHTML contains image wraps (those are the
+// poison source — saved unsplash <img> tags re-injected on every reload).
+// Other pages' images and clean text edits stay intact.
+const POISONED_TEXTBOX_IDS_BY_PAGE = {
+  2: ['fabric-obj-6-1775605004066'],
+};
 export async function resetPageImages(pageId) {
   const prefixes = [
     `p${pageId}:img:`,
     `p${pageId}:imgxform:`,
     `p${pageId}:imgfit:`,
   ];
+  const poisonedTextIds = POISONED_TEXTBOX_IDS_BY_PAGE[pageId] || [];
+  const poisonedTextKeys = new Set();
+  for (const tid of poisonedTextIds) {
+    poisonedTextKeys.add(`p${pageId}:text:${tid}`);
+    poisonedTextKeys.add(`p${pageId}:ja:text:${tid}`);
+    poisonedTextKeys.add(`p${pageId}:en:text:${tid}`);
+  }
   const removed = [];
   for (const k of Object.keys(cache)) {
-    if (prefixes.some((p) => k.startsWith(p))) {
+    if (prefixes.some((p) => k.startsWith(p)) || poisonedTextKeys.has(k)) {
       removed.push(k);
       delete cache[k];
     }
   }
   save(cache);
-  // Delete the matching IDB entries (only those whose key was an
-  // `:img:` localStorage entry — the others don't have IDB payloads).
   await Promise.all(
     removed
       .filter((k) => k.startsWith(`p${pageId}:img:`))

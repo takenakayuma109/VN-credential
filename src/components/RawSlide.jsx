@@ -355,6 +355,18 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       const applied = []; // diagnostic: which edits actually landed
       const skipped = []; // diagnostic: edits whose target element wasn't found
 
+      // CRITICAL guard: never restore innerHTML on a textbox that contains
+      // an image wrap. Doing so would clobber every <img> child including
+      // the bake'd user-uploaded src, reverting page02's drone/robot/AI
+      // cards to whatever <img src="..."> was captured at edit-time
+      // (often the original sample URL). Such poisoned text edits are also
+      // proactively deleted from the store so they can't keep firing on
+      // every reload — Grammarly was observed firing onblur on those
+      // contentEditable wrappers in earlier builds, freezing the legacy
+      // sample images into localStorage.
+      const isPoisonedTextRestore = (el) =>
+        el && el.querySelector && el.querySelector('[data-object-type="image"]');
+
       // Pass 1: legacy → JA (back-compat for edits saved before lang toggle existed)
       if (lang === 'ja') {
         Object.keys(allEdits).forEach((k) => {
@@ -362,6 +374,11 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           const objId = k.slice(legacyPrefix.length);
           const el = doc.getElementById(objId);
           if (el) {
+            if (isPoisonedTextRestore(el)) {
+              skipped.push({ k, objId, reason: 'contains-image-wrap (poisoned, removing)' });
+              try { storeRef.current.remove(k); } catch {}
+              return;
+            }
             el.innerHTML = allEdits[k];
             applied.push({ k, objId, source: 'legacy' });
           } else {
@@ -375,6 +392,11 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         const objId = k.slice(langScopedPrefix.length);
         const el = doc.getElementById(objId);
         if (el) {
+          if (isPoisonedTextRestore(el)) {
+            skipped.push({ k, objId, reason: 'contains-image-wrap (poisoned, removing)' });
+            try { storeRef.current.remove(k); } catch {}
+            return;
+          }
           el.innerHTML = allEdits[k];
           applied.push({ k, objId, source: 'lang-scoped' });
         } else {
