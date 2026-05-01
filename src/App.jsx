@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { toJpeg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 import RawSlide, { SLIDE_W, SLIDE_H } from './components/RawSlide';
-import { useEditStore, exportEdits, importEdits } from './utils/editStore';
+import { useEditStore, exportEdits, importEdits, resetPageImages } from './utils/editStore';
 
 // Parcel bundles each HTML file as a string at build time.
 import p01 from 'bundle-text:./genspark_pages/page01.txt';
@@ -304,6 +304,22 @@ export default function App() {
     }
   };
 
+  const handleResetP02Images = async () => {
+    const ok = confirm(
+      lang === 'ja'
+        ? 'P02 の3枚の画像編集（ドローン/ロボット/AI）だけをリセットします。\n他のページ・テキスト編集は影響しません。\n続行しますか？'
+        : 'Reset only the 3 P02 images (drone / robot / AI).\nOther pages and text edits are NOT affected.\nProceed?'
+    );
+    if (!ok) return;
+    try {
+      const removed = await resetPageImages(2);
+      console.log('[VN reset-p02] removed:', removed);
+      window.location.reload();
+    } catch (err) {
+      alert((lang === 'ja' ? 'リセット失敗: ' : 'Reset failed: ') + (err?.message || err));
+    }
+  };
+
   const handleExportEdits = async () => {
     try {
       const json = await exportEdits();
@@ -393,7 +409,7 @@ export default function App() {
             {variant === 'board' ? 'BOARD' : 'MEMBER'}
           </span>
           <span style={{ fontSize: 10, color: '#64748b', marginLeft: 8, fontFamily: 'monospace' }}>
-            v2026.05.01-final
+            v2026.05.01-p02reset
           </span>
         </div>
         <div className="controls">
@@ -441,6 +457,13 @@ export default function App() {
               </button>
               <button onClick={handleResetEdits} title={lang === 'ja' ? '編集をリセット' : 'Reset edits'}>
                 <span className="btn-icon">↺</span><span className="btn-label">Reset</span>
+              </button>
+              <button
+                onClick={handleResetP02Images}
+                title={lang === 'ja' ? 'P02の3枚の画像のみリセット（他は保持）' : 'Reset only P02 images (preserves everything else)'}
+                style={{ background: 'rgba(239,68,68,0.15)', borderColor: 'rgba(239,68,68,0.5)' }}
+              >
+                <span className="btn-icon">🗑</span><span className="btn-label">{lang === 'ja' ? 'P02画像' : 'P02 imgs'}</span>
               </button>
               <button className={editMode ? 'active' : ''} onClick={() => setEditMode((v) => !v)} title={lang === 'ja' ? '編集モード切替' : 'Toggle edit mode'}>
                 <span className="btn-icon">{editMode ? '✓' : '✎'}</span>

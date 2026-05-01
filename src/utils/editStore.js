@@ -5,7 +5,7 @@
 // of every edit (text + images), letting the user move work between domains
 // (e.g. localhost ↔ Vercel) where browser storage is otherwise scoped.
 
-import { imgGet, imgPut, imgClear, IDB_MARKER } from './imageStore';
+import { imgGet, imgPut, imgDelete, imgClear, IDB_MARKER } from './imageStore';
 
 const STORAGE_KEY = 'visionoid_credential_edits_v1';
 
@@ -41,6 +41,34 @@ export function useEditStore() {
       imgClear().catch(() => {});
     },
   };
+}
+
+// Surgical reset: clears ONLY the image edits for a single page. Other
+// pages' images, all text edits, transforms etc. stay intact. Used by the
+// "Pxx 画像のみリセット" button so the user can recover a single page's
+// image state without losing everything else they've edited.
+export async function resetPageImages(pageId) {
+  const prefixes = [
+    `p${pageId}:img:`,
+    `p${pageId}:imgxform:`,
+    `p${pageId}:imgfit:`,
+  ];
+  const removed = [];
+  for (const k of Object.keys(cache)) {
+    if (prefixes.some((p) => k.startsWith(p))) {
+      removed.push(k);
+      delete cache[k];
+    }
+  }
+  save(cache);
+  // Delete the matching IDB entries (only those whose key was an
+  // `:img:` localStorage entry — the others don't have IDB payloads).
+  await Promise.all(
+    removed
+      .filter((k) => k.startsWith(`p${pageId}:img:`))
+      .map((k) => imgDelete(k).catch(() => {}))
+  );
+  return removed;
 }
 
 // Export a portable JSON snapshot. Resolves IndexedDB-backed image data URLs
