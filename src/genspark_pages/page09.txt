@@ -1,277 +1,249 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="ja" style=""><head>
+<html data-theme="light" lang="ja">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Visionoid - Physical AI &amp; Robotics</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<title>Visionoid - ANIMAROID PROJECT / VISIONOID FOX</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: 'Noto Sans JP', sans-serif;
-            background: #f8fafc;
-        }
-        .slide-container {
-            position: relative;
-            width: 1280px;
-            height: 720px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 48px;
-            background: rgba(255,255,255,0.95);
-            border-bottom: 1px solid rgba(226,232,240,0.8);
-            z-index: 100;
-            box-sizing: border-box;
-        }
-        .logo { display: flex; align-items: center; gap: 8px; }
-        .logo-text, .logo-separator, .logo-sub, .page-num { font-family: 'Inter', sans-serif; }
-        .logo-text { font-size: 13px; font-weight: 700; color: #1a202c; }
-        .logo-separator { color: #94a3b8; font-size: 13px; font-weight: 400; margin: 0 4px; }
-        .logo-sub { font-size: 11px; color: #64748b; font-weight: 400; }
-        .page-num { font-size: 12px; color: #64748b; }
-        .content {
-            position: absolute;
-            top: 40px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 20px 60px 20px 60px;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-        }
-        .title-section { margin-bottom: 16px; }
-        .main-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            white-space: nowrap;
-        }
-        .main-title .en {
-            font-size: 16px;
-            color: #64748b;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-        }
-        .main-content { display: flex; gap: 24px; flex: 1; min-height: 0; }
-        .column { flex: 1; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-        }
-        .card-image-container {
-            position: relative;
-            width: 100%;
-            height: 240px;
-            overflow: hidden;
-            background: #f1f5f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .card-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .card-content { padding: 16px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
-        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .card-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            flex: 0 0 auto;
-        }
-        .icon-fox { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
-        .icon-sushi { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-        .card-title { font-size: 18px; font-weight: 700; color: #0f172a; line-height: 1.25; }
-        .card-subtitle { font-size: 13px; color: #64748b; font-weight: 500; }
-        .card-desc { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 10px; flex: 0 0 auto; }
-        .features-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
-        .feature-tag {
-            background: #f1f5f9;
-            color: #475569;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .feature-tag i { color: #0ea5e9; }
-        .gold-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 30px;
-            box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            z-index: 10;
-            white-space: nowrap;
-            max-width: 90%;
-        }
-        .details-grid {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 6px 12px;
-            margin-top: auto;
-            background: #f8fafc;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        .detail-label { color: #64748b; font-size: 12px; font-weight: 500; }
-        .detail-value { color: #0f172a; font-size: 12px; font-weight: 600; }
-        .highlight { color: #0ea5e9; }
-        .bottom-message {
-            margin-top: 16px;
-            background: white;
-            border-radius: 12px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            flex: 0 0 auto;
-        }
-        .message-icon { font-size: 20px; color: #0ea5e9; }
-        .message-text { font-size: 15px; font-weight: 700; color: #0f172a; letter-spacing: 0.02em; }
-        .message-sub { font-size: 13px; color: #64748b; font-weight: 500; font-family: 'Inter', sans-serif; margin-left: 6px; }
-        .fox-label {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 500;
-        }
-    </style>
+  body { margin:0; padding:0; overflow:hidden; font-family:'Noto Sans JP',sans-serif; background:#f8fafc; }
+  .slide-container {
+    position:relative; width:1280px; height:720px; overflow:hidden;
+    background: linear-gradient(135deg,#f8fafc 0%, #eef2f7 100%);
+    display:flex; flex-direction:column;
+  }
+  .header {
+    position:absolute; top:0; left:0; right:0; height:24px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 48px; background:rgba(255,255,255,0.95);
+    border-bottom:1px solid rgba(226,232,240,0.8); z-index:100; box-sizing:border-box;
+  }
+  .logo { display:flex; align-items:center; gap:8px; }
+  .logo-text,.logo-separator,.logo-sub,.page-num { font-family:'Inter',sans-serif; }
+  .logo-text { font-size:13px; font-weight:700; color:#1a202c; }
+  .logo-separator { color:#94a3b8; font-size:13px; font-weight:400; margin:0 4px; }
+  .logo-sub { font-size:11px; color:#64748b; font-weight:400; }
+  .page-num { font-size:12px; color:#64748b; }
+
+  .content {
+    position:absolute; top:24px; left:0; right:0; bottom:0;
+    padding:14px 40px 14px 40px;
+    display:flex; flex-direction:column; box-sizing:border-box;
+  }
+
+  .title-section { margin-bottom:8px; }
+  .main-title {
+    font-size:24px; font-weight:700; color:#0f172a;
+    margin:0; display:flex; align-items:center; gap:12px; white-space:nowrap;
+  }
+  .main-title .en { font-size:14px; color:#64748b; font-weight:500; font-family:'Inter',sans-serif; }
+
+  .lead {
+    font-size:11.5px; color:#334155; line-height:1.55;
+    background:#ffffff; border:1px solid #e2e8f0; border-radius:10px;
+    padding:8px 14px; margin-bottom:10px;
+  }
+  .lead b { color:#0f172a; font-weight:700; }
+  .lead .accent { color:#0ea5e9; font-weight:700; }
+
+  .grid {
+    display:grid; grid-template-columns: 700px 1fr; gap:14px;
+    flex:1; min-height:0;
+  }
+
+  /* LEFT: Hero column */
+  .hero-card {
+    background:#0a1628; border-radius:14px; overflow:hidden;
+    border:1px solid #1e293b; display:flex; flex-direction:column;
+    box-shadow:0 6px 18px rgba(2,6,23,0.18); height:100%;
+  }
+  .hero-image-wrap {
+    position:relative; width:100%; height:300px; overflow:hidden;
+    background:#0a1628; display:flex; justify-content:center; align-items:center;
+  }
+  .hero-image-wrap img { width:100%; height:100%; object-fit:cover; }
+  .hero-tag {
+    position:absolute; top:12px; left:12px;
+    background:rgba(255,255,255,0.95); color:#0a1628;
+    padding:5px 11px; border-radius:20px; font-size:10px; font-weight:800; letter-spacing:0.04em;
+    display:flex; align-items:center; gap:6px;
+    box-shadow:0 4px 12px rgba(2,6,23,0.25);
+  }
+  .hero-tag i { color:#0ea5e9; }
+  .hero-caption-overlay {
+    position:absolute; left:12px; right:12px; bottom:12px;
+    background:linear-gradient(180deg, rgba(10,22,40,0) 0%, rgba(10,22,40,0.78) 100%);
+    color:#fff; padding:10px 14px 10px; border-radius:10px;
+    font-size:13px; font-weight:700; line-height:1.45; letter-spacing:0.01em;
+    backdrop-filter: blur(2px);
+  }
+  .hero-body {
+    padding:12px 16px 14px; color:#e2e8f0;
+    display:flex; flex-direction:column; gap:8px; flex:1;
+  }
+  .hero-title-row { display:flex; align-items:center; gap:10px; }
+  .hero-title-row .badge {
+    background:linear-gradient(135deg,#0ea5e9 0%, #0284c7 100%);
+    color:#fff; font-size:10px; font-weight:800; letter-spacing:0.06em;
+    padding:3px 8px; border-radius:4px;
+  }
+  .hero-title { font-size:17px; font-weight:800; color:#fff; line-height:1.2; }
+  .hero-subtitle { font-size:11px; color:#94a3b8; font-weight:500; }
+  .hero-desc { font-size:11px; color:#cbd5e1; line-height:1.55; }
+  .hero-desc b { color:#fff; font-weight:700; }
+  .hero-desc .hl { color:#38bdf8; font-weight:700; }
+
+  .events-row { display:flex; gap:8px; margin-top:auto; }
+  .event-pill {
+    flex:1; background:rgba(14,165,233,0.10); border:1px solid rgba(14,165,233,0.35);
+    color:#e0f2fe; border-radius:8px; padding:7px 10px;
+    display:flex; flex-direction:column; gap:1px;
+  }
+  .event-pill .name { font-size:10.5px; font-weight:800; color:#fff; letter-spacing:0.02em; }
+  .event-pill .meta { font-size:9px; color:#7dd3fc; font-weight:600; font-family:'Inter',sans-serif; }
+  .event-pill i { color:#38bdf8; margin-right:4px; }
+
+  /* RIGHT: WBS column */
+  .wbs-col { display:flex; flex-direction:column; gap:8px; min-height:0; }
+  .wbs-header {
+    display:flex; align-items:center; gap:9px;
+    background:linear-gradient(135deg,#1e293b 0%, #0f172a 100%);
+    color:#fff; padding:8px 12px; border-radius:10px;
+    border:1px solid #1e293b;
+  }
+  .wbs-mark {
+    width:32px; height:32px; border-radius:8px;
+    background:linear-gradient(135deg,#dc2626 0%, #991b1b 100%);
+    color:#fff; font-weight:900; font-size:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter',sans-serif; letter-spacing:-0.02em; flex:0 0 auto;
+  }
+  .wbs-title { font-size:13px; font-weight:800; line-height:1.15; }
+  .wbs-sub { font-size:9.5px; color:#94a3b8; font-weight:500; font-family:'Inter',sans-serif; }
+  .wbs-thumbs { display:flex; flex-direction:column; gap:7px; flex:1; min-height:0; }
+  .wbs-thumb {
+    position:relative; width:100%; height:103px; overflow:hidden;
+    border-radius:9px; border:1px solid #cbd5e1;
+    background:#0a1628; box-shadow:0 2px 6px rgba(2,6,23,0.10);
+  }
+  .wbs-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .wbs-cap {
+    position:absolute; left:8px; bottom:7px;
+    background:rgba(10,22,40,0.82); color:#fff;
+    padding:3px 8px; border-radius:5px;
+    font-size:9.5px; font-weight:700; letter-spacing:0.02em;
+  }
+  .wbs-cap i { color:#fb7185; margin-right:4px; }
+
+  /* bottom message */
+  .bottom-message {
+    margin-top:10px; background:#fff; border:1px solid #e2e8f0;
+    border-radius:10px; padding:9px 18px;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.02); flex:0 0 auto;
+  }
+  .message-icon { font-size:16px; color:#0ea5e9; }
+  .message-text { font-size:13px; font-weight:800; color:#0f172a; letter-spacing:0.01em; }
+  .message-sub { font-size:11px; color:#64748b; font-weight:500; font-family:'Inter',sans-serif; margin-left:6px; }
+</style>
 </head>
-<body style="user-select: none;">
+<body style="user-select:none;">
 <div class="slide-container">
+
 <div class="header">
-<div class="logo">
-<div class="logo-text">VISIONOID</div>
-<div class="logo-separator">|</div>
-<div class="logo-sub">Visionary Technology Company</div>
-</div>
-<div class="page-num">09 / 26</div>
-</div>
-<div class="content">
-<div class="title-section">
-<div class="main-title">
-                    ロボットが話し、歌い、踊る時代が始まった
-                    <span class="en">— Physical AI &amp; Robotics</span>
-</div>
-</div>
-<div class="main-content">
-<div class="column">
-<div class="card">
-<div class="card-image-container">
-<img alt="Animanoid FOX" class="card-image" src="genspark_images/4Dzi7yj5.png" data-height-listener-added="true">
-<div class="fox-label">Animanoid FOX Live Performance</div>
-</div>
-<div class="card-content">
-<div class="card-header">
-<div class="card-icon icon-fox">
-<i class="fas fa-robot"></i>
-</div>
-<div>
-<div class="card-title">フィジカルAI『アニマノイドFOX』</div>
-<div class="card-subtitle">トーク＆ミュージカルショー演出</div>
-</div>
-</div>
-<div class="card-desc">
-                                エンターテインメント領域で独自開発されたパフォーマンスロボット。高度なトーク機能とミュージカルショー演出を実装し、観客との双方向インタラクションを実現するフィジカルAI×IPのエンタメロボット。
-                            </div>
-<div class="features-list">
-<div class="feature-tag"><i class="fas fa-comments"></i> 自然なトーク</div>
-<div class="feature-tag"><i class="fas fa-music"></i> ミュージカル演出</div>
-<div class="feature-tag"><i class="fas fa-users"></i> 観客参加型</div>
-<div class="feature-tag"><i class="fas fa-brain"></i> AI搭載</div>
-</div>
-</div>
-</div>
-</div>
-<div class="column">
-<div class="card">
-<div class="gold-badge">
-<i class="fas fa-check-circle"></i> 出演確定 2026年4月27日〜29日 ＠東京ビッグサイト
-                        </div>
-<div class="card-image-container">
-<img alt="SusHi Tech Tokyo 2026" class="card-image" src="genspark_images/63dab2e8b524451d692d037979bc7cb7.webp" data-height-listener-added="true">
-</div>
-<div class="card-content">
-<div class="card-header">
-<div class="card-icon icon-sushi">
-<i class="fas fa-calendar-star"></i>
-</div>
-<div>
-<div class="card-title">SusHi Tech TOKYO 2026</div>
-<div class="card-subtitle">アジア最大級のイノベーションカンファレンス</div>
-</div>
-</div>
-<div class="card-desc">
-                                東京都が主催する国際的なテクノロジーイベントに、VISIONOIDのフィジカルAI技術が選出。「フィジカルAI×IP」枠として、ロボットFOXによる次世代のエンターテインメント体験を世界に発信します。
-                            </div>
-<div class="details-grid">
-<div class="detail-label">開催日程</div>
-<div class="detail-value">2026年4月27日(月) 〜 29日(水)</div>
-<div class="detail-label">会場</div>
-<div class="detail-value">東京ビッグサイト</div>
-<div class="detail-label">出演枠</div>
-<div class="detail-value highlight">フィジカルAI × IPショーケース</div>
-<div class="detail-label">規模</div>
-<div class="detail-value">来場者数 50,000人規模（想定）</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="bottom-message">
-<i class="fas fa-arrow-right message-icon"></i>
-<div class="message-text">エンタメ起点のロボティクス開発 <i class="fas fa-long-arrow-alt-right" style="margin: 0 8px; color: #94a3b8;"></i> 社会実装</div>
-<div class="message-sub">From Stage to Field</div>
-</div>
-</div>
+  <div class="logo">
+    <div class="logo-text">VISIONOID</div>
+    <div class="logo-separator">|</div>
+    <div class="logo-sub">Visionary Technology Company</div>
+  </div>
+  <div class="page-num">09 / 26</div>
 </div>
 
-</body></html>
+<div class="content">
+
+  <div class="title-section">
+    <div class="main-title">
+      ロボットが話し、歌い、踊る時代が始まった
+      <span class="en">— ANIMAROID PROJECT × VISIONOID FOX</span>
+    </div>
+  </div>
+
+  <div class="lead">
+    VISIONOIDがこれまで培ってきた<b>ドローン／ロボティクス／映像制作／イベント演出／測量／デジタルツイン／AIエージェント</b>を統合し、<span class="accent">次世代キャラクター × 体験プラットフォーム『ANIMAROID PROJECT』</span>を始動。生成AI時代における<b>キャラクターIP × フィジカルロボティクス × 産業応用</b>を貫く新事業戦略です。
+  </div>
+
+  <div class="grid">
+
+    <!-- LEFT: Hero / FOX -->
+    <div class="hero-card">
+      <div class="hero-image-wrap" data-object-type="image" id="p09-img-fox">
+        <img alt="VISIONOID FOX at JAPAN MOBILITY SHOW 2025" class="card-image" src="genspark_images/fox_hero_jms.jpg">
+        <div class="hero-tag"><i class="fas fa-star"></i> JAPAN MOBILITY SHOW 2025</div>
+        <div class="hero-caption-overlay">
+          会話し、ステージに立ち、現実世界に登場する“実在するアニマロイドIP”。
+        </div>
+      </div>
+      <div class="hero-body">
+        <div class="hero-title-row">
+          <span class="badge">FIRST IP</span>
+          <div>
+            <div class="hero-title">VISIONOID FOX</div>
+            <div class="hero-subtitle">ANIMAROID PROJECT 第一弾 / Physical AI × Character IP</div>
+          </div>
+        </div>
+        <div class="hero-desc">
+          <b>FOX は単なるマスコットではない。</b>
+          AIとロボティクスによって現実世界に登場し、<span class="hl">人と会話し</span>、<span class="hl">イベントに出演し</span>、ユーザーや企業の創作活動にも展開可能な
+          <b>“実在するアニマロイドIP”</b>。エンタメ起点で開発し、観光・教育・小売・産業領域へと社会実装を拡張していきます。
+        </div>
+        <div class="events-row">
+          <div class="event-pill">
+            <div class="name"><i class="fas fa-flag-checkered"></i>JAPAN MOBILITY SHOW 2025</div>
+            <div class="meta">出演実績 / Tokyo Big Sight</div>
+          </div>
+          <div class="event-pill">
+            <div class="name"><i class="fas fa-calendar-star"></i>SusHi Tech TOKYO 2026</div>
+            <div class="meta">出演確定 / 2026.04.27–29</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: WBS coverage -->
+    <div class="wbs-col">
+      <div class="wbs-header">
+        <div class="wbs-mark">WBS</div>
+        <div>
+          <div class="wbs-title">テレビ東京『ワールドビジネスサテライト』にて取材</div>
+          <div class="wbs-sub">人と話せるキャラクターロボット「フォックス」として全国放送で紹介</div>
+        </div>
+      </div>
+      <div class="wbs-thumbs">
+        <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs1">
+          <img alt="WBS — 人と話すことができるキャラクターロボット" src="genspark_images/wbs_fox_talk.webp">
+          <div class="wbs-cap"><i class="fas fa-circle"></i>「人と話すことができるキャラクターロボット」</div>
+        </div>
+        <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs2">
+          <img alt="WBS — 22世紀から来たんだ" src="genspark_images/wbs_fox_22century.webp">
+          <div class="wbs-cap"><i class="fas fa-circle"></i>「22世紀から来たんだ」— FOX 自己紹介</div>
+        </div>
+        <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs3">
+          <img alt="WBS — スマートロボット" src="genspark_images/wbs_fox_smartrobot.webp">
+          <div class="wbs-cap"><i class="fas fa-circle"></i>「スマートロボット」として街を歩く</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-message">
+    <i class="fas fa-arrow-right message-icon"></i>
+    <div class="message-text">エンタメ起点のロボティクス開発<i class="fas fa-long-arrow-alt-right" style="margin:0 8px; color:#94a3b8;"></i>キャラクターIP × フィジカル × 産業応用へ</div>
+    <div class="message-sub">From Stage to Field</div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
