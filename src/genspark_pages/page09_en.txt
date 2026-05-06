@@ -216,15 +216,12 @@
       <div class="wbs-thumbs">
         <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs1">
           <img alt="WBS — A character robot that can talk with people" src="genspark_images/wbs_fox_talk.webp">
-          <div class="wbs-cap"><i class="fas fa-circle"></i>"A character robot that can talk with people"</div>
         </div>
         <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs2">
           <img alt="WBS — I came from the 22nd century" src="genspark_images/wbs_fox_22century.webp">
-          <div class="wbs-cap"><i class="fas fa-circle"></i>"I came from the 22nd century" — FOX self-intro</div>
         </div>
         <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs3">
           <img alt="WBS — Smart Robot" src="genspark_images/wbs_fox_smartrobot.webp">
-          <div class="wbs-cap"><i class="fas fa-circle"></i>Walking the streets as a "Smart Robot"</div>
         </div>
       </div>
     </div>

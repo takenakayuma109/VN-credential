@@ -222,15 +222,12 @@
       <div class="wbs-thumbs">
         <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs1">
           <img alt="WBS — 人と話すことができるキャラクターロボット" src="genspark_images/wbs_fox_talk.webp">
-          <div class="wbs-cap"><i class="fas fa-circle"></i>「人と話すことができるキャラクターロボット」</div>
         </div>
         <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs2">
           <img alt="WBS — 22世紀から来たんだ" src="genspark_images/wbs_fox_22century.webp">
-          <div class="wbs-cap"><i class="fas fa-circle"></i>「22世紀から来たんだ」— FOX 自己紹介</div>
         </div>
         <div class="wbs-thumb" data-object-type="image" id="p09-img-wbs3">
           <img alt="WBS — スマートロボット" src="genspark_images/wbs_fox_smartrobot.webp">
-          <div class="wbs-cap"><i class="fas fa-circle"></i>「スマートロボット」として街を歩く</div>
         </div>
       </div>
     </div>
