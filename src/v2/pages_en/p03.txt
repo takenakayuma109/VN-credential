@@ -28,23 +28,23 @@
     <div class="dm"><span class="n">02</span>
       <div class="nm"><div class="xl">Public Safety</div><div class="jp">Disaster Prevention</div></div>
       <div class="info"><div class="d">Grasp the current state of an entire area within five minutes.</div><div class="it"><span>SENRIGAN</span><span>Digital Disaster Resilience</span><span>Disaster Drone Support</span></div></div>
-      <span class="ref">P.11</span></div>
+      <span class="ref">P.12</span></div>
     <div class="dm"><span class="n">03</span>
       <div class="nm"><div class="xl">Industrial</div><div class="jp">Drone Operations</div></div>
       <div class="info"><div class="it"><span>Exterior Wall Diagnostics, Infrastructure Inspection &amp; Surveying</span></div></div>
-      <span class="ref">P.13</span></div>
+      <span class="ref">P.14</span></div>
     <div class="dm"><span class="n">04</span>
       <div class="nm"><div class="xl">Advertising</div><div class="jp">Outdoor Media</div></div>
       <div class="info"><div class="d">The sky becomes an advertising medium. A new Sky OOH format.</div><div class="it"><span>Drone Show Advertising Operations</span></div></div>
-      <span class="ref">P.15</span></div>
+      <span class="ref">P.16</span></div>
     <div class="dm"><span class="n">05</span>
       <div class="nm"><div class="xl">Education</div><div class="jp">Talent Development</div></div>
       <div class="info"><div class="it"><span>National Drone License School</span></div></div>
-      <span class="ref">P.16</span></div>
+      <span class="ref">P.17</span></div>
     <div class="dm"><span class="n">06</span>
       <div class="nm"><div class="xl">IP <span class="sig">×</span> R&amp;D</div><div class="jp">Robotics Development</div></div>
       <div class="info"><div class="d">Physical AI meets original IP. At the forefront of developing characters that move.</div><div class="it"><span>ANIMAROID "FOX"</span></div></div>
-      <span class="ref">P.17</span></div>
+      <span class="ref">P.18</span></div>
     <div class="dm"><span class="n">07</span>
       <div class="nm"><div class="xl">Consulting</div><div class="jp">Business Design</div></div>
       <div class="info"><div class="it"><span>Drone Business Development &amp; Support</span></div></div>

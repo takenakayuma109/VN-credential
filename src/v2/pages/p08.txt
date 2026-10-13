@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja"><head><meta charset="utf-8"><title>東京ディズニーシー｜Fantasy Springs 開業前夜イベント</title><!--V2HEAD-->
 <style>
-.hero{left:0;top:0;width:1280px;height:462px}
-.hero .scrim-l{width:62%;background:linear-gradient(to right,rgba(11,11,12,.9) 30%,rgba(11,11,12,0))}
-.hero img{object-position:50% 0%}
-.scope{position:absolute;left:48px;bottom:274px;z-index:3}
-.scope .t{margin-top:6px;font-size:19px;font-weight:700;line-height:1.5;color:#fff}
-.ttl{position:absolute;left:48px;top:64px;width:470px;z-index:6}
+.hero{left:0;top:0;width:1280px;height:720px}
+.hero img{width:1280px;height:720px;object-fit:contain}
+.hero .scrim-t{height:120px}
+.hero .scrim-l{width:560px;background:linear-gradient(to right,rgba(11,11,12,.72) 0%,rgba(11,11,12,.45) 55%,rgba(11,11,12,0))}
+.ttl{position:absolute;left:48px;top:78px;width:440px;z-index:6}
 .ttl .title{font-size:36px;line-height:1.2}
-.ttl .meta{margin-top:12px;display:flex;align-items:center;gap:18px}
+.ttl .meta{margin-top:14px;display:flex;align-items:center;gap:18px}
 .ttl .meta b{font-size:19px;font-weight:700}
 .ttl .chip{line-height:1.45}
-.figs{position:absolute;left:48px;right:48px;top:468px;height:114px;display:grid;grid-template-columns:repeat(4,1fr);column-gap:28px}
-.cell{padding:10px 0 0;border-top:1px solid var(--line)}
-.cell .fig{font-size:54px;white-space:nowrap}
-.cell .fig small{font-size:.4em}
-.cell .k{margin-top:6px;font-size:16px;font-weight:500;line-height:1.4;color:var(--txt)}
-.cell .k b{color:#fff;font-weight:900}
-.tv{height:134px;top:586px}
-.tv .cap{left:14px;bottom:8px}
-.tv .scrim-b{height:50%}
-.t1{left:0;width:426px}.t2{left:427px;width:426px}.t3{left:854px;width:426px}
+.scope{margin-top:22px;padding-top:14px;border-top:1px solid rgba(255,255,255,.35)}
+.scope .t{margin-top:6px;font-size:19px;font-weight:700;line-height:1.5;color:#fff}
 </style></head>
 <body><div class="slide">
   <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">08 / 26</span></header>
@@ -29,15 +20,6 @@
     <h1 class="title">東京ディズニーシー｜<br>Fantasy Springs<br>開業前夜イベント</h1>
     <div class="meta"><span class="chip">CONFIDENTIAL —<br>社内実績掲載のみ可 / SNS・Web公開不可</span></div>
     <div class="meta" style="margin-top:8px"><b>株式会社オリエンタルランド</b><span class="lbl">2024.06.05</span></div>
+    <div class="scope"><div class="lbl" style="color:rgba(255,255,255,.75)">Responsible Scope</div><div class="t">ドローンショー企画 / 制作 / 実行<br>+ 空撮 + 安全管理</div></div>
   </div>
-  <div class="scope"><div class="lbl" style="color:rgba(255,255,255,.75)">Responsible Scope</div><div class="t">ドローンショー企画 / 制作 / 実行<br>+ 空撮 + 安全管理</div></div>
-  <div class="figs">
-    <div class="cell"><div class="fig sig">1<small>位</small></div><div class="k"><b>X(Twitter)トレンド &amp; YouTube急上昇</b> 同時1位</div></div>
-    <div class="cell"><div class="fig">10<small>万+</small></div><div class="k"><b>いいね</b>（RT 3.5万件超）</div></div>
-    <div class="cell"><div class="fig">40<small>万人</small></div><div class="k"><b>生配信 同時接続</b>（2日で120万回再生）</div></div>
-    <div class="cell"><div class="fig"><small style="font-size:.62em;margin-left:0">全キー局</small></div><div class="k"><b>ニュース報道</b></div></div>
-  </div>
-<div class="ph tv t1" data-object-type="image" id="v2p08-img-tv1"><img src="genspark_images/KgrDwROk.png" alt=""><div class="scrim-b"></div><div class="cap">TV NEWS 01</div></div>
-  <div class="ph tv t2" data-object-type="image" id="v2p08-img-tv2"><img src="genspark_images/L0IzGu5t.png" alt=""><div class="scrim-b"></div><div class="cap">TV NEWS 02</div></div>
-  <div class="ph tv t3" data-object-type="image" id="v2p08-img-tv3"><img src="genspark_images/QS0txr12.png" alt=""><div class="scrim-b"></div><div class="cap">TV NEWS 03</div></div>
 </div></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>東京ディズニーシー｜反響</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;right:48px;top:64px}
+.top .title{font-size:48px;line-height:1;margin-top:10px}
+.figs{position:absolute;left:48px;right:48px;top:184px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px}
+.cell{padding:14px 0 0;border-top:1px solid var(--line);position:relative}
+.cell.hot{border-top-color:transparent}
+.cell.hot::before{content:"";position:absolute;left:0;top:-1px;width:56px;height:4px;background:var(--signal)}
+.cell .fig{font-size:100px;white-space:nowrap}
+.cell .fig small{font-size:.4em}
+.cell .k{margin-top:12px;font-size:17px;font-weight:500;line-height:1.45;color:var(--txt)}
+.cell .k b{display:block;color:#fff;font-weight:900;font-size:19px}
+.cap{position:absolute;left:48px;right:48px;top:410px;display:flex;align-items:center;gap:16px}
+.cap i{flex:1;height:1px;background:var(--line)}
+.tv{top:446px;width:384px}
+.tv img{width:384px;height:auto;object-fit:contain}
+.t1{left:48px}.t2{left:448px}.t3{left:848px}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">09 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title">東京ディズニーシー｜反響</h1></div>
+  <div class="figs">
+    <div class="cell hot"><div class="fig sig">1<small>位</small></div><div class="k"><b>X(Twitter)トレンド &amp;<br>YouTube急上昇</b>同時1位</div></div>
+    <div class="cell"><div class="fig">10<small>万+</small></div><div class="k"><b>いいね</b>RT 3.5万件超</div></div>
+    <div class="cell"><div class="fig">40<small>万人</small></div><div class="k"><b>生配信 同時接続</b>2日で120万回再生</div></div>
+    <div class="cell"><div class="fig"><small style="font-size:.6em;margin-left:0">全キー局</small></div><div class="k"><b>ニュース報道</b></div></div>
+  </div>
+  <div class="cap lbl"><span>TV NEWS — 全キー局で報道</span><i></i></div>
+  <div class="ph tv t1" data-object-type="image" id="v2p31-img-tv1"><img src="genspark_images/KgrDwROk.png" alt=""></div>
+  <div class="ph tv t2" data-object-type="image" id="v2p31-img-tv2"><img src="genspark_images/L0IzGu5t.png" alt=""></div>
+  <div class="ph tv t3" data-object-type="image" id="v2p31-img-tv3"><img src="genspark_images/QS0txr12.png" alt=""></div>
+</div></body></html>

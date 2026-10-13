@@ -93,6 +93,7 @@ import v2p27 from 'bundle-text:./v2/pages/p27.txt';
 import v2p28 from 'bundle-text:./v2/pages/p28.txt';
 import v2p29 from 'bundle-text:./v2/pages/p29.txt';
 import v2p30 from 'bundle-text:./v2/pages/p30.txt';
+import v2p31 from 'bundle-text:./v2/pages/p31.txt';
 import v2p01en from 'bundle-text:./v2/pages_en/p01.txt';
 import v2p02en from 'bundle-text:./v2/pages_en/p02.txt';
 import v2p03en from 'bundle-text:./v2/pages_en/p03.txt';
@@ -123,6 +124,7 @@ import v2p27en from 'bundle-text:./v2/pages_en/p27.txt';
 import v2p28en from 'bundle-text:./v2/pages_en/p28.txt';
 import v2p29en from 'bundle-text:./v2/pages_en/p29.txt';
 import v2p30en from 'bundle-text:./v2/pages_en/p30.txt';
+import v2p31en from 'bundle-text:./v2/pages_en/p31.txt';
 
 // Indexed by pageId - 1. A page's id is permanent: edits live in the store
 // under `p<id>:...`, so ids must never shift when the deck is reordered.
@@ -146,10 +148,12 @@ const FINANCE_IDS = new Set([23, 24, 25]);
 // keys (`p<id>:...`). Display order = file order.
 const V2_HEAD_INJECT = V2HEAD + '<style>' + V2CSS + '</style>';
 const injectV2 = (html) => html.replace('<!--V2HEAD-->', () => V2_HEAD_INJECT);
-const V2_PAGES_JA = [v2p01,v2p02,v2p03,v2p04,v2p05,v2p06,v2p07,v2p08,v2p09,v2p10,v2p11,v2p12,v2p13,v2p14,v2p15,v2p16,v2p17,v2p18,v2p19,v2p20,v2p21,v2p22,v2p23,v2p24,v2p25,v2p26,v2p27,v2p28,v2p29,v2p30].map(injectV2);
+const V2_PAGES_JA = [v2p01,v2p02,v2p03,v2p04,v2p05,v2p06,v2p07,v2p08,v2p09,v2p10,v2p11,v2p12,v2p13,v2p14,v2p15,v2p16,v2p17,v2p18,v2p19,v2p20,v2p21,v2p22,v2p23,v2p24,v2p25,v2p26,v2p27,v2p28,v2p29,v2p30,v2p31].map(injectV2);
 // English Ver.2 pages, same order as V2_PAGES_JA.
-const V2_PAGES_EN = [v2p01en,v2p02en,v2p03en,v2p04en,v2p05en,v2p06en,v2p07en,v2p08en,v2p09en,v2p10en,v2p11en,v2p12en,v2p13en,v2p14en,v2p15en,v2p16en,v2p17en,v2p18en,v2p19en,v2p20en,v2p21en,v2p22en,v2p23en,v2p24en,v2p25en,v2p26en,v2p27en,v2p28en,v2p29en,v2p30en].map(injectV2);
+const V2_PAGES_EN = [v2p01en,v2p02en,v2p03en,v2p04en,v2p05en,v2p06en,v2p07en,v2p08en,v2p09en,v2p10en,v2p11en,v2p12en,v2p13en,v2p14en,v2p15en,v2p16en,v2p17en,v2p18en,v2p19en,v2p20en,v2p21en,v2p22en,v2p23en,v2p24en,v2p25en,v2p26en,v2p27en,v2p28en,v2p29en,v2p30en,v2p31en].map(injectV2);
 const V2_ID_BASE = 100;
+// Ver.2 display order by index+1 (page id = 100 + n). p31 (DisneySea results) sits right after p08.
+const V2_PAGE_ORDER = [1,2,3,4,5,6,7,8,31,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 // Finance pages of Ver.2 (hidden in Member variant).
 const V2_FINANCE_IDS = new Set([125, 126, 127]);
 
@@ -188,7 +192,7 @@ export default function App() {
     let financeIds;
     if (ver === '2') {
       const SOURCE = (lang === 'en' && V2_PAGES_EN) ? V2_PAGES_EN : V2_PAGES_JA;
-      all = SOURCE.map((html, i) => ({ html, pageId: V2_ID_BASE + i + 1 }));
+      all = V2_PAGE_ORDER.map((n) => ({ html: SOURCE[n - 1], pageId: V2_ID_BASE + n }));
       financeIds = V2_FINANCE_IDS;
     } else {
       const SOURCE = lang === 'en' ? PAGES_EN : PAGES_JA;
@@ -483,7 +487,7 @@ export default function App() {
               <button
                 className={variant === 'board' ? 'active' : ''}
                 onClick={() => switchVariant('board')}
-                title={lang === 'ja' ? `Board: Financeページ有り (${ver === '2' ? 'P.25-27' : 'P.23-25'})` : `Board: includes Finance pages (${ver === '2' ? 'P.25–27' : 'P.23–25'})`}
+                title={lang === 'ja' ? `Board: Financeページ有り (${ver === '2' ? 'P.26-28' : 'P.23-25'})` : `Board: includes Finance pages (${ver === '2' ? 'P.26–28' : 'P.23–25'})`}
               >
                 Board
               </button>

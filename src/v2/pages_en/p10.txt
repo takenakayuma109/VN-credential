@@ -5,8 +5,8 @@
 .ttl{position:absolute;left:48px;top:62px;width:570px}
 .ttl .title{font-size:44px;line-height:1.1;margin-top:12px}
 .ttl .lead{margin-top:10px;font-size:20px;font-weight:700;line-height:1.5}
-.cases{position:absolute;left:48px;top:232px;width:570px}
-.case{display:flex;gap:16px;padding:10px 0;border-top:1px solid var(--pline);height:122px}
+.cases{position:absolute;left:48px;top:240px;width:570px}
+.case{display:flex;gap:16px;padding:12px 0;border-top:1px solid var(--pline);height:136px}
 .case .fg{width:204px;flex:none;font-size:54px;white-space:nowrap}
 .case .fg small{font-size:.38em}
 .case .fg em{display:block;font-family:var(--f-m);font-style:normal;font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--pmute);margin-top:8px}
@@ -14,9 +14,8 @@
 .case .b{margin-top:4px;font-size:16px;font-weight:500;line-height:1.5;color:var(--ptxt)}
 .s1{left:640px;top:0;width:640px;height:359px}
 .s2{left:640px;top:361px;width:640px;height:359px}
-.k1{left:0;top:482px;width:212px;height:238px}
-.k2{left:214px;top:482px;width:212px;height:238px}
-.k3{left:428px;top:482px;width:212px;height:238px}
+.k1{left:0;top:523px;width:285px;height:197px}
+.k2{left:287px;top:523px;width:353px;height:197px}
 .tag2{position:absolute;left:656px;z-index:6}
 </style></head>
 <body><div class="slide paper">
@@ -34,6 +33,5 @@
   <div class="ph s2" data-object-type="image" id="v2p10-img-s2"><img src="genspark_images/vn_kiryu-midori.png" alt=""></div>
   <div class="ph k1" data-object-type="image" id="v2p10-img-a"><img src="genspark_images/0AJPx7pX.png" alt=""></div>
   <div class="ph k2" data-object-type="image" id="v2p10-img-b"><img src="genspark_images/nLeFIQKv.png" alt=""></div>
-  <div class="ph k3" data-object-type="image" id="v2p10-img-c"><img src="genspark_images/3hE6fyyz.png" alt=""></div>
   <div style="position:absolute;left:640px;top:0;width:640px;height:110px;pointer-events:none;background:linear-gradient(to bottom,rgba(11,11,12,.6),rgba(11,11,12,0));z-index:5"></div>
 </div></body></html>

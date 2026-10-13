@@ -27,7 +27,7 @@
       <tr><td>無人航空機操縦士 事務所コード</td><td class="mono">T0707001</td></tr>
       <tr><td>Email</td><td class="mono">info@visionoid.co</td></tr>
       <tr><td>Web</td><td class="mono">www.visionoid.co</td></tr>
-      <tr><td>拠点</td><td>本社（東京都江戸川区）・日比谷オフィス・<br>湘南オフィス・所沢スタジオ <span class="go">→ P.29</span></td></tr>
+      <tr><td>拠点</td><td>本社（東京都江戸川区）・日比谷オフィス・<br>湘南オフィス・所沢スタジオ</td></tr>
     </table>
   </div>
   <div class="ph photo" data-object-type="image" id="v2p28-img-a"><img src="https://www.visionoid.co/locations/kasai-interior.webp" alt="">

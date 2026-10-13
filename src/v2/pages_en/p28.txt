@@ -27,7 +27,7 @@
       <tr><td>UAS Office Code</td><td class="mono">T0707001</td></tr>
       <tr><td>Email</td><td class="mono">info@visionoid.co</td></tr>
       <tr><td>Web</td><td class="mono">www.visionoid.co</td></tr>
-      <tr><td>Locations</td><td>HQ (Edogawa-ku, Tokyo), Hibiya Office,<br>Shonan Office, Tokorozawa Studio <span class="go">→ P.29</span></td></tr>
+      <tr><td>Locations</td><td>HQ (Edogawa-ku, Tokyo), Hibiya Office,<br>Shonan Office, Tokorozawa Studio</td></tr>
     </table>
   </div>
   <div class="ph photo" data-object-type="image" id="v2p28-img-a"><img src="https://www.visionoid.co/locations/kasai-interior.webp" alt="">

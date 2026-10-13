@@ -44,12 +44,20 @@ const CHECK = `<script>
       out.push('CLIPPED text box <'+el.tagName.toLowerCase()+' class="'+el.className+'">: '+el.textContent.trim().slice(0,30));
   });
   document.querySelectorAll('img').forEach(im=>{ if(!im.complete||im.naturalWidth===0) out.push('BROKEN IMG '+im.getAttribute('src')); });
+  if(location.hash==='#crop') document.querySelectorAll('img').forEach(im=>{
+    if(!im.naturalWidth) return; const cs=getComputedStyle(im); if(cs.objectFit!=='cover') return;
+    const b=im.getBoundingClientRect(); if(!b.width||!b.height) return;
+    const ia=im.naturalWidth/im.naturalHeight, ba=b.width/b.height;
+    const keep=Math.min(ia,ba)/Math.max(ia,ba); const loss=Math.round((1-keep)*100);
+    if(loss>=20) out.push('CROP '+loss+'% '+(ia>ba?'(sides)':'(top/bottom)')+' '+im.getAttribute('src').split('/').pop());
+  });
   const pre=document.createElement('pre'); pre.id='qa'; pre.style.display='none';
   pre.textContent='QA_BEGIN\\n'+(out.length?out.join('\\n'):'OK')+'\\nQA_END'; document.body.appendChild(pre);
 })();
 </script>`;
 
-const args = process.argv.slice(2).filter((a) => a !== '--en');
+const CROP = process.argv.includes('--crop');
+const args = process.argv.slice(2).filter((a) => a !== '--en' && a !== '--crop');
 const files = (args.length ? args.map((a) => a.replace(/\.txt$/, '') + '.txt') : fs.readdirSync(PAGES).filter((f) => /^p\d+\.txt$/.test(f)).sort());
 let bad = 0;
 for (const f of files) {
@@ -62,7 +70,7 @@ for (const f of files) {
   const flags = ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', '--window-size=1280,720', '--virtual-time-budget=9000'];
   try {
     execFileSync(CHROME, [...flags, `--screenshot=${path.join(OUT, name + '.png')}`, `file://${tmp}`], { stdio: 'ignore', timeout: 60000 });
-    const dom = execFileSync(CHROME, [...flags, '--dump-dom', `file://${tmp}`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 60000, maxBuffer: 64 * 1024 * 1024 });
+    const dom = execFileSync(CHROME, [...flags, '--dump-dom', `file://${tmp}${CROP ? '#crop' : ''}`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 60000, maxBuffer: 64 * 1024 * 1024 });
     const m = dom.match(/QA_BEGIN\n([\s\S]*?)\nQA_END/);
     const rep = m ? m[1] : 'QA script did not finish';
     if (rep !== 'OK') bad++;

@@ -1,53 +1,39 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Locations</title><!--V2HEAD-->
 <style>
-.loc{position:absolute;top:0;width:319px;height:720px}
-.loc .ph{left:0;top:0;width:100%;height:440px}
-.loc .ph .scrim-b{height:55%}
-.loc .no{position:absolute;left:20px;bottom:16px;z-index:3}
-.loc .no .fig{font-size:56px;color:#fff;line-height:1}
-.loc .no .fig i{font-style:normal;color:var(--signal)}
-.loc .no .lbl{display:block;margin-top:8px;color:#fff}
-.loc .tx{position:absolute;left:20px;right:16px;top:458px}
-.loc .nm{font-size:26px;font-weight:900;line-height:1.2}
-.loc .en{display:block;margin-top:6px;font-family:var(--f-m);font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--signal);text-transform:uppercase}
-.loc .role{margin-top:10px;font-size:17px;font-weight:700;line-height:1.45;color:var(--white)}
-.loc .adr{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:16px;font-weight:500;line-height:1.55;color:var(--txt);white-space:nowrap}
-.vl{position:absolute;top:0;width:1px;height:720px;background:var(--ink);z-index:6}
-.ttl{position:absolute;left:48px;top:76px;z-index:20}
-.ttl .title{margin-top:10px;color:#fff}
+/* collage: every box == its photo's natural aspect (kasai .75 / hibiya 2.0 / shonan 1.333 / tokorozawa 2.667) -> nothing cropped */
+.ttl{position:absolute;left:48px;top:62px}
+.ph.ka{left:48px;top:118px;width:275px;height:366px}
+.ph.hi{left:327px;top:118px;width:413px;height:206px}
+.ph.to{left:327px;top:328px;width:413px;height:156px}
+.ph.sh{left:744px;top:118px;width:488px;height:366px}
+.cty{position:absolute;left:8px;bottom:8px;z-index:3;display:flex;align-items:center;gap:8px;padding:2px 10px 2px 2px;background:rgba(11,11,12,.62);
+  font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.06em;color:#fff;text-transform:uppercase;white-space:nowrap}
+.cty b{padding:1px 7px;background:var(--signal);font-weight:700}
+.tx{position:absolute;top:500px;width:284px}
+.tx .nm{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:900;line-height:1.2;white-space:nowrap}
+.tx .chip{flex:none}
+.tx .en{display:block;margin-top:4px;font-family:var(--f-m);font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--signal);text-transform:uppercase}
+.tx .role{margin-top:8px;font-size:17px;font-weight:700;line-height:1.45;color:var(--white)}
+.tx .adr{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:16px;font-weight:500;line-height:1.5;color:var(--txt);white-space:nowrap}
 </style></head>
 <body><div class="slide">
-  <div class="loc" style="left:0">
-    <div class="ph" data-object-type="image" id="v2p29-img-a"><img src="https://www.visionoid.co/locations/kasai-exterior.webp" alt=""><div class="scrim-b"></div>
-    <div class="no"><div class="fig">01</div><span class="lbl">KASAI, TOKYO</span></div></div>
-    <div class="tx"><div class="nm">Headquarters</div><span class="en">Corporate Management</span>
-      <div class="role">Executive &amp; business operations /<br>Edogawa Ward disaster agreement</div>
-      <div class="adr">BPR Place Kasai 6F–7F<br>5-41-10 Nakakasai, Edogawa-ku<br>Tokyo 134-0083</div></div>
-  </div>
-  <div class="loc" style="left:320px">
-    <div class="ph" data-object-type="image" id="v2p29-img-b"><img src="https://www.visionoid.co/locations/hibiya-exterior.webp" alt=""><div class="scrim-b"></div>
-    <div class="no"><div class="fig">02</div><span class="lbl">HIBIYA, TOKYO</span></div></div>
-    <div class="tx"><div class="nm">Hibiya Office</div><span class="en">Business Meetings</span>
-      <div class="role">Client visits &amp; reception</div>
-      <div class="adr">Dai-ichi Life Hibiya First 12F<br>1-13-2 Yurakucho, Chiyoda-ku<br>Tokyo 100-0006</div></div>
-  </div>
-  <div class="loc" style="left:640px">
-    <div class="ph" data-object-type="image" id="v2p29-img-c"><img src="https://www.visionoid.co/locations/shonan-terrace.webp" alt=""><div class="scrim-b"></div>
-    <div class="no"><div class="fig">03</div><span class="lbl">SHONAN, KANAGAWA</span></div></div>
-    <div class="tx"><div class="nm">Shonan Office</div><span class="en">Tourism &amp; Public Safety</span>
-      <div class="role">Enoshima tourism /<br>Fujisawa City disaster response</div>
-      <div class="adr">Lead Sea Katase-Enoshima Bldg. 3F<br>2-18-21 Katasekaigan, Fujisawa<br>Kanagawa 251-0035</div></div>
-  </div>
-  <div class="loc" style="left:960px;width:320px">
-    <div class="ph" data-object-type="image" id="v2p29-img-d"><img src="https://www.visionoid.co/locations/tokorozawa-studio.webp" alt=""><div class="scrim-b"></div>
-    <div class="no"><div class="fig">04</div><span class="lbl">TOKOROZAWA, SAITAMA</span></div></div>
-    <div class="tx"><div class="nm">Tokorozawa Studio</div><span class="en">Technology &amp; Operations</span>
-      <div class="role">R&amp;D /<br>Equipment maintenance &amp; storage</div>
-      <div class="adr">2-477-1 Hayashi, Tokorozawa<br>Saitama 359-1167</div></div>
-  </div>
-  <div class="vl" style="left:319px"></div><div class="vl" style="left:639px"></div><div class="vl" style="left:959px"></div>
-  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>Company</span><span class="pg">29 / 26</span></header>
-  <div class="scrim-t" style="z-index:10;height:200px"></div>
-  <div class="ttl"><span class="bar"></span><h1 class="title m">Locations</h1></div>
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Company</span><span class="pg">29 / 26</span></header>
+  <div class="ttl"><h1 class="title s">Locations</h1></div>
+  <div class="ph ka" data-object-type="image" id="v2p29-img-a"><img src="https://www.visionoid.co/locations/kasai-exterior.webp" alt=""><div class="cty"><b>01</b>KASAI, TOKYO</div></div>
+  <div class="ph hi" data-object-type="image" id="v2p29-img-b"><img src="https://www.visionoid.co/locations/hibiya-exterior.webp" alt=""><div class="cty"><b>02</b>HIBIYA, TOKYO</div></div>
+  <div class="ph sh" data-object-type="image" id="v2p29-img-c"><img src="https://www.visionoid.co/locations/shonan-terrace.webp" alt=""><div class="cty"><b>03</b>SHONAN, KANAGAWA</div></div>
+  <div class="ph to" data-object-type="image" id="v2p29-img-d"><img src="https://www.visionoid.co/locations/tokorozawa-studio.webp" alt=""><div class="cty"><b>04</b>TOKOROZAWA, SAITAMA</div></div>
+  <div class="tx" style="left:48px"><div class="nm"><span class="chip">01</span>Headquarters</div><span class="en">Corporate Management</span>
+    <div class="role">Executive &amp; business operations /<br>Edogawa Ward disaster agreement</div>
+    <div class="adr">BPR Place Kasai 6F–7F<br>5-41-10 Nakakasai, Edogawa-ku<br>Tokyo 134-0083</div></div>
+  <div class="tx" style="left:348px"><div class="nm"><span class="chip">02</span>Hibiya Office</div><span class="en">Business Meetings</span>
+    <div class="role">Client visits &amp; reception</div>
+    <div class="adr">Dai-ichi Life Hibiya First 12F<br>1-13-2 Yurakucho, Chiyoda-ku<br>Tokyo 100-0006</div></div>
+  <div class="tx" style="left:648px"><div class="nm"><span class="chip">03</span>Shonan Office</div><span class="en">Tourism &amp; Public Safety</span>
+    <div class="role">Enoshima tourism /<br>Fujisawa City disaster response</div>
+    <div class="adr">Lead Sea Katase-Enoshima Bldg. 3F<br>2-18-21 Katasekaigan, Fujisawa<br>Kanagawa 251-0035</div></div>
+  <div class="tx" style="left:948px"><div class="nm"><span class="chip">04</span>Tokorozawa Studio</div><span class="en">Technology &amp; Operations</span>
+    <div class="role">R&amp;D /<br>Equipment maintenance &amp; storage</div>
+    <div class="adr">2-477-1 Hayashi, Tokorozawa<br>Saitama 359-1167</div></div>
 </div></body></html>

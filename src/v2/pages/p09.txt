@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="col c2">
-    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/vn_enoshima26_15.jpg" alt=""><div class="scrim-b"></div><div class="fg fig">62,000<small>人来場</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/vn_enoshima26_08.jpg" alt=""><div class="scrim-b"></div><div class="fg fig">62,000<small>人来場</small></div></div>
     <div class="info">
       <div class="d"><span class="lbl">2026.08.18</span></div>
       <div class="t">江の島海水浴場<br>スペシャルドローンショー<span>『三女神と祈りの鐘』</span></div>
