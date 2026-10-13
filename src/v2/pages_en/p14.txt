@@ -28,7 +28,7 @@
 .rec .rs{font-size:16px;font-weight:500;line-height:1.4;color:var(--ptxt)}
 </style></head>
 <body><div class="slide paper">
-  <div class="ph hero mono-img" data-object-type="image" id="v2p14-img-a"><img src="genspark_images/A2DXMxt4.png" alt="">
+  <div class="ph hero" data-object-type="image" id="v2p14-img-a"><img src="genspark_images/A2DXMxt4.png" alt="">
     <div class="scrim-t"></div><div class="scrim-b"></div><div class="cap">The World Games 2022, Japan National Team</div></div>
   <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>03 / Industrial</span><span class="pg" style="color:var(--pmute);text-shadow:none">14 / 26</span></header>
   <div class="ppl">

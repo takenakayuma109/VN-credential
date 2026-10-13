@@ -3,19 +3,20 @@
 <style>
 .ttl{position:absolute;left:48px;top:64px}
 .ttl .title{font-size:56px;line-height:1}
-.col{position:absolute;top:152px;width:426px;height:568px}
+.col{position:absolute;top:148px;width:426px;height:572px}
 .c1{left:0}.c2{left:427px}.c3{left:854px}
-.col .ph{left:0;top:0;width:426px;height:336px}
+.col .ph{left:0;top:0;width:426px;height:260px}
 .col .scrim-b{height:75%}
-.col .fg{position:absolute;left:20px;bottom:14px;z-index:3;font-size:72px;white-space:nowrap;color:#fff}
+.col .fg{position:absolute;left:20px;bottom:14px;z-index:3;font-size:64px;white-space:nowrap;color:#fff}
 .col .fg small{font-size:.36em;margin-left:.1em}
 .col .fg.s{font-size:92px}
-.info{position:absolute;left:24px;right:24px;top:362px}
+.info{position:absolute;left:24px;right:24px;top:278px}
 .info .d{display:flex;align-items:center;gap:12px}
-.info .t{margin-top:12px;font-size:26px;font-weight:900;line-height:1.3}
+.info .t{margin-top:8px;font-size:26px;font-weight:900;line-height:1.3}
 .info .t span{display:block;font-size:20px;font-weight:700;color:var(--txt);margin-top:2px}
-.info .b{margin-top:12px;font-size:17px;font-weight:500;line-height:1.7;color:var(--txt)}
-.vl{position:absolute;top:362px;bottom:36px;width:1px;background:var(--line)}
+.info .b{margin-top:8px;font-size:17px;font-weight:500;line-height:1.6;color:var(--txt)}
+.info .cr{margin-top:10px;font-size:15px;font-weight:500;line-height:1.5;color:var(--mute)}
+.vl{position:absolute;top:426px;bottom:36px;width:1px;background:var(--line)}
 </style></head>
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">09 / 26</span></header>
@@ -29,20 +30,21 @@
     </div>
   </div>
   <div class="col c2">
-    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/utBoPTD3.png" alt="" style="object-position:50% 58%"><div class="scrim-b"></div><div class="fg fig">35,000<small>人来場</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/vn_enoshima26_15.jpg" alt=""><div class="scrim-b"></div><div class="fg fig">62,000<small>人来場</small></div></div>
     <div class="info">
-      <div class="d"><span class="lbl">2025.08.19</span></div>
-      <div class="t">江の島マイアミビーチショー<br>「天女と龍神」</div>
-      <div class="b">江の島伝説を夜空に再現。地域文化と最新テクノロジーが融合したナイトスペクタクル。</div>
+      <div class="d"><span class="lbl">2026.08.18</span></div>
+      <div class="t">江の島海水浴場<br>スペシャルドローンショー<span>『三女神と祈りの鐘』</span></div>
+      <div class="b">江の島に語り継がれる「三女神」の神話をストーリーに、能登・熊本の復興を願うメッセージも夜空に描いた。</div>
     </div>
   </div>
   <div class="col c3">
-    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/cd57c29e6f073835491a07f105b7cb24.webp" alt=""><div class="scrim-b"></div><div class="fg fig">500<small>機＋花火</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/vn_minions_drone-james.webp" alt=""><div class="scrim-b"></div><div class="fg fig">800<small>機＋花火300発</small></div></div>
     <div class="info">
-      <div class="d"><span class="lbl">2026.01.01-03</span></div>
-      <div class="t">seven x seven 石垣<br>New Year Drone Show</div>
-      <div class="b">ラグジュアリーリゾートの夜空を彩る、ドローンと花火の共演による祝祭空間。</div>
+      <div class="d"><span class="lbl">2026.08.08</span></div>
+      <div class="t">神宮外苑花火大会<span>『ミニオンズ＆モンスターズ』スペシャルコラボドローンショー</span></div>
+      <div class="b">神宮外苑花火大会史上初のドローンショー。上空約120mの巨大3Dジェームズが東京の夜空に登場。</div>
+      <div class="cr">主催 東宝東和／クリエイティブ 電通／制作・運航 VISIONOID</div>
     </div>
   </div>
-  <div class="vl" style="left:426px;top:514px"></div><div class="vl" style="left:853px;top:514px"></div>
+  <div class="vl" style="left:426px;top:426px"></div><div class="vl" style="left:853px;top:426px"></div>
 </div></body></html>

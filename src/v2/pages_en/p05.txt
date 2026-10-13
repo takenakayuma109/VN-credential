@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Leadership</title><!--V2HEAD-->
 <style>
-.top{position:absolute;left:48px;right:48px;top:66px}
-.top .title{font-size:54px;line-height:1;margin-top:10px}
-.team{position:absolute;left:48px;right:48px;top:156px;bottom:28px;display:grid;grid-template-columns:repeat(5,1fr);column-gap:16px}
-.p{border-top:1px solid var(--line);padding-top:16px;position:relative}
+.top{position:absolute;left:48px;right:48px;top:58px}
+.top .title{font-size:46px;line-height:1;margin-top:8px}
+.team{position:absolute;left:48px;right:48px;top:134px;bottom:20px;display:grid;grid-template-columns:repeat(5,1fr);column-gap:16px}
+.p{border-top:1px solid var(--line);padding-top:14px;position:relative}
 .p::before{content:"";position:absolute;left:0;top:-1px;width:40px;height:3px;background:var(--signal)}
-.p .ph{position:relative;width:224px;height:188px}
-.p .ph img{object-position:50% 22%}
-.p .nm{margin-top:14px;font-size:30px;font-weight:900;line-height:1.1;letter-spacing:.01em}
+.p .ph{position:relative;width:224px;height:240px}
+.p .ph img{object-position:50% 0%}
+.p .ph.fa img{object-position:91% 0%;transform:scale(1.1);transform-origin:50% 0}
+.p .ph.fb img{object-position:100% 0%;transform:scale(1.4);transform-origin:100% 0}
+.p .ph.fc img{object-position:56% 100%;transform:scale(1.12);transform-origin:50% 100%}
+.p .ph.fd img{object-position:12% 0%;transform:scale(1.4);transform-origin:50% 0}
+.p .ph.fe img{object-position:50% 40%}
+.p .nm{margin-top:12px;font-size:30px;font-weight:900;line-height:1.1;letter-spacing:.01em}
 .p .ro{margin-top:6px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--mute);white-space:nowrap}
 .p .rl span{display:inline-block}.p .rl b{font-weight:500;color:var(--mute);margin:0 3px}
-.p .rl{margin-top:12px;font-size:16px;font-weight:700;line-height:1.5;color:var(--signal)}
-.p .bio{margin-top:10px;font-size:16px;font-weight:500;line-height:1.62;color:var(--txt)}
+.p .rl{margin-top:8px;min-height:48px;font-size:16px;font-weight:700;line-height:1.5;color:var(--signal)}
+.p .bio{margin-top:6px;font-size:15px;font-weight:500;line-height:1.55;color:var(--txt)}
 </style></head>
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">05 / 26</span></header>
   <div class="top"><span class="bar"></span><h1 class="title">Leadership</h1></div>
   <div class="team">
-    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-a"><img src="genspark_images/face_takenaka.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fa" data-object-type="image" id="v2p05-img-a"><img src="genspark_images/1d71d2d22a80f5be7db9e9e07d328edb.webp" alt=""></div>
       <div class="nm">Yuma Takenaka</div><div class="ro"></div>
       <div class="rl"><span>Founder &amp; CEO<b>|</b></span><span>Producer</span></div>
       <p class="bio">Joined Dentsu Live in 2012 and produced Japan's largest drone show at Tokyo Motor Show 2019. Worked on the Tokyo 2020 Olympics Opening Ceremony. Founded VISIONOID in 2024 after a role at a NASDAQ-listed company.</p></div>
-    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-b"><img src="genspark_images/face_kamizeki_r.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fb" data-object-type="image" id="v2p05-img-b"><img src="genspark_images/991760199348ec4dec77f6985ee36c6b.webp" alt=""></div>
       <div class="nm">Ryuya Kamizeki</div><div class="ro"></div>
       <div class="rl"><span>Co-Founder<b>|</b></span><span>Director<b>|</b></span><span>Head of Technology</span></div>
       <p class="bio">Former head coach of Japan's national drone racing team. Technologist across drones, droids, video, audio and software. Frequent TV appearances, including The Tetsuwan DASH. Drone direction for DREAMS COME TRUE.</p></div>
-    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-c"><img src="genspark_images/face_adachi.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fc" data-object-type="image" id="v2p05-img-c"><img src="genspark_images/5bd46e3b3c1d7ec4042461f2dd95f9ab.webp" alt=""></div>
       <div class="nm">Matomi Adachi</div><div class="ro"></div>
       <div class="rl"><span>Executive Officer<b>|</b></span><span>Project Manager</span></div>
       <p class="bio">Project management specialist for Japan's leading large-scale events, including the Tokyo 2020 Olympics Opening Ceremony, YouTube Brandcast Japan, the Hermès "Avec Elle" exhibition and the Cygames exhibition.</p></div>
-    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-d"><img src="genspark_images/face_monzen.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fd" data-object-type="image" id="v2p05-img-d"><img src="genspark_images/e0cc1ed6cb72e48eaaa9beb9a39ee4ab.webp" alt=""></div>
       <div class="nm">Ryota Monzen</div><div class="ro"></div>
       <div class="rl"><span>Executive Officer<b>|</b></span><span>Chief Mechanic</span></div>
       <p class="bio">At 27, conceived, designed and developed "unika," Japan's only domestic drone-show aircraft. Joined JAPRADAR in 2017 as pilot and developer, then Drone Show Japan, and VISIONOID in 2024.</p></div>
-    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/face_ito.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fe" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/face_ito.jpg" alt=""></div>
       <div class="nm">Nobuyoshi Ito</div><div class="ro"></div>
       <div class="rl"><span>Executive Officer<b>|</b></span><span>Head of Sales Strategy</span></div>
       <p class="bio">Joined Daiko in 1992. Sales Division Director from 2016, leading total solutions for national clients. Three decades of winning the first account in each emerging market. Joined VISIONOID in 2024.</p></div>

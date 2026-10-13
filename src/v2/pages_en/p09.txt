@@ -3,19 +3,20 @@
 <style>
 .ttl{position:absolute;left:48px;top:64px}
 .ttl .title{font-size:56px;line-height:1}
-.col{position:absolute;top:152px;width:426px;height:568px}
+.col{position:absolute;top:148px;width:426px;height:572px}
 .c1{left:0}.c2{left:427px}.c3{left:854px}
-.col .ph{left:0;top:0;width:426px;height:336px}
+.col .ph{left:0;top:0;width:426px;height:260px}
 .col .scrim-b{height:75%}
-.col .fg{position:absolute;left:20px;bottom:14px;z-index:3;font-size:72px;white-space:nowrap;color:#fff}
+.col .fg{position:absolute;left:20px;bottom:14px;z-index:3;font-size:64px;white-space:nowrap;color:#fff}
 .col .fg small{font-size:.36em;margin-left:.1em}
 .col .fg.s{font-size:92px}
-.info{position:absolute;left:24px;right:24px;top:362px}
+.info{position:absolute;left:24px;right:24px;top:278px}
 .info .d{display:flex;align-items:center;gap:12px}
-.info .t{margin-top:12px;font-size:26px;font-weight:900;line-height:1.3}
+.info .t{margin-top:8px;font-size:26px;font-weight:900;line-height:1.3}
 .info .t span{display:block;font-size:20px;font-weight:700;color:var(--txt);margin-top:2px}
-.info .b{margin-top:12px;font-size:17px;font-weight:500;line-height:1.7;color:var(--txt)}
-.vl{position:absolute;top:362px;bottom:36px;width:1px;background:var(--line)}
+.info .b{margin-top:8px;font-size:17px;font-weight:500;line-height:1.6;color:var(--txt)}
+.info .cr{margin-top:10px;font-size:15px;font-weight:500;line-height:1.5;color:var(--mute)}
+.vl{position:absolute;top:426px;bottom:36px;width:1px;background:var(--line)}
 </style></head>
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">09 / 26</span></header>
@@ -29,20 +30,21 @@
     </div>
   </div>
   <div class="col c2">
-    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/utBoPTD3.png" alt="" style="object-position:50% 58%"><div class="scrim-b"></div><div class="fg fig">35,000<small>people</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/vn_enoshima26_15.jpg" alt=""><div class="scrim-b"></div><div class="fg fig">62,000<small>people</small></div></div>
     <div class="info">
-      <div class="d"><span class="lbl">2025.08.19</span></div>
-      <div class="t">Enoshima Miami Beach Show<br><span>“Celestial Maiden &amp; Dragon God”</span></div>
-      <div class="b">Bringing the Enoshima legend to the night sky, a spectacle fusing local culture with cutting-edge technology.</div>
+      <div class="d"><span class="lbl">2026.08.18</span></div>
+      <div class="t">Enoshima Beach<br>Special Drone Show<span>“Prayer Bell of the Three Goddesses”</span></div>
+      <div class="b">Told through the legend of Enoshima’s three goddesses, with messages for Noto and Kumamoto’s recovery drawn across the night sky.</div>
     </div>
   </div>
   <div class="col c3">
-    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/cd57c29e6f073835491a07f105b7cb24.webp" alt=""><div class="scrim-b"></div><div class="fg fig">500<small>drones + fireworks</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/vn_minions_drone-james.webp" alt=""><div class="scrim-b"></div><div class="fg fig">800<small>drones + 300 fireworks</small></div></div>
     <div class="info">
-      <div class="d"><span class="lbl">2026.01.01-03</span></div>
-      <div class="t">seven x seven Ishigaki<br>New Year Drone Show</div>
-      <div class="b">A festive spectacle where drones and fireworks light up the night sky over a luxury resort.</div>
+      <div class="d"><span class="lbl">2026.08.08</span></div>
+      <div class="t">Jingu Gaien Fireworks Festival<span>“Minions &amp; Monsters” Special Collaboration Drone Show</span></div>
+      <div class="b">The festival’s first-ever drone show: the giant 3D character James rose about 120 m above the Tokyo night sky.</div>
+      <div class="cr">Presented by Toho Towa / Creative: Dentsu / Production &amp; operation: VISIONOID</div>
     </div>
   </div>
-  <div class="vl" style="left:426px;top:514px"></div><div class="vl" style="left:853px;top:514px"></div>
+  <div class="vl" style="left:426px;top:426px"></div><div class="vl" style="left:853px;top:426px"></div>
 </div></body></html>

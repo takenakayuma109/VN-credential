@@ -24,7 +24,7 @@
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">07 / 26</span></header>
   <div class="ttl"><h1 class="title">ドローンショー事業</h1><span class="lbl">Recent Works / 06</span></div>
   <div class="mos">
-    <div class="ph r1 a" data-object-type="image" id="v2p07-img-a"><img src="genspark_images/2314f63a8202e86415bbb7f542ce75c7.webp" alt=""><div class="scrim-b"></div>
+    <div class="ph r1 a" data-object-type="image" id="v2p07-img-a"><img src="genspark_images/U2x8pQPF.png" alt=""><div class="scrim-b"></div>
       <div class="ov"><div class="d"><span>2024.06</span><span class="chip">非公開</span></div><div class="t">東京ディズニーシー</div><div class="s">Fantasy Springs 開業前夜ドローンショー</div></div></div>
     <div class="ph r1 b" data-object-type="image" id="v2p07-img-b"><img src="genspark_images/8bc88b7b7acd1d7f7ab2fc6533c43383.webp" alt=""><div class="scrim-b"></div>
       <div class="ov"><div class="d"><span>2025.09</span><span class="chip">非公開</span></div><div class="t">乃木坂46<br>真夏の全国ツアーファイナル</div><div class="s">@明治神宮野球場</div></div></div>

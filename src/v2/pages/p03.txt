@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja"><head><meta charset="utf-8"><title>事業領域</title><!--V2HEAD-->
 <style>
-.top{position:absolute;left:48px;right:48px;top:62px;display:flex;align-items:flex-end;justify-content:space-between}
+.top{position:absolute;left:48px;right:48px;top:58px}
 .top .title{font-size:50px;line-height:1}
-.top .cols{display:flex;gap:0;padding-bottom:6px}
-.idx{position:absolute;left:48px;right:48px;top:122px;bottom:18px;display:flex;flex-direction:column}
-.dm{flex:1 1 auto;padding:8px 0;display:grid;grid-template-columns:48px 366px 1fr 50px;align-items:center;border-top:1px solid var(--line);column-gap:8px}
+.idx{position:absolute;left:48px;right:48px;top:120px;bottom:24px;display:grid;grid-template-rows:repeat(7,1fr)}
+.dm{display:grid;grid-template-columns:32px 340px 1fr 48px;column-gap:14px;align-items:center;border-top:1px solid var(--line);min-height:0}
 .dm:last-child{border-bottom:1px solid var(--line)}
 .dm .n{font-family:var(--f-m);font-size:19px;font-weight:700;color:var(--signal)}
-.dm .nm .xl{font-size:32px;color:var(--white);white-space:nowrap}
-.dm .nm .jp{margin-top:6px;font-size:18px;font-weight:900;color:var(--white);letter-spacing:.02em}
-.dm .info .d{font-size:16px;font-weight:500;line-height:1.5;color:var(--txt);margin-bottom:5px}
-.dm .info .tags{display:flex;flex-wrap:wrap;gap:6px}
-.dm .info .tag{height:30px;padding:0 12px;font-family:var(--f-jp);font-weight:500;font-size:15px;letter-spacing:.01em}
+.dm .nm .xl{font-size:30px;color:var(--white);white-space:nowrap}
+.dm .nm .jp{margin-top:7px;font-size:17px;font-weight:900;line-height:1.2;color:var(--white);letter-spacing:.02em}
+.dm .info{display:flex;flex-direction:column;justify-content:center;gap:3px}
+.dm .info .d{font-size:17px;font-weight:500;line-height:1.4;color:var(--white)}
+.en-p .dm .info .d{text-wrap:balance}
+.dm .info .it{font-size:16px;font-weight:500;line-height:1.4;color:var(--mute)}
+.dm .info .it span{white-space:nowrap}
+.dm .info .it span:not(:last-child)::after{content:'／';color:rgba(247,246,242,.32);margin:0 9px}
 .dm .ref{font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--mute);text-align:right;letter-spacing:.06em}
 </style></head>
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">03 / 26</span></header>
-  <div class="top">
-    <h1 class="title">事業領域</h1>
-    <div class="cols"><span class="lbl">07 Domains / Service Items / Page</span></div>
-  </div>
-  <div class="reg" style="left:40px;top:114px"></div>
+  <div class="top"><h1 class="title">事業領域</h1></div>
   <div class="idx">
     <div class="dm"><span class="n">01</span>
       <div class="nm"><div class="xl">Entertainment</div><div class="jp">エンターテインメント</div></div>
-      <div class="info"><div class="d">ドローンショー・空撮・映像制作。最大数千機の編隊から国内最大級のイベント演出まで。</div>
-        <div class="tags"><span class="tag">ドローンショー</span><span class="tag">ドローン演出・機体開発</span><span class="tag">ドローン空撮・映像制作</span></div></div>
+      <div class="info"><div class="d">ドローンショー・空撮・映像制作。最大数千機の編隊から国内最大級のイベント演出まで。</div><div class="it"><span>ドローンショー</span><span>ドローン演出・機体開発</span><span>ドローン空撮・映像制作</span></div></div>
       <span class="ref">P.07</span></div>
     <div class="dm"><span class="n">02</span>
       <div class="nm"><div class="xl">Public Safety</div><div class="jp">防災・安全</div></div>
-      <div class="info"><div class="d">次世代防災情報統合プラットフォーム「SENRIGAN」。エリア全体の「今」を5分で把握する。</div>
-        <div class="tags"><span class="tag">次世代防災情報統合プラットフォーム「SENRIGAN」</span><span class="tag">デジタル防災レジリエンス事業</span><span class="tag">防災ドローン設備導入・支援</span></div></div>
+      <div class="info"><div class="d">次世代防災情報統合プラットフォーム「SENRIGAN」。エリア全体の「今」を5分で把握する。</div><div class="it"><span>SENRIGAN</span><span>デジタル防災レジリエンス事業</span><span>防災ドローン設備導入・支援</span></div></div>
       <span class="ref">P.11</span></div>
     <div class="dm"><span class="n">03</span>
       <div class="nm"><div class="xl">Industrial</div><div class="jp">産業ドローン事業</div></div>
-      <div class="info"><div class="tags"><span class="tag">外壁調査・インフラ点検・測量</span></div></div>
+      <div class="info"><div class="it"><span>外壁調査・インフラ点検・測量</span></div></div>
       <span class="ref">P.13</span></div>
     <div class="dm"><span class="n">04</span>
       <div class="nm"><div class="xl">Advertising</div><div class="jp">ドローン屋外広告事業</div></div>
-      <div class="info"><div class="d">空が広告メディアになる。新しい Sky OOH フォーマット。</div>
-        <div class="tags"><span class="tag">ドローンショー広告運用</span></div></div>
+      <div class="info"><div class="d">空が広告メディアになる。新しい Sky OOH フォーマット。</div><div class="it"><span>ドローンショー広告運用</span></div></div>
       <span class="ref">P.15</span></div>
     <div class="dm"><span class="n">05</span>
       <div class="nm"><div class="xl">Education</div><div class="jp">教育・人材育成</div></div>
-      <div class="info"><div class="tags"><span class="tag">ドローン国家資格スクール</span></div></div>
+      <div class="info"><div class="it"><span>ドローン国家資格スクール</span></div></div>
       <span class="ref">P.16</span></div>
     <div class="dm"><span class="n">06</span>
       <div class="nm"><div class="xl">IP <span class="sig">×</span> R&amp;D</div><div class="jp">ロボティクス・IP開発</div></div>
-      <div class="info"><div class="d">Physical AI × オリジナル IP。動くキャラクター開発の最前線。</div>
-        <div class="tags"><span class="tag">アニマロイド "FOX"</span></div></div>
+      <div class="info"><div class="d">Physical AI × オリジナル IP。動くキャラクター開発の最前線。</div><div class="it"><span>アニマロイド "FOX"</span></div></div>
       <span class="ref">P.17</span></div>
     <div class="dm"><span class="n">07</span>
       <div class="nm"><div class="xl">Consulting</div><div class="jp">事業設計・支援</div></div>
-      <div class="info"><div class="tags"><span class="tag">ドローン事業開発・支援</span></div></div>
+      <div class="info"><div class="it"><span>ドローン事業開発・支援</span></div></div>
       <span class="ref"></span></div>
   </div>
 </div></body></html>

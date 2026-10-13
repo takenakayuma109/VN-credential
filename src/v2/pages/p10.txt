@@ -2,34 +2,22 @@
 <html lang="ja"><head><meta charset="utf-8"><title>地域共創ドローンショー</title><!--V2HEAD-->
 <style>
 .hd .pg{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.6)}
-.ttl{position:absolute;left:48px;top:72px;width:560px}
-.ttl .title{font-size:48px;line-height:1.1;margin-top:14px}
-.ttl .lead{margin-top:16px;font-size:22px;font-weight:700;line-height:1.55}
-.cases{position:absolute;left:48px;top:288px;width:552px}
-.case{display:flex;gap:22px;padding:12px 0;border-top:1px solid var(--pline);height:150px}
-.case .fg{width:190px;flex:none;font-size:62px;white-space:nowrap}
-.case .fg small{font-size:.4em}
-.case .fg em{display:block;font-family:var(--f-m);font-style:normal;font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--pmute);margin-top:10px}
-.case .t{font-size:21px;font-weight:900;line-height:1.3}
-.case .b{margin-top:6px;font-size:16px;font-weight:500;line-height:1.6;color:var(--ptxt)}
-.p1{left:640px;top:0;width:380px;height:362px}
-.p2{left:1022px;top:0;width:258px;height:180px}
-.p3{left:1022px;top:182px;width:258px;height:180px}
-.panel{position:absolute;left:640px;top:364px;width:640px;height:356px;background:var(--ink);color:var(--white);padding:28px 48px 0 40px}
-.panel .hdl{display:flex;align-items:baseline;justify-content:space-between}
-.panel .hdl .lbl{color:var(--mute)}
-.panel .hdl .pc{font-size:26px;font-weight:900}
-.panel .hdl .pc b{color:var(--signal);font-family:var(--f-x);font-stretch:125%;font-size:34px;letter-spacing:-.02em}
-.pr{display:flex;align-items:baseline;justify-content:space-between;padding:8px 0 4px;border-top:1px solid var(--line)}
-.hdl{margin-bottom:16px}
-.pr .q{font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:34px;color:var(--mute)}
-.pr .q small{font-family:var(--f-jp);font-stretch:100%;font-size:.55em;margin-left:2px}
-.pr .fig{font-size:70px}
-.pr .fig small{font-size:.4em}
-.en3{position:absolute;left:48px;right:700px;bottom:0}
-.ena{position:absolute;left:48px;width:552px;top:608px;display:flex;gap:0}
-.ena div{flex:1;border-top:1px solid var(--pline);padding:10px 14px 0 0;font-size:17px;font-weight:700;line-height:1.45}
-.ena .n{display:block;font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal);margin-bottom:2px}
+.ttl{position:absolute;left:48px;top:62px;width:570px}
+.ttl .title{font-size:44px;line-height:1.1;margin-top:12px}
+.ttl .lead{margin-top:10px;font-size:20px;font-weight:700;line-height:1.5}
+.cases{position:absolute;left:48px;top:232px;width:570px}
+.case{display:flex;gap:16px;padding:10px 0;border-top:1px solid var(--pline);height:122px}
+.case .fg{width:158px;flex:none;font-size:54px;white-space:nowrap}
+.case .fg small{font-size:.38em}
+.case .fg em{display:block;font-family:var(--f-m);font-style:normal;font-size:15px;font-weight:500;letter-spacing:.08em;color:var(--pmute);margin-top:8px}
+.case .t{font-size:20px;font-weight:900;line-height:1.3}
+.case .b{margin-top:4px;font-size:16px;font-weight:500;line-height:1.5;color:var(--ptxt)}
+.s1{left:640px;top:0;width:640px;height:359px}
+.s2{left:640px;top:361px;width:640px;height:359px}
+.k1{left:0;top:482px;width:212px;height:238px}
+.k2{left:214px;top:482px;width:212px;height:238px}
+.k3{left:428px;top:482px;width:212px;height:238px}
+.tag2{position:absolute;left:656px;z-index:6}
 </style></head>
 <body><div class="slide paper">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">10 / 26</span></header>
@@ -42,19 +30,10 @@
     <div class="case"><div class="fg fig">200<small>機</small><em>2025.10</em></div><div><div class="t">桶川ハロウィンドローンショー</div><div class="b">子どもたちがワークショップで描いたハロウィンストーリーを、200機のドローンで夜空に完全再現。</div></div></div>
     <div class="case"><div class="fg fig">400<small>機</small><em>2025.07</em></div><div><div class="t">桐生JC関東大会</div><div class="b">AIを活用した子どもたちのワークショップを実施。自ら考えた演出が夜空に輝き、感動の声が上がった。</div></div></div>
   </div>
-  <div class="ena">
-    <div><span class="n">01</span>独自機体<br>リーススキーム</div>
-    <div><span class="n">02</span>生成AIによる<br>制作革新</div>
-    <div><span class="n">03</span>社内安全<br>運用システム</div>
-  </div>
-  <div class="ph p1" data-object-type="image" id="v2p10-img-a"><img src="genspark_images/0AJPx7pX.png" alt=""></div>
-  <div class="ph p2" data-object-type="image" id="v2p10-img-b"><img src="genspark_images/nLeFIQKv.png" alt=""></div>
-  <div class="ph p3" data-object-type="image" id="v2p10-img-c"><img src="genspark_images/3hE6fyyz.png" alt=""></div>
+  <div class="ph s1" data-object-type="image" id="v2p10-img-s1"><img src="genspark_images/vn_okegawa-skull-wide.png" alt=""></div>
+  <div class="ph s2" data-object-type="image" id="v2p10-img-s2"><img src="genspark_images/vn_kiryu-midori.png" alt=""></div>
+  <div class="ph k1" data-object-type="image" id="v2p10-img-a"><img src="genspark_images/0AJPx7pX.png" alt=""></div>
+  <div class="ph k2" data-object-type="image" id="v2p10-img-b"><img src="genspark_images/nLeFIQKv.png" alt=""></div>
+  <div class="ph k3" data-object-type="image" id="v2p10-img-c"><img src="genspark_images/3hE6fyyz.png" alt=""></div>
   <div style="position:absolute;left:640px;top:0;width:640px;height:110px;pointer-events:none;background:linear-gradient(to bottom,rgba(11,11,12,.6),rgba(11,11,12,0));z-index:5"></div>
-  <div class="panel">
-    <div class="hdl"><span class="lbl">料金体系</span><span class="pc">市場価格の約<b>60%</b></span></div>
-    <div class="pr"><span class="q">200<small>機</small></span><span class="fig">300<small>万円〜</small></span></div>
-    <div class="pr"><span class="q">300<small>機</small></span><span class="fig">500<small>万円〜</small></span></div>
-    <div class="pr"><span class="q">500<small>機</small></span><span class="fig">800<small>万円〜</small></span></div>
-  </div>
 </div></body></html>
