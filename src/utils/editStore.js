@@ -6,18 +6,55 @@
 // (e.g. localhost ↔ Vercel) where browser storage is otherwise scoped.
 
 import { imgGet, imgPut, imgDelete, imgClear, IDB_MARKER } from './imageStore';
+import PUBLISHED_EDITS from '../published_edits.json';
 
 const STORAGE_KEY = 'visionoid_credential_edits_v1';
 
-function load() {
+// In share view (`?share=1`) the recipient's browser has empty localStorage,
+// so user-edited images / text would otherwise fall back to the bundle's
+// original placeholders. Seed from `src/published_edits.json` instead — this
+// file holds the snapshot of edits the owner has decided to publish, written
+// at deploy time from an Export JSON. Image data URLs are inlined directly
+// (no IDB marker) since recipients have no IDB to back them.
+function isShareView() {
+  if (typeof window === 'undefined') return false;
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    return new URLSearchParams(window.location.search).get('share') === '1';
   } catch {
-    return {};
+    return false;
+  }
+}
+
+// Exported so other modules (RawSlide.bakeImageEdits) read the same snapshot
+// without re-parsing the JSON or duplicating the share-view detection.
+export { PUBLISHED_EDITS };
+export { isShareView };
+
+function load() {
+  // Share recipients always read from the published snapshot, never from
+  // localStorage. Their localStorage may be empty (most common) or polluted
+  // with their *own* unrelated edits; we want them to see exactly what the
+  // owner published.
+  if (isShareView()) {
+    return { ...PUBLISHED_EDITS };
+  }
+  try {
+    const local = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    // Fallback: if the owner hasn't started editing in this browser yet,
+    // seed from PUBLISHED_EDITS so they see (and can keep working on) the
+    // currently-published state.
+    if (Object.keys(local).length === 0) return { ...PUBLISHED_EDITS };
+    return local;
+  } catch {
+    return { ...PUBLISHED_EDITS };
   }
 }
 
 function save(data) {
+  // Share recipients are read-only — don't pollute their localStorage with
+  // the owner's published snapshot. If they later visit without `?share=1`
+  // we want their own browser to start clean.
+  if (isShareView()) return;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
@@ -69,7 +106,9 @@ function applyP02OneShotReset() {
   // eslint-disable-next-line no-console
   console.log(`[VN p02-reset] one-shot wiped ${removed.length} P02 image entries:`, removed);
 }
-applyP02OneShotReset();
+// Share recipients have nothing in storage to clean and we don't want to
+// touch their browser state at all.
+if (!isShareView()) applyP02OneShotReset();
 
 const cache = load();
 

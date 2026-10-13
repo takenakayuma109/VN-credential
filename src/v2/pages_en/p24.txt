@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Values | Five Beliefs</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;top:84px;display:flex;align-items:center;gap:20px}
+.top .title{line-height:1}
+.list{position:absolute;left:48px;right:48px;top:140px;bottom:30px;display:flex;flex-direction:column}
+.v{flex:1;display:flex;align-items:center;gap:0;border-top:1px solid var(--pline)}
+.v:last-child{border-bottom:1px solid var(--pline)}
+.v .fig{width:170px;font-size:84px;color:var(--ink)}
+.v .nm{width:470px;padding-right:24px}
+.v .nm .j{font-size:25px;font-weight:900;line-height:1.3;letter-spacing:-.005em;white-space:nowrap}
+.v .ds{flex:1;font-size:17px;font-weight:500;line-height:1.65;color:var(--ptxt)}
+.v.hot .fig{color:var(--signal)}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Values</span><span class="pg">24 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title s">Values | Five Beliefs</h1></div>
+  <div class="list">
+    <div class="v"><span class="fig">01</span><div class="nm"><div class="j">Prove on Site</div></div><p class="ds">We reject armchair theory. Proving that technology works in real-world conditions is our top priority.</p></div>
+    <div class="v"><span class="fig">02</span><div class="nm"><div class="j">Technology Creates Value in Use</div></div><p class="ds">Beyond the lab, we deliver technology in a usable form to people’s lives and to industry.</p></div>
+    <div class="v"><span class="fig">03</span><div class="nm"><div class="j">Entertainment Hardens Technology</div></div><p class="ds">Live entertainment, where failure is not an option, is the ultimate proving ground for robust technology.</p></div>
+    <div class="v hot"><span class="fig">04</span><div class="nm"><div class="j">Safety First</div></div><p class="ds">Drones and robotics exert physical force, so safety overrides everything. Beyond regulatory compliance, we apply our own rigorous standards in pursuit of zero incidents.</p></div>
+    <div class="v"><span class="fig">05</span><div class="nm"><div class="j">Deliver to the End</div></div><p class="ds">We never stop at concepts or proposals. From design and development to field operations, we see everything through.</p></div>
+  </div>
+</div></body></html>

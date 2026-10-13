@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>ロボティクス・IP開発｜ANIMAROID FOX</title><!--V2HEAD-->
+<style>
+.hero{left:0;top:0;width:560px;height:720px}
+.hero img{object-position:50% 40%}
+.head{position:absolute;left:608px;top:80px;width:624px}
+.head .title{margin-top:12px;font-size:46px;line-height:1.1}
+.head .title .lt{display:block;font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:44px;letter-spacing:-.02em;margin-top:8px;text-transform:uppercase;white-space:nowrap}
+.txt{position:absolute;left:608px;top:236px;width:624px}
+.txt .lead{font-size:23px;line-height:1.5}
+.txt .body{margin-top:8px;font-size:17px;line-height:1.6}
+.tv{width:330px;height:152px}
+.tv.a{left:614px;top:404px}.tv.b{left:950px;top:404px}.tv.c{left:614px;top:564px}
+.rec{position:absolute;left:950px;top:564px;width:330px;height:152px;padding:0 48px 0 20px;display:flex;flex-direction:column;justify-content:space-between}
+.rec .it{border-top:1px solid var(--line);padding:5px 0 0}
+.rec .k{font-size:16px;font-weight:900;line-height:1.25}
+.rec .k i{font-style:normal;font-family:var(--f-m);font-size:16px;color:var(--signal);margin-right:8px}
+.rec .v{font-size:16px;font-weight:500;color:var(--mute);line-height:1.25;padding-left:30px}
+</style></head>
+<body><div class="slide">
+  <div class="ph hero" data-object-type="image" id="v2p17-img-a"><img src="genspark_images/fox_hero_jms.jpg" alt=""></div>
+  <div class="scrim-t" style="width:560px"></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>06 / IP × R&amp;D</span><span class="pg">17 / 26</span></header>
+
+  <div class="head">
+    <div class="kicker">ANIMAROID PROJECT / FIRST IP</div>
+    <h1 class="title">ロボティクス・IP開発<span class="sig">｜</span><span class="lt">ANIMAROID FOX</span></h1>
+  </div>
+
+  <div class="txt">
+    <p class="lead">人と会話し、イベントに出演し、創作にも展開できる<br><span class="sig">“実在するアニマロイドIP”</span></p>
+    <p class="body">ドローン・ロボティクス・映像・AIを統合した次世代キャラクター×体験プラットフォームの第一弾。観光・教育・小売・産業へ社会実装を拡張。</p>
+  </div>
+
+  <div class="ph tv a" data-object-type="image" id="v2p17-img-b"><img src="genspark_images/wbs_fox_talk.webp" alt=""></div>
+  <div class="ph tv b" data-object-type="image" id="v2p17-img-c"><img src="genspark_images/wbs_fox_22century.webp" alt=""></div>
+  <div class="ph tv c" data-object-type="image" id="v2p17-img-d"><img src="genspark_images/wbs_fox_smartrobot.webp" alt=""></div>
+  <div class="rec">
+    <div class="it"><div class="k"><i>01</i>JAPAN MOBILITY SHOW 2025</div><div class="v">出演 / Tokyo Big Sight</div></div>
+    <div class="it"><div class="k"><i>02</i>SusHi Tech TOKYO 2026</div><div class="v">出演 / 2026.04.27–29</div></div>
+    <div class="it"><div class="k"><i>03</i>テレビ東京『WBS』</div><div class="v">取材 / 全国放送</div></div>
+  </div>
+</div></body></html>

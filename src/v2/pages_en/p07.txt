@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Drone Show Business</title><!--V2HEAD-->
+<style>
+.ttl{position:absolute;left:48px;top:64px;display:flex;align-items:flex-end;gap:28px}
+.ttl .title{font-size:56px;line-height:1}
+.ttl .lbl{padding-bottom:8px}
+.mos .ph{height:229px}
+.mos .ph .scrim-b{height:85%}
+.ov{position:absolute;left:20px;right:20px;bottom:16px;z-index:3}
+.ov .d{display:flex;align-items:center;gap:12px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.08em;color:rgba(255,255,255,.78)}
+.ov .t{margin-top:6px;font-size:23px;font-weight:900;line-height:1.28;color:#fff}
+.ov .s{margin-top:4px;font-size:16px;font-weight:500;color:rgba(255,255,255,.82);line-height:1.4}
+.ov .chip{padding:2px 8px}
+.mos .r1{top:146px}.mos .r2{top:377px}
+.a{left:0;width:560px}.b{left:562px;width:358px}.c{left:922px;width:358px}
+.d1{left:0;width:440px}.e{left:442px;width:440px}.f{left:884px;width:396px}
+.pf{position:absolute;left:48px;right:48px;top:622px}
+.pf .row2{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.pf .it{font-size:20px;font-weight:900;white-space:nowrap}
+.pf .it.en{font-size:19px;letter-spacing:.01em}
+.pf .dt{width:9px;height:9px;border-radius:50%;background:var(--signal);flex:none}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">07 / 26</span></header>
+  <div class="ttl"><h1 class="title">Drone Show Business</h1><span class="lbl">Recent Works / 06</span></div>
+  <div class="mos">
+    <div class="ph r1 a" data-object-type="image" id="v2p07-img-a"><img src="genspark_images/2314f63a8202e86415bbb7f542ce75c7.webp" alt=""><div class="scrim-b"></div>
+      <div class="ov"><div class="d"><span>2024.06</span><span class="chip">Confidential</span></div><div class="t">Tokyo DisneySea</div><div class="s">Fantasy Springs Pre-Opening Drone Show</div></div></div>
+    <div class="ph r1 b" data-object-type="image" id="v2p07-img-b"><img src="genspark_images/8bc88b7b7acd1d7f7ab2fc6533c43383.webp" alt=""><div class="scrim-b"></div>
+      <div class="ov"><div class="d"><span>2025.09</span><span class="chip">Confidential</span></div><div class="t">Nogizaka46<br>Midsummer National Tour Final</div><div class="s">@ Meiji Jingu Stadium</div></div></div>
+    <div class="ph r1 c" data-object-type="image" id="v2p07-img-c"><img src="genspark_images/i6kaAeaW.png" alt=""><div class="scrim-b"></div>
+      <div class="ov"><div class="d"><span>2025.08</span></div><div class="t">Enoshima Miami Beach Show</div><div class="s">“Celestial Maiden &amp; Dragon God”</div></div></div>
+    <div class="ph r2 d1" data-object-type="image" id="v2p07-img-d"><img src="genspark_images/8cucJf2z.png" alt=""><div class="scrim-b"></div>
+      <div class="ov"><div class="d"><span>2025.01</span></div><div class="t">Suntory Holdings</div><div class="s">Global Conference Opening Production</div></div></div>
+    <div class="ph r2 e" data-object-type="image" id="v2p07-img-e"><img src="genspark_images/669774911856da8d52657c00439b5aa4.webp" alt=""><div class="scrim-b"></div>
+      <div class="ov"><div class="d"><span>2025.06</span></div><div class="t">Junior Chamber Kanto Convention</div><div class="s">Drone Show Production</div></div></div>
+    <div class="ph r2 f" data-object-type="image" id="v2p07-img-f"><img src="genspark_images/df96116dcef37dbb3ed30b16bd52d2b9.webp" alt="" style="object-position:50% 40%"><div class="scrim-b"></div>
+      <div class="ov"><div class="d"><span>2025.04</span></div><div class="t">GIRLS GROOVE INNOVATION Okinawa</div><div class="s">Drone × Music Festival</div></div></div>
+  </div>
+  <div class="pf">
+    <div class="lbl">Past Portfolio</div>
+    <div class="row2">
+      <span class="it">Tokyo Motor Show 2019</span><i class="dt"></i>
+      <span class="it">Tokyo 2020 Olympics</span><i class="dt"></i>
+      <span class="it en">KAT-TUN</span><i class="dt"></i>
+      <span class="it">Yumi Matsutoya</span><i class="dt"></i>
+      <span class="it en">DREAMS COME TRUE</span><i class="dt"></i>
+      <span class="it">Nippon-Ham Opener</span>
+    </div>
+  </div>
+</div></body></html>

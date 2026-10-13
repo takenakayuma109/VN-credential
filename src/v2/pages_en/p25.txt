@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Growth Plan &amp; Exit Strategy</title><!--V2HEAD-->
+<style>
+.left{position:absolute;left:48px;top:76px;width:580px}
+.left .title{margin-top:10px;font-size:40px}
+.left .sub{margin-top:8px;font-size:18px;font-weight:700;color:var(--ptxt)}
+.why{position:absolute;left:48px;top:206px;width:540px}
+.why .row{padding:6px 0;gap:16px;align-items:baseline}
+.why .k{font-size:20px;font-weight:900;min-width:96px;white-space:nowrap}
+.why .v{font-size:18px;font-weight:500;color:var(--ptxt)}
+.drv{position:absolute;left:48px;top:392px;width:540px}
+.drv .blk{border-top:1px solid var(--pline);padding:12px 0 0;height:138px}
+.drv .nm{display:flex;align-items:baseline;gap:12px}
+.drv .nm b{font-size:19px;font-weight:900}
+.drv .nm span{font-size:16px;font-weight:500;color:var(--pmute)}
+.drv .m{display:flex;gap:0;margin-top:10px}
+.drv .m div{width:270px}
+.drv .m div:first-child{width:290px}
+.drv .m div:last-child{width:250px}
+.drv .m .fig{white-space:nowrap}
+.drv .m .lbl{letter-spacing:0}
+.drv .m .fig{font-size:40px;margin-top:6px;color:var(--ink)}
+.drv .m .fig small{font-size:.4em}
+.tbl{position:absolute;left:672px;top:84px;width:560px}
+.tbl table{width:100%;border-collapse:collapse;margin-top:8px}
+.tbl th,.tbl td{text-align:left;padding:0;border-top:1px solid var(--pline)}
+.tbl th{height:40px;vertical-align:middle;font-weight:700}
+.tbl th .y{font-family:var(--f-x);font-stretch:112%;font-weight:900;font-size:22px}
+.tbl th .lbl{margin-left:6px}
+.tbl td{height:52px;vertical-align:middle}
+.tbl td.k{width:120px;font-size:17px;font-weight:700;color:var(--pmute)}
+.tbl td.v{font-family:var(--f-x);font-stretch:112%;font-weight:900;font-size:27px;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.tbl td.v small{font-family:var(--f-jp);font-stretch:100%;font-size:.62em;font-weight:900;margin-left:1px}
+.tbl tr:last-child td{border-bottom:1px solid var(--pline)}
+.exit{position:absolute;left:640px;top:348px;width:640px;height:372px;background:var(--ink);color:var(--white)}
+.exit .in{position:absolute;left:32px;right:24px;top:24px}
+.exit .t{font-size:22px;font-weight:900;margin-top:6px}
+.exit .fig{font-size:56px;margin-top:12px;color:var(--white);white-space:nowrap}
+.exit .fig small{font-size:.34em}
+.exit .eq{margin-top:14px;font-size:20px;font-weight:700;color:var(--white)}
+.exit .eq i{font-style:normal;color:var(--signal);margin:0 4px}
+.exit .rule{margin:18px 0 12px;background:var(--line)}
+.exit .lbl{color:var(--mute)}
+.exit .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.exit .tag{color:var(--white);border-color:var(--line);font-size:16px}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">25 / 26</span></header>
+  <div class="left">
+    <span class="bar"></span>
+    <h1 class="title m">Growth Plan &amp; Exit Strategy</h1>
+    <p class="sub">Investment thesis toward a 2028 buyout</p>
+  </div>
+  <div class="why">
+    <div class="lbl">Why VISIONOID, Why Now</div>
+    <div class="row" style="margin-top:6px"><span class="k">Entertainment</span><span class="v">High profitability and scalability</span></div>
+    <div class="row"><span class="k">Disaster</span><span class="v">Strong public mandate, large deal size</span></div>
+    <div class="row"><span class="k">Technology</span><span class="v">Repeatable and scalable</span></div>
+  </div>
+  <div class="drv">
+    <div class="lbl" style="margin-bottom:8px">Growth Drivers</div>
+    <div class="blk">
+      <div class="nm"><span class="sig lbl" style="color:var(--signal);font-weight:700">①</span><b>Permanent drone show business</b><span>Kirana Garden Toyosu</span></div>
+      <div class="m">
+        <div><span class="lbl">Annual revenue (est.)</span><div class="fig"><small>~</small>¥250<small>M</small></div></div>
+        <div><span class="lbl">Annual gross profit (est.)</span><div class="fig"><small>~</small>¥125<small>M</small></div></div>
+      </div>
+    </div>
+    <div class="blk">
+      <div class="nm"><span class="sig lbl" style="color:var(--signal);font-weight:700">②</span><b>SENRIGAN</b><span>Municipal deployment model</span></div>
+      <div class="m">
+        <div><span class="lbl">Revenue per municipality</span><div class="fig">¥500<small>M</small>–¥1.0<small>B</small></div></div>
+        <div><span class="lbl">Deployment plan (2026)</span><div class="fig">3–5<small>municipalities</small></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tbl">
+    <div class="lbl">Revenue &amp; profit outlook</div>
+    <table>
+      <tr><th class="k"></th><th><span class="y">2026</span><span class="lbl">(Forecast)</span></th><th><span class="y">2027</span><span class="lbl">(Forecast)</span></th></tr>
+      <tr><td class="k">Revenue</td><td class="v">¥2.0<small>B</small>–¥3.5<small>B</small></td><td class="v">¥3.5<small>B</small>–¥5.5<small>B</small></td></tr>
+      <tr><td class="k">Gross profit</td><td class="v">¥1.0<small>B</small>–¥1.8<small>B</small></td><td class="v">¥1.8<small>B</small>–¥2.8<small>B</small></td></tr>
+      <tr><td class="k">Net income</td><td class="v">¥500<small>M</small>–¥1.2<small>B</small></td><td class="v">¥1.0<small>B</small>–¥2.0<small>B</small></td></tr>
+    </table>
+  </div>
+  <div class="exit">
+    <div class="reg" style="left:-9px;top:-9px"></div>
+    <div class="in">
+      <div class="kicker">TARGET EXIT 2028</div>
+      <div class="t">Implied enterprise value</div>
+      <div class="fig">¥8.0<small>B</small>–¥16.0<small>B</small></div>
+      <div class="eq">= Net income ¥1.0B–¥2.0B <i>×</i> 8x multiple</div>
+      <div class="rule"></div>
+      <div class="lbl">EXIT CANDIDATES</div>
+      <div class="tags"><span class="tag">Telecom majors</span><span class="tag">Infrastructure</span><span class="tag">Media &amp; entertainment</span><span class="tag">Disaster &amp; safety</span><span class="tag">Major SIers</span></div>
+    </div>
+  </div>
+</div></body></html>

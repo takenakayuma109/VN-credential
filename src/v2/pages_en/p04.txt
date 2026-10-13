@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Six Capabilities</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;right:48px;top:78px;display:flex;align-items:flex-end;justify-content:space-between}
+.top .title{font-size:64px;line-height:1}
+.top .body{width:520px;font-size:19px;line-height:1.65;padding-bottom:4px}
+.grid{position:absolute;left:48px;right:48px;top:168px;height:396px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;column-gap:32px;row-gap:12px}
+.c{border-top:2px solid var(--ink);padding-top:14px;position:relative}
+.c .h{display:flex;align-items:flex-start;gap:16px}
+.c .fig{font-size:64px;color:var(--ink);min-width:100px;line-height:.8;padding-top:6px}
+.c .nm{font-size:28px;font-weight:900;line-height:1.15;letter-spacing:-.005em}
+.c .sub{margin-top:8px;font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--pmute)}
+.c .body{margin-top:12px;font-size:18px;line-height:1.65;font-weight:500}
+.c.hl .fig{color:var(--signal)}
+.c.hl{border-top-color:var(--signal)}
+.proc{position:absolute;left:48px;right:48px;top:584px;height:108px;background:var(--ink);color:var(--white);display:flex;align-items:stretch}
+.proc .who{width:268px;padding:20px 24px;border-right:1px solid rgba(247,246,242,.18);display:flex;flex-direction:column;justify-content:center}
+.proc .who .lbl{color:var(--signal);font-weight:700}
+.proc .who .t{margin-top:6px;font-size:28px;font-weight:900}
+.proc .st{flex:1;padding:0 24px;display:flex;flex-direction:column;justify-content:center;position:relative;border-right:1px solid rgba(247,246,242,.18)}
+.proc .st:last-child{border-right:0}
+.proc .st .no{font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal)}
+.proc .st .jp{font-size:34px;font-weight:900;line-height:1.1;margin-top:4px}
+.proc .st .e{font-family:var(--f-m);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,246,242,.6);margin-top:4px}
+.proc .st:not(:last-child)::after{content:"";position:absolute;right:-1px;top:50%;margin-top:-9px;width:0;height:0;border-left:11px solid var(--signal);border-top:9px solid transparent;border-bottom:9px solid transparent;z-index:2}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">04 / 26</span></header>
+  <span class="bar" style="position:absolute;left:48px;top:68px;width:56px"></span>
+  <div class="top">
+    <h1 class="title" style="margin-top:0;margin-bottom:-2px">Six Capabilities</h1>
+    <p class="body">Six integrated capabilities, one end-to-end team.<br>Full-stack support across every project phase.</p>
+  </div>
+  <div class="grid">
+    <div class="c"><div class="h"><div class="fig">01</div><div><div class="nm">Technology</div><div class="sub">Hardware &amp; Software</div></div></div>
+      <p class="body">Development and operation of drone, droid and AI technology. In-house developer of "unika," Japan's only domestic drone-show aircraft.</p></div>
+    <div class="c"><div class="h"><div class="fig">02</div><div><div class="nm">Field Operations</div><div class="sub">Safety &amp; Site Management</div></div></div>
+      <p class="body">1,000+ pilots trained and a community of 3,000+ members led. Race-grade techniques applied to field operations.</p></div>
+    <div class="c"><div class="h"><div class="fig">03</div><div><div class="nm">Creative</div><div class="sub">Visual Direction &amp; XR</div></div></div>
+      <p class="body">Over 100 large-scale productions delivered. Expertise in XR video, Unreal Engine and digital twins.</p></div>
+    <div class="c"><div class="h"><div class="fig">04</div><div><div class="nm">Production</div><div class="sub">Large-Scale Event Planning</div></div></div>
+      <p class="body">Tokyo Motor Show 2019, Tokyo 2020 Olympics Opening Ceremony, Nogizaka46 Jingu Stadium 1,100-drone show.</p></div>
+    <div class="c"><div class="h"><div class="fig">05</div><div><div class="nm">Strategy</div><div class="sub">Planning &amp; Marketing</div></div></div>
+      <p class="body">Large-scale projects for corporate and government clients at Dentsu Live and Dentsu Business Production.</p></div>
+    <div class="c hl"><div class="h"><div class="fig">06</div><div><div class="nm">Implementation</div><div class="sub">End-to-End Deployment</div></div></div>
+      <p class="body">Concept to operation, all in-house. Deployed across industry, disaster response and education.</p></div>
+  </div>
+  <div class="proc">
+    <div class="who"><span class="lbl">06 / Implementation</span><span class="t">Process</span></div>
+    <div class="st"><span class="no">STEP 1</span><span class="jp">Concept</span><span class="e">Vision &amp; Scope</span></div>
+    <div class="st"><span class="no">STEP 2</span><span class="jp">Design</span><span class="e">Engineering</span></div>
+    <div class="st"><span class="no">STEP 3</span><span class="jp">Execute</span><span class="e">Production</span></div>
+    <div class="st"><span class="no">STEP 4</span><span class="jp">Operate</span><span class="e">Maintenance</span></div>
+  </div>
+</div></body></html>

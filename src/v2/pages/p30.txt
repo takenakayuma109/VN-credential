@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>お問い合わせ</title><!--V2HEAD-->
+<style>
+.pic{position:absolute;right:0;top:0;width:560px;height:720px}
+.pic img{object-position:38% 50%}
+.pic .fl{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,rgba(11,11,12,0) 28%)}
+.top{position:absolute;left:48px;top:84px;display:flex;align-items:center;gap:20px}
+.top .title{line-height:1}
+.hl{position:absolute;left:44px;top:138px;font-size:104px;font-weight:900;line-height:1.1;letter-spacing:-.03em;white-space:nowrap}
+.hl em{font-style:normal;color:var(--signal)}
+.sub{position:absolute;left:48px;top:380px;width:640px;font-size:24px;font-weight:700;line-height:1.6}
+.ct{position:absolute;left:48px;top:482px;width:600px}
+.ct .row{padding:11px 0;gap:24px;align-items:baseline}
+.ct .row:last-child{border-bottom:1px solid var(--line)}
+.ct .k{width:96px;font-family:var(--f-m);font-size:15px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.ct .v{font-size:26px;font-weight:700;letter-spacing:.01em}
+.ct .v.m{font-family:var(--f-x);font-stretch:112%;font-weight:700;font-size:25px}
+.cp{position:absolute;left:48px;bottom:34px}
+</style></head>
+<body><div class="slide">
+  <div class="ph pic" data-object-type="image" id="v2p30-img-a"><img src="genspark_images/e0a0d332164eafff15778fdf901e9136.webp" alt=""><div class="fl"></div></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>Contact</span><span class="pg">30 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title s">お問い合わせ</h1></div>
+  <p class="hl">一緒に、<br>次の<em>景色</em>を。</p>
+  <p class="sub">ドローンショー・産業点検・防災・新規事業まで、<br>お気軽にご相談ください。</p>
+  <div class="ct">
+    <div class="row"><span class="k">Mail</span><span class="v m">info@visionoid.co</span></div>
+    <div class="row"><span class="k">Web</span><span class="v m">www.visionoid.co</span></div>
+    <div class="row"><span class="k">Hours</span><span class="v">平日 10:00–18:00</span></div>
+  </div>
+  <p class="lbl cp">© VISIONOID Inc.</p>
+</div></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>バリュー｜5つの信念</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;top:84px;display:flex;align-items:center;gap:20px}
+.top .title{line-height:1}
+.list{position:absolute;left:48px;right:48px;top:140px;bottom:30px;display:flex;flex-direction:column}
+.v{flex:1;display:flex;align-items:center;gap:0;border-top:1px solid var(--pline)}
+.v:last-child{border-bottom:1px solid var(--pline)}
+.v .fig{width:170px;font-size:84px;color:var(--ink)}
+.v .nm{width:470px;padding-right:24px}
+.v .nm .j{font-size:25px;font-weight:900;line-height:1.3;letter-spacing:-.005em;white-space:nowrap}
+.v .nm .e{margin-top:6px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.06em;color:var(--pmute);text-transform:uppercase}
+.v .ds{flex:1;font-size:17px;font-weight:500;line-height:1.65;color:var(--ptxt)}
+.v.hot .fig{color:var(--signal)}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Values</span><span class="pg">24 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title s">バリュー｜5つの信念</h1></div>
+  <div class="list">
+    <div class="v"><span class="fig">01</span><div class="nm"><div class="j">現場で証明する</div><div class="e">Prove on site</div></div><p class="ds">机上の空論ではなく、実際の現場で技術が機能することを証明することを最優先とする。</p></div>
+    <div class="v"><span class="fig">02</span><div class="nm"><div class="j">技術は社会実装されてこそ価値になる</div><div class="e">Tech in use creates value</div></div><p class="ds">研究室に留めず、人々の生活や産業の現場に「使える形」で届ける。</p></div>
+    <div class="v"><span class="fig">03</span><div class="nm"><div class="j">エンタメは技術を鍛える最高の現場</div><div class="e">Entertainment hardens tech</div></div><p class="ds">失敗が許されないライブエンターテインメントの現場は、技術の堅牢性を高める最高の実験場。</p></div>
+    <div class="v hot"><span class="fig">04</span><div class="nm"><div class="j">安全は最優先</div><div class="e">Safety first</div></div><p class="ds">ドローンやロボットという物理的な力を伴う技術を扱う以上、安全は何よりも優先される。法規制の遵守に加え独自の厳格な安全基準で事故ゼロを追求。</p></div>
+    <div class="v"><span class="fig">05</span><div class="nm"><div class="j">最後まで実装する</div><div class="e">Deliver to the end</div></div><p class="ds">構想や提案で終わらせず、設計、開発、現場での運用まで、すべてやり切る。</p></div>
+  </div>
+</div></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>ドローンショー広告事業</title><!--V2HEAD-->
+<style>
+.bg{left:0;top:0;width:1280px;height:720px}
+.bg img{object-position:30% 50%}
+.dim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.88) 0,rgba(11,11,12,.55) 34%,rgba(11,11,12,0) 60%),linear-gradient(to top,rgba(11,11,12,.96) 0,rgba(11,11,12,.88) 22%,rgba(11,11,12,0) 48%)}
+.left{position:absolute;left:48px;top:84px;width:440px;z-index:10}
+.left .title{font-size:62px;line-height:1.1;margin-top:14px}
+.left .stmt{margin-top:22px;font-size:25px;font-weight:900;line-height:1.5}
+.left .tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+.left .lbl{display:block;margin-top:24px;margin-bottom:10px;color:rgba(255,255,255,.75)}
+.loc{left:928px;top:84px;width:304px;height:203px;border:1px solid rgba(255,255,255,.6)}
+.loc .cap{left:12px;right:12px;bottom:10px}
+.loc .scrim-b{height:55%}
+.fg{position:absolute;right:48px;top:318px;width:420px;text-align:right}
+.fg .lbl{display:block;color:rgba(255,255,255,.85);line-height:1.6;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.fg .fig{margin-top:12px;font-size:96px;color:#fff;white-space:nowrap}
+.fg .fig small{font-size:.36em;margin-left:.1em}
+.fg .fig i{font-style:normal;color:var(--signal)}
+.vals{position:absolute;left:48px;right:48px;bottom:34px;display:flex;gap:0}
+.vals>div{flex:1;border-top:1px solid rgba(255,255,255,.4);padding:12px 28px 0 0}
+.vals>div+div{padding-left:24px;border-left:0}
+.vals .l{display:block}
+.vals .h{margin-top:4px;font-size:32px;color:#fff;white-space:nowrap;line-height:1}
+.vals .h.j{font-family:var(--f-jp);font-weight:900;letter-spacing:0;font-size:30px;line-height:1.1}
+.vals .d{margin-top:8px;font-size:16px;line-height:1.55;color:rgba(255,255,255,.88)}
+</style></head>
+<body><div class="slide">
+  <div class="ph bg" data-object-type="image" id="v2p15-img-a"><img src="genspark_images/zZ83U5rP.png" alt=""></div>
+  <div class="dim"></div><div class="scrim-t"></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>04 / Advertising</span><span class="pg">15 / 26</span></header>
+  <div class="left">
+    <span class="bar"></span>
+    <h1 class="title">ドローンショー<br>広告事業</h1>
+    <p class="stmt">日本初「ドローンショー×広告」。<br>夜空を、新しいメディアに。</p>
+    <span class="lbl">活用シーン</span>
+    <div class="tags" style="margin-top:0"><span class="tag">企業ブランディング</span><span class="tag">周年施策</span><span class="tag">新商品発表</span><span class="tag">キャンペーン</span><span class="tag">採用広報</span></div>
+  </div>
+  <div class="ph loc" data-object-type="image" id="v2p15-img-b"><img src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp" alt=""><div class="scrim-b"></div><div class="cap">場所：キラナガーデン豊洲</div></div>
+  <div class="fg">
+    <span class="lbl">参考｜広告価値換算</span>
+    <span class="lbl">2026年3月 RIP SLYME<br>再解散メッセージドローンショー</span>
+    <div class="fig">1.5〜3<small>億円</small></div>
+  </div>
+  <div class="vals">
+    <div><span class="lbl l">到達率</span><div class="fig h">360°<small style="font-size:.8em;margin-left:.2em">視認</small></div><p class="d">夜空全体がスクリーンとなり、エリア一帯から圧倒的な視認性を確保。</p></div>
+    <div><span class="lbl l">SNS波及</span><div class="xl h">Earned Media</div><p class="d">「撮りたくなる」体験が、SNSでの自然拡散と高エンゲージメントを生む。</p></div>
+    <div><span class="lbl l">ブランドリフト</span><div class="h j">体験型広告</div><p class="d">一方的な視認ではなく「体験」として記憶され、従来OOH比で高い効果。</p></div>
+  </div>
+</div></body></html>

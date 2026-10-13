@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Specialists</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;right:48px;top:66px}
+.top .title{font-size:54px;line-height:1;margin-top:10px}
+.team{position:absolute;left:48px;right:48px;top:156px;bottom:28px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;column-gap:40px;row-gap:0}
+.p{border-top:2px solid var(--ink);padding-top:18px;display:flex;gap:24px;position:relative}
+.p .ph{position:relative;flex:none;width:200px;height:200px}
+.p .ph img{object-position:50% 25%}
+.p .tx{flex:1;min-width:0}
+.p .nm{display:flex;align-items:baseline;gap:14px;white-space:nowrap}
+.p .nm b{font-size:32px;font-weight:900;line-height:1.1;letter-spacing:.01em}
+.p .nm span{font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--pmute)}
+.p .rl{margin-top:8px;font-size:16px;font-weight:700;line-height:1.5;color:var(--signal)}
+.p .rl span{display:inline-block}.p .rl b{font-weight:500;color:var(--pmute);margin:0 3px}
+.p .bio{margin-top:10px;font-size:17px;font-weight:500;line-height:1.62;color:var(--ptxt)}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">06 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title">Specialists</h1></div>
+  <div class="team">
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-a"><img src="genspark_images/face_nakagawa.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>Tomohiro Nakagawa</b><span></span></div>
+      <div class="rl"><span>Drone Business Development<b>|</b></span><span>Master Instructor</span></div>
+      <p class="bio">Co-founder of Sky Estate, predecessor of Rakuten Drone. DPA Master Instructor who has trained 1,000+ pilots and runs "Drone Jobs," a community of 3,000+ members. Class 1 certified unmanned aircraft pilot.</p></div></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-b"><img src="genspark_images/face_murata.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>Hayato Murata</b><span></span></div>
+      <div class="rl">Creative Director</div>
+      <p class="bio">Founded video production company REBORN, directing over 100 works across music videos, commercials and corporate films. Expanded into advertising, including SoftBank commercials. At VISIONOID, leads event creative and drone-show direction.</p></div></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-c"><img src="genspark_images/face_tsuruoka.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>Yuki Tsuruoka</b><span></span></div>
+      <div class="rl" style="letter-spacing:-.03em;font-size:15.5px">Creative Visualization Engineer</div>
+      <p class="bio">Builds digital twins of event spaces and directs visuals using advanced video, AI and 3D software. Introduced XR video and Unreal Engine in 2020, earning an Excellence Award at the JACE Event Awards.</p></div></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-d"><img src="genspark_images/face_kamizeki_f.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>Fuga Kamizeki</b><span></span></div>
+      <div class="rl">Drone Pilot</div>
+      <p class="bio">Drone racer since third grade and former youngest champion in Japan. First elementary school student selected for Japan's national team (2019). Placed 6th worldwide at World Games 2022. Applies racing skills to aerial filming and video.</p></div></div>
+  </div>
+</div></body></html>

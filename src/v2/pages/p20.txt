@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>市場機会</title><!--V2HEAD-->
+<style>
+.head{position:absolute;left:48px;top:76px}
+.head .title{font-size:44px}
+.big{position:absolute;left:48px;top:146px;width:470px}
+.big .lbl{display:block;color:var(--ink)}
+.big .fig{font-size:200px;color:var(--ink);margin-top:14px;white-space:nowrap;margin-left:-8px}
+.big .fig small{font-size:.34em;margin-left:.04em;letter-spacing:-.01em}
+.big .cg{display:flex;align-items:center;gap:14px;margin-top:6px;font-size:19px;font-weight:700}
+.chart{position:absolute;left:580px;right:48px;top:100px;height:300px}
+.chart .lbl{position:absolute;left:0;top:0}
+.chart .u{position:absolute;right:0;top:0}
+.bars{position:absolute;left:0;right:0;bottom:30px;top:34px;display:flex;align-items:flex-end;gap:28px;border-bottom:2px solid var(--ink)}
+.bar2{flex:1;position:relative;background:var(--ink);}
+.bar2.hot{background:var(--signal)}
+.bar2 .v{position:absolute;left:0;right:0;top:-34px;font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:28px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.bar2.hot .v{color:var(--signal)}
+.yrs{position:absolute;left:0;right:0;bottom:0;display:flex;gap:28px}
+.yrs span{flex:1;font-family:var(--f-m);font-size:16px;font-weight:700;color:var(--pmute);letter-spacing:.06em;padding-top:6px}
+.stats{position:absolute;left:48px;right:48px;top:432px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.stats>div{padding:14px 24px 0 24px;border-left:1px solid var(--pline);height:176px}
+.stats>div:first-child{padding-left:0;border-left:none}
+.stats .k{font-size:19px;font-weight:900}
+.stats .fig{font-size:70px;color:var(--ink);margin-top:10px;white-space:nowrap}
+.stats .fig small{font-size:.36em}
+.stats .d{white-space:nowrap;font-size:17px;line-height:1.5;margin-top:10px;font-weight:500;color:var(--ptxt)}
+.stats .hot .fig,.stats .fig.hot{color:var(--signal)}
+.src{position:absolute;left:48px;right:48px;bottom:26px;font-size:15px;line-height:1.55;color:var(--pmute);font-weight:500;border-top:1px solid var(--pline);padding-top:8px}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Market</span><span class="pg">20 / 26</span></header>
+  <div class="head"><h1 class="title">市場機会</h1></div>
+
+  <div class="big">
+    <span class="lbl">日本ドローン市場｜2030年予測</span>
+    <div class="fig">1<small>兆円</small></div>
+    <div class="cg"><span class="chip">CAGR 15.2%</span><span>2024年 → 2030年</span></div>
+  </div>
+
+  <div class="chart">
+    <span class="lbl">市場規模の推移（億円）</span>
+    <div class="bars">
+      <div class="bar2" style="height:43%"><span class="v">4,371</span></div>
+      <div class="bar2" style="height:61%"><span class="v">6,200</span></div>
+      <div class="bar2" style="height:83%"><span class="v">8,500</span></div>
+      <div class="bar2 hot" style="height:100%"><span class="v">10,195</span></div>
+    </div>
+    <div class="yrs"><span>2024</span><span>2026</span><span>2028</span><span>2030</span></div>
+  </div>
+
+  <div class="stats">
+    <div><div class="k">ドローンショー</div><div class="fig">2<small>倍</small></div><div class="d">前年比で急拡大。エンタメ領域の需要が急増。</div></div>
+    <div><div class="k">フィジカルAI</div><div class="fig hot">2.5<small>兆円</small></div><div class="d">日本市場は7,800億円<br>から拡大（2030年予測）</div></div>
+    <div><div class="k">防災DX</div><div class="fig">2,459<small>億円</small></div><div class="d">2,153億円（2025年）<br>から拡大（2031年予測）</div></div>
+  </div>
+
+  <div class="src">出典：インプレス総合研究所『ドローンビジネス調査報告書2025』（ドローン市場・ドローンショー）／ 三菱総合研究所『AIロボティクスレポート2025』（フィジカルAI）／ シード・プランニング『防災情報システム・サービス市場2025』（防災DX）</div>
+</div></body></html>

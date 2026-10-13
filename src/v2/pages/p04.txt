@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>6つの力</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;right:48px;top:78px;display:flex;align-items:flex-end;justify-content:space-between}
+.top .title{font-size:64px;line-height:1}
+.top .body{width:520px;font-size:19px;line-height:1.65;padding-bottom:4px}
+.grid{position:absolute;left:48px;right:48px;top:168px;height:396px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;column-gap:32px;row-gap:12px}
+.c{border-top:2px solid var(--ink);padding-top:14px;position:relative}
+.c .h{display:flex;align-items:flex-start;gap:16px}
+.c .fig{font-size:64px;color:var(--ink);min-width:100px;line-height:.8;padding-top:6px}
+.c .nm{font-size:28px;font-weight:900;line-height:1.15;letter-spacing:-.005em}
+.c .sub{margin-top:8px;font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--pmute)}
+.c .body{margin-top:12px;font-size:18px;line-height:1.65;font-weight:500}
+.c.hl .fig{color:var(--signal)}
+.c.hl{border-top-color:var(--signal)}
+.proc{position:absolute;left:48px;right:48px;top:584px;height:108px;background:var(--ink);color:var(--white);display:flex;align-items:stretch}
+.proc .who{width:268px;padding:20px 24px;border-right:1px solid rgba(247,246,242,.18);display:flex;flex-direction:column;justify-content:center}
+.proc .who .lbl{color:var(--signal);font-weight:700}
+.proc .who .t{margin-top:6px;font-size:28px;font-weight:900}
+.proc .st{flex:1;padding:0 24px;display:flex;flex-direction:column;justify-content:center;position:relative;border-right:1px solid rgba(247,246,242,.18)}
+.proc .st:last-child{border-right:0}
+.proc .st .no{font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal)}
+.proc .st .jp{font-size:34px;font-weight:900;line-height:1.1;margin-top:4px}
+.proc .st .e{font-family:var(--f-m);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,246,242,.6);margin-top:4px}
+.proc .st:not(:last-child)::after{content:"";position:absolute;right:-1px;top:50%;margin-top:-9px;width:0;height:0;border-left:11px solid var(--signal);border-top:9px solid transparent;border-bottom:9px solid transparent;z-index:2}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">04 / 26</span></header>
+  <span class="bar" style="position:absolute;left:48px;top:68px;width:56px"></span>
+  <div class="top">
+    <h1 class="title" style="margin-top:0;margin-bottom:-2px">6つの力</h1>
+    <p class="body">6つの力を組み合わせたワンストップ体制。<br>あらゆるフェーズに対応する総合力。</p>
+  </div>
+  <div class="grid">
+    <div class="c"><div class="h"><div class="fig">01</div><div><div class="nm">技術力</div><div class="sub">機体開発・ソフト開発</div></div></div>
+      <p class="body">ドローン・ドロイド・AI技術の開発・運用。唯一の国産ドローンショー機体「unika」開発者在籍。</p></div>
+    <div class="c"><div class="h"><div class="fig">02</div><div><div class="nm">現場力</div><div class="sub">安全管理・現場運用</div></div></div>
+      <p class="body">1,000人以上のパイロット育成、3,000名超のコミュニティ運営実績者在籍。レース技術を転用。</p></div>
+    <div class="c"><div class="h"><div class="fig">03</div><div><div class="nm">クリエイティブ力</div><div class="sub">映像演出・デジタルツイン</div></div></div>
+      <p class="body">累計約100作品以上の大規模案件実績。XR映像・Unreal Engine・デジタルツイン。</p></div>
+    <div class="c"><div class="h"><div class="fig">04</div><div><div class="nm">プロデュース力</div><div class="sub">大規模イベント企画・制作</div></div></div>
+      <p class="body">東京モーターショー2019、東京2020五輪開会式、乃木坂46神宮球場1,100機ショー。</p></div>
+    <div class="c"><div class="h"><div class="fig">05</div><div><div class="nm">戦略力</div><div class="sub">戦略企画・マーケティング</div></div></div>
+      <p class="body">電通ライブ・電通ビジネスプロデュース局での企業・政府機関の大規模プロジェクト実績。</p></div>
+    <div class="c hl"><div class="h"><div class="fig">06</div><div><div class="nm">実装力</div><div class="sub">エンドツーエンド実装</div></div></div>
+      <p class="body">構想から運用までを一社で完結。産業・防災・教育など社会インフラへ実装。</p></div>
+  </div>
+  <div class="proc">
+    <div class="who"><span class="lbl">06 / 実装力</span><span class="t">Process</span></div>
+    <div class="st"><span class="no">STEP 1</span><span class="jp">構想</span><span class="e">Concept</span></div>
+    <div class="st"><span class="no">STEP 2</span><span class="jp">設計</span><span class="e">Design</span></div>
+    <div class="st"><span class="no">STEP 3</span><span class="jp">実行</span><span class="e">Execute</span></div>
+    <div class="st"><span class="no">STEP 4</span><span class="jp">運用</span><span class="e">Operate</span></div>
+  </div>
+</div></body></html>

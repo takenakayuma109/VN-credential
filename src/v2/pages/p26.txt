@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>成長トラジェクトリー</title><!--V2HEAD-->
+<style>
+.head{position:absolute;left:48px;top:74px;right:48px;display:flex;align-items:flex-end;gap:40px}
+.head .title{margin-top:10px}
+.head .close{margin-left:auto;text-align:right;font-size:20px;font-weight:700;line-height:1.55;padding-bottom:6px}
+.line{position:absolute;left:48px;right:48px;top:162px;height:1px;background:var(--line)}
+.col{position:absolute;top:150px}
+.col .dot{position:absolute;left:0;top:-5px;width:11px;height:11px;background:var(--signal);z-index:3}
+.col .ph{position:relative;left:auto;top:auto;width:100%;height:140px;margin-top:16px}
+.col .ph img{opacity:.9}
+.c1{left:48px;width:520px}.c2{left:592px;width:340px}.c3{left:956px;width:276px}
+.col .lbl{display:block;margin-top:12px;line-height:1}
+.col .yr{margin-top:8px;font-size:60px;color:var(--white);white-space:nowrap}
+.col .ph-t{margin-top:10px;font-size:22px;font-weight:900;line-height:1.3}
+.col ul{list-style:none;margin-top:10px}
+.col li{font-size:16px;font-weight:500;line-height:1.45;color:var(--txt);padding:4px 0;border-top:1px solid var(--line)}
+.col li.big{font-size:22px;font-weight:900;color:var(--white);padding:8px 0 8px}
+.col li b{color:var(--signal);font-weight:900}
+.c3 li,.c2 li{font-size:17px;padding:6px 0}
+.c3 li.big,.c2 li.big{font-size:22px}
+.cap2{position:absolute;right:48px;bottom:24px}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">26 / 26</span></header>
+  <div class="head">
+    <div><span class="bar"></span><h1 class="title m">成長トラジェクトリー</h1></div>
+    <div class="close">VISIONOIDは既に立ち上がっており、<br>2026年に一気に<span class="sig">拡大フェーズ</span>へ入る。</div>
+  </div>
+  <div class="reg" style="left:40px;top:142px"></div>
+  <div class="col c1">
+    <div class="ph" data-object-type="image" id="v2p26-img-a"><img src="genspark_images/U2x8pQPF.png" alt=""></div>
+    <span class="lbl">FOUNDATION</span>
+    <div class="fig yr">2024–2025</div>
+    <div class="ph-t">基盤創造・実績づくり</div>
+    <ul>
+      <li>ディズニーシー Fantasy Springs 開業前夜ドローンショー</li>
+      <li>乃木坂46 真夏の全国ツアーファイナル</li>
+      <li>江の島「天女と龍神」</li>
+      <li>サントリーグローバルカンファレンスOP演出</li>
+      <li>ハウステンボス 常設ドローンショー</li>
+      <li>産業点検・防災サービス開発</li>
+      <li style="font-size:15px;letter-spacing:-.01em">設備投資（ドローン機材・ロボット・イベント設備・ソフトウェア開発等）</li>
+    </ul>
+  </div>
+  <div class="col c2">
+    <div class="ph" data-object-type="image" id="v2p26-img-b"><img src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp" alt=""></div>
+    <span class="lbl sig" style="color:var(--signal)">TURNING POINT</span>
+    <div class="fig yr">2026</div>
+    <div class="ph-t">「一気に跳ねる年」</div>
+    <ul>
+      <li class="big">4月時点で<br>売上<b>2億円</b>確定</li>
+      <li>キラナガーデン豊洲（常設）</li>
+      <li>SENRIGAN 3〜5自治体</li>
+      <li style="border-top-color:transparent;color:var(--mute)">数値は → P.25</li>
+    </ul>
+  </div>
+  <div class="col c3">
+    <div class="ph" data-object-type="image" id="v2p26-img-c"><img src="genspark_images/zZ83U5rP.png" alt=""></div>
+    <span class="lbl">SCALE PHASE</span>
+    <div class="fig yr">2027</div>
+    <div class="ph-t">「再現性が証明される年」</div>
+    <ul>
+      <li>常設拠点：複数化</li>
+      <li>自治体：追加導入・拡大</li>
+      <li>民間インフラ案件拡大</li>
+    </ul>
+  </div>
+</div></body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Growth Trajectory</title><!--V2HEAD-->
+<style>
+.head{position:absolute;left:48px;top:74px;right:48px;display:flex;align-items:flex-end;gap:40px}
+.head .title{margin-top:10px}
+.head .close{margin-left:auto;text-align:right;font-size:20px;font-weight:700;line-height:1.55;padding-bottom:6px}
+.line{position:absolute;left:48px;right:48px;top:162px;height:1px;background:var(--line)}
+.col{position:absolute;top:150px}
+.col .dot{position:absolute;left:0;top:-5px;width:11px;height:11px;background:var(--signal);z-index:3}
+.col .ph{position:relative;left:auto;top:auto;width:100%;height:140px;margin-top:16px}
+.col .ph img{opacity:.9}
+.c1{left:48px;width:520px}.c2{left:592px;width:340px}.c3{left:956px;width:276px}
+.col .lbl{display:block;margin-top:12px;line-height:1}
+.col .yr{margin-top:8px;font-size:60px;color:var(--white);white-space:nowrap}
+.col .ph-t{margin-top:10px;font-size:22px;font-weight:900;line-height:1.3}
+.col ul{list-style:none;margin-top:10px}
+.col li{font-size:16px;font-weight:500;line-height:1.45;color:var(--txt);padding:4px 0;border-top:1px solid var(--line)}
+.col li.big{font-size:22px;font-weight:900;color:var(--white);padding:8px 0 8px}
+.col li b{color:var(--signal);font-weight:900}
+.c3 li,.c2 li{font-size:17px;padding:6px 0}
+.c3 li.big,.c2 li.big{font-size:22px}
+.cap2{position:absolute;right:48px;bottom:24px}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">26 / 26</span></header>
+  <div class="head">
+    <div><span class="bar"></span><h1 class="title m">Growth Trajectory</h1></div>
+    <div class="close">VISIONOID is already operational and will accelerate<br>into <span class="sig">full-scale expansion</span> in 2026.</div>
+  </div>
+  <div class="reg" style="left:40px;top:142px"></div>
+  <div class="col c1">
+    <div class="ph" data-object-type="image" id="v2p26-img-a"><img src="genspark_images/U2x8pQPF.png" alt=""></div>
+    <span class="lbl">FOUNDATION</span>
+    <div class="fig yr">2024–2025</div>
+    <div class="ph-t">Building the foundation &amp; track record</div>
+    <ul>
+      <li>Tokyo DisneySea Fantasy Springs pre-opening drone show</li>
+      <li>Nogizaka46 Midsummer National Tour Final</li>
+      <li>Enoshima “Tennyo &amp; Ryujin”</li>
+      <li>Suntory Global Conference opening production</li>
+      <li>Huis Ten Bosch permanent drone show</li>
+      <li>Industrial inspection &amp; disaster-response service development</li>
+      <li style="font-size:15px;letter-spacing:-.01em">CapEx (drones, robotics, event equipment, software development)</li>
+    </ul>
+  </div>
+  <div class="col c2">
+    <div class="ph" data-object-type="image" id="v2p26-img-b"><img src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp" alt=""></div>
+    <span class="lbl sig" style="color:var(--signal)">TURNING POINT</span>
+    <div class="fig yr">2026</div>
+    <div class="ph-t">“The Breakout Year”</div>
+    <ul>
+      <li class="big"><b>¥200M</b> revenue<br>locked in as of April</li>
+      <li>Kirana Garden Toyosu (permanent)</li>
+      <li>SENRIGAN: 3–5 municipalities</li>
+      <li style="border-top-color:transparent;color:var(--mute)">Figures → P.25</li>
+    </ul>
+  </div>
+  <div class="col c3">
+    <div class="ph" data-object-type="image" id="v2p26-img-c"><img src="genspark_images/zZ83U5rP.png" alt=""></div>
+    <span class="lbl">SCALE PHASE</span>
+    <div class="fig yr">2027</div>
+    <div class="ph-t">“Proving Repeatability”</div>
+    <ul>
+      <li>Multiple permanent venues</li>
+      <li>Additional municipal deployments</li>
+      <li>Growing private infrastructure projects</li>
+    </ul>
+  </div>
+</div></body></html>

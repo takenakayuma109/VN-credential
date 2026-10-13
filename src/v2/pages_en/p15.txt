@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Drone Show Advertising</title><!--V2HEAD-->
+<style>
+.bg{left:0;top:0;width:1280px;height:720px}
+.bg img{object-position:30% 50%}
+.dim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.88) 0,rgba(11,11,12,.55) 34%,rgba(11,11,12,0) 60%),linear-gradient(to top,rgba(11,11,12,.96) 0,rgba(11,11,12,.88) 22%,rgba(11,11,12,0) 48%)}
+.left{position:absolute;left:48px;top:84px;width:440px;z-index:10}
+.left .title{font-size:62px;line-height:1.1;margin-top:14px}
+.left .stmt{margin-top:22px;font-size:25px;font-weight:900;line-height:1.5}
+.left .tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+.left .lbl{display:block;margin-top:24px;margin-bottom:10px;color:rgba(255,255,255,.75)}
+.loc{left:928px;top:84px;width:304px;height:203px;border:1px solid rgba(255,255,255,.6)}
+.loc .cap{left:12px;right:12px;bottom:10px}
+.loc .scrim-b{height:55%}
+.fg{position:absolute;right:48px;top:318px;width:420px;text-align:right}
+.fg .lbl{display:block;color:rgba(255,255,255,.85);line-height:1.6;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.fg .fig{margin-top:12px;font-size:76px;color:#fff;white-space:nowrap}
+.fg .fig small{font-size:.36em;margin-left:.1em}
+.fg .fig i{font-style:normal;color:var(--signal)}
+.vals{position:absolute;left:48px;right:48px;bottom:34px;display:flex;gap:0}
+.vals>div{flex:1;border-top:1px solid rgba(255,255,255,.4);padding:12px 28px 0 0}
+.vals>div+div{padding-left:24px;border-left:0}
+.vals .l{display:block}
+.vals .h{margin-top:4px;font-size:32px;color:#fff;white-space:nowrap;line-height:1}
+.vals .h.j{font-family:var(--f-jp);font-weight:900;letter-spacing:0;font-size:30px;line-height:1.1}
+.vals .d{margin-top:8px;font-size:16px;line-height:1.55;color:rgba(255,255,255,.88)}
+</style></head>
+<body><div class="slide">
+  <div class="ph bg" data-object-type="image" id="v2p15-img-a"><img src="genspark_images/zZ83U5rP.png" alt=""></div>
+  <div class="dim"></div><div class="scrim-t"></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>04 / Advertising</span><span class="pg">15 / 26</span></header>
+  <div class="left">
+    <span class="bar"></span>
+    <h1 class="title">Drone Show<br>Advertising</h1>
+    <p class="stmt">Japan’s first.<br>The night sky, a new medium.</p>
+    <span class="lbl">Use Cases</span>
+    <div class="tags" style="margin-top:0"><span class="tag">Corporate Branding</span><span class="tag">Anniversary Events</span><span class="tag">Product Launches</span><span class="tag">Campaigns</span><span class="tag">Employer Branding</span></div>
+  </div>
+  <div class="ph loc" data-object-type="image" id="v2p15-img-b"><img src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp" alt=""><div class="scrim-b"></div><div class="cap">Location: Kirana Garden Toyosu</div></div>
+  <div class="fg">
+    <span class="lbl">Reference | Estimated Ad Value (JPY)</span>
+    <span class="lbl">March 2026 RIP SLYME<br>Re-disbandment Drone Show</span>
+    <div class="fig">150–300<small>M</small></div>
+  </div>
+  <div class="vals">
+    <div><span class="lbl l">Reach</span><div class="fig h">360°<small style="font-size:.8em;margin-left:.2em">Visibility</small></div><p class="d">The entire night sky becomes the screen, delivering unrivaled visibility across the area.</p></div>
+    <div><span class="lbl l">Social Amplification</span><div class="xl h">Earned Media</div><p class="d">A share-worthy spectacle drives organic reach and high engagement on social media.</p></div>
+    <div><span class="lbl l">Brand Lift</span><div class="h j">Experiential Ad</div><p class="d">Remembered as an experience rather than a passive impression, outperforming traditional OOH.</p></div>
+  </div>
+</div></body></html>

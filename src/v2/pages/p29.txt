@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>拠点</title><!--V2HEAD-->
+<style>
+.loc{position:absolute;top:0;width:319px;height:720px}
+.loc .ph{left:0;top:0;width:100%;height:440px}
+.loc .ph .scrim-b{height:55%}
+.loc .no{position:absolute;left:20px;bottom:16px;z-index:3}
+.loc .no .fig{font-size:56px;color:#fff;line-height:1}
+.loc .no .fig i{font-style:normal;color:var(--signal)}
+.loc .no .lbl{display:block;margin-top:8px;color:#fff}
+.loc .tx{position:absolute;left:20px;right:20px;top:462px}
+.loc .nm{font-size:30px;font-weight:900;line-height:1.2}
+.loc .en{display:block;margin-top:6px;font-family:var(--f-m);font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--signal);text-transform:uppercase}
+.loc .role{margin-top:12px;font-size:18px;font-weight:700;line-height:1.5;color:var(--white)}
+.loc .adr{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:16px;font-weight:500;line-height:1.6;color:var(--txt);white-space:nowrap}
+.vl{position:absolute;top:0;width:1px;height:720px;background:var(--ink);z-index:6}
+.ttl{position:absolute;left:48px;top:76px;z-index:20}
+.ttl .title{margin-top:10px;color:#fff}
+</style></head>
+<body><div class="slide">
+  <div class="loc" style="left:0">
+    <div class="ph" data-object-type="image" id="v2p29-img-a"><img src="https://www.visionoid.co/locations/kasai-exterior.webp" alt=""><div class="scrim-b"></div>
+    <div class="no"><div class="fig">01</div><span class="lbl">KASAI, TOKYO</span></div></div>
+    <div class="tx"><div class="nm">本社</div><span class="en">Headquarters</span>
+      <div class="role">経営・事業統括／<br>江戸川区災害協定対応</div>
+      <div class="adr">〒134-0083<br>東京都江戸川区中葛西5-41-10<br>BPRプレイス葛西6F・7F</div></div>
+  </div>
+  <div class="loc" style="left:320px">
+    <div class="ph" data-object-type="image" id="v2p29-img-b"><img src="https://www.visionoid.co/locations/hibiya-exterior.webp" alt=""><div class="scrim-b"></div>
+    <div class="no"><div class="fig">02</div><span class="lbl">HIBIYA, TOKYO</span></div></div>
+    <div class="tx"><div class="nm">日比谷オフィス</div><span class="en">Business Meetings</span>
+      <div class="role">ビジネスミーティング・来客対応</div>
+      <div class="adr">〒100-0006<br>東京都千代田区有楽町1丁目13-2<br>第一生命日比谷ファースト 12F</div></div>
+  </div>
+  <div class="loc" style="left:640px">
+    <div class="ph" data-object-type="image" id="v2p29-img-c"><img src="https://www.visionoid.co/locations/shonan-terrace.webp" alt=""><div class="scrim-b"></div>
+    <div class="no"><div class="fig">03</div><span class="lbl">SHONAN, KANAGAWA</span></div></div>
+    <div class="tx"><div class="nm">湘南オフィス</div><span class="en">Tourism &amp; Public Safety</span>
+      <div class="role">江の島観光事業／<br>藤沢市防災事業対応</div>
+      <div class="adr">〒251-0035<br>神奈川県藤沢市片瀬海岸2-18-21<br>リードシー片瀬江ノ島ビル3F</div></div>
+  </div>
+  <div class="loc" style="left:960px;width:320px">
+    <div class="ph" data-object-type="image" id="v2p29-img-d"><img src="https://www.visionoid.co/locations/tokorozawa-studio.webp" alt=""><div class="scrim-b"></div>
+    <div class="no"><div class="fig">04</div><span class="lbl">TOKOROZAWA, SAITAMA</span></div></div>
+    <div class="tx"><div class="nm">所沢スタジオ</div><span class="en">Technology &amp; Operations</span>
+      <div class="role">技術開発／機材整備・保管</div>
+      <div class="adr">〒359-1167<br>埼玉県所沢市林2-477-1</div></div>
+  </div>
+  <div class="vl" style="left:319px"></div><div class="vl" style="left:639px"></div><div class="vl" style="left:959px"></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>Company</span><span class="pg">29 / 26</span></header>
+  <div class="scrim-t" style="z-index:10;height:200px"></div>
+  <div class="ttl"><span class="bar"></span><h1 class="title m">拠点</h1></div>
+</div></body></html>

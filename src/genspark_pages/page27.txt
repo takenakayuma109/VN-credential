@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="ja">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Visionoid - Next-Gen Show Drone Development</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+  body { margin:0; padding:0; overflow:hidden; font-family:'Noto Sans JP',sans-serif; background:#f8fafc; }
+  .slide-container {
+    position:relative; width:1280px; height:720px; overflow:hidden;
+    background: linear-gradient(135deg,#f8fafc 0%, #eef2f7 100%);
+  }
+  .header {
+    position:absolute; top:0; left:0; right:0; height:24px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 48px; background:rgba(255,255,255,0.95);
+    border-bottom:1px solid rgba(226,232,240,0.8); z-index:100; box-sizing:border-box;
+  }
+  .logo { display:flex; align-items:center; gap:8px; }
+  .logo-text,.logo-separator,.logo-sub,.page-num { font-family:'Inter',sans-serif; }
+  .logo-text { font-size:13px; font-weight:700; color:#1a202c; }
+  .logo-separator { color:#94a3b8; font-size:13px; font-weight:400; margin:0 4px; }
+  .logo-sub { font-size:11px; color:#64748b; font-weight:400; }
+  .page-num { font-size:12px; color:#64748b; }
+
+  .content {
+    position:absolute; top:24px; left:0; right:0; bottom:0;
+    padding:12px 36px 14px 36px;
+    display:flex; flex-direction:column; box-sizing:border-box;
+  }
+
+  .main-title {
+    font-size:24px; font-weight:700; color:#0f172a;
+    margin:0 0 6px 0; display:flex; align-items:center; gap:12px; white-space:nowrap;
+  }
+  .main-title .en { font-size:13px; color:#64748b; font-weight:500; font-family:'Inter',sans-serif; }
+
+  .lead {
+    font-size:11.5px; color:#334155; line-height:1.55;
+    background:#ffffff; border:1px solid #e2e8f0; border-radius:10px;
+    padding:8px 14px; margin:0 0 10px 0;
+  }
+  .lead b { color:#0f172a; font-weight:700; }
+  .lead .accent { color:#0ea5e9; font-weight:700; }
+  .lead .gold { color:#b45309; font-weight:700; }
+
+  .grid { display:grid; grid-template-columns:392px 1fr; gap:14px; flex:1; min-height:0; }
+
+  /* ── LEFT: Kenji Kohashi hero ───────────────────────────── */
+  .kh-card {
+    background:#0a1628; border:1px solid #1e293b; border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:0 8px 24px rgba(2,6,23,0.22); height:100%;
+  }
+  .kh-photo { position:relative; width:100%; flex:1 1 auto; min-height:160px; overflow:hidden; background:#0f172a; }
+  .kh-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+  .kh-overlay {
+    position:absolute; left:0; right:0; bottom:0; padding:16px 18px 12px 18px;
+    background:linear-gradient(to top, rgba(10,22,40,0.97) 0%, rgba(10,22,40,0.82) 45%, rgba(10,22,40,0) 100%);
+  }
+  .kh-eyebrow {
+    font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.18em;
+    color:#fbbf24; margin-bottom:5px;
+  }
+  .kh-name { font-size:30px; font-weight:900; color:#ffffff; line-height:1.1; letter-spacing:0.01em; }
+  .kh-rom { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(255,255,255,0.58); margin-top:4px; }
+  .kh-body { flex:0 0 auto; padding:12px 18px 14px 18px; display:flex; flex-direction:column; }
+  .kh-badge {
+    display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
+    background:linear-gradient(135deg,#f59e0b,#d97706); color:#ffffff;
+    font-size:12px; font-weight:800; padding:5px 12px; border-radius:6px; margin-bottom:8px;
+  }
+  .kh-title { font-size:11px; color:#cbd5e1; line-height:1.5; font-weight:500; margin-bottom:9px; }
+  .kh-list-label {
+    font-family:'Inter',sans-serif; font-size:9.5px; font-weight:800; letter-spacing:0.14em;
+    color:#64748b; margin-bottom:5px;
+  }
+  .kh-list { list-style:none; margin:0; padding:0; }
+  .kh-list li {
+    font-size:10.5px; color:#e2e8f0; line-height:1.4; padding-left:13px; position:relative; margin-bottom:5px;
+  }
+  .kh-list li::before { content:''; position:absolute; left:0; top:5px; width:5px; height:5px; border-radius:50%; background:#fbbf24; }
+
+  /* ── RIGHT column ───────────────────────────────────────── */
+  .right { display:flex; flex-direction:column; gap:11px; min-height:0; }
+  .sec-label {
+    font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.16em;
+    color:#94a3b8; margin-bottom:6px; display:flex; align-items:center; gap:8px;
+  }
+  .sec-label .ja { font-family:'Noto Sans JP',sans-serif; font-size:12px; font-weight:700; color:#0f172a; letter-spacing:0.02em; }
+
+  .roles { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .role-card {
+    background:#ffffff; border:1px solid #e2e8f0; border-radius:11px; overflow:hidden;
+    box-shadow:0 3px 10px rgba(15,23,42,0.05); display:flex; flex-direction:column;
+  }
+  .role-card.is-creative { border:2px solid #f59e0b; box-shadow:0 6px 18px rgba(217,119,6,0.18); }
+  .role-bar {
+    background:#0f172a; color:#ffffff; font-family:'Inter',sans-serif;
+    font-size:9.5px; font-weight:800; letter-spacing:0.16em; padding:5px 11px;
+  }
+  .role-card.is-creative .role-bar { background:linear-gradient(90deg,#d97706,#f59e0b); }
+  .role-body { padding:9px 11px 10px 11px; display:flex; flex-direction:column; flex:1; }
+  .role-org { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .role-org img.avatar { width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #f59e0b; flex:none; }
+  .role-name { font-size:14px; font-weight:800; color:#0f172a; line-height:1.15; }
+  .role-main { font-size:11px; font-weight:700; color:#0369a1; line-height:1.35; margin-bottom:5px; }
+  .role-card.is-creative .role-main { color:#b45309; }
+  .role-desc { font-size:10px; color:#475569; line-height:1.45; }
+
+  .specs { background:#ffffff; border:1px solid #e2e8f0; border-radius:11px; padding:9px 12px 10px 12px; box-shadow:0 3px 10px rgba(15,23,42,0.05); }
+  .spec-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip {
+    display:inline-flex; align-items:baseline; gap:5px;
+    background:#f0f9ff; border:1px solid #bae6fd; border-radius:7px; padding:4px 9px;
+  }
+  .chip .k { font-size:9.5px; color:#0369a1; font-weight:600; }
+  .chip .v { font-family:'Inter',sans-serif; font-size:12px; color:#0c4a6e; font-weight:800; }
+
+  .status { background:#ffffff; border:1px solid #e2e8f0; border-radius:11px; padding:9px 12px 10px 12px; box-shadow:0 3px 10px rgba(15,23,42,0.05); flex:1; display:flex; flex-direction:column; min-height:0; }
+  .status-row { display:grid; grid-template-columns:174px 1fr; gap:12px; flex:1; min-height:0; }
+  .status-photo { border-radius:9px; overflow:hidden; position:relative; background:#0f172a; }
+  .status-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+  .status-cap {
+    position:absolute; left:0; right:0; bottom:0; padding:5px 8px;
+    background:linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0));
+    color:#ffffff; font-size:9px; font-weight:600; line-height:1.3;
+  }
+  .ms-list { display:flex; flex-direction:column; gap:5px; }
+  .ms-note {
+    margin-top:auto; font-size:9.5px; color:#475569; line-height:1.5;
+    background:#f1f5f9; border-radius:7px; padding:6px 9px;
+  }
+  .ms-note b { color:#0f172a; font-weight:700; }
+
+  .ms {
+    display:grid; grid-template-columns:64px 1fr; gap:9px; align-items:start;
+    background:#f8fafc; border-left:3px solid #0ea5e9; border-radius:0 7px 7px 0; padding:5px 9px;
+  }
+  .ms .m { font-family:'Inter',sans-serif; font-size:10.5px; font-weight:800; color:#0369a1; line-height:1.3; }
+  .ms .t { font-size:10px; color:#334155; line-height:1.4; }
+  .ms .t b { color:#0f172a; font-weight:700; }
+  .ms.is-final { border-left-color:#d97706; background:#fffbeb; }
+  .ms.is-final .m { color:#b45309; }
+</style>
+</head>
+<body style="user-select:none;">
+<div class="slide-container">
+
+<div class="header">
+  <div class="logo">
+    <div class="logo-text">VISIONOID</div>
+    <div class="logo-separator">|</div>
+    <div class="logo-sub">Visionary Technology Company</div>
+  </div>
+  <div class="page-num">10 / 26</div>
+</div>
+
+<div class="content">
+
+  <div data-object="true" data-object-type="textbox" id="p27-title">
+    <div class="main-title">機体そのものを、日本でつくる。<span class="en">Next-Gen Show Drone Development</span></div>
+  </div>
+
+  <div class="lead" data-object="true" data-object-type="textbox" id="p27-lead">
+    2019年 東京モーターショー『CONTACT』<b>（500機／来場131万人）</b>を原点に、<b>ROBOTIX JAPAN（機体開発・製造・販売）× VISIONOID（発起・企画・プロデュース・運用設計）</b>、そして<span class="gold">小橋 賢児 氏（クリエイティブ監修・パートナー）</span>の3者で、日本発の次世代ドローンショー専用機体を<span class="accent">1年以内に製品化</span>する。演出をつくる人間が、開発の最初の一行から同じテーブルに座る体制。
+  </div>
+
+  <div class="grid">
+
+    <!-- LEFT: Kenji Kohashi -->
+    <div class="kh-card">
+      <div class="kh-photo" data-object="true" data-object-type="image" id="p27-img-kohashi">
+        <img alt="小橋 賢児" src="genspark_images/kohashi_portrait.jpg">
+        <div class="kh-overlay">
+          <div class="kh-eyebrow">CREATIVE SUPERVISION ／ PARTNER</div>
+          <div class="kh-name">小橋 賢児</div>
+          <div class="kh-rom">KENJI KOHASHI</div>
+        </div>
+      </div>
+      <div class="kh-body" data-object="true" data-object-type="textbox" id="p27-kohashi-body">
+        <div class="kh-badge"><i class="fas fa-star"></i> 本プロジェクト クリエイティブ監修・パートナー</div>
+        <div class="kh-title">クリエイティブディレクター／The Human Miracle株式会社 代表取締役。1979年 東京生まれ。俳優として活動後、2007年に休止し世界を旅する。</div>
+        <div class="kh-list-label">TRACK RECORD</div>
+        <ul class="kh-list">
+          <li>ULTRA JAPAN ／ STAR ISLAND 総合プロデュース（2017〜・累計1,500万人超）</li>
+          <li>東京2020パラリンピック 閉会式 ショーディレクター（2021）</li>
+          <li>2025年 大阪・関西万博 催事企画プロデューサー</li>
+          <li>本件の担当｜開発初期から参画し、演出・体験設計の視点で機体仕様・表現性能を監修。ブランド形成・実機評価にも参画</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <div>
+        <div class="sec-label" data-object="true" data-object-type="textbox" id="p27-lab-roles">PROJECT STRUCTURE<span class="ja">3者共同開発体制</span></div>
+        <div class="roles">
+          <div class="role-card">
+            <div class="role-bar">DEVELOPMENT</div>
+            <div class="role-body" data-object="true" data-object-type="textbox" id="p27-role-robotix">
+              <div class="role-org"><div class="role-name">株式会社<br>ROBOTIX JAPAN</div></div>
+              <div class="role-main">機体開発・製造・販売</div>
+              <div class="role-desc">設計・試作・量産・品質管理・保守。特許13件／自社製品4系列の量産知見を転用し、茨城県坂東市で自社設計・自社試作。</div>
+            </div>
+          </div>
+          <div class="role-card">
+            <div class="role-bar">PRODUCE</div>
+            <div class="role-body" data-object="true" data-object-type="textbox" id="p27-role-vn">
+              <div class="role-org"><div class="role-name">VISIONOID<br>株式会社</div></div>
+              <div class="role-main">発起・企画・プロデュース・運用設計</div>
+              <div class="role-desc">プロジェクトの発起・構想、商品コンセプトと要求仕様の策定、現場知見の実装、運用システム設計、実証、事業設計・市場展開。</div>
+            </div>
+          </div>
+          <div class="role-card is-creative">
+            <div class="role-bar">CREATIVE</div>
+            <div class="role-body" data-object="true" data-object-type="textbox" id="p27-role-kohashi">
+              <div class="role-org">
+                <img alt="小橋 賢児" class="avatar" src="genspark_images/kohashi_avatar.jpg">
+                <div class="role-name">小橋 賢児<br>Kenji Kohashi</div>
+              </div>
+              <div class="role-main">クリエイティブ監修・開発参画</div>
+              <div class="role-desc">思想・世界観・表現性能・ブランド。演出と体験設計の視点から機体仕様を監修し、実機評価にも参画。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="specs">
+        <div class="sec-label" data-object="true" data-object-type="textbox" id="p27-lab-spec">TARGET SPEC<span class="ja">目標スペック — 主要機体を上回る設計目標</span></div>
+        <div class="spec-chips" data-object="true" data-object-type="textbox" id="p27-chips">
+          <div class="chip"><span class="k">ホバリング</span><span class="v">30分</span></div>
+          <div class="chip"><span class="k">防塵防水</span><span class="v">IP56</span></div>
+          <div class="chip"><span class="k">耐風</span><span class="v">Beaufort 6</span></div>
+          <div class="chip"><span class="k">LED</span><span class="v">30W</span></div>
+          <div class="chip"><span class="k">バッテリー</span><span class="v">5,000mAh</span></div>
+          <div class="chip"><span class="k">充電</span><span class="v">接触充電</span></div>
+          <div class="chip"><span class="k">運搬</span><span class="v">1箱10機</span></div>
+        </div>
+      </div>
+
+      <div class="status">
+        <div class="sec-label" data-object="true" data-object-type="textbox" id="p27-lab-road">STATUS &amp; ROADMAP<span class="ja">1年以内の製品化へ｜2026.09 着手 → 2027.08 製品化</span></div>
+        <div class="status-row">
+          <div class="status-photo" data-object="true" data-object-type="image" id="p27-img-frame">
+            <img alt="サンプルフレーム試作" src="genspark_images/ngd_frame_hero.jpg">
+            <div class="status-cap">現況｜2026年8月　サンプルフレーム試作完了（ガード一体構造）</div>
+          </div>
+          <div class="ms-list" data-object="true" data-object-type="textbox" id="p27-milestones">
+            <div class="ms"><div class="m">M0–3</div><div class="t"><b>要求仕様の確定・設計凍結</b>　3者で要求仕様を策定。小橋氏の監修のもとフレーム設計を凍結。</div></div>
+            <div class="ms"><div class="m">M4–6</div><div class="t"><b>試作1号機・飛行試験</b>　飛行時間／耐風／防水／LED光量を実測。隊形での群制御試験。</div></div>
+            <div class="ms"><div class="m">M7–9</div><div class="t"><b>実証ショー・改良2号機</b>　VISIONOIDの実案件で運用検証。箱運用・接触充電・撤収動線を詰める。</div></div>
+            <div class="ms is-final"><div class="m">M10–12</div><div class="t"><b>量産設計・初回ロット・製品発表</b>　品質管理体制と量産設計を確定し、市場へローンチ。</div></div>
+            <div class="ms-note"><b>この体制の最大の強み</b>｜VISIONOIDの実案件（ドローンショー公演）を、そのまま開発中の実証フィールドとして使える。演出側の要求を、開発の途中で何度でも機体に反映できる。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

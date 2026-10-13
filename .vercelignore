@@ -1,0 +1,24 @@
+# Vercel runs `npm run build` itself (see vercel.json), so the local build
+# output and caches must not be uploaded — they were ~130MB of the payload.
+node_modules
+dist
+.parcel-cache
+.vercel
+.git
+.DS_Store
+*.log
+
+# Source material that is not part of the build graph.
+genspark_source
+src/VISIONOID紹介_短縮版_low.pptx
+src/VN_LOGO.pdf
+src/from_Genspark.rtf
+
+# assets/images is only referenced by src/utils/images.js, which nothing
+# imports — Parcel never resolves it, so it is 49MB of dead upload.
+assets/images
+
+# v2 QA renders (local only)
+scripts/v2/out
+scripts/v2/out_en
+scripts/v2/*.jpg

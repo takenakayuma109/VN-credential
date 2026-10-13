@@ -67,6 +67,79 @@ body { overflow-x: hidden; }
 }
 .variant-badge.board { color: #fbbf24; background: rgba(251, 191, 36, 0.08); }
 .variant-badge.member { color: #4a9eff; background: rgba(74, 158, 255, 0.10); }
+.variant-badge.ver2 { color: #FF4A1C; border-color: rgba(255, 74, 28, 0.6); background: rgba(255, 74, 28, 0.10); }
+
+/* Ver.1 / Ver.2 deck switch */
+.ver-switch {
+  display: inline-flex;
+  position: relative;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 3px;
+  margin-right: 4px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #0B0B0C;
+  border: 1px solid rgba(255, 74, 28, 0.55);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 6px 20px -8px rgba(255, 74, 28, 0.55);
+}
+.ver-thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #FF6A3D, #FF4A1C);
+  box-shadow: 0 4px 14px -2px rgba(255, 74, 28, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateX(0);
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1);
+  pointer-events: none;
+}
+.ver-switch[data-ver="2"] .ver-thumb { transform: translateX(100%); }
+.top-toolbar .ver-switch button {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 78px;
+  justify-content: center;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: color 0.25s;
+}
+.top-toolbar .ver-switch button:hover,
+.top-toolbar .ver-switch button[aria-checked="true"] { color: #fff; background: transparent; }
+.top-toolbar .ver-switch button:focus-visible { outline: 2px solid #FF4A1C; outline-offset: 2px; border-radius: 999px; }
+.ver-switch .short { display: none; }
+.ver-new {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF4A1C;
+  animation: ver-pulse 1.8s ease-out infinite;
+}
+@keyframes ver-pulse {
+  0%   { transform: scale(1);   box-shadow: 0 0 0 0 rgba(255, 74, 28, 0.7); }
+  70%  { transform: scale(1.15); box-shadow: 0 0 0 7px rgba(255, 74, 28, 0); }
+  100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(255, 74, 28, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ver-thumb { transition: none; }
+  .ver-new { animation: none; }
+  .top-toolbar .ver-switch button { transition: none; }
+}
 
 .variant-toggle {
   display: inline-flex;
@@ -141,6 +214,7 @@ body { overflow-x: hidden; }
   .btn-label { display: none; }
   .btn-icon { font-size: 14px; }
   .variant-toggle button { padding: 6px 9px !important; font-size: 11px; }
+  .top-toolbar .ver-switch button { min-width: 62px; font-size: 12px; padding: 0 8px; }
 }
 
 /* Mobile: shrink brand mark, allow toolbar to scroll horizontally if it
@@ -151,6 +225,9 @@ body { overflow-x: hidden; }
   .top-toolbar .brand { font-size: 12px; gap: 6px; }
   .brand-text-short { display: none; }
   .variant-badge { font-size: 9px; padding: 2px 6px; letter-spacing: 0.08em; }
+  .ver-switch .full { display: none; }
+  .ver-switch .short { display: inline; }
+  .top-toolbar .ver-switch button { min-width: 44px; }
   .top-toolbar .controls {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -341,4 +418,72 @@ body { overflow-x: hidden; }
   border-radius: 10px;
   padding: 14px;
   color: #e8eaed;
+}
+
+/* ===== PRINT: native browser print → PDF =====
+   Each .slide-frame becomes one printed page at native 1280×720 landscape.
+   The browser's own renderer handles fonts (Google Fonts, FontAwesome)
+   and CSS perfectly, so the PDF is pixel-identical to the on-screen view —
+   unlike SVG-foreignObject snapshots, which silently drop CDN fonts. */
+@media print {
+  @page {
+    size: 1280px 720px;
+    margin: 0;
+  }
+  /* Force the browser to print backgrounds, gradients, and images even when
+     the user's "Background graphics" checkbox is unchecked. Without this,
+     Chrome silently drops dark hero panels, accent gradients, and decorative
+     images — the PDF then looks like a stripped-down outline instead of the
+     real deck. */
+  html, body, * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  .top-toolbar,
+  .nav-sidebar,
+  .vn-edit-overlay {
+    display: none !important;
+  }
+  .app-pages {
+    padding: 0 !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+  .slide-frame {
+    width: 1280px !important;
+    height: 720px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .slide-frame:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  .slide-frame-inner {
+    width: 1280px !important;
+    height: 720px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+  .slide-canvas {
+    width: 1280px !important;
+    height: 720px !important;
+    transform: none !important;
+    border: 0 !important;
+    display: block !important;
+  }
 }

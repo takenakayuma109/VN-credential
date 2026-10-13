@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Aircraft Development | Target Specs and Roadmap</title><!--V2HEAD-->
+<style>
+.head{position:absolute;left:48px;top:70px;right:48px;display:flex;align-items:flex-end;gap:32px}
+.head .title{font-size:44px;line-height:1.1}
+.head .lbl{margin-left:auto;padding-bottom:8px;white-space:nowrap}
+.head .lbl b{color:var(--signal);font-weight:700}
+.sp{position:absolute;left:48px;right:48px;top:138px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:2px solid var(--ink)}
+.cell{padding:12px 0 12px 18px;border-left:1px solid var(--pline);border-bottom:1px solid var(--pline);height:104px;position:relative}
+.cell:first-child,.cell:nth-child(5){border-left:none;padding-left:0}
+.c4{grid-column:span 3}.c3{grid-column:span 4}
+.cell .lbl{display:block}
+.cell .fig{font-size:62px;margin-top:6px;color:var(--ink);white-space:nowrap}
+.cell .fig small{font-size:.36em;margin-left:.1em}
+.cell .fig small.pre{margin:0 .15em 0 0;font-family:var(--f-x);font-stretch:112%;font-weight:800;letter-spacing:0}
+.cell .fig.jp{font-size:32px;margin-top:20px;letter-spacing:-.01em}
+.cell.hot .fig{color:var(--signal)}
+.rm{position:absolute;left:48px;right:48px;top:364px}
+.rm .top{display:flex;align-items:baseline;gap:24px}
+.rm .range{font-size:28px;font-weight:900}
+.rm .range .ar{color:var(--signal);margin:0 .25em}
+.rm .now{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700}
+.tl{position:relative;height:2px;background:var(--ink);margin-top:16px}
+.tl i{position:absolute;top:-5px;width:12px;height:12px;background:var(--signal)}
+.ms{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:10px}
+.ms>div{padding:12px 22px 0 0}
+.ms .m{font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal);letter-spacing:.06em}
+.ms .t{font-size:20px;font-weight:900;line-height:1.35;margin-top:4px}
+.ms .d{font-size:16px;line-height:1.5;margin-top:5px;color:var(--ptxt)}
+.str{position:absolute;left:48px;right:48px;bottom:30px;height:66px;background:var(--ink);color:var(--white);display:flex;align-items:center;gap:28px;padding:0 30px}
+.str .k{font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.1em;color:var(--signal);white-space:nowrap}
+.str .v{font-size:19px;font-weight:700;line-height:1.5}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>06 / IP × R&amp;D</span><span class="pg">19 / 26</span></header>
+  <div class="head"><h1 class="title">Drone Development: Specs &amp; Roadmap</h1><span class="lbl">Target Spec <b>/</b> Designed to exceed leading show drones</span></div>
+
+  <div class="sp">
+    <div class="cell c4"><span class="lbl">Hovering</span><div class="fig">30<small>min</small></div></div>
+    <div class="cell c4"><span class="lbl">Dust &amp; Water Resistance</span><div class="fig">IP56</div></div>
+    <div class="cell c4"><span class="lbl">Wind Resistance</span><div class="fig"><small class="pre">Beaufort</small>6</div></div>
+    <div class="cell c4"><span class="lbl">LED Output</span><div class="fig">30<small>W</small></div></div>
+    <div class="cell c3"><span class="lbl">Battery</span><div class="fig">5,000<small>mAh</small></div></div>
+    <div class="cell c3"><span class="lbl">Charging</span><div class="fig jp">Contact Charging</div></div>
+    <div class="cell c3 hot"><span class="lbl">Transport</span><div class="fig">1<small>case</small>10<small>units</small></div></div>
+  </div>
+
+  <div class="rm">
+    <div class="top"><span class="lbl">Roadmap</span><span class="range">2026.09 Start<span class="ar">→</span>2027.08 Launch</span>
+      <span class="now"><span class="chip">Status</span>Aug 2026: sample frame completed</span></div>
+    <div class="tl"><i style="left:0"></i><i style="left:25%;background:var(--ink)"></i><i style="left:50%;background:var(--ink)"></i><i style="left:75%;background:var(--ink)"></i><i style="right:0"></i></div>
+    <div class="ms">
+      <div><div class="m">M0–3</div><div class="t">Requirements Set<br>Design Freeze</div><div class="d">Three-party requirements agreed; frame design frozen under Kohashi’s supervision.</div></div>
+      <div><div class="m">M4–6</div><div class="t">Prototype Unit 1<br>Flight Testing</div><div class="d">Flight time, wind resistance, waterproofing and LED output measured. Formation swarm tests.</div></div>
+      <div><div class="m">M7–9</div><div class="t">Field Show<br>Refined Unit 2</div><div class="d">Live operation tests on commercial shows. Refining case handling, contact charging and retrieval.</div></div>
+      <div><div class="m">M10–12</div><div class="t">Mass Production<br>Market Release</div><div class="d">Quality system and mass-production design finalized for market entry.</div></div>
+    </div>
+  </div>
+
+  <div class="str"><span class="k">STRENGTH</span><span class="v">Live VISIONOID show deployments double as the development test field,<br>letting creative demands shape the aircraft at every iteration.</span></div>
+</div></body></html>

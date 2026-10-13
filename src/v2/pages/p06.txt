@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>スペシャリスト</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;right:48px;top:66px}
+.top .title{font-size:54px;line-height:1;margin-top:10px}
+.team{position:absolute;left:48px;right:48px;top:156px;bottom:28px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;column-gap:40px;row-gap:0}
+.p{border-top:2px solid var(--ink);padding-top:18px;display:flex;gap:24px;position:relative}
+.p .ph{position:relative;flex:none;width:200px;height:200px}
+.p .ph img{object-position:50% 25%}
+.p .tx{flex:1;min-width:0}
+.p .nm{display:flex;align-items:baseline;gap:14px;white-space:nowrap}
+.p .nm b{font-size:32px;font-weight:900;line-height:1.1;letter-spacing:.01em}
+.p .nm span{font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--pmute)}
+.p .rl{margin-top:8px;font-size:16px;font-weight:700;line-height:1.5;color:var(--signal)}
+.p .rl span{display:inline-block}.p .rl b{font-weight:500;color:var(--pmute);margin:0 3px}
+.p .bio{margin-top:10px;font-size:17px;font-weight:500;line-height:1.62;color:var(--ptxt)}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">06 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title">スペシャリスト</h1></div>
+  <div class="team">
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-a"><img src="genspark_images/face_nakagawa.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>中川 智博</b><span>Tomohiro Nakagawa</span></div>
+      <div class="rl"><span>ドローン事業開発<b>｜</b></span><span>マスターインストラクター</span></div>
+      <p class="bio">楽天ドローン前身のスカイエステート社の共同ファウンダー。DPAマスターインストラクターとして1,000人以上を指導し、3,000名超のコミュニティ「ドローンジョブズ」を運営。一等無人航空機操縦士。</p></div></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-b"><img src="genspark_images/face_murata.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>村田 勇人</b><span>Hayato Murata</span></div>
+      <div class="rl">クリエイティブディレクター</div>
+      <p class="bio">映像制作会社REBORNを設立し、MV・CM・企業VPなど累計約100作品以上を演出。SoftBank CMなど広告領域にも進出。VISIONOIDではイベントクリエイティブとドローンショー演出を担う。</p></div></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-c"><img src="genspark_images/face_tsuruoka.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>鶴岡 悠生</b><span>Yuki Tsuruoka</span></div>
+      <div class="rl" style="letter-spacing:-.03em;font-size:15.5px">クリエイティブビジュアライゼーションエンジニア</div>
+      <p class="bio">最先端の映像ソフト・AI・3Dソフトを駆使し、イベント空間のデジタルツイン構築と映像演出を手がける。XR映像・Unreal Engineを2020年に導入し、JACEイベントアワードで優秀賞を受賞。</p></div></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p06-img-d"><img src="genspark_images/face_kamizeki_f.jpg" alt=""></div>
+      <div class="tx"><div class="nm"><b>上関 風雅</b><span>Fuga Kamizeki</span></div>
+      <div class="rl">ドローンパイロット</div>
+      <p class="bio">小学3年からドローンレースに参戦。元日本最年少チャンピオン。2019年に日本人初の小学生で日本代表入り、ワールドゲームズ2022で世界6位。レースで磨いた技術をドローン空撮・映像制作・演出に転用。</p></div></div>
+  </div>
+</div></body></html>

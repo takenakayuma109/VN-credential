@@ -269,7 +269,7 @@
 </div>
 </div>
 <div class="profile-card" data-object="true" data-object-type="textbox" style="position: absolute; left: 24px; top: 348px; width: 656px; height: 250px;">
-<img alt="Nakagawa Tomohiro" class="profile-icon" src="genspark_images/e0a0d332164eafff15778fdf901e9136.webp"/>
+<img alt="Nakagawa Tomohiro" class="profile-icon" src="genspark_images/face_nakagawa.jpg"/>
 <div class="profile-content">
 <div class="profile-header">
 <span class="profile-name">中川 智博</span>

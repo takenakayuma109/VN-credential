@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>VISIONOID Overview</title><!--V2HEAD-->
+<style>
+.left{position:absolute;left:48px;top:96px;width:452px}
+.left .title{margin-top:14px}
+.left .stmt{margin-top:22px;font-size:34px;font-weight:900;line-height:1.35}
+.left .body{margin-top:16px}
+.pillars{position:absolute;left:48px;bottom:40px;width:452px}
+.pillars .row{gap:16px;padding:12px 0}
+.pillars .k{font-size:19px;font-weight:900;min-width:186px;white-space:nowrap}
+.pillars .v{font-size:16px;font-weight:500;color:var(--txt);line-height:1.5}
+.split{position:absolute;left:540px;top:0;width:740px;height:720px}
+.split .ph{left:0;width:740px;height:359px}
+.split .a{top:0}.split .b{top:361px}
+.split .ov{position:absolute;left:32px;bottom:26px;right:32px;z-index:3}
+.split .eq{font-size:42px;color:#fff;white-space:nowrap}
+.split .eq i{font-style:normal;color:var(--signal)}
+.split .d{margin-top:10px;font-size:20px;font-weight:700;color:#fff}
+.split .scrim-b{height:75%}
+</style></head>
+<body><div class="slide">
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">02 / 26</span></header>
+  <div class="left">
+    <span class="bar"></span>
+    <h1 class="title">VISIONOID Overview</h1>
+    <p class="stmt">Entertainment and industry:<br><span class="sig">two sides of one coin.</span></p>
+    <p class="body">Drones, robotics and AI, from entertainment to social infrastructure, all in-house.</p>
+  </div>
+  <div class="pillars">
+    <div class="row"><span class="k">Drone Technology</span><span class="v">Domestic aircraft development to large-scale operations</span></div>
+    <div class="row"><span class="k">Robotics</span><span class="v">Robot IP that talks, sings and dances</span></div>
+    <div class="row"><span class="k">AI &amp; Digital Twin</span><span class="v">Disaster-resilience platform, XR and simulation</span></div>
+  </div>
+  <div class="split">
+    <div class="ph a" data-object-type="image" id="v2p02-img-a"><img src="genspark_images/U2x8pQPF.png" alt="">
+      <div class="scrim-t"></div><div class="scrim-b"></div>
+      <div class="ov"><div class="xl eq">Entertainment <i>=</i> Race</div><div class="d">Forge technology under extreme conditions</div></div></div>
+    <div class="ph b" data-object-type="image" id="v2p02-img-b"><img src="genspark_images/8qhu9hJ8.png" alt="">
+      <div class="scrim-b"></div>
+      <div class="ov"><div class="xl eq">Industry <i>=</i> Road Car</div><div class="d">Deploy proven technology into social infrastructure</div></div></div>
+  </div>
+</div></body></html>

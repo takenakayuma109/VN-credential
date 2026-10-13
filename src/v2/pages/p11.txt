@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>防災ドローン導入支援｜東京都江戸川区</title><!--V2HEAD-->
+<style>
+.hero{left:0;top:0;width:624px;height:720px}
+.hero img{object-position:27% 50%}
+.hero .scrim-b{height:34%}
+.hero .cap{left:48px;right:40px;bottom:36px;font-size:16px;line-height:1.55}
+.right{position:absolute;left:672px;top:92px;width:560px}
+.right .meta{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.right .title{font-size:46px}
+.right .stmt{margin-top:24px;font-size:22px;font-weight:900;line-height:1.5}
+.right .body{margin-top:12px;font-size:17px;line-height:1.7}
+.init{position:absolute;left:672px;right:48px;bottom:36px}
+.init .lbl{display:block;margin-bottom:12px}
+.init .row{gap:16px;padding:13px 0;align-items:flex-start}
+.init .row:last-child{border-bottom:1px solid var(--line)}
+.init .k{font-size:18px;font-weight:900;width:204px;flex:none;line-height:1.45}
+.init .v{font-size:16px;line-height:1.55;color:var(--txt)}
+.init .v b{font-family:var(--f-m);color:var(--signal);font-weight:700;white-space:nowrap}
+</style></head>
+<body><div class="slide">
+  <div class="ph hero" data-object-type="image" id="v2p11-img-a"><img src="genspark_images/201afc12eb933a681180d4d52ba743f1.webp" alt="">
+    <div class="scrim-t"></div><div class="scrim-b"></div>
+    <div class="cap">右：江戸川区長 斉藤猛 ／ 左：VISIONOID代表 竹中悠満</div></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span style="margin-left:0">02 / Public Safety</span><span class="pg">11 / 26</span></header>
+  <div class="reg" style="left:630px;top:84px"></div>
+  <div class="right">
+    <div class="meta"><span class="chip">PRESS RELEASE</span><span class="lbl">2026.3.8</span></div>
+    <h1 class="title">防災ドローン導入支援<br>東京都江戸川区</h1>
+    <p class="stmt">VISIONOIDと東京都江戸川区が『無人航空機による情報収集等に関する協定』締結</p>
+    <p class="body">地震・風水害等の災害時にドローンで迅速に情報収集し、被害状況の把握と初動対応を高度化する。</p>
+  </div>
+  <div class="init">
+    <span class="lbl">Main Initiatives / 主な取り組み</span>
+    <div class="row"><span class="n">01</span><span class="k">迅速な情報収集体制</span><span class="v">団体でライセンスを取得。発災直後から、外部に依存せず自律展開。</span></div>
+    <div class="row"><span class="n">02</span><span class="k">統合PF「SENRIGAN」</span><span class="v">映像・位置情報を一元管理し、対策本部と現場を繋ぐ。 <b>→ P.12</b></span></div>
+    <div class="row"><span class="n">03</span><span class="k">継続的シミュレーション<br>＆訓練</span><span class="v">平時から地域特性を熟知する実践訓練で、確実に「動ける」体制を構築。</span></div>
+  </div>
+</div></body></html>

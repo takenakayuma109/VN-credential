@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>機体開発｜目標スペックとロードマップ</title><!--V2HEAD-->
+<style>
+.head{position:absolute;left:48px;top:70px;right:48px;display:flex;align-items:flex-end;gap:32px}
+.head .title{font-size:44px;line-height:1.1}
+.head .lbl{margin-left:auto;padding-bottom:8px;white-space:nowrap}
+.head .lbl b{color:var(--signal);font-weight:700}
+.sp{position:absolute;left:48px;right:48px;top:138px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:2px solid var(--ink)}
+.cell{padding:12px 0 12px 18px;border-left:1px solid var(--pline);border-bottom:1px solid var(--pline);height:104px;position:relative}
+.cell:first-child,.cell:nth-child(5){border-left:none;padding-left:0}
+.c4{grid-column:span 3}.c3{grid-column:span 4}
+.cell .lbl{display:block}
+.cell .fig{font-size:62px;margin-top:6px;color:var(--ink);white-space:nowrap}
+.cell .fig small{font-size:.36em;margin-left:.1em}
+.cell .fig small.pre{margin:0 .15em 0 0;font-family:var(--f-x);font-stretch:112%;font-weight:800;letter-spacing:0}
+.cell .fig.jp{font-size:50px;margin-top:12px;letter-spacing:-.01em}
+.cell.hot .fig{color:var(--signal)}
+.rm{position:absolute;left:48px;right:48px;top:364px}
+.rm .top{display:flex;align-items:baseline;gap:24px}
+.rm .range{font-size:28px;font-weight:900}
+.rm .range .ar{color:var(--signal);margin:0 .25em}
+.rm .now{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700}
+.tl{position:relative;height:2px;background:var(--ink);margin-top:16px}
+.tl i{position:absolute;top:-5px;width:12px;height:12px;background:var(--signal)}
+.ms{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:10px}
+.ms>div{padding:12px 22px 0 0}
+.ms .m{font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal);letter-spacing:.06em}
+.ms .t{font-size:20px;font-weight:900;line-height:1.35;margin-top:4px}
+.ms .d{font-size:16px;line-height:1.5;margin-top:5px;color:var(--ptxt)}
+.str{position:absolute;left:48px;right:48px;bottom:30px;height:66px;background:var(--ink);color:var(--white);display:flex;align-items:center;gap:28px;padding:0 30px}
+.str .k{font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.1em;color:var(--signal);white-space:nowrap}
+.str .v{font-size:19px;font-weight:700;line-height:1.5}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>06 / IP × R&amp;D</span><span class="pg">19 / 26</span></header>
+  <div class="head"><h1 class="title">機体開発｜目標スペックとロードマップ</h1><span class="lbl">Target Spec <b>/</b> 主要機体を上回る設計目標</span></div>
+
+  <div class="sp">
+    <div class="cell c4"><span class="lbl">ホバリング</span><div class="fig">30<small>分</small></div></div>
+    <div class="cell c4"><span class="lbl">防塵防水</span><div class="fig">IP56</div></div>
+    <div class="cell c4"><span class="lbl">耐風</span><div class="fig"><small class="pre">Beaufort</small>6</div></div>
+    <div class="cell c4"><span class="lbl">LED</span><div class="fig">30<small>W</small></div></div>
+    <div class="cell c3"><span class="lbl">バッテリー</span><div class="fig">5,000<small>mAh</small></div></div>
+    <div class="cell c3"><span class="lbl">充電</span><div class="fig jp">接触充電</div></div>
+    <div class="cell c3 hot"><span class="lbl">運搬</span><div class="fig">1<small>箱</small>10<small>機</small></div></div>
+  </div>
+
+  <div class="rm">
+    <div class="top"><span class="lbl">Roadmap</span><span class="range">2026.09 着手<span class="ar">→</span>2027.08 製品化</span>
+      <span class="now"><span class="chip">現況</span>2026年8月 サンプルフレーム試作完了（ガード一体構造）</span></div>
+    <div class="tl"><i style="left:0"></i><i style="left:25%;background:var(--ink)"></i><i style="left:50%;background:var(--ink)"></i><i style="left:75%;background:var(--ink)"></i><i style="right:0"></i></div>
+    <div class="ms">
+      <div><div class="m">M0–3</div><div class="t">要求仕様の確定<br>設計凍結</div><div class="d">3者で要求仕様を策定。小橋氏の監修のもと、フレーム設計を凍結。</div></div>
+      <div><div class="m">M4–6</div><div class="t">試作1号機<br>飛行試験</div><div class="d">飛行時間・耐風・防水・LED光量を実測。隊形での群制御試験。</div></div>
+      <div><div class="m">M7–9</div><div class="t">実証ショー<br>改良2号機</div><div class="d">実案件で運用検証。箱運用・接触充電・撤収動線を詰める。</div></div>
+      <div><div class="m">M10–12</div><div class="t">量産設計・初回ロット<br>製品発表</div><div class="d">品質管理体制と量産設計を確定し、市場へローンチ。</div></div>
+    </div>
+  </div>
+
+  <div class="str"><span class="k">STRENGTH</span><span class="v">VISIONOIDの実案件（ドローンショー公演）をそのまま開発中の実証フィールドにでき、<br>演出側の要求を何度でも機体に反映できる。</span></div>
+</div></body></html>

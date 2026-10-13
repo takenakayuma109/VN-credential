@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useEditStore } from '../utils/editStore';
+import { useEditStore, PUBLISHED_EDITS, isShareView } from '../utils/editStore';
 import { imgPut, imgGet, IDB_MARKER } from '../utils/imageStore';
 
 export const SLIDE_W = 1280;
@@ -107,6 +107,24 @@ const STATIC_IMAGE_OVERLAYS = {
   ],
 };
 
+// Print fidelity: tells the browser to render exact colors/gradients/bg
+// images instead of Chrome's default "save ink" stripping. Parent's @media
+// print rule doesn't reach into iframe documents, so we inject this into
+// each iframe's <head>. Without it, native window.print() drops dark
+// panels, gradients, and decorative images.
+const IFRAME_PRINT_FIDELITY_CSS = `
+<style>
+  html, body, * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  @media print {
+    html, body { margin: 0 !important; padding: 0 !important; }
+  }
+</style>
+`;
+
 // Inline script injected INTO each iframe's <head>. Runs in the iframe's own
 // realm where DOM access is guaranteed — parent-side iframe.contentDocument
 // access has been failing intermittently on the production deploy, so we move
@@ -177,10 +195,25 @@ const IFRAME_BRIDGE_SCRIPT = `
 // no flash of the placeholder and no leftover network reference to it.
 async function bakeImageEdits(html, pageId) {
   let allEdits;
-  try {
-    allEdits = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
-  } catch {
-    return html;
+  // Share recipients read directly from the bundled published snapshot.
+  // Their localStorage is either empty or carries unrelated edits; we want
+  // them to see exactly what the owner published. Image values in the
+  // snapshot are inlined data URLs (no IDB marker), so the IDB fetch branch
+  // below is skipped for them.
+  if (isShareView()) {
+    allEdits = { ...PUBLISHED_EDITS };
+  } else {
+    try {
+      allEdits = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
+    } catch {
+      return html;
+    }
+    // Owner browser fallback: if the owner opens the deck fresh in a new
+    // browser, seed from the published snapshot so they see the current
+    // public state instead of bare placeholders.
+    if (Object.keys(allEdits).length === 0) {
+      allEdits = { ...PUBLISHED_EDITS };
+    }
   }
   const prefix = `p${pageId}:img:`;
   const replacements = []; // [{ wrapId, src }]
@@ -201,7 +234,10 @@ async function bakeImageEdits(html, pageId) {
     if (!resolved) continue;
     replacements.push({ wrapId, src: resolved });
   }
-  if (staleMarkers.length) {
+  if (staleMarkers.length && !isShareView()) {
+    // Don't self-heal localStorage for share recipients: their entries (if
+    // any) belong to their own work in a different context. Owners DO want
+    // self-heal so a missing IDB payload doesn't lock the page forever.
     try {
       const cur = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
       for (const k of staleMarkers) delete cur[k];
@@ -251,10 +287,12 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
         ? window.location.href.replace(/[^/]*$/, '')
         : '/';
       const baseTag = `<base href="${baseHref}">`;
-      // Inject base tag AND the bridge script into <head>. The bridge runs
-      // inside the iframe's own realm and posts messages to parent, sidestepping
-      // any weirdness with parent-side contentDocument access.
-      const headInjection = baseTag + IFRAME_BRIDGE_SCRIPT;
+      // Inject base tag, print-fidelity CSS, and the bridge script into <head>.
+      // The print CSS makes window.print() render exact colors instead of
+      // Chrome's stripped-ink default. The bridge runs inside the iframe's
+      // own realm and posts messages to parent, sidestepping any weirdness
+      // with parent-side contentDocument access.
+      const headInjection = baseTag + IFRAME_PRINT_FIDELITY_CSS + IFRAME_BRIDGE_SCRIPT;
       let patched = html.includes('<head')
         ? html.replace(/<head([^>]*)>/i, `<head$1>${headInjection}`)
         : `<!DOCTYPE html><html><head>${headInjection}</head><body>${html}</body></html>`;
@@ -340,13 +378,53 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
       if (!doc) return;
       const { get, set } = storeRef.current;
 
+      // Auto-tag text containers on pages whose source HTML has no explicit
+      // data-object-type="textbox" markers. Without this, pages 8, 9, 11, 26
+      // (and any future page authored without markers) had no editable text
+      // — the user could not change Company Overview / Leadership Team /
+      // Locations / Partners / Contact text on the last page. Heuristic:
+      // tag every element that has visible text and contains no block-level
+      // descendants (so we get leaf-ish containers like .info-value /
+      // .team-name / .partner-item, not whole sections). IDs are assigned
+      // in document order so they stay stable across reloads of the same
+      // HTML — saved edits keep targeting the right element.
+      if (doc.body && !doc.body.querySelector('[data-object-type="textbox"]')) {
+        const BLOCK_DESCENDANT = 'div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,table,section,article,header,footer,main,aside,nav,form,button,input,textarea,img,svg,iframe,video,audio,[data-object-type="image"]';
+        const SKIP = 'script,style,meta,link,title,head,base,code,pre,textarea,input,button,select,option,svg,path,[data-object-type="image"]';
+        let counter = 0;
+        const candidates = Array.from(doc.body.querySelectorAll('*'));
+        for (const el of candidates) {
+          if (el.hasAttribute('data-object-type')) continue;
+          if (el.closest('[data-object-type]')) continue;
+          if (el.matches(SKIP)) continue;
+          if (el.closest(SKIP)) continue;
+          const text = el.textContent && el.textContent.trim();
+          if (!text) continue;
+          if (el.querySelector(BLOCK_DESCENDANT)) continue;
+          el.setAttribute('data-object-type', 'textbox');
+          if (!el.id) el.id = `auto-tb-${counter}`;
+          counter++;
+        }
+        console.log(`[VN auto-tag] page=${id}: tagged ${counter} text elements`);
+      }
+
       // Restore persisted edits. Text edits are language-scoped (`p<id>:<lang>:text:<objId>`)
       // so a JA override doesn't pollute the EN view (and vice versa).
       // Legacy unscoped keys (`p<id>:text:<objId>`, written before the lang
       // toggle existed) are treated as JA so old work isn't lost. Apply legacy
       // first, then lang-scoped — so a fresh JA edit wins over the same
       // element's legacy entry.
-      const allEdits = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
+      // Share recipients pull from the bundled published snapshot rather
+      // than their own localStorage (which is empty or holds unrelated work).
+      let allEdits;
+      if (isShareView()) {
+        allEdits = { ...PUBLISHED_EDITS };
+      } else {
+        allEdits = JSON.parse(localStorage.getItem('visionoid_credential_edits_v1') || '{}');
+        if (Object.keys(allEdits).length === 0) {
+          allEdits = { ...PUBLISHED_EDITS };
+        }
+      }
       const langScopedPrefix = `p${id}:${lang}:text:`;
       const legacyPrefix = `p${id}:text:`;
       const otherLangPrefixes = [`p${id}:ja:text:`, `p${id}:en:text:`];
@@ -748,37 +826,6 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
     };
   }, [editMode, id, handleFileReplace]);
 
-  // Legacy drag handler (kept as no-op — replaced by iframe-side listener).
-  const handleDragStart = useCallback((target, e) => {
-    if (e.button !== 0) return;
-    if (!target.img) return;
-    e.preventDefault();
-    e.stopPropagation();
-    const xfKey = `p${id}:imgxform:${target.key}`;
-    const startXf = storeRef.current.get(xfKey) || { x: 0, y: 0, scale: 1 };
-    if (startXf.scale === 1) startXf.scale = 1.2;
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const onMove = (ev) => {
-      // Convert screen delta to iframe coords (divide by scale)
-      const dx = (ev.clientX - startX) / scale;
-      const dy = (ev.clientY - startY) / scale;
-      const cur = { x: (Number(startXf.x) || 0) + dx, y: (Number(startXf.y) || 0) + dy, scale: Number(startXf.scale) || 1 };
-      applyImgXform(target.img, cur);
-    };
-    const onUp = (ev) => {
-      const dx = (ev.clientX - startX) / scale;
-      const dy = (ev.clientY - startY) / scale;
-      const cur = { x: (Number(startXf.x) || 0) + dx, y: (Number(startXf.y) || 0) + dy, scale: Number(startXf.scale) || 1 };
-      applyImgXform(target.img, cur);
-      storeRef.current.set(xfKey, cur);
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
-    };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
-  }, [id, scale]);
-
   return (
     <div ref={wrapRef} className="slide-frame" id={`page-${String(id).padStart(2, '0')}`}>
       <div ref={innerRef} className="slide-frame-inner" style={{ height: SLIDE_H * scale, position: 'relative' }}>
@@ -844,17 +891,59 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           const height = rect.height * scale;
           return (
             <React.Fragment key={key}>
-              {/* Clickable area covering the whole image. One click → file
-                  picker. Toolbar buttons inside use stopPropagation so they
-                  trigger their own action without double-firing this click. */}
+              {/* Click → file picker. Drag (>5px) → reposition the image via
+                  translate(). Toolbar buttons inside use stopPropagation so
+                  they trigger their own action. */}
               <div
-                onClick={(e) => {
+                onMouseDown={(e) => {
+                  if (e.button !== 0) return;
                   e.preventDefault();
                   e.stopPropagation();
-                  console.log(`[VN overlay-click] page=${id} ${key}: opening file picker`);
-                  handleFileReplace(t);
+                  const xfKey = `p${id}:imgxform:${t.key}`;
+                  const startXf = storeRef.current.get(xfKey) || { x: 0, y: 0, scale: 1 };
+                  const startScale = Number(startXf.scale) || 1;
+                  const sx = e.clientX;
+                  const sy = e.clientY;
+                  let dragging = false;
+                  const THRESHOLD = 5;
+                  const onMove = (ev) => {
+                    const dx = (ev.clientX - sx) / scale;
+                    const dy = (ev.clientY - sy) / scale;
+                    if (!dragging && Math.hypot(ev.clientX - sx, ev.clientY - sy) >= THRESHOLD) {
+                      dragging = true;
+                    }
+                    if (dragging) {
+                      const cur = {
+                        x: (Number(startXf.x) || 0) + dx,
+                        y: (Number(startXf.y) || 0) + dy,
+                        scale: startScale,
+                      };
+                      applyImgXform(t.img, cur);
+                    }
+                  };
+                  const onUp = (ev) => {
+                    window.removeEventListener('mousemove', onMove);
+                    window.removeEventListener('mouseup', onUp);
+                    if (dragging) {
+                      const dx = (ev.clientX - sx) / scale;
+                      const dy = (ev.clientY - sy) / scale;
+                      const cur = {
+                        x: (Number(startXf.x) || 0) + dx,
+                        y: (Number(startXf.y) || 0) + dy,
+                        scale: startScale,
+                      };
+                      applyImgXform(t.img, cur);
+                      storeRef.current.set(xfKey, cur);
+                      console.log(`[VN drag] page=${id} ${t.key}: saved xform`, cur);
+                    } else {
+                      console.log(`[VN overlay-click] page=${id} ${t.key}: opening file picker`);
+                      handleFileReplace(t);
+                    }
+                  };
+                  window.addEventListener('mousemove', onMove);
+                  window.addEventListener('mouseup', onUp);
                 }}
-                title={lang === 'en' ? 'Click to replace image' : 'クリックで画像差替'}
+                title={lang === 'en' ? 'Click to replace · Drag to reposition' : 'クリックで差替 / ドラッグで位置調整'}
                 style={{
                   position: 'absolute',
                   left, top, width, height,
@@ -863,7 +952,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
                   boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.8)',
                   zIndex: 50,
                   pointerEvents: 'auto',
-                  cursor: 'pointer',
+                  cursor: 'grab',
                   background: 'rgba(74,158,255,0.03)',
                 }}
               />

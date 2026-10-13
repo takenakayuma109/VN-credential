@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>教育・人材育成</title><!--V2HEAD-->
+<style>
+.hero{left:624px;top:0;width:656px;height:720px}
+.hero img{object-position:35% 50%}
+.hero .scrim-t{height:100px}
+.left{position:absolute;left:48px;top:84px;width:560px}
+.left .title{margin-top:14px;font-size:48px}
+.fg{margin-top:22px;font-size:128px;line-height:.9;white-space:nowrap}
+.fg i{font-style:normal;color:var(--signal)}
+.fgc{margin-top:16px;font-size:26px;font-weight:900;line-height:1.35}
+.fgc2{margin-top:2px;font-size:19px;font-weight:700;color:var(--pmute)}
+.prog{position:absolute;left:48px;top:416px;width:560px}
+.prog .row{gap:16px;padding:11px 0;align-items:flex-start}
+.prog .row:last-child{border-bottom:1px solid var(--pline)}
+.prog .k{font-size:20px;font-weight:900;width:152px;flex:none;line-height:1.4}
+.prog .v{font-size:16px;line-height:1.55;font-weight:500;color:var(--ptxt)}
+.cred{position:absolute;left:48px;top:676px;width:576px;font-size:16px;font-weight:700;line-height:1.5;display:flex;gap:10px}
+.cred .sq{display:block;width:10px;height:10px;background:var(--signal);margin-top:8px;flex:none}
+.cred b.x{font-family:var(--f-m);font-size:15px;color:var(--signal);letter-spacing:.06em;font-weight:700;white-space:nowrap;padding-top:1px}
+</style></head>
+<body><div class="slide paper">
+  <div class="ph hero" data-object-type="image" id="v2p16-img-a"><img src="genspark_images/0UpwZ65n.png" alt=""><div class="scrim-t"></div></div>
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>05 / Education</span><span class="pg" style="color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.6)">16 / 26</span></header>
+  <div class="reg" style="left:616px;top:76px"></div>
+  <div class="left">
+    <span class="bar"></span>
+    <h1 class="title">教育・人材育成</h1>
+    <div class="fig fg">1,000<i>+</i></div>
+    <p class="fgc">人以上のパイロットを育成</p>
+    <p class="fgc2">3,000名超のコミュニティ運営</p>
+  </div>
+  <div class="prog">
+    <div class="row"><span class="n">01</span><span class="k">国家資格<br>スクール運営</span><span class="v">一等無人航空機操縦士の取得を支援。実践的なカリキュラムで即戦力を育成。</span></div>
+    <div class="row"><span class="n">02</span><span class="k">JAPRADAR<br>青少年育成</span><span class="v">2017年から続くレーシングチームでの育成。レース技術を産業へ転用。</span></div>
+    <div class="row"><span class="n">03</span><span class="k">STEM・<br>STEAM教育</span><span class="v">ドローンを活用した、科学・技術・工学・数学の融合教育プログラム。</span></div>
+  </div>
+  <div class="cred"><b class="sq"></b><span>指導：中川 智博（DPAマスターインストラクター／一等無人航空機操縦士）</span></div>
+</div></body></html>

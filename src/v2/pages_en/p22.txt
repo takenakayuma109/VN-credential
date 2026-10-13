@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Mission</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;top:84px;display:flex;align-items:center;gap:20px}
+.top .title{line-height:1}
+.hero{position:absolute;left:44px;top:128px;width:1200px;font-size:64px;font-weight:900;line-height:1.14;letter-spacing:-.02em;font-feature-settings:"palt" 1}
+.hero em{font-style:normal;color:var(--signal)}
+.lft{position:absolute;left:48px;top:410px;width:380px}
+.lft .lead{font-size:26px;line-height:1.5}
+.lft .body{margin-top:12px;font-size:18px;line-height:1.7}
+.cond{position:absolute;left:480px;top:410px;right:48px;display:flex;gap:0}
+.cond>div{flex:1;border-top:1px solid var(--line);padding:14px 22px 0 0}
+.cond>div+div{padding-left:22px;border-left:0}
+.cond .n{font-family:var(--f-m);font-weight:700;font-size:15px;color:var(--signal);letter-spacing:.08em}
+.cond .k{margin-top:8px;font-size:30px;font-weight:900;line-height:1.2}
+.cond .v{margin-top:10px;font-size:18px;line-height:1.55;color:var(--txt)}
+.cond .v2{margin-top:8px;font-size:16px;line-height:1.55;color:var(--mute)}
+.cc{position:absolute;left:48px;right:48px;bottom:30px;display:flex;align-items:center;gap:22px;padding-top:20px;border-top:1px solid var(--line)}
+.cc .t{font-size:26px;font-weight:900;letter-spacing:.01em}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Mission</span><span class="pg">22 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title s">Mission</h1></div>
+  <div class="reg" style="left:1222px;top:136px"></div>
+  <p class="hero">Move <em>society</em> forward with<br><em>technology</em> that moves hearts.</p>
+  <div class="lft">
+    <p class="lead">Joy and safety come<br>from the same technology.</p>
+    <p class="body">We fuse entertainment with the industrial technology that protects society, creating conditions in which society can move forward with confidence.</p>
+  </div>
+  <div class="cond">
+    <div><span class="n">01</span><div class="k">Safety &amp; Trust</div><div class="v">Guaranteed quality and reliability</div></div>
+    <div><span class="n">02</span><div class="k">Utility &amp; Value</div><div class="v">Useful in everyday life and work</div></div>
+    <div><span class="n">03</span><div class="k">Emotional Acceptance</div><div class="v">Welcomed, exciting, anticipated</div></div>
+  </div>
+  <div class="cc"><span class="bar" style="width:40px"></span><span class="t">Technology becomes <span class="sig">society</span> when it is understood, trusted, and anticipated.</span></div>
+</div></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>ミッション</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;top:84px;display:flex;align-items:center;gap:20px}
+.top .title{line-height:1}
+.hero{position:absolute;left:44px;top:128px;width:1200px;font-size:88px;font-weight:900;line-height:1.14;letter-spacing:-.025em;font-feature-settings:"palt" 1}
+.hero em{font-style:normal;color:var(--signal)}
+.mono{position:absolute;left:48px;top:350px;color:var(--mute)}
+.lft{position:absolute;left:48px;top:410px;width:380px}
+.lft .lead{font-size:26px;line-height:1.5}
+.lft .body{margin-top:12px;font-size:18px;line-height:1.7}
+.cond{position:absolute;left:480px;top:410px;right:48px;display:flex;gap:0}
+.cond>div{flex:1;border-top:1px solid var(--line);padding:14px 22px 0 0}
+.cond>div+div{padding-left:22px;border-left:0}
+.cond .n{font-family:var(--f-m);font-weight:700;font-size:15px;color:var(--signal);letter-spacing:.08em}
+.cond .k{margin-top:8px;font-size:30px;font-weight:900;line-height:1.2}
+.cond .v{margin-top:10px;font-size:18px;line-height:1.55;color:var(--txt)}
+.cond .v2{margin-top:8px;font-size:16px;line-height:1.55;color:var(--mute)}
+.cc{position:absolute;left:48px;right:48px;bottom:30px;display:flex;align-items:center;gap:22px;padding-top:20px;border-top:1px solid var(--line)}
+.cc .t{font-size:34px;font-weight:900;letter-spacing:.01em}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Mission</span><span class="pg">22 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title s">ミッション</h1></div>
+  <div class="reg" style="left:1222px;top:136px"></div>
+  <p class="hero">人の心を動かす<em>「技術」</em>で、<br><em>「社会」</em>を前に進める。</p>
+  <p class="lbl mono">Move society with technology that moves hearts.</p>
+  <div class="lft">
+    <p class="lead">楽しさと安全は、<br>同じ技術から生まれる。</p>
+    <p class="body">エンターテインメントと、社会を守る産業技術を融合させ、社会が安心して前に進める状態をつくる。</p>
+  </div>
+  <div class="cond">
+    <div><span class="n">01</span><div class="k">安全・信頼</div><div class="v">確かな品質と信頼性を担保する</div></div>
+    <div><span class="n">02</span><div class="k">実用性・価値</div><div class="v">人々の生活や仕事に有用である</div></div>
+    <div><span class="n">03</span><div class="k">心の受容</div><div class="v">受け入れたい・ワクワク・期待</div></div>
+  </div>
+  <div class="cc"><span class="bar" style="width:40px"></span><span class="t">技術は、理解され、信頼され、期待されて、<span class="sig">社会</span>になる。</span></div>
+</div></body></html>

@@ -1,0 +1,97 @@
+/* ==========================================================================
+   VISIONOID Credential v2 — Design System  "SPECTACLE / PRECISION"
+   Canvas: 1280 x 720 (fixed). Minimum type size: 15px. No exceptions.
+   Dark "spectacle" pages (ink) alternate with "precision" pages (paper).
+   ========================================================================== */
+:root{
+  --ink:#0B0B0C; --ink2:#151517; --ink3:#202024;
+  --paper:#ECEAE4; --paper2:#E1DED6;
+  --white:#F7F6F2;
+  --signal:#FF4A1C;               /* safety orange: rescue / industry / stage */
+  --txt:#D9D7D1;                  /* body text on ink */
+  --mute:rgba(247,246,242,.60);   /* labels on ink */
+  --line:rgba(247,246,242,.18);
+  --ptxt:#2A2926;                 /* body text on paper */
+  --pmute:#6A6760;
+  --pline:rgba(11,11,12,.16);
+  --f-jp:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',sans-serif;
+  --f-x:'Archivo','Zen Kaku Gothic New',sans-serif;
+  --f-m:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:720px;overflow:hidden;background:var(--ink)}
+body{font-family:var(--f-jp);color:var(--white);-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;font-size:19px}
+img{display:block}
+
+/* ---------- canvas ---------- */
+.slide{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--ink);color:var(--white)}
+.slide.paper{background:var(--paper);color:var(--ink)}
+
+/* ---------- running header (every page) ---------- */
+.hd{position:absolute;left:48px;right:48px;top:28px;height:24px;display:flex;align-items:center;gap:28px;z-index:30;
+  font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.paper .hd{color:var(--pmute)}
+.hd .wm{font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:18px;letter-spacing:.01em;color:var(--white);text-transform:none}
+.paper .hd .wm{color:var(--ink)}
+.hd .pg{margin-left:auto}
+.hd.on-photo{color:rgba(255,255,255,.85);text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.hd.on-photo .wm{color:#fff}
+.wm i,.dot{font-style:normal;color:var(--signal)}
+
+/* ---------- type scale ---------- */
+.kicker{font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.title{font-family:var(--f-jp);font-weight:900;font-size:60px;line-height:1.12;letter-spacing:-.01em}
+.title.xl{font-size:84px;line-height:1.05}
+.title.l{font-size:72px}
+.title.m{font-size:48px}
+.title.s{font-size:38px}
+.xl{font-family:var(--f-x);font-stretch:125%;font-weight:900;text-transform:uppercase;line-height:.86;letter-spacing:-.025em}
+.fig{font-family:var(--f-x);font-stretch:125%;font-weight:900;line-height:.9;letter-spacing:-.03em;font-variant-numeric:tabular-nums lining-nums}
+.fig small{font-family:var(--f-jp);font-stretch:100%;font-weight:900;font-size:.38em;letter-spacing:0;margin-left:.08em}
+.lead{font-size:26px;font-weight:700;line-height:1.55}
+.body{font-size:19px;font-weight:500;line-height:1.75;color:var(--txt)}
+.paper .body{color:var(--ptxt)}
+.sm{font-size:16px;font-weight:500;line-height:1.6;color:var(--txt)}
+.paper .sm{color:var(--ptxt)}
+.lbl{font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.paper .lbl{color:var(--pmute)}
+.en{font-family:var(--f-x);font-stretch:112%;font-weight:700;letter-spacing:.02em}
+.sig{color:var(--signal)}
+.mute{color:var(--mute)} .paper .mute{color:var(--pmute)}
+
+/* ---------- structure ---------- */
+.rule{height:1px;background:var(--line)} .paper .rule{background:var(--pline)}
+.vrule{width:1px;background:var(--line)} .paper .vrule{background:var(--pline)}
+.bar{display:block;width:56px;height:6px;background:var(--signal)}
+.tag{display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid var(--line);border-radius:999px;
+  font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.04em;color:var(--white);white-space:nowrap}
+.paper .tag{border-color:var(--pline);color:var(--ink)}
+.tag.solid{background:var(--signal);border-color:var(--signal);color:#fff}
+.chip{display:inline-block;padding:4px 10px;background:var(--signal);color:#fff;font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.06em}
+
+/* photos */
+.ph{position:absolute;overflow:hidden;background:var(--ink3)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .cap{position:absolute;left:16px;bottom:14px;right:16px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.04em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.7)}
+.scrim-b{position:absolute;inset:auto 0 0 0;height:60%;background:linear-gradient(to top,rgba(11,11,12,.92),rgba(11,11,12,0));pointer-events:none}
+.scrim-t{position:absolute;inset:0 0 auto 0;height:140px;background:linear-gradient(to bottom,rgba(11,11,12,.75),rgba(11,11,12,0));pointer-events:none;z-index:5}
+.scrim-l{position:absolute;inset:0 auto 0 0;width:70%;background:linear-gradient(to right,rgba(11,11,12,.95) 20%,rgba(11,11,12,0));pointer-events:none}
+.mono-img img{filter:grayscale(1) contrast(1.08)}
+
+/* registration marks — the "precision" signature */
+.reg{position:absolute;width:18px;height:18px;pointer-events:none}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--signal)}
+.reg::before{left:8px;top:0;width:2px;height:18px}
+.reg::after{left:0;top:8px;width:18px;height:2px}
+
+/* numbered index rows */
+.row{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+.paper .row{border-top-color:var(--pline)}
+.row .n{font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal);min-width:32px}
+
+/* spec table */
+.spec{width:100%;border-collapse:collapse}
+.spec td{padding:12px 0;border-top:1px solid var(--line);vertical-align:top;font-size:18px;font-weight:500}
+.paper .spec td{border-top-color:var(--pline)}
+.spec td:first-child{font-family:var(--f-m);font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);width:200px;padding-top:15px}
+.paper .spec td:first-child{color:var(--pmute)}

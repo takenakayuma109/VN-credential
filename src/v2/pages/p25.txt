@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>成長計画・Exit戦略</title><!--V2HEAD-->
+<style>
+.left{position:absolute;left:48px;top:76px;width:540px}
+.left .title{margin-top:10px}
+.left .sub{margin-top:8px;font-size:18px;font-weight:700;color:var(--ptxt)}
+.why{position:absolute;left:48px;top:206px;width:540px}
+.why .row{padding:6px 0;gap:16px;align-items:baseline}
+.why .k{font-size:22px;font-weight:900;min-width:96px}
+.why .v{font-size:18px;font-weight:500;color:var(--ptxt)}
+.drv{position:absolute;left:48px;top:392px;width:540px}
+.drv .blk{border-top:1px solid var(--pline);padding:12px 0 0;height:138px}
+.drv .nm{display:flex;align-items:baseline;gap:12px}
+.drv .nm b{font-size:19px;font-weight:900}
+.drv .nm span{font-size:16px;font-weight:500;color:var(--pmute)}
+.drv .m{display:flex;gap:0;margin-top:10px}
+.drv .m div{width:270px}
+.drv .m .fig{font-size:52px;margin-top:6px;color:var(--ink)}
+.drv .m .fig small{font-size:.36em}
+.tbl{position:absolute;left:672px;top:84px;width:560px}
+.tbl table{width:100%;border-collapse:collapse;margin-top:8px}
+.tbl th,.tbl td{text-align:left;padding:0;border-top:1px solid var(--pline)}
+.tbl th{height:40px;vertical-align:middle;font-weight:700}
+.tbl th .y{font-family:var(--f-x);font-stretch:112%;font-weight:900;font-size:22px}
+.tbl th .lbl{margin-left:6px}
+.tbl td{height:52px;vertical-align:middle}
+.tbl td.k{width:120px;font-size:17px;font-weight:700;color:var(--pmute)}
+.tbl td.v{font-family:var(--f-x);font-stretch:112%;font-weight:900;font-size:27px;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.tbl td.v small{font-family:var(--f-jp);font-stretch:100%;font-size:.62em;font-weight:900;margin-left:1px}
+.tbl tr:last-child td{border-bottom:1px solid var(--pline)}
+.exit{position:absolute;left:640px;top:348px;width:640px;height:372px;background:var(--ink);color:var(--white)}
+.exit .in{position:absolute;left:32px;right:48px;top:24px}
+.exit .t{font-size:22px;font-weight:900;margin-top:6px}
+.exit .fig{font-size:88px;margin-top:12px;color:var(--white);white-space:nowrap}
+.exit .fig small{font-size:.34em}
+.exit .eq{margin-top:14px;font-size:20px;font-weight:700;color:var(--white)}
+.exit .eq i{font-style:normal;color:var(--signal);margin:0 4px}
+.exit .rule{margin:18px 0 12px;background:var(--line)}
+.exit .lbl{color:var(--mute)}
+.exit .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.exit .tag{color:var(--white);border-color:var(--line);font-size:16px}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">25 / 26</span></header>
+  <div class="left">
+    <span class="bar"></span>
+    <h1 class="title m">成長計画・Exit戦略</h1>
+    <p class="sub">2028年バイアウトを見据えた投資ストーリー</p>
+  </div>
+  <div class="why">
+    <div class="lbl">なぜ今、VISIONOIDか</div>
+    <div class="row" style="margin-top:6px"><span class="k">エンタメ</span><span class="v">収益性が高く、拡張性がある</span></div>
+    <div class="row"><span class="k">防災</span><span class="v">公共性が高く、単価が大きい</span></div>
+    <div class="row"><span class="k">技術</span><span class="v">再現性があり、スケールできる</span></div>
+  </div>
+  <div class="drv">
+    <div class="lbl" style="margin-bottom:8px">成長ドライバー</div>
+    <div class="blk">
+      <div class="nm"><span class="sig lbl" style="color:var(--signal);font-weight:700">①</span><b>常設型ドローンショー事業</b><span>キラナガーデン豊洲</span></div>
+      <div class="m">
+        <div><span class="lbl">年間売上想定</span><div class="fig"><small>約</small>2.5<small>億円</small></div></div>
+        <div><span class="lbl">年間粗利想定</span><div class="fig"><small>約</small>1.25<small>億円</small></div></div>
+      </div>
+    </div>
+    <div class="blk">
+      <div class="nm"><span class="sig lbl" style="color:var(--signal);font-weight:700">②</span><b>SENRIGAN</b><span>自治体導入モデル</span></div>
+      <div class="m">
+        <div><span class="lbl">1自治体あたり売上</span><div class="fig">5<small>億</small>〜10<small>億円</small></div></div>
+        <div><span class="lbl">導入計画（2026）</span><div class="fig">3〜5<small>自治体</small></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tbl">
+    <div class="lbl">売上・利益イメージ</div>
+    <table>
+      <tr><th class="k"></th><th><span class="y">2026</span><span class="lbl">(Forecast)</span></th><th><span class="y">2027</span><span class="lbl">(Forecast)</span></th></tr>
+      <tr><td class="k">売上高</td><td class="v">20<small>億</small>〜35<small>億円</small></td><td class="v">35<small>億</small>〜55<small>億円</small></td></tr>
+      <tr><td class="k">粗利益</td><td class="v">10<small>億</small>〜18<small>億円</small></td><td class="v">18<small>億</small>〜28<small>億円</small></td></tr>
+      <tr><td class="k">純利益</td><td class="v">5<small>億</small>〜12<small>億円</small></td><td class="v">10<small>億</small>〜20<small>億円</small></td></tr>
+    </table>
+  </div>
+  <div class="exit">
+    <div class="reg" style="left:-9px;top:-9px"></div>
+    <div class="in">
+      <div class="kicker">TARGET EXIT 2028</div>
+      <div class="t">想定企業価値</div>
+      <div class="fig">80<small>億</small>〜160<small>億円</small></div>
+      <div class="eq">＝ 純利益 10億〜20億円 <i>×</i> マルチプル 8倍</div>
+      <div class="rule"></div>
+      <div class="lbl">EXIT CANDIDATES</div>
+      <div class="tags"><span class="tag">大手通信会社</span><span class="tag">インフラ関連企業</span><span class="tag">メディア・エンタメ企業</span><span class="tag">防災・安全関連企業</span><span class="tag">大手SIer</span></div>
+    </div>
+  </div>
+</div></body></html>

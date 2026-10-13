@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>産業ドローン事業</title><!--V2HEAD-->
+<style>
+.ttl{position:absolute;left:48px;top:76px}
+.ttl .title{font-size:50px;line-height:1}
+.lead3{position:absolute;left:500px;right:48px;top:80px;font-size:21px;font-weight:700;line-height:1.55;color:var(--white)}
+.grid{position:absolute;left:0;right:0;top:152px;height:480px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:4px}
+.grid .ph{min-width:0;min-height:0;position:relative;left:auto;top:auto;width:auto;height:auto}
+.grid .scrim-b{height:78%}
+.grid .ov{position:absolute;left:24px;right:20px;bottom:16px;z-index:3}
+.grid .nm{font-size:23px;font-weight:900;line-height:1.3;color:#fff}
+.grid .ds{margin-top:5px;font-size:16px;font-weight:500;line-height:1.5;color:rgba(255,255,255,.88)}
+.grid .tp{position:absolute;left:24px;top:16px;z-index:3;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.grid .tp b{color:#fff;opacity:.7;font-weight:700;margin-right:10px}
+.flow{position:absolute;left:48px;right:48px;top:652px;height:44px;display:flex;align-items:center;gap:20px}
+.flow .st{font-size:21px;font-weight:900;white-space:nowrap}
+.flow .ar{flex:1;height:1px;background:var(--line);position:relative}
+.flow .ar::after{content:"";position:absolute;right:0;top:-4px;width:8px;height:8px;border-top:1px solid var(--signal);border-right:1px solid var(--signal);transform:rotate(45deg)}
+.flow .lbl{margin-right:12px}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>03 / Industrial</span><span class="pg">13 / 26</span></header>
+  <div class="ttl"><h1 class="title">産業ドローン事業</h1></div>
+  <p class="lead3">高難度演出で磨いた運用・安全・通信・編隊制御技術を、<br>インフラ点検・防災・産業領域に転用。</p>
+  <div class="grid">
+    <div class="ph" data-object-type="image" id="v2p13-img-a"><img src="genspark_images/8qhu9hJ8.png" alt=""><div class="scrim-b"></div>
+      <div class="tp lbl"><b>01</b>床下狭隘部点検</div>
+      <div class="ov"><div class="nm">多摩モノレール</div><div class="ds">走行路の床下狭隘部へドローンを投入。目視困難な箇所の損傷・劣化を調査。</div></div></div>
+    <div class="ph" data-object-type="image" id="v2p13-img-b"><img src="genspark_images/bjkm175v.png" alt=""><div class="scrim-b"></div>
+      <div class="tp lbl"><b>02</b>鉄道橋点検</div>
+      <div class="ov"><div class="nm">京急本線</div><div class="ds">橋梁の損傷・クラックを高解像度カメラで撮影し、報告書を作成。</div></div></div>
+    <div class="ph" data-object-type="image" id="v2p13-img-c"><img src="genspark_images/INGoqVPO.png" alt="" style="position:absolute;left:-3.3%;top:-46px;width:106.6%;height:auto;max-width:none"><div class="scrim-b"></div>
+      <div class="tp lbl"><b>03</b>地下貯水槽点検</div>
+      <div class="ov"><div class="nm">三重県内ダム</div><div class="ds">暗闇・GPS不通環境で、ドローンによる構造物の劣化診断。</div></div></div>
+    <div class="ph" data-object-type="image" id="v2p13-img-d"><img src="genspark_images/gcZCQEuB.png" alt=""><div class="scrim-b"></div>
+      <div class="tp lbl"><b>04</b>外壁調査</div>
+      <div class="ov"><div class="nm">伊勢丹新宿</div><div class="ds">赤外線カメラ搭載ドローンで、タイル剥離・漏水を非破壊検査。</div></div></div>
+    <div class="ph" data-object-type="image" id="v2p13-img-e"><img src="genspark_images/o3Zv8Xvx.png" alt=""><div class="scrim-b"></div>
+      <div class="tp lbl"><b>05</b>外壁調査</div>
+      <div class="ov"><div class="nm">星野リゾート熱海</div><div class="ds">高所外壁を安全に調査し、修繕計画を策定。</div></div></div>
+    <div class="ph" data-object-type="image" id="v2p13-img-f"><img src="genspark_images/eIhLFv07.png" alt=""><div class="scrim-b"></div>
+      <div class="tp lbl"><b>06</b>外壁調査</div>
+      <div class="ov"><div class="nm">京田辺倉庫</div><div class="ds">外壁劣化を、空撮と赤外線で効率的に診断。</div></div></div>
+  </div>
+  <div class="flow">
+    <span class="lbl">One-Stop</span>
+    <span class="st">パイロット派遣</span><span class="ar"></span>
+    <span class="st">安全管理</span><span class="ar"></span>
+    <span class="st">データ取得</span><span class="ar"></span>
+    <span class="st">解析レポート</span>
+  </div>
+</div></body></html>

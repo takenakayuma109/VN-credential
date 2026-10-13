@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Next-Gen Show Drone Development</title><!--V2HEAD-->
+<style>
+.pf{left:0;top:0;width:380px;height:720px}
+.pf img{object-position:50% 10%}
+.pf .scrim-b{height:62%}
+.prof{position:absolute;left:36px;right:28px;bottom:32px;z-index:3}
+.prof .en{font-size:15px;color:var(--signal);letter-spacing:.1em;font-family:var(--f-m);font-weight:700;text-transform:uppercase}
+.prof .nm{font-size:46px;font-weight:900;line-height:1.1;margin-top:6px}
+.prof .ro{font-family:var(--f-x);font-stretch:125%;font-weight:800;font-size:15px;letter-spacing:.08em;color:rgba(255,255,255,.7);margin-top:2px}
+.prof .ti{margin-top:12px;font-size:16px;line-height:1.55;font-weight:500;color:#fff}
+.prof ul{list-style:none;margin-top:12px;border-top:1px solid rgba(255,255,255,.3)}
+.prof li{font-size:16px;line-height:1.5;padding:8px 0 7px 0;border-bottom:1px solid rgba(255,255,255,.3);color:#fff}
+.head{position:absolute;left:428px;top:92px;width:804px}
+.head .title{margin-top:12px;font-size:44px}
+.org{position:absolute;left:428px;top:182px;width:420px}
+.org .lead{font-size:18px;line-height:1.6}
+.org .lead b{color:var(--signal);font-weight:900}
+.fr{left:870px;top:176px;width:362px;height:194px}
+.fr .cap{left:12px;bottom:8px;font-size:15px}
+.fr .scrim-b{height:50%}
+.st{position:absolute;left:428px;right:48px;top:394px}
+.st .row{display:grid;grid-template-columns:262px 1fr;gap:24px;padding:11px 0 10px;align-items:start}
+.st .row:last-child{border-bottom:1px solid var(--line)}
+.st .l .kicker{font-size:15px}
+.st .l .nm{font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:23px;letter-spacing:-.01em;line-height:1.1;margin-top:5px;text-transform:uppercase;white-space:nowrap}
+.st .l .nm.jp{font-family:var(--f-jp);font-stretch:100%;font-size:27px;letter-spacing:0}
+.st .r .ro{font-size:19px;font-weight:900;line-height:1.35}
+.st .r .de{text-wrap:pretty;font-size:16px;font-weight:500;line-height:1.5;color:var(--txt);margin-top:3px}
+</style></head>
+<body><div class="slide">
+  <div class="ph pf" data-object-type="image" id="v2p18-img-a"><img src="genspark_images/kohashi_portrait.jpg" alt=""><div class="scrim-b"></div>
+    <div class="prof">
+      <div class="en">Creative Supervision</div>
+      <div class="nm">Kenji Kohashi</div>
+      <div class="ro">小橋 賢児</div>
+      <div class="ti">Creative Director / CEO, The Human Miracle Inc.</div>
+      <ul>
+        <li>Executive Producer, ULTRA JAPAN / STAR ISLAND (2017–, 15M+ cumulative attendance)</li>
+        <li>Show Director, Tokyo 2020 Paralympic Games Closing Ceremony (2021)</li>
+        <li>Event Programming Producer, Expo 2025 Osaka, Kansai, Japan</li>
+      </ul>
+    </div></div>
+  <div class="scrim-t" style="width:380px"></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>06 / IP × R&amp;D</span><span class="pg">18 / 26</span></header>
+
+  <div class="head"><span class="bar"></span><h1 class="title">Next-Gen Show Drone Development</h1></div>
+
+  <div class="org"><p class="lead" style="white-space:nowrap">Rooted in CONTACT (2019 Tokyo Motor Show,<br>500 aircraft, 1.31M visitors), we will bring<br>a Japan-built next-gen show drone to market<br><b>within one year.</b></p></div>
+  <div class="ph fr" data-object-type="image" id="v2p18-img-b"><img src="genspark_images/ngd_frame_hero.jpg" alt=""><div class="scrim-b"></div><div class="cap">SAMPLE FRAME / 2026.08</div></div>
+
+  <div class="st">
+    <div class="row"><div class="l"><div class="kicker">Development</div><div class="nm">Robotix Japan</div></div>
+      <div class="r"><div class="ro">Development, Manufacturing &amp; Distribution</div><div class="de">Design, prototyping, mass production, quality control and maintenance. 13 patents and four in-house product lines, prototyped in Bando, Ibaraki.</div></div></div>
+    <div class="row"><div class="l"><div class="kicker">Produce</div><div class="nm">Visionoid</div></div>
+      <div class="r"><div class="ro">Concept, Planning &amp; Operational Design</div><div class="de">Requirements definition, operations system design, field validation and market launch.</div></div></div>
+    <div class="row"><div class="l"><div class="kicker">Creative</div><div class="nm jp">Kenji Kohashi</div></div>
+      <div class="r"><div class="ro">Creative Partner</div><div class="de">Joined from early development to supervise aircraft specs and expressive performance, including brand and live testing.</div></div></div>
+  </div>
+</div></body></html>

@@ -4,3 +4,8 @@ dist/
 .vercel/
 .DS_Store
 *.log
+.vercel
+scripts/v2/out/
+scripts/v2/out_en/
+scripts/v2/*.png
+scripts/v2/v2_overview_ja.jpg

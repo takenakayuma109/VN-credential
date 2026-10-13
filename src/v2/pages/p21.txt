@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>強み × 市場機会（SO分析）</title><!--V2HEAD-->
+<style>
+.head{position:absolute;left:48px;top:72px;right:48px}
+.head .title{font-size:46px}
+.head .title .x{color:var(--signal)}
+.mx{position:absolute;left:48px;right:48px;top:150px;bottom:30px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;border-top:2px solid var(--white)}
+.q{position:relative;padding:16px 28px 0 0;border-bottom:1px solid var(--line)}
+.q:nth-child(even){padding-left:32px;padding-right:0;border-left:1px solid var(--line)}
+.q:nth-child(n+3){border-bottom:none;padding-top:18px}
+.q .n{position:absolute;right:0;top:6px;font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:120px;line-height:1;letter-spacing:-.04em;color:var(--ink3)}
+.q:nth-child(odd) .n{right:28px}
+.q .pair{margin-top:2px;position:relative}
+.q .pair div{display:flex;gap:14px;align-items:baseline;font-size:22px;font-weight:700;line-height:1.55}
+.q .pair .lbl{min-width:44px;font-size:15px;color:var(--mute)}
+.q .out{position:relative;margin-top:14px;font-size:44px;font-weight:900;line-height:1.22;letter-spacing:-.01em}
+.q .out .ar{display:block;font-family:var(--f-x);font-weight:900;font-size:24px;color:var(--signal);line-height:1;margin-bottom:4px}
+.q.hot .out{color:var(--white)}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Market</span><span class="pg">21 / 26</span></header>
+  <div class="head"><h1 class="title">強み <span class="x">×</span> 市場機会（SO分析）</h1></div>
+
+  <div class="mx">
+    <div class="q"><span class="n">01</span>
+      <div class="pair"><div><span class="lbl">強み</span>エンタメ×産業の両実績</div><div><span class="lbl">機会</span>ドローン1兆円市場</div></div>
+      <div class="out"><span class="ar">→</span>両岸で成長を獲れる<br>唯一のプレイヤー</div></div>
+    <div class="q"><span class="n">02</span>
+      <div class="pair"><div><span class="lbl">強み</span>ワンストップ体制</div><div><span class="lbl">機会</span>規制整備の進展</div></div>
+      <div class="out"><span class="ar">→</span>「全部できる」が<br>最大の参入障壁</div></div>
+    <div class="q"><span class="n">03</span>
+      <div class="pair"><div><span class="lbl">強み</span>フィジカルAI先行開発</div><div><span class="lbl">機会</span>2.5兆円市場</div></div>
+      <div class="out"><span class="ar">→</span>先行者優位を<br>確立</div></div>
+    <div class="q"><span class="n">04</span>
+      <div class="pair"><div><span class="lbl">強み</span>安全管理ノウハウ</div><div><span class="lbl">機会</span>防災需要の急増</div></div>
+      <div class="out"><span class="ar">→</span>自治体との信頼構築の<br>武器</div></div>
+  </div>
+  <div class="reg" style="left:631px;top:411px"></div>
+</div></body></html>

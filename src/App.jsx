@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { toJpeg } from 'html-to-image';
-import { jsPDF } from 'jspdf';
-import RawSlide, { SLIDE_W, SLIDE_H } from './components/RawSlide';
-import { useEditStore, exportEdits, importEdits, resetPageImages } from './utils/editStore';
+import RawSlide from './components/RawSlide';
+import { useEditStore, exportEdits, importEdits } from './utils/editStore';
 
 // Parcel bundles each HTML file as a string at build time.
 import p01 from 'bundle-text:./genspark_pages/page01.txt';
@@ -31,6 +29,7 @@ import p23 from 'bundle-text:./genspark_pages/page23.txt';
 import p24 from 'bundle-text:./genspark_pages/page24.txt';
 import p25 from 'bundle-text:./genspark_pages/page25.txt';
 import p26 from 'bundle-text:./genspark_pages/page26.txt';
+import p27 from 'bundle-text:./genspark_pages/page27.txt';
 
 import p01en from 'bundle-text:./genspark_pages/page01_en.txt';
 import p02en from 'bundle-text:./genspark_pages/page02_en.txt';
@@ -58,63 +57,110 @@ import p23en from 'bundle-text:./genspark_pages/page23_en.txt';
 import p24en from 'bundle-text:./genspark_pages/page24_en.txt';
 import p25en from 'bundle-text:./genspark_pages/page25_en.txt';
 import p26en from 'bundle-text:./genspark_pages/page26_en.txt';
+import p27en from 'bundle-text:./genspark_pages/page27_en.txt';
 
-const PAGES_JA = [p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26];
-const PAGES_EN = [p01en,p02en,p03en,p04en,p05en,p06en,p07en,p08en,p09en,p10en,p11en,p12en,p13en,p14en,p15en,p16en,p17en,p18en,p19en,p20en,p21en,p22en,p23en,p24en,p25en,p26en];
+// ---- Ver.2 deck (JA only for now). Placeholder <!--V2HEAD--> in each page's <head> is
+// replaced with the shared head + css below.
+import V2HEAD from 'bundle-text:./v2/head.txt';
+import V2CSS from 'bundle-text:./v2/v2css.txt';
+import v2p01 from 'bundle-text:./v2/pages/p01.txt';
+import v2p02 from 'bundle-text:./v2/pages/p02.txt';
+import v2p03 from 'bundle-text:./v2/pages/p03.txt';
+import v2p04 from 'bundle-text:./v2/pages/p04.txt';
+import v2p05 from 'bundle-text:./v2/pages/p05.txt';
+import v2p06 from 'bundle-text:./v2/pages/p06.txt';
+import v2p07 from 'bundle-text:./v2/pages/p07.txt';
+import v2p08 from 'bundle-text:./v2/pages/p08.txt';
+import v2p09 from 'bundle-text:./v2/pages/p09.txt';
+import v2p10 from 'bundle-text:./v2/pages/p10.txt';
+import v2p11 from 'bundle-text:./v2/pages/p11.txt';
+import v2p12 from 'bundle-text:./v2/pages/p12.txt';
+import v2p13 from 'bundle-text:./v2/pages/p13.txt';
+import v2p14 from 'bundle-text:./v2/pages/p14.txt';
+import v2p15 from 'bundle-text:./v2/pages/p15.txt';
+import v2p16 from 'bundle-text:./v2/pages/p16.txt';
+import v2p17 from 'bundle-text:./v2/pages/p17.txt';
+import v2p18 from 'bundle-text:./v2/pages/p18.txt';
+import v2p19 from 'bundle-text:./v2/pages/p19.txt';
+import v2p20 from 'bundle-text:./v2/pages/p20.txt';
+import v2p21 from 'bundle-text:./v2/pages/p21.txt';
+import v2p22 from 'bundle-text:./v2/pages/p22.txt';
+import v2p23 from 'bundle-text:./v2/pages/p23.txt';
+import v2p24 from 'bundle-text:./v2/pages/p24.txt';
+import v2p25 from 'bundle-text:./v2/pages/p25.txt';
+import v2p26 from 'bundle-text:./v2/pages/p26.txt';
+import v2p27 from 'bundle-text:./v2/pages/p27.txt';
+import v2p28 from 'bundle-text:./v2/pages/p28.txt';
+import v2p29 from 'bundle-text:./v2/pages/p29.txt';
+import v2p30 from 'bundle-text:./v2/pages/p30.txt';
+import v2p01en from 'bundle-text:./v2/pages_en/p01.txt';
+import v2p02en from 'bundle-text:./v2/pages_en/p02.txt';
+import v2p03en from 'bundle-text:./v2/pages_en/p03.txt';
+import v2p04en from 'bundle-text:./v2/pages_en/p04.txt';
+import v2p05en from 'bundle-text:./v2/pages_en/p05.txt';
+import v2p06en from 'bundle-text:./v2/pages_en/p06.txt';
+import v2p07en from 'bundle-text:./v2/pages_en/p07.txt';
+import v2p08en from 'bundle-text:./v2/pages_en/p08.txt';
+import v2p09en from 'bundle-text:./v2/pages_en/p09.txt';
+import v2p10en from 'bundle-text:./v2/pages_en/p10.txt';
+import v2p11en from 'bundle-text:./v2/pages_en/p11.txt';
+import v2p12en from 'bundle-text:./v2/pages_en/p12.txt';
+import v2p13en from 'bundle-text:./v2/pages_en/p13.txt';
+import v2p14en from 'bundle-text:./v2/pages_en/p14.txt';
+import v2p15en from 'bundle-text:./v2/pages_en/p15.txt';
+import v2p16en from 'bundle-text:./v2/pages_en/p16.txt';
+import v2p17en from 'bundle-text:./v2/pages_en/p17.txt';
+import v2p18en from 'bundle-text:./v2/pages_en/p18.txt';
+import v2p19en from 'bundle-text:./v2/pages_en/p19.txt';
+import v2p20en from 'bundle-text:./v2/pages_en/p20.txt';
+import v2p21en from 'bundle-text:./v2/pages_en/p21.txt';
+import v2p22en from 'bundle-text:./v2/pages_en/p22.txt';
+import v2p23en from 'bundle-text:./v2/pages_en/p23.txt';
+import v2p24en from 'bundle-text:./v2/pages_en/p24.txt';
+import v2p25en from 'bundle-text:./v2/pages_en/p25.txt';
+import v2p26en from 'bundle-text:./v2/pages_en/p26.txt';
+import v2p27en from 'bundle-text:./v2/pages_en/p27.txt';
+import v2p28en from 'bundle-text:./v2/pages_en/p28.txt';
+import v2p29en from 'bundle-text:./v2/pages_en/p29.txt';
+import v2p30en from 'bundle-text:./v2/pages_en/p30.txt';
 
-// 0-indexed positions of pages 23, 24, 25 — the Finance section that exists
+// Indexed by pageId - 1. A page's id is permanent: edits live in the store
+// under `p<id>:...`, so ids must never shift when the deck is reordered.
+const PAGES_JA = [p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26,p27];
+const PAGES_EN = [p01en,p02en,p03en,p04en,p05en,p06en,p07en,p08en,p09en,p10en,p11en,p12en,p13en,p14en,p15en,p16en,p17en,p18en,p19en,p20en,p21en,p22en,p23en,p24en,p25en,p26en,p27en];
+
+// Deck order, by pageId. P27 (機体開発プロジェクト / 小橋賢児 クリエイティブ監修)
+// was added after the deck was numbered, so it carries id 27 but sits at
+// display position 10, right after P09. Appending it to the id list instead
+// of renumbering P10–P26 keeps every existing edit pointing at its own page.
+const PAGE_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 27, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
+
+// pageIds of the Finance section that exists
 // only in the Board variant. Member variant skips these entirely. All other
 // pages are byte-identical between variants because they share the same
 // source HTML and the same edit store, so any edit (terminal OR web edit
 // mode) reflects in both views automatically.
-const FINANCE_INDICES = new Set([22, 23, 24]);
+const FINANCE_IDS = new Set([23, 24, 25]);
 
-// Walk the iframe document and replace every <img> that uses object-fit
-// (cover/contain) with a same-size <div> that paints the picture via
-// `background-image` + `background-size`. html2canvas can render this
-// correctly, while it stretches `<img object-fit:cover>` to fill the box.
-// Returns a function that undoes every replacement so the live UI is restored.
-function imgsToBackgroundDivs(doc) {
-  const restorations = [];
-  const win = doc.defaultView || window;
-  const imgs = Array.from(doc.querySelectorAll('img'));
-  imgs.forEach((img) => {
-    if (!img.parentNode || !img.src) return;
-    if (!img.complete || !img.naturalWidth) return;
-    const cs = win.getComputedStyle(img);
-    const fit = cs.objectFit;
-    if (fit !== 'cover' && fit !== 'contain' && fit !== 'fill' && fit !== 'scale-down') return;
-    const div = doc.createElement('div');
-    // Carry over inline styles so width/height/transform/etc. are preserved.
-    const inline = img.getAttribute('style') || '';
-    div.setAttribute('style', inline);
-    div.style.backgroundImage = `url("${img.src}")`;
-    div.style.backgroundSize = (fit === 'fill' || fit === 'scale-down') ? '100% 100%' : fit;
-    div.style.backgroundPosition = cs.objectPosition || 'center center';
-    div.style.backgroundRepeat = 'no-repeat';
-    div.style.objectFit = '';
-    // Carry size/box if no explicit inline values (so a flex child still fills).
-    if (!inline.includes('width')) div.style.width = cs.width;
-    if (!inline.includes('height')) div.style.height = cs.height;
-    img.parentNode.insertBefore(div, img);
-    img.style.display = 'none';
-    restorations.push({ img, div, prevDisplay: img.style.display });
-  });
-  return () => {
-    restorations.forEach(({ img, div }) => {
-      try { img.style.display = ''; } catch {}
-      try { div.parentNode && div.parentNode.removeChild(div); } catch {}
-    });
-  };
-}
+// Ver.2 pages. pageId = 100 + n (101..130) so ids never collide with Ver.1 edit-store
+// keys (`p<id>:...`). Display order = file order.
+const V2_HEAD_INJECT = V2HEAD + '<style>' + V2CSS + '</style>';
+const injectV2 = (html) => html.replace('<!--V2HEAD-->', () => V2_HEAD_INJECT);
+const V2_PAGES_JA = [v2p01,v2p02,v2p03,v2p04,v2p05,v2p06,v2p07,v2p08,v2p09,v2p10,v2p11,v2p12,v2p13,v2p14,v2p15,v2p16,v2p17,v2p18,v2p19,v2p20,v2p21,v2p22,v2p23,v2p24,v2p25,v2p26,v2p27,v2p28,v2p29,v2p30].map(injectV2);
+// English Ver.2 pages, same order as V2_PAGES_JA.
+const V2_PAGES_EN = [v2p01en,v2p02en,v2p03en,v2p04en,v2p05en,v2p06en,v2p07en,v2p08en,v2p09en,v2p10en,v2p11en,v2p12en,v2p13en,v2p14en,v2p15en,v2p16en,v2p17en,v2p18en,v2p19en,v2p20en,v2p21en,v2p22en,v2p23en,v2p24en,v2p25en,v2p26en,v2p27en,v2p28en,v2p29en,v2p30en].map(injectV2);
+const V2_ID_BASE = 100;
+// Finance pages of Ver.2 (hidden in Member variant).
+const V2_FINANCE_IDS = new Set([125, 126, 127]);
 
 function readQuery() {
-  if (typeof window === 'undefined') return { variant: 'board', share: false, lang: 'ja' };
+  if (typeof window === 'undefined') return { variant: 'board', share: false, lang: 'ja', ver: '1' };
   const p = new URLSearchParams(window.location.search);
   return {
     variant: p.get('v') === 'member' ? 'member' : 'board',
     share: p.get('share') === '1',
     lang: p.get('lang') === 'en' ? 'en' : 'ja',
+    ver: p.get('ver') === '2' ? '2' : '1',
   };
 }
 
@@ -125,6 +171,7 @@ export default function App() {
   const [active, setActive] = useState(1);
   const [variant, setVariant] = useState(() => readQuery().variant);
   const [lang, setLang] = useState(() => readQuery().lang);
+  const [ver, setVer] = useState(() => readQuery().ver);
   // Share view = read-only mode for recipients of a shared link. Hides the
   // edit / import / reset / variant-toggle controls so they only see the
   // deck and the PDF download.
@@ -137,15 +184,24 @@ export default function App() {
   // shared between languages (one image, two captions); text edits are
   // language-scoped (handled in RawSlide).
   const filteredPages = useMemo(() => {
-    const SOURCE = lang === 'en' ? PAGES_EN : PAGES_JA;
-    const all = SOURCE.map((html, i) => ({ html, pageId: i + 1, idx: i }));
+    let all;
+    let financeIds;
+    if (ver === '2') {
+      const SOURCE = (lang === 'en' && V2_PAGES_EN) ? V2_PAGES_EN : V2_PAGES_JA;
+      all = SOURCE.map((html, i) => ({ html, pageId: V2_ID_BASE + i + 1 }));
+      financeIds = V2_FINANCE_IDS;
+    } else {
+      const SOURCE = lang === 'en' ? PAGES_EN : PAGES_JA;
+      all = PAGE_ORDER.map((pageId) => ({ html: SOURCE[pageId - 1], pageId }));
+      financeIds = FINANCE_IDS;
+    }
     const base = variant === 'board'
       ? all
-      : all.filter((p) => !FINANCE_INDICES.has(p.idx));
+      : all.filter((p) => !financeIds.has(p.pageId));
     // displayNumber = sequential 1..N for the current variant (so Member
     // view doesn't expose the Finance-page gap in page numbering).
     return base.map((p, i) => ({ ...p, displayNumber: i + 1 }));
-  }, [variant, lang]);
+  }, [variant, lang, ver]);
   const totalDisplayPages = filteredPages.length;
 
   // Update URL when variant changes so reload + share both preserve choice.
@@ -168,6 +224,18 @@ export default function App() {
     }
   }, []);
 
+  // Same persistence pattern for deck version (Ver.1 / Ver.2).
+  const switchVer = useCallback((v) => {
+    setVer(v);
+    setActive(v === '2' ? 101 : 1);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('ver', v);
+      window.history.replaceState({}, '', url.toString());
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -182,7 +250,7 @@ export default function App() {
     );
     document.querySelectorAll('.slide-frame').forEach((el) => obs.observe(el));
     return () => obs.disconnect();
-  }, [variant]);
+  }, [variant, ver, lang]);
 
   const scrollTo = useCallback((n) => {
     const el = document.getElementById(`page-${String(n).padStart(2, '0')}`);
@@ -191,7 +259,7 @@ export default function App() {
 
   const handleExportPdf = async () => {
     setExporting(true);
-    setExportProgress(lang === 'ja' ? '準備中…' : 'Preparing…');
+    setExportProgress(lang === 'ja' ? '画像とフォントの読込待ち…' : 'Loading images and fonts…');
     try {
       const frames = Array.from(document.querySelectorAll('iframe.slide-canvas'));
       if (frames.length === 0) {
@@ -199,35 +267,33 @@ export default function App() {
         return;
       }
 
-      // Scroll all slides into view briefly so lazy-loaded images start fetching.
-      // Skipped pages stay empty in the iframe otherwise (observed: pages that
-      // were never scrolled to rendered blank in the PDF).
+      // Pre-warm: scroll every slide into view so iframes that haven't been
+      // visited yet start fetching their fonts/images. Without this, pages
+      // skipped during scrolling would print blank.
       const originalScrollY = window.scrollY;
       for (const f of frames) {
         const wrap = f.closest('.slide-frame');
         if (wrap) wrap.scrollIntoView({ block: 'start', behavior: 'auto' });
-        await new Promise((r) => setTimeout(r, 40));
       }
       window.scrollTo(0, originalScrollY);
 
-      // Wait for every iframe's document + images + fonts to be ready.
-      setExportProgress(lang === 'ja' ? '画像ロード待ち…' : 'Loading images…');
+      // Wait for every iframe's document + images + fonts to be ready, so
+      // print captures fully-rendered content (not half-loaded fonts).
       const waitForFrame = (iframe) => new Promise((resolve) => {
         const finish = () => {
           const doc = iframe.contentDocument;
           if (!doc) return resolve();
           const imgs = Array.from(doc.images || []);
           const pending = imgs.filter((im) => !im.complete || im.naturalWidth === 0);
+          const fontsReady = doc.fonts && doc.fonts.ready
+            ? doc.fonts.ready.catch(() => null)
+            : Promise.resolve();
           if (pending.length === 0) {
-            // Also wait for fonts to be ready inside the iframe if supported.
-            const fontsReady = doc.fonts && doc.fonts.ready
-              ? doc.fonts.ready.catch(() => null)
-              : Promise.resolve();
             fontsReady.then(() => resolve());
             return;
           }
           let left = pending.length;
-          const done = () => { if (--left <= 0) resolve(); };
+          const done = () => { if (--left <= 0) fontsReady.then(() => resolve()); };
           pending.forEach((im) => {
             im.addEventListener('load', done, { once: true });
             im.addEventListener('error', done, { once: true });
@@ -240,58 +306,30 @@ export default function App() {
       });
       await Promise.all(frames.map(waitForFrame));
 
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [SLIDE_W, SLIDE_H],
-        hotfixes: ['px_scaling'],
-        compress: true,
-      });
+      // Hide the progress overlay before opening the print dialog so it
+      // doesn't bleed into the printed output. afterprint cleans up and
+      // restores scroll position. Native print uses the browser's own
+      // renderer → 100% identical to the on-screen view (CDN-loaded
+      // Google Fonts and FontAwesome render correctly, unlike SVG-snapshot
+      // libraries which silently drop external @font-face rules).
+      setExporting(false);
+      setExportProgress('');
 
-      for (let i = 0; i < frames.length; i++) {
-        setExportProgress(lang === 'ja' ? `描画中 ${i + 1}/${frames.length}` : `Rendering ${i + 1}/${frames.length}`);
-        const iframe = frames[i];
-        const doc = iframe.contentDocument;
-        if (!doc) continue;
-        const target = doc.querySelector('.slide-container') || doc.body;
+      // Yield two frames so the overlay actually unmounts and print CSS
+      // can take effect before the dialog opens.
+      await new Promise((r) => requestAnimationFrame(() => r()));
+      await new Promise((r) => requestAnimationFrame(() => r()));
 
-        // Yield to the browser so the progress overlay actually repaints.
-        await new Promise((r) => requestAnimationFrame(() => r()));
+      const onAfter = () => {
+        window.removeEventListener('afterprint', onAfter);
+        window.scrollTo(0, originalScrollY);
+      };
+      window.addEventListener('afterprint', onAfter);
 
-        // html-to-image renders via SVG <foreignObject>, which uses the
-        // browser's real layout/render path. That means flex-wrap, gradients,
-        // background-clip:text, and object-fit all match the on-screen
-        // rendering — far more faithful than html2canvas's reimplementation
-        // of CSS, which we previously hit with stretched images, missing
-        // title suffixes, and broken gradient KPIs.
-        const dataUrl = await toJpeg(target, {
-          width: SLIDE_W,
-          height: SLIDE_H,
-          pixelRatio: 2,
-          backgroundColor: '#ffffff',
-          quality: 0.92,
-          cacheBust: false,
-          // Skip elements that aren't part of the slide (e.g., dynamic
-          // overlays we add for edit mode would already have been hidden,
-          // but this is a safety net).
-          filter: (node) => {
-            if (!node || !node.classList) return true;
-            return !node.classList.contains('vn-edit-overlay');
-          },
-        });
-
-        if (i > 0) pdf.addPage([SLIDE_W, SLIDE_H], 'landscape');
-        pdf.addImage(dataUrl, 'JPEG', 0, 0, SLIDE_W, SLIDE_H, undefined, 'FAST');
-      }
-
-      setExportProgress(lang === 'ja' ? '保存中…' : 'Saving…');
-      const variantLabel = variant === 'board' ? 'Board' : 'Member';
-      const langLabel = lang === 'en' ? '_EN' : '';
-      pdf.save(`VISIONOID_Credential_2026_${variantLabel}${langLabel}.pdf`);
+      window.print();
     } catch (err) {
       console.error('PDF export failed:', err);
       alert((lang === 'ja' ? 'PDF出力に失敗しました: ' : 'PDF export failed: ') + (err?.message || err));
-    } finally {
       setExporting(false);
       setExportProgress('');
     }
@@ -301,22 +339,6 @@ export default function App() {
     if (confirm(lang === 'ja' ? 'すべての編集をリセットしますか？' : 'Reset all edits?')) {
       store.reset();
       window.location.reload();
-    }
-  };
-
-  const handleResetP02Images = async () => {
-    const ok = confirm(
-      lang === 'ja'
-        ? 'P02 の3枚の画像編集（ドローン/ロボット/AI）だけをリセットします。\n他のページ・テキスト編集は影響しません。\n続行しますか？'
-        : 'Reset only the 3 P02 images (drone / robot / AI).\nOther pages and text edits are NOT affected.\nProceed?'
-    );
-    if (!ok) return;
-    try {
-      const removed = await resetPageImages(2);
-      console.log('[VN reset-p02] removed:', removed);
-      window.location.reload();
-    } catch (err) {
-      alert((lang === 'ja' ? 'リセット失敗: ' : 'Reset failed: ') + (err?.message || err));
     }
   };
 
@@ -356,18 +378,20 @@ export default function App() {
     const url = new URL(window.location.href);
     url.searchParams.set('v', variant);
     url.searchParams.set('lang', lang);
+    url.searchParams.set('ver', ver);
     url.searchParams.set('share', '1');
     const shareUrl = url.toString();
     const variantLabel = lang === 'ja'
       ? (variant === 'board' ? 'Board（Finance有り）' : 'Member（Finance無し）')
       : (variant === 'board' ? 'Board (with Finance)' : 'Member (no Finance)');
     const langLabel = lang === 'ja' ? '日本語' : 'English';
+    const verLabel = ver === '2' ? 'Ver.2' : 'Ver.1';
     try {
       await navigator.clipboard.writeText(shareUrl);
       alert(
         lang === 'ja'
-          ? `共有リンクをクリップボードにコピーしました\n\nバージョン: ${variantLabel}\n言語: ${langLabel}\n\n${shareUrl}\n\n受け取った相手はブラウザで閲覧でき、PDFもダウンロードできます。`
-          : `Share link copied to clipboard\n\nVersion: ${variantLabel}\nLanguage: ${langLabel}\n\n${shareUrl}\n\nThe recipient can view in any browser and download the PDF.`
+          ? `共有リンクをクリップボードにコピーしました\n\nデッキ版: ${verLabel}\nバージョン: ${variantLabel}\n言語: ${langLabel}\n\n${shareUrl}\n\n受け取った相手はブラウザで閲覧でき、PDFもダウンロードできます。`
+          : `Share link copied to clipboard\n\nDeck: ${verLabel}\nVersion: ${variantLabel}\nLanguage: ${langLabel}\n\n${shareUrl}\n\nThe recipient can view in any browser and download the PDF.`
       );
     } catch {
       window.prompt(lang === 'ja' ? '共有リンクをコピーしてください:' : 'Copy the share link:', shareUrl);
@@ -408,11 +432,36 @@ export default function App() {
           <span className={`variant-badge ${variant}`}>
             {variant === 'board' ? 'BOARD' : 'MEMBER'}
           </span>
+          {ver === '2' && <span className="variant-badge ver2">VER.2</span>}
           <span style={{ fontSize: 10, color: '#64748b', marginLeft: 8, fontFamily: 'monospace' }}>
             v2026.05.01-idbfix
           </span>
         </div>
         <div className="controls">
+          {!isShareView && (
+            <div className="ver-switch" data-ver={ver} role="radiogroup" aria-label={lang === 'ja' ? 'デッキ版切替' : 'Deck version'}>
+              <span className="ver-thumb" aria-hidden="true" />
+              <button
+                type="button"
+                role="radio"
+                aria-checked={ver === '1'}
+                onClick={() => switchVer('1')}
+                title={lang === 'ja' ? 'Ver.1: 現行デッキ' : 'Ver.1: current deck'}
+              >
+                <span className="full">VER.1</span><span className="short">V1</span>
+              </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={ver === '2'}
+                onClick={() => switchVer('2')}
+                title={lang === 'ja' ? 'Ver.2: 新デッキ' : 'Ver.2: new deck'}
+              >
+                <span className="full">VER.2</span><span className="short">V2</span>
+                {ver === '1' && <span className="ver-new" title="NEW" aria-hidden="true" />}
+              </button>
+            </div>
+          )}
           <div className="variant-toggle lang-toggle" role="group" aria-label={lang === 'ja' ? '言語切替' : 'Language'}>
             <button
               className={lang === 'ja' ? 'active' : ''}
@@ -434,7 +483,7 @@ export default function App() {
               <button
                 className={variant === 'board' ? 'active' : ''}
                 onClick={() => switchVariant('board')}
-                title={lang === 'ja' ? 'Board: Financeページ有り (P.23-25)' : 'Board: includes Finance pages (P.23–25)'}
+                title={lang === 'ja' ? `Board: Financeページ有り (${ver === '2' ? 'P.25-27' : 'P.23-25'})` : `Board: includes Finance pages (${ver === '2' ? 'P.25–27' : 'P.23–25'})`}
               >
                 Board
               </button>
@@ -457,13 +506,6 @@ export default function App() {
               </button>
               <button onClick={handleResetEdits} title={lang === 'ja' ? '編集をリセット' : 'Reset edits'}>
                 <span className="btn-icon">↺</span><span className="btn-label">Reset</span>
-              </button>
-              <button
-                onClick={handleResetP02Images}
-                title={lang === 'ja' ? 'P02の3枚の画像のみリセット（他は保持）' : 'Reset only P02 images (preserves everything else)'}
-                style={{ background: 'rgba(239,68,68,0.15)', borderColor: 'rgba(239,68,68,0.5)' }}
-              >
-                <span className="btn-icon">🗑</span><span className="btn-label">{lang === 'ja' ? 'P02画像' : 'P02 imgs'}</span>
               </button>
               <button className={editMode ? 'active' : ''} onClick={() => setEditMode((v) => !v)} title={lang === 'ja' ? '編集モード切替' : 'Toggle edit mode'}>
                 <span className="btn-icon">{editMode ? '✓' : '✎'}</span>
@@ -496,7 +538,7 @@ export default function App() {
       <div className="app-pages">
         {filteredPages.map((p) => (
           <RawSlide
-            key={`${variant}-${lang}-${p.pageId}`}
+            key={`${ver}-${variant}-${lang}-${p.pageId}`}
             id={p.pageId}
             html={p.html}
             lang={lang}

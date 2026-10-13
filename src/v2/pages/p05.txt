@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>経営陣</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;right:48px;top:66px}
+.top .title{font-size:54px;line-height:1;margin-top:10px}
+.team{position:absolute;left:48px;right:48px;top:156px;bottom:28px;display:grid;grid-template-columns:repeat(5,1fr);column-gap:16px}
+.p{border-top:1px solid var(--line);padding-top:16px;position:relative}
+.p::before{content:"";position:absolute;left:0;top:-1px;width:40px;height:3px;background:var(--signal)}
+.p .ph{position:relative;width:224px;height:188px}
+.p .ph img{object-position:50% 22%}
+.p .nm{margin-top:14px;font-size:30px;font-weight:900;line-height:1.1;letter-spacing:.01em}
+.p .ro{margin-top:6px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--mute);white-space:nowrap}
+.p .rl span{display:inline-block}.p .rl b{font-weight:500;color:var(--mute);margin:0 3px}
+.p .rl{margin-top:12px;font-size:16px;font-weight:700;line-height:1.5;color:var(--signal)}
+.p .bio{margin-top:10px;font-size:16px;font-weight:500;line-height:1.62;color:var(--txt)}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">05 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title">経営陣</h1></div>
+  <div class="team">
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-a"><img src="genspark_images/face_takenaka.jpg" alt=""></div>
+      <div class="nm">竹中 悠満</div><div class="ro">Yuma Takenaka</div>
+      <div class="rl"><span>創業者<b>｜</b></span><span>代表取締役<b>｜</b></span><span>プロデューサー</span></div>
+      <p class="bio">2012年電通ライブ入社。東京モーターショー2019で国内最多機体のドローンショーをプロデュース。東京2020五輪開会式の演出制作、米国NASDAQ上場を経験後、2024年にVISIONOIDを設立。</p></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-b"><img src="genspark_images/face_kamizeki_r.jpg" alt=""></div>
+      <div class="nm">上関 竜矢</div><div class="ro">Ryuya Kamizeki</div>
+      <div class="rl"><span>共同創業者<b>｜</b></span><span>取締役<b>｜</b></span><span>テクノロジー統括</span></div>
+      <p class="bio">元ドローンレース日本代表監督。ドローン・ドロイド・映像・音響・ソフトウェア開発を横断する技術力を持つ。鉄腕DASH他TV多数出演。DREAMS COME TRUE等のドローン演出を担当。</p></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-c"><img src="genspark_images/face_adachi.jpg" alt=""></div>
+      <div class="nm">安達 的海</div><div class="ro">Matomi Adachi</div>
+      <div class="rl"><span>執行役員<b>｜</b></span><span>プロジェクトマネージャー</span></div>
+      <p class="bio">東京2020五輪開会式、YouTube Brandcast Japan、Hermès「彼女と。」展、Cygames展など、国内屈指の大規模イベントを手がけるプロジェクトマネジメントのスペシャリスト。</p></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-d"><img src="genspark_images/face_monzen.jpg" alt=""></div>
+      <div class="nm">門前 龍汰</div><div class="ro">Ryota Monzen</div>
+      <div class="rl"><span>執行役員<b>｜</b></span><span>チーフメカニック</span></div>
+      <p class="bio">27歳で国産唯一のドローンショー専用機体「unika」を発案・設計・開発。2017年JAPRADARにパイロット兼開発者として参画し、ドローンショー・ジャパンを経て2024年にVISIONOIDへ。</p></div>
+    <div class="p"><div class="ph mono-img" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/face_ito.jpg" alt=""></div>
+      <div class="nm">伊藤 修儀</div><div class="ro">Nobuyoshi Ito</div>
+      <div class="rl"><span>執行役員<b>｜</b></span><span>営業戦略統括</span></div>
+      <p class="bio">1992年大広入社。2016年に営業局長としてナショナルクライアントのトータル・ソリューションを統括。新市場の「最初の一社」を獲り切ることを30年続けた事業開拓のプロ。2024年参画。</p></div>
+  </div>
+</div></body></html>

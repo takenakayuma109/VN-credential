@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>SENRIGAN | Integrated Disaster Information Platform</title><!--V2HEAD-->
+<style>
+.ttl{position:absolute;left:48px;top:84px;width:1184px;display:flex;align-items:baseline;gap:22px}
+.ttl .title{font-size:40px;white-space:nowrap}
+.ttl .en{font-size:40px;font-stretch:125%;font-weight:900;letter-spacing:-.01em}
+.lead2{position:absolute;left:48px;top:160px;width:424px;font-size:27px;font-weight:900;line-height:1.5}
+.feat{position:absolute;left:48px;top:276px;width:424px}
+.feat .row{gap:12px;padding:11px 0;align-items:flex-start}
+.feat .row:last-child{border-bottom:1px solid var(--pline)}
+.feat .v{font-size:16px;font-weight:700;line-height:1.5;color:var(--ink)}
+.shot{left:496px;top:158px;width:784px;height:439px;border-left:1px solid var(--ink)}
+.shot img{object-fit:contain}
+.bottom{position:absolute;left:496px;right:48px;top:624px;display:flex;align-items:center;gap:24px}
+.mark{position:relative;width:76px;height:76px;flex:none;background:#0A1226}
+.mark img{position:absolute;left:-29px;top:0;width:auto;height:76px;max-width:none}
+.bottom .st{font-size:24px;font-weight:900;line-height:1.4}
+.bottom .st b{color:var(--signal)}
+</style></head>
+<body><div class="slide paper">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>02 / Public Safety</span><span class="pg">12 / 26</span></header>
+  <div class="ttl"><h1 class="title"><span class="en">SENRIGAN</span> | Integrated Disaster Information Platform</h1></div>
+  <p class="lead2">Command HQ grasps the field<br>in <span class="sig">“5 minutes.”</span></p>
+  <div class="feat">
+    <div class="row"><span class="n">01</span><span class="v">Centralized management of disaster data</span></div>
+    <div class="row"><span class="n">02</span><span class="v">Real-time sharing of drone positions</span></div>
+    <div class="row"><span class="n">03</span><span class="v">Voice-chat direction over live field video</span></div>
+    <div class="row"><span class="n">04</span><span class="v">Multi-device support: PC, smartphone, tablet</span></div>
+    <div class="row"><span class="n">05</span><span class="v">Aircraft tracking, flood projection zones and DID districts on map</span></div>
+    <div class="row"><span class="n">06</span><span class="v">Live geolocation and cross-camera video relay across drones, CCTV and smartphones</span></div>
+    <div class="row"><span class="n">07</span><span class="v">Earthquake Early Warning and SIP4D integration</span></div>
+  </div>
+  <div class="ph shot" data-object-type="image" id="v2p12-img-a" style="background:#0a0e17"><img src="genspark_images/xkp3lkP5.png" alt=""></div>
+  <div class="reg" style="left:488px;top:150px"></div>
+  <div class="bottom">
+    <div class="ph mark" data-object-type="image" id="v2p12-img-b" style="position:relative"><img src="genspark_images/sKKYS0iv.png" alt=""></div>
+    <p class="st">In disaster response, <b>speed</b> and <b>accuracy</b> are everything</p>
+  </div>
+</div></body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Selected Drone Show Credits</title><!--V2HEAD-->
+<style>
+.ttl{position:absolute;left:48px;top:64px}
+.ttl .title{font-size:56px;line-height:1}
+.col{position:absolute;top:152px;width:426px;height:568px}
+.c1{left:0}.c2{left:427px}.c3{left:854px}
+.col .ph{left:0;top:0;width:426px;height:336px}
+.col .scrim-b{height:75%}
+.col .fg{position:absolute;left:20px;bottom:14px;z-index:3;font-size:72px;white-space:nowrap;color:#fff}
+.col .fg small{font-size:.36em;margin-left:.1em}
+.col .fg.s{font-size:92px}
+.info{position:absolute;left:24px;right:24px;top:362px}
+.info .d{display:flex;align-items:center;gap:12px}
+.info .t{margin-top:12px;font-size:26px;font-weight:900;line-height:1.3}
+.info .t span{display:block;font-size:20px;font-weight:700;color:var(--txt);margin-top:2px}
+.info .b{margin-top:12px;font-size:17px;font-weight:500;line-height:1.7;color:var(--txt)}
+.vl{position:absolute;top:362px;bottom:36px;width:1px;background:var(--line)}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">09 / 26</span></header>
+  <div class="ttl"><h1 class="title">Selected Drone Show Credits</h1></div>
+  <div class="col c1">
+    <div class="ph" data-object-type="image" id="v2p09-img-a"><img src="genspark_images/8bc88b7b7acd1d7f7ab2fc6533c43383.webp" alt=""><div class="scrim-b"></div><div class="fg fig">1,100<small>aircraft</small></div></div>
+    <div class="info">
+      <div class="d"><span class="lbl">2025.09.04-07</span><span class="chip">Confidential</span></div>
+      <div class="t">Nogizaka46 Midsummer<br>National Tour Final</div>
+      <div class="b">Call-and-response that syncs with drone-formed text. A new era of live production.</div>
+    </div>
+  </div>
+  <div class="col c2">
+    <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/utBoPTD3.png" alt="" style="object-position:50% 58%"><div class="scrim-b"></div><div class="fg fig">35,000<small>people</small></div></div>
+    <div class="info">
+      <div class="d"><span class="lbl">2025.08.19</span></div>
+      <div class="t">Enoshima Miami Beach Show<br><span>“Celestial Maiden &amp; Dragon God”</span></div>
+      <div class="b">Bringing the Enoshima legend to the night sky, a spectacle fusing local culture with cutting-edge technology.</div>
+    </div>
+  </div>
+  <div class="col c3">
+    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/cd57c29e6f073835491a07f105b7cb24.webp" alt=""><div class="scrim-b"></div><div class="fg fig">500<small>drones + fireworks</small></div></div>
+    <div class="info">
+      <div class="d"><span class="lbl">2026.01.01-03</span></div>
+      <div class="t">seven x seven Ishigaki<br>New Year Drone Show</div>
+      <div class="b">A festive spectacle where drones and fireworks light up the night sky over a luxury resort.</div>
+    </div>
+  </div>
+  <div class="vl" style="left:426px;top:514px"></div><div class="vl" style="left:853px;top:514px"></div>
+</div></body></html>

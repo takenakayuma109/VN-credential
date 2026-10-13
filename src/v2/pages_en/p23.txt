@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Vision 2030</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;top:84px;right:48px}
+.top .row1{display:flex;align-items:center;gap:20px}
+.top .title{line-height:1}
+.top .stmt{margin-top:14px;font-size:40px;font-weight:900;line-height:1.1;letter-spacing:-.01em;white-space:nowrap}
+.top .stmt em{font-style:normal;color:var(--signal)}
+.g{position:absolute;top:216px;width:378px}
+.g .ph{position:relative;width:378px;height:262px}
+.g .ph .scrim-b{height:70%}
+.g .ph .h{position:absolute;left:18px;right:18px;bottom:16px;z-index:3;display:flex;flex-direction:column;gap:10px}
+.g .ph .h .fig{font-size:44px;color:var(--signal);line-height:.8}
+.g .ph .h .t{font-size:20px;font-weight:900;line-height:1.3;color:#fff}
+.g .d{margin-top:14px;font-size:16px;line-height:1.62;color:var(--txt)}
+.road{position:absolute;left:48px;right:48px;bottom:34px;display:flex}
+.road>div{position:relative;padding:16px 24px 0 0;border-top:1px solid var(--line)}
+.road>div::before{content:"";position:absolute;left:0;top:-6px;width:11px;height:11px;background:var(--white)}
+.road>div.last::before{background:var(--signal)}
+.road .y{font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:30px;line-height:1;letter-spacing:-.02em}
+.road .last .y{color:var(--signal)}
+.road .x{margin-top:8px;font-size:17px;font-weight:500;line-height:1.5;color:var(--txt)}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Vision</span><span class="pg">23 / 26</span></header>
+  <div class="top">
+    <div class="row1"><span class="bar"></span><h1 class="title s">Vision 2030</h1></div>
+    <p class="stmt">Expanding <em>society’s possibilities</em> through technology</p>
+  </div>
+  <div class="g" style="left:48px">
+    <div class="ph" data-object-type="image" id="v2p23-img-a"><img src="https://www.visionoid.co/about/vision2030-1.png" alt=""><div class="scrim-b"></div>
+      <div class="h"><span class="fig">01</span><span class="t">Drone shows &amp; robots<br>part of everyday life</span></div></div>
+    <p class="d">Entertainment moves beyond special events into cityscapes and everyday life, where anyone can feel cutting-edge technology.</p>
+  </div>
+  <div class="g" style="left:451px">
+    <div class="ph" data-object-type="image" id="v2p23-img-b"><img src="https://www.visionoid.co/about/vision2030-2.png" alt=""><div class="scrim-b"></div>
+      <div class="h"><span class="fig">02</span><span class="t">Drones &amp; robots deploy first<br>at industrial &amp; disaster sites</span></div></div>
+    <p class="d">Before people enter, drones and robots gather information and carry out work, protecting lives and safety.</p>
+  </div>
+  <div class="g" style="left:854px">
+    <div class="ph" data-object-type="image" id="v2p23-img-c"><img src="https://www.visionoid.co/about/vision2030-3.png" alt=""><div class="scrim-b"></div>
+      <div class="h"><span class="fig">03</span><span class="t">Advanced technology<br>coexisting with society</span></div></div>
+    <p class="d">Technology that never overstates itself, blending naturally into social infrastructure and daily environments to enrich and extend people’s lives.</p>
+  </div>
+  <div class="road">
+    <div style="width:520px"><div class="y">2026</div><div class="x">SusHi Tech TOKYO appearance; physical AI × IP deployment begins</div></div>
+    <div style="width:430px"><div class="y">2027–2029</div><div class="x">Scaling social deployment; standardization in industry &amp; disaster response</div></div>
+    <div class="last" style="flex:1"><div class="y">2030</div><div class="x">Vision achieved</div></div>
+  </div>
+</div></body></html>

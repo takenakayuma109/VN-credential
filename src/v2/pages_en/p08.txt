@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Tokyo DisneySea | Fantasy Springs Pre-Opening Event</title><!--V2HEAD-->
+<style>
+.hero{left:830px;top:0;width:450px;height:492px}
+.hero .ov{position:absolute;left:28px;right:28px;bottom:24px;z-index:3}
+.hero .ov .t{margin-top:10px;font-size:20px;font-weight:700;line-height:1.5;color:#fff}
+.hero .scrim-b{height:70%}
+.ttl{position:absolute;left:48px;top:66px;width:770px}
+.ttl .title{font-size:38px;line-height:1.2}
+.ttl .meta{margin-top:12px;display:flex;align-items:center;gap:18px}
+.ttl .meta b{font-size:19px;font-weight:700}
+.figs{position:absolute;left:48px;top:250px;width:754px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px;row-gap:0}
+.cell{padding:12px 0 0;border-top:1px solid var(--line);height:112px}
+.cell .fig{font-size:66px;white-space:nowrap}
+.cell .fig small{font-size:.4em}
+.cell .k{margin-top:6px;font-size:16px;font-weight:500;line-height:1.45;color:var(--txt)}
+.cell .k b{color:#fff;font-weight:900}
+.tv{height:226px;top:494px}
+.tv .cap{left:14px;bottom:10px}
+.tv .scrim-b{height:45%}
+.t1{left:0;width:426px}.t2{left:427px;width:426px}.t3{left:854px;width:426px}
+</style></head>
+<body><div class="slide">
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">08 / 26</span></header>
+  <div class="ph hero" data-object-type="image" id="v2p08-img-hero"><img src="genspark_images/U2x8pQPF.png" alt="" style="object-position:50% 40%"><div class="scrim-t"></div><div class="scrim-b"></div>
+    <div class="ov"><div class="lbl" style="color:rgba(255,255,255,.75)">Responsible Scope</div><div class="t">Planning, production &amp; execution<br>+ Aerial filming + Safety management</div><div style="margin-top:12px"><span class="tag solid">End-to-End</span></div></div></div>
+  <div class="ttl">
+    <h1 class="title">Tokyo DisneySea |<br>Fantasy Springs Pre-Opening Event</h1>
+    <div class="meta"><span class="chip">CONFIDENTIAL — Internal portfolio only / No SNS or web publication</span></div>
+    <div class="meta" style="margin-top:8px"><b>Oriental Land Co., Ltd.</b><span class="lbl">2024.06.05</span></div>
+  </div>
+  <div class="figs">
+    <div class="cell"><div class="fig sig">1<small>st</small></div><div class="k"><b>X (Twitter) &amp; YouTube Trending</b> at once</div></div>
+    <div class="cell"><div class="fig">100<small>K+</small></div><div class="k"><b>Likes</b> (35K+ reposts)</div></div>
+    <div class="cell"><div class="fig">400<small>K</small></div><div class="k"><b>Live concurrent viewers</b> (1.2M views in 2 days)</div></div>
+    <div class="cell"><div class="fig"><small style="font-size:.62em;margin-left:0">All Networks</small></div><div class="k"><b>National TV news coverage</b></div></div>
+  </div>
+  <div class="ph tv t1" data-object-type="image" id="v2p08-img-tv1"><img src="genspark_images/KgrDwROk.png" alt=""><div class="scrim-b"></div><div class="cap">TV NEWS 01</div></div>
+  <div class="ph tv t2" data-object-type="image" id="v2p08-img-tv2"><img src="genspark_images/L0IzGu5t.png" alt=""><div class="scrim-b"></div><div class="cap">TV NEWS 02</div></div>
+  <div class="ph tv t3" data-object-type="image" id="v2p08-img-tv3"><img src="genspark_images/QS0txr12.png" alt=""><div class="scrim-b"></div><div class="cap">TV NEWS 03</div></div>
+</div></body></html>

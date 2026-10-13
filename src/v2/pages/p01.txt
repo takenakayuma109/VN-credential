@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>Cover — VISIONOID</title><!--V2HEAD-->
+<style>
+.bgimg{position:absolute;right:0;top:0;width:760px;height:720px}
+.bgimg img{opacity:.78}
+.fade{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 38%,rgba(11,11,12,.55) 62%,rgba(11,11,12,.1) 100%)}
+.fadeb{position:absolute;inset:auto 0 0 0;height:300px;background:linear-gradient(to top,var(--ink) 30%,rgba(11,11,12,0))}
+.word{position:absolute;left:40px;top:250px;font-size:166px;color:var(--white)}
+.word i{font-style:normal;color:var(--signal)}
+.meta{position:absolute;left:48px;right:48px;bottom:44px;display:flex;align-items:flex-end;gap:48px}
+.meta .tag-line{font-size:30px;font-weight:900;line-height:1.45;letter-spacing:.01em}
+.meta .en{font-size:22px;color:var(--mute);margin-top:14px;letter-spacing:.04em}
+.meta .right{margin-left:auto;text-align:right}
+.meta .right .lbl{display:block;line-height:1.9}
+</style></head>
+<body><div class="slide">
+  <div class="ph bgimg"><img src="genspark_images/cd57c29e6f073835491a07f105b7cb24.webp" alt=""></div>
+  <div class="fade"></div><div class="fadeb"></div>
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Credential 2026</span><span class="pg"><span class="chip">CONFIDENTIAL</span></span></header>
+  <div class="reg" style="left:40px;top:220px"></div><div class="reg" style="right:40px;top:220px"></div>
+  <h1 class="xl word">Visionoid<i>.</i></h1>
+  <div class="meta">
+    <div>
+      <div class="tag-line">エンターテインメントで鍛えた技術を、<br>社会に実装する。</div>
+      <div class="en">Visionary Technology Company</div>
+    </div>
+    <div class="right"><span class="lbl">VISIONOID Inc.</span><span class="lbl">Tokyo, Japan</span><span class="lbl">2026.10</span></div>
+  </div>
+</div></body></html>

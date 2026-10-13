@@ -88,10 +88,10 @@
         }
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 14px;
-            padding: 0 36px 20px 36px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 12px;
+            padding: 0 32px 16px 32px;
             height: 100%;
             box-sizing: border-box;
         }
@@ -99,44 +99,58 @@
             background: white;
             border-radius: 14px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 14px 18px 12px;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            column-gap: 12px;
+            row-gap: 3px;
+            align-content: start;
+            padding: 9px 13px 8px;
             position: relative;
             overflow: hidden;
         }
         .member-photo {
-            width: 72px;
-            height: 72px;
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            align-self: center;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             background-color: #f1f5f9;
         }
         .member-name {
-            font-size: 18px;
+            grid-column: 2;
+            grid-row: 1;
+            align-self: end;
+            font-size: 15px;
             font-weight: 700;
             color: #0f172a;
-            margin-bottom: 2px;
+            margin-bottom: 0;
             letter-spacing: 0.02em;
-            line-height: 1.1;
+            line-height: 1.15;
         }
         .member-role {
-            font-size: 12px;
+            grid-column: 2;
+            grid-row: 2;
+            align-self: start;
+            font-size: 11px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             font-family: 'Inter', sans-serif;
-            line-height: 1.15;
-            text-align: center;
+            line-height: 1.25;
+            text-align: left;
         }
         .member-bio {
-            font-size: 11px;
+            grid-column: 1 / -1;
+            grid-row: 3;
+            font-size: 10px;
             line-height: 1.38;
             color: #334155;
             text-align: left;
-            flex: 1;
+            margin-top: 2px;
             overflow: hidden;
             width: 100%;
             display: -webkit-box;
@@ -144,16 +158,18 @@
             -webkit-box-orient: vertical;
         }
         .member-tags {
-            margin-top: 8px;
+            grid-column: 1 / -1;
+            grid-row: 4;
+            margin-top: 2px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 6px;
             width: 100%;
         }
         .tag {
-            font-size: 10px;
-            padding: 3px 8px;
+            font-size: 9.5px;
+            padding: 2px 7px;
             background: #f8fafc;
             color: #475569;
             border-radius: 6px;
@@ -177,6 +193,8 @@
         .color-navy .member-role { color: #1e40af; }
         .color-green .member-photo { border: 3px solid #16a34a; }
         .color-green .member-role { color: #16a34a; }
+        .color-pink .member-photo { border: 3px solid #db2777; }
+        .color-pink .member-role { color: #db2777; }
     </style>
 </head>
 <body spellcheck="false" style="user-select: none;">
@@ -197,10 +215,10 @@
 <div class="banner-sub">An elite cross-disciplinary team with proven track records across Entertainment, Industry, and Disaster Resilience</div>
 </div>
 </div>
-<div contenteditable="true" data-object="true" data-object-type="textbox" id="fabric-obj-2-1775456563863" style="position: absolute; top: 110px; left: 0px; width: 1280px; height: 580px; z-index: 5; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;">
+<div contenteditable="true" data-object="true" data-object-type="textbox" id="fabric-obj-2-1775456563863" style="position: absolute; top: 104px; left: 0px; width: 1280px; height: 606px; z-index: 5; cursor: text; outline: none; caret-color: rgb(0, 0, 0); user-select: text;">
 <div class="team-grid"><div class="member-card color-cyan">
-<img alt="Yuma Takenaka" class="member-photo" data-height-listener-added="true" src="genspark_images/1d71d2d22a80f5be7db9e9e07d328edb.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Yuma Takenaka</span></div>
+<img alt="Yuma Takenaka" class="member-photo" data-height-listener-added="true" src="genspark_images/face_takenaka.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Yuma Takenaka</span></div>
 <div class="member-role">Founder &amp; CEO</div>
 <div class="member-bio">Joined Dentsu Live in 2012, leading accounts including Toyota Motor and JAMA. Produced Japan's largest drone show at Tokyo Motor Show 2019, drawing 1.31M visitors. Member of the Tokyo 2020 Olympics opening ceremony production team. Following a NASDAQ-listed company role, founded VISIONOID in 2024.</div>
 <div class="member-tags">
@@ -209,8 +227,8 @@
 </div>
 </div>
 <div class="member-card color-teal">
-<img alt="Ryuya Kamizeki" class="member-photo" data-height-listener-added="true" src="genspark_images/991760199348ec4dec77f6985ee36c6b.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Ryuya Kamizeki</span></div>
+<img alt="Ryuya Kamizeki" class="member-photo" data-height-listener-added="true" src="genspark_images/face_kamizeki_r.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Ryuya Kamizeki</span></div>
 <div class="member-role" style="font-size: 11px;">Co-Founder, Director &amp; Head of Technology</div>
 <div class="member-bio">Former head coach of Japan's national drone racing team. Cross-disciplinary technologist spanning drones, droids, video, audio, networks, and software development. Frequent TV appearances including The Tetsuwan DASH. Drone show credits include DREAMS COME TRUE WONDERLAND 2023, NISSAN SKYLINE NISMO, and the Hokkaido Nippon-Ham Fighters 2024 Opening Game.</div>
 <div class="member-tags">
@@ -219,8 +237,8 @@
 </div>
 </div>
 <div class="member-card color-gold">
-<img alt="Matomi Adachi" class="member-photo" data-height-listener-added="true" src="genspark_images/5bd46e3b3c1d7ec4042461f2dd95f9ab.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Matomi Adachi</span></div>
+<img alt="Matomi Adachi" class="member-photo" data-height-listener-added="true" src="genspark_images/face_adachi.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Matomi Adachi</span></div>
 <div class="member-role">Director &amp; Project Manager</div>
 <div class="member-bio">Project management specialist behind some of Japan's most prominent large-scale events, including the Tokyo 2020 Olympics opening ceremony, YouTube Brandcast Japan, the Hermès "Avec Elle" exhibition, and the Cygames exhibition. Drives projects to success through outstanding leadership and meticulous on-site orchestration.</div>
 <div class="member-tags">
@@ -229,8 +247,8 @@
 </div>
 </div>
 <div class="member-card color-purple">
-<img alt="Ryota Monzen" class="member-photo" data-height-listener-added="true" src="genspark_images/e0cc1ed6cb72e48eaaa9beb9a39ee4ab.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Ryota Monzen</span></div>
+<img alt="Ryota Monzen" class="member-photo" data-height-listener-added="true" src="genspark_images/face_monzen.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Ryota Monzen</span></div>
 <div class="member-role">Director &amp; Aircraft Development Engineer</div>
 <div class="member-bio">At 27, conceived, designed, and developed "unika" — Japan's only domestically produced drone built specifically for drone shows. Joined JAPRADAR in 2017 as pilot and developer, later moved to Drone Show Japan, and joined VISIONOID in 2024. On a mission to build Japanese drones that lead the world.</div>
 <div class="member-tags">
@@ -238,9 +256,19 @@
 <span class="tag">Engineer</span>
 </div>
 </div>
+<div class="member-card color-pink">
+<img alt="Nobuyoshi Ito" class="member-photo" data-height-listener-added="true" src="genspark_images/face_ito.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Nobuyoshi Ito</span></div>
+<div class="member-role">Executive Officer, Head of Sales Strategy</div>
+<div class="member-bio">Joined Daiko, a major Japanese advertising agency, in 1992. Won the first-mover clients in each new revenue frontier &mdash; media, direct marketing, D2C &mdash; and served as Sales Division Director from 2016, leading total solutions for national clients. Thirty years spent taking the &ldquo;first account&rdquo; in emerging markets. Joined VISIONOID in 2024.</div>
+<div class="member-tags">
+<span class="tag">Sales Strategy</span>
+<span class="tag">New Business Development</span>
+</div>
+</div>
 <div class="member-card color-orange">
-<img alt="Tomohiro Nakagawa" class="member-photo" data-height-listener-added="true" src="genspark_images/e0a0d332164eafff15778fdf901e9136.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Tomohiro Nakagawa</span></div>
+<img alt="Tomohiro Nakagawa" class="member-photo" data-height-listener-added="true" src="genspark_images/face_nakagawa.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Tomohiro Nakagawa</span></div>
 <div class="member-role" style="font-size: 11px;">Drone Business Development &amp; Master Instructor</div>
 <div class="member-bio">Co-founder of Sky Estate, the predecessor of Rakuten Drone. As a DPA Master Instructor, has trained over 1,000 pilots and produced Japan's #1 student. Operates "Drone Jobs," a community of 3,000+ drone professionals. Class 1 certified unmanned aircraft pilot.</div>
 <div class="member-tags">
@@ -249,8 +277,8 @@
 </div>
 </div>
 <div class="member-card color-red">
-<img alt="Hayato Murata" class="member-photo" data-height-listener-added="true" src="genspark_images/c74c3c88198d51f7771980c2a09dd7f6.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Hayato Murata</span></div>
+<img alt="Hayato Murata" class="member-photo" data-height-listener-added="true" src="genspark_images/face_murata.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Hayato Murata</span></div>
 <div class="member-role">Creative Director</div>
 <div class="member-bio">Founded video production company REBORN, directing 100+ titles across MVs, commercials, and corporate videos. Expanded into agency work including SoftBank commercials. In the drone domain, advances the industry through video, aerial cinematography, and business development. Leads event creative and drone show direction at VISIONOID.</div>
 <div class="member-tags">
@@ -259,8 +287,8 @@
 </div>
 </div>
 <div class="member-card color-navy">
-<img alt="Yuki Tsuruoka" class="member-photo" data-height-listener-added="true" src="genspark_images/4ee48d1572db65e139ff4652599c3dda.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Yuki Tsuruoka</span></div>
+<img alt="Yuki Tsuruoka" class="member-photo" data-height-listener-added="true" src="genspark_images/face_tsuruoka.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Yuki Tsuruoka</span></div>
 <div class="member-role">Creative Visualization Engineer</div>
 <div class="member-bio">Creator harnessing cutting-edge video software, AI, and 3D tools to build digital twins of event spaces and craft visual experiences. Began working with XR video and Unreal Engine in 2020, earning the Event Professional Award and Excellence Award at the JACE Event Awards.</div>
 <div class="member-tags">
@@ -269,8 +297,8 @@
 </div>
 </div>
 <div class="member-card color-green">
-<img alt="Fuga Kamizeki" class="member-photo" data-height-listener-added="true" src="genspark_images/71e0127ee5eebe705e33266be261af32.webp"/>
-<div class="member-name"><span style="font-size: 16px;">Fuga Kamizeki</span></div>
+<img alt="Fuga Kamizeki" class="member-photo" data-height-listener-added="true" src="genspark_images/face_kamizeki_f.jpg"/>
+<div class="member-name"><span style="font-size: 15px;">Fuga Kamizeki</span></div>
 <div class="member-role">Pilot</div>
 <div class="member-bio">Began competitive drone racing in third grade and became Japan's youngest national champion. In 2019, became the first elementary school student selected for Japan's national team, finishing 6th at the World Games 2022. Applies racing-honed precision to aerial cinematography, video production, and show drones.</div>
 <div class="member-tags">
