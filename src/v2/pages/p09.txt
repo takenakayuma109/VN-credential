@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja"><head><meta charset="utf-8"><title>主要ドローンショー実績</title><!--V2HEAD-->
+<html lang="ja"><head><meta charset="utf-8"><title>最新ドローンショー実績</title><!--V2HEAD-->
 <style>
-.ttl{position:absolute;left:48px;top:64px}
-.ttl .title{font-size:56px;line-height:1}
+.ttl{position:absolute;left:48px;top:56px}
+.ttl .kicker{display:block;line-height:20px}
+.ttl .title{font-size:56px;line-height:1;margin-top:6px}
 .col{position:absolute;top:148px;width:426px;height:572px}
 .c1{left:0}.c2{left:427px}.c3{left:854px}
 .col .ph{left:0;top:0;width:426px;height:260px}
@@ -21,7 +22,7 @@
 </style></head>
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">09 / 26</span></header>
-  <div class="ttl"><h1 class="title">主要ドローンショー実績</h1></div>
+  <div class="ttl"><span class="kicker">LATEST SHOWS 2025–2026</span><h1 class="title">最新ドローンショー実績</h1></div>
   <div class="col c1">
     <div class="ph" data-object-type="image" id="v2p09-img-a"><img src="genspark_images/8bc88b7b7acd1d7f7ab2fc6533c43383.webp" alt=""><div class="scrim-b"></div><div class="fg fig">1,100<small>機</small></div></div>
     <div class="info">
@@ -33,13 +34,13 @@
   <div class="col c2">
     <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/vn_enoshima26_08.jpg" alt=""><div class="scrim-b"></div><div class="fg fig">62,000<small>人来場</small></div></div>
     <div class="info">
-      <div class="d"><span class="lbl">2026.08.18</span><span class="ref">→ P.11</span></div>
+      <div class="d"><span class="lbl">2026.08.18</span><span class="ref">→ {{ref:p32}}</span></div>
       <div class="t">江の島海水浴場<br>スペシャルドローンショー<span>『三女神と祈りの鐘』</span></div>
       <div class="b">江の島に語り継がれる「三女神」の神話をストーリーに、能登・熊本の復興を願うメッセージも夜空に描いた。</div>
     </div>
   </div>
   <div class="col c3">
-    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/vn_minions_drone-james.webp" alt=""><div class="scrim-b"></div><div class="fg fig">800<small>機＋花火300発</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/vn_minions_goomy.webp" alt=""><div class="scrim-b"></div><div class="fg fig">800<small>機＋花火300発</small></div></div>
     <div class="info">
       <div class="d"><span class="lbl">2026.08.08</span></div>
       <div class="t">神宮外苑花火大会<span>『ミニオンズ＆モンスターズ』スペシャルコラボドローンショー</span></div>

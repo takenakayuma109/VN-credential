@@ -274,10 +274,24 @@ body { overflow-x: hidden; }
   inset: 0;
   width: 1280px;
   height: 720px;
+  opacity: 0;
   visibility: hidden;
+  z-index: 1;
   pointer-events: none;
+  /* Outgoing slide stays fully opaque underneath until the incoming one
+     (z-index 2) has finished fading in, then drops instantly: a true dissolve
+     with no dip to black and no white flash. */
+  transition: opacity 0s linear 0.3s, visibility 0s linear 0.3s;
 }
-.present-slot.current { visibility: visible; z-index: 1; }
+.present-slot.current {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  transition: opacity 0.3s ease, visibility 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .present-slot, .present-slot.current { transition: none; }
+}
 .present-slot .slide-frame { width: 1280px; max-width: none; margin: 0; }
 .present-slot .slide-frame-inner {
   width: 1280px;

@@ -63,7 +63,7 @@ let bad = 0;
 for (const f of files) {
   const src = fs.readFileSync(path.join(PAGES, f), 'utf8');
   let html = src.replace('<!--V2HEAD-->', `${base}${head}<style>${css}</style>`);
-  html = html.replace('</body>', `${CHECK}</body>`);
+  html = html.replace(/\{\{ref:p\d+\}\}/g, 'P.00').replace('</body>', `${CHECK}</body>`);
   const name = f.replace('.txt', '');
   const tmp = path.join(OUT, `${name}.html`);
   fs.writeFileSync(tmp, html);

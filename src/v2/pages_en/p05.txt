@@ -12,7 +12,7 @@
 .p .ph.fb img{object-position:100% 0%;transform:scale(1.4);transform-origin:100% 0}
 .p .ph.fc img{object-position:56% 100%;transform:scale(1.12);transform-origin:50% 100%}
 .p .ph.fd img{object-position:12% 0%;transform:scale(1.4);transform-origin:50% 0}
-.p .ph.fe img{object-position:50% 20%}
+.p .ph.fe img{position:absolute;left:-339px;top:-28px;width:724px;height:483px;max-width:none;object-fit:fill}
 .p .nm{margin-top:12px;font-size:30px;font-weight:900;line-height:1.1;letter-spacing:.01em}
 .p .ro{margin-top:6px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--mute);white-space:nowrap}
 .p .rl span{display:inline-block}.p .rl b{font-weight:500;color:var(--mute);margin:0 3px}
@@ -39,7 +39,7 @@
       <div class="nm">Ryota Monzen</div><div class="ro"></div>
       <div class="rl"><span>Executive Officer<b>|</b></span><span>Chief Mechanic</span></div>
       <p class="bio">At 27, conceived, designed and developed "unika," Japan's only domestic drone-show aircraft. Joined JAPRADAR in 2017 as pilot and developer, then Drone Show Japan, and VISIONOID in 2024.</p></div>
-    <div class="p"><div class="ph mono-img fe" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/face_ito.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fe" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/vn_ito_full.jpg" alt=""></div>
       <div class="nm">Nobuyoshi Ito</div><div class="ro"></div>
       <div class="rl"><span>Executive Officer<b>|</b></span><span>Head of Sales Strategy</span></div>
       <p class="bio">Joined Daiko in 1992. Sales Division Director from 2016, leading total solutions for national clients. Three decades of winning the first account in each emerging market. Joined VISIONOID in 2024.</p></div>

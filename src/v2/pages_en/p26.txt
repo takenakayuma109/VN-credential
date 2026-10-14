@@ -52,7 +52,7 @@
       <li class="big"><b>¥200M</b> revenue<br>locked in as of April</li>
       <li>Kirana Garden Toyosu (permanent)</li>
       <li>SENRIGAN: 3–5 municipalities</li>
-      <li style="border-top-color:transparent;color:var(--mute)">Figures → P.27</li>
+      <li style="border-top-color:transparent;color:var(--mute)">Figures → {{ref:p25}}</li>
     </ul>
   </div>
   <div class="col c3">

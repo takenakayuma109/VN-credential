@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>オリジナルドローン演出実績｜愛知・名古屋アジア大会 開会式</title><!--V2HEAD-->
+<style>
+.hero2,.hero3,.hero1,.hero5{margin:0}
+.g2{left:416px;top:0;width:410px;height:462px}
+.g3{left:828px;top:0;width:452px;height:462px}
+.g1{left:416px;top:464px;width:421px;height:256px}
+.g5{left:839px;top:464px;width:441px;height:256px}
+.ph img{object-fit:contain}
+.scrim-t{height:90px}
+.ttl{position:absolute;left:48px;top:76px;width:344px;z-index:6}
+.ttl .title{font-size:33px;line-height:1.18;margin-top:12px}
+.meta{margin-top:16px;display:flex;align-items:center;gap:14px}
+.meta b{font-size:18px;font-weight:700;line-height:1.4}
+.angel{position:absolute;left:48px;top:318px;width:344px;padding-top:16px;border-top:1px solid var(--line)}
+.angel .nm{margin-top:8px;font-size:34px;font-weight:900;line-height:1.15;color:#fff}
+.angel .nm i{font-style:normal;color:var(--signal)}
+.angel .b{margin-top:12px;font-size:18px;font-weight:500;line-height:1.7;color:var(--txt)}
+.facts{position:absolute;left:48px;bottom:34px;width:344px}
+.facts .row{padding:11px 0;gap:14px}
+.facts .row .k{font-size:17px;font-weight:700;line-height:1.45}
+</style></head>
+<body><div class="slide">
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">16 / 26</span></header>
+  <div class="ph g2" data-object-type="image" id="v2p34-img-b"><img src="genspark_images/vn_asiangames_2.jpg" alt=""></div>
+  <div class="ph g3" data-object-type="image" id="v2p34-img-c"><img src="genspark_images/vn_asiangames_3.jpg" alt=""><div class="scrim-t"></div></div>
+  <div class="ph g1" data-object-type="image" id="v2p34-img-a"><img src="genspark_images/vn_asiangames_1.jpg" alt=""></div>
+  <div class="ph g5" data-object-type="image" id="v2p34-img-d"><img src="genspark_images/vn_asiangames_5.jpg" alt=""></div>
+  <div class="ttl">
+    <span class="bar"></span>
+    <h1 class="title">オリジナル<br>ドローン演出実績｜<br>愛知・名古屋<br>アジア大会 開会式</h1>
+    <div class="meta"><span class="chip">VISIONOID ORIGINAL</span><span class="lbl">2026.09</span></div>
+  </div>
+  <div class="angel">
+    <span class="kicker">Featured Act</span>
+    <div class="nm">エンジェル<span style="color:var(--signal)">ドローン</span></div>
+    <p class="b">光る球体と、たなびく半透明の布をまとった小型ドローン。天使のように、パフォーマーの頭上を舞う。</p>
+  </div>
+  <div class="facts">
+    <div class="row"><span class="n">01</span><span class="k">愛知・名古屋 2026 アジア競技大会<br>開会式（2026年9月）</span></div>
+    <div class="row"><span class="n">02</span><span class="k">屋内スタジアムで、<br>パフォーマーと共演</span></div>
+  </div>
+</div></body></html>

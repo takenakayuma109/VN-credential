@@ -3,34 +3,43 @@
 <style>
 .left{position:absolute;left:48px;top:76px;width:680px}
 .left .title{margin-top:10px}
-.tbl{position:absolute;left:48px;top:156px;width:700px}
-.tbl .spec td{padding:6px 0;font-size:20px;font-weight:700;line-height:1.5}
-.tbl .spec td:first-child{width:296px;padding-top:10px;white-space:nowrap;font-weight:500;font-size:15px;line-height:1.5}
+.tbl{position:absolute;left:48px;top:156px;width:600px}
+.tbl .spec td{padding:9px 0;font-size:20px;font-weight:700;line-height:1.5}
+.tbl .spec td:first-child{width:296px;padding-top:13px;white-space:nowrap;font-weight:500;font-size:15px;line-height:1.5}
 .tbl .spec tr:last-child td{border-bottom:1px solid var(--pline)}
 .tbl .mono{font-family:var(--f-m);font-size:20px;font-weight:700;letter-spacing:.01em}
 .tbl .go{font-family:var(--f-m);font-size:16px;font-weight:700;color:var(--signal);white-space:nowrap}
-.photo{position:absolute;left:776px;top:0;width:504px;height:720px}
-.photo .scrim-b{height:30%}
+.photo{position:absolute;left:680px;top:0;width:600px;height:300px}
+.photo .scrim-b{height:45%}
+.loc{position:absolute;left:704px;right:48px;top:338px}
+.loc .row{padding:17px 0;gap:18px}
+.loc .row .k{font-size:22px;font-weight:700}
 </style></head>
 <body><div class="slide paper">
-  <header class="hd on-photo-r"><span class="wm">VISIONOID<i>.</i></span><span>Company</span><span class="pg" style="color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.5)">28 / 26</span></header>
+  <header class="hd on-photo-r"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg" style="color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.5)">05 / 26</span></header>
   <div class="left"><span class="bar"></span><h1 class="title m">基本情報</h1></div>
   <div class="tbl">
     <table class="spec">
       <tr><td>会社名</td><td>VISIONOID株式会社</td></tr>
       <tr><td>設立</td><td>2024年7月5日</td></tr>
-      <tr><td>資本金</td><td>1億5000万円</td></tr>
+      <tr><td>資本金</td><td>9600万円</td></tr>
       <tr><td>代表者</td><td>竹中 悠満</td></tr>
-      <tr><td>従業員</td><td>20名（業務委託含む）</td></tr>
+      <tr><td>従業員</td><td>15名（業務委託含む）</td></tr>
       <tr><td>適格請求書発行事業者登録番号</td><td class="mono">T1010401183714</td></tr>
       <tr><td>無人航空機操縦士 登録講習機関コード</td><td class="mono">0707</td></tr>
       <tr><td>無人航空機操縦士 事務所コード</td><td class="mono">T0707001</td></tr>
       <tr><td>Email</td><td class="mono">info@visionoid.co</td></tr>
       <tr><td>Web</td><td class="mono">www.visionoid.co</td></tr>
-      <tr><td>拠点</td><td>本社（東京都江戸川区）・日比谷オフィス・<br>湘南オフィス・所沢スタジオ</td></tr>
     </table>
   </div>
-  <div class="ph photo" data-object-type="image" id="v2p28-img-a"><img src="https://www.visionoid.co/locations/kasai-interior.webp" alt="">
+  <div class="ph photo" data-object-type="image" id="v2p28-img-a"><img src="genspark_images/vn_hibiya_lounge.webp" alt="">
     <div class="scrim-t" style="height:110px"></div><div class="scrim-b"></div>
-    <div class="cap">HQ OFFICE — KASAI, TOKYO</div></div>
+    <div class="cap">HIBIYA OFFICE — LOUNGE</div></div>
+  <div class="loc">
+    <span class="lbl">拠点 / Locations</span>
+    <div class="row"><span class="n">01</span><span class="k">本社（東京都江戸川区）</span></div>
+    <div class="row"><span class="n">02</span><span class="k">日比谷オフィス</span></div>
+    <div class="row"><span class="n">03</span><span class="k">湘南オフィス</span></div>
+    <div class="row"><span class="n">04</span><span class="k">所沢スタジオ</span></div>
+  </div>
 </div></body></html>

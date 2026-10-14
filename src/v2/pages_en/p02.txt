@@ -2,12 +2,18 @@
 <html lang="en"><head><meta charset="utf-8"><title>VISIONOID Overview</title><!--V2HEAD-->
 <style>
 .left{position:absolute;left:48px;top:96px;width:452px}
-.left .title{margin-top:14px}
-.left .stmt{margin-top:22px;font-size:34px;font-weight:900;line-height:1.35}
-.left .body{margin-top:16px}
-.pillars{position:absolute;left:48px;bottom:40px;width:452px}
-.pillars .row{gap:16px;padding:12px 0}
-.pillars .k{font-size:19px;font-weight:900;min-width:186px;white-space:nowrap}
+.left .title{margin-top:14px;font-size:46px;white-space:nowrap}
+.left .stmt{margin-top:20px;font-size:29px;font-weight:900;line-height:1.35}
+.left .body{margin-top:16px;font-size:18px;line-height:1.7;color:var(--white)}
+.left .body b{font-weight:900;color:var(--signal)}
+.pillars{position:absolute;left:48px;bottom:36px;width:452px}
+.pillars .row{gap:16px;padding:10px 0}
+.pillars .row.core{padding:14px 0 14px 18px;border-top:2px solid var(--signal);position:relative;align-items:center;gap:14px}
+.pillars .row.core::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:5px;background:var(--signal)}
+.pillars .row.core .k{font-size:24px;min-width:0;flex:none;color:#fff;line-height:1.1}
+.pillars .row.core .k .chip{display:block;margin-top:6px;width:max-content;font-size:15px;padding:2px 9px}
+.pillars .row.core .v{font-size:17px;font-weight:700;color:var(--white)}
+.pillars .k{font-size:19px;font-weight:900;min-width:170px;white-space:nowrap}
 .pillars .v{font-size:16px;font-weight:500;color:var(--txt);line-height:1.5}
 .split{position:absolute;left:540px;top:0;width:740px;height:720px}
 .split .ph{left:0;width:740px;height:359px}
@@ -24,10 +30,10 @@
     <span class="bar"></span>
     <h1 class="title">VISIONOID Overview</h1>
     <p class="stmt">Entertainment and industry:<br><span class="sig">two sides of one coin.</span></p>
-    <p class="body">Drones, robotics and AI, from entertainment to social infrastructure, all in-house.</p>
+    <p class="body">Built around <b>drones</b> and combined with robotics, AI and other advanced technology, from entertainment to social infrastructure. Concept to operation, in one company.</p>
   </div>
   <div class="pillars">
-    <div class="row"><span class="k">Drone Technology</span><span class="v">Domestic aircraft development to large-scale operations</span></div>
+    <div class="row core"><span class="k">Drone Technology<span class="chip">CORE</span></span><span class="v">Domestic aircraft development to large-scale operations</span></div>
     <div class="row"><span class="k">Robotics</span><span class="v">Robot IP that talks, sings and dances</span></div>
     <div class="row"><span class="k">AI &amp; Digital Twin</span><span class="v">Disaster-resilience platform, XR and simulation</span></div>
   </div>

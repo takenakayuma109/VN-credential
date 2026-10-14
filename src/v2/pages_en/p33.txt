@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Story | Why VISIONOID</title><!--V2HEAD-->
+<style>
+.pho{left:0;top:0;width:460px;height:412px}
+.pho .scrim-b{height:30%}
+.scrim-t{width:460px}
+.pq{position:absolute;left:48px;top:440px;width:404px;font-size:36px;font-weight:900;line-height:1.38;letter-spacing:-.01em}
+.pq{text-indent:-.5em}
+.pq b{color:var(--signal);font-weight:900}
+.by{position:absolute;left:48px;top:604px;width:404px;padding-top:16px;border-top:1px solid var(--line)}
+.by .nm{font-size:26px;font-weight:900;line-height:1.2}
+.by .rl{margin-top:6px;font-size:16px;font-weight:500;color:var(--mute)}
+.vsep{position:absolute;left:460px;top:0;bottom:0;width:1px;background:var(--line)}
+.ttl{position:absolute;left:500px;top:54px;right:48px}
+.ttl .title{font-size:38px;line-height:1}
+.tl{position:absolute;left:500px;top:108px;width:732px}
+.r{position:relative;padding:6px 0 6px 152px}
+.r::before{content:"";position:absolute;left:127px;top:15px;width:9px;height:9px;border-radius:50%;background:var(--ink);border:2px solid var(--mute)}
+.r::after{content:"";position:absolute;left:131px;top:29px;bottom:-9px;width:1px;background:var(--line)}
+.r:last-child::after{display:none}
+.r .d{position:absolute;left:0;top:6px;width:118px;font-family:var(--f-m);font-size:16px;font-weight:700;letter-spacing:.04em;color:var(--mute);line-height:1.5;padding-top:1px}
+.r .h{display:flex;align-items:baseline;gap:16px;font-size:18px;font-weight:900;line-height:1.4}
+.r .h .fx{margin-left:auto;font-size:16px;font-weight:700;color:var(--txt);white-space:nowrap}
+.r .h .fx .fig{font-size:22px}
+.r .h .fx .fig small{font-size:15px}
+.r .b{font-size:16px;font-weight:500;line-height:1.5;color:var(--txt)}
+.r.f{padding-top:8px}
+.r.f::before{background:var(--signal);border-color:var(--signal);width:13px;height:13px;left:125px;top:16px}
+.r .h .fx2{font-size:16px;font-weight:700;color:var(--txt)}
+.r.f .d{color:var(--signal);top:8px}
+.r.f .h{font-size:22px}
+.note{position:absolute;left:500px;right:48px;top:582px;padding-top:12px;border-top:1px solid var(--line)}
+.note .lbl{display:block;margin-bottom:5px}
+.note p{font-size:16px;font-weight:500;line-height:1.62;color:var(--txt)}
+.note p b{color:var(--white);font-weight:900}
+.reg{left:1214px;top:62px}
+</style></head>
+<body><div class="slide">
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>Story</span><span class="pg">06 / 26</span></header>
+  <div class="scrim-t"></div>
+  <div class="ph pho mono-img" data-object-type="image" id="v2p33-img-a"><img src="genspark_images/1d71d2d22a80f5be7db9e9e07d328edb.webp" alt="Yuma Takenaka"><div class="scrim-b"></div></div>
+  <div class="pq"><b>“</b>Build what lasts,<br>whatever the era<b>.”</b></div>
+  <div class="by"><div class="nm">Yuma Takenaka</div><div class="rl">Founder &amp; CEO</div></div>
+  <div class="vsep"></div>
+  <div class="ttl"><h1 class="title">Story | Why VISIONOID</h1></div>
+  <div class="tl">
+    <div class="r"><span class="d">2012</span><div class="h">Joins Dentsu Live as a new graduate</div><div class="b">Inspired by parents in advertising. J.League, Olympics, Asian Games.</div></div>
+    <div class="r"><span class="d">2017–2022</span><div class="h">Toyota top-support team</div><div class="b">Covers the mobility industry and meets the drone, next-gen mobility’s flagbearer.</div></div>
+    <div class="r"><span class="d">2019</span><div class="h">Tokyo Motor Show 2019<span class="fx">Visitors <span class="fig">700<small>K+</small>→1.31<small>M</small></span></span></div><div class="b">Japan’s first drone show in Tokyo, then the largest, and first international drone race. Meets Ueseki, JAPRADAR team leader and future co-founder.</div></div>
+    <div class="r"><span class="d">2022–2023</span><div class="h">Joins an air-mobility startup to learn management</div><div class="b">Lives through its NASDAQ listing, then its 2023 bankruptcy.</div></div>
+    <div class="r"><span class="d">2023</span><div class="h">Japan Mobility Show 2023: back on the planning team</div><div class="b">A Dentsu colleague invites him to a Disney show. His first call: Ueseki.</div></div>
+    <div class="r"><span class="d">2024.06</span><div class="h">Tokyo DisneySea pre-opening drone show</div><div class="b">Live broadcast, beside an open park. “Only this team could do it.”</div></div>
+    <div class="r f"><span class="d">2024.07</span><div class="h">VISIONOID founded<span class="fx2">Built on the strongest drone team</span></div><div class="b">Following the auto industry’s lead, Japan’s only company across every drone field.</div></div>
+  </div>
+  <div class="note"><span class="lbl">Founder’s note</span><p>Japan’s drone industry still falls short in technology, execution and safety. <b>Dentsu’s hyper-operations × Toyota’s manufacturing heritage × the national race team’s technical edge.</b> Combined, they can lift the industry far beyond where it stands. This is my thanks to the mobility industry.</p></div>
+</div>
+</body></html>

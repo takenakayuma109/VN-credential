@@ -4,9 +4,15 @@
 .left{position:absolute;left:48px;top:96px;width:452px}
 .left .title{margin-top:14px}
 .left .stmt{margin-top:22px;font-size:34px;font-weight:900;line-height:1.35}
-.left .body{margin-top:16px}
-.pillars{position:absolute;left:48px;bottom:40px;width:452px}
-.pillars .row{gap:16px;padding:12px 0}
+.left .body{margin-top:16px;font-size:18px;line-height:1.7;color:var(--white)}
+.left .body b{font-weight:900;color:var(--signal)}
+.pillars{position:absolute;left:48px;bottom:36px;width:452px}
+.pillars .row{gap:16px;padding:10px 0}
+.pillars .row.core{padding:14px 0 14px 18px;border-top:2px solid var(--signal);position:relative;align-items:center;gap:14px}
+.pillars .row.core::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:5px;background:var(--signal)}
+.pillars .row.core .k{font-size:28px;min-width:0;flex:none;color:#fff;line-height:1.1}
+.pillars .row.core .k .chip{display:block;margin-top:6px;width:max-content;font-size:15px;padding:2px 9px}
+.pillars .row.core .v{font-size:17px;font-weight:700;color:var(--white)}
 .pillars .k{font-size:19px;font-weight:900;min-width:186px;white-space:nowrap}
 .pillars .v{font-size:16px;font-weight:500;color:var(--txt);line-height:1.5}
 .split{position:absolute;left:540px;top:0;width:740px;height:720px}
@@ -24,10 +30,10 @@
     <span class="bar"></span>
     <h1 class="title">VISIONOIDとは</h1>
     <p class="stmt">エンタメと産業は、<br><span class="sig">表裏一体</span>である。</p>
-    <p class="body">ドローン・ロボティクス・AIを武器に、エンターテインメントから社会インフラまで。構想から運用まで一社で完結する、国内唯一のテクノロジーカンパニー。</p>
+    <p class="body"><b>ドローン</b>を軸に、ロボティクス・AIなどの先進テクノロジーを掛け合わせ、エンターテインメントから社会インフラまで。構想から運用まで一社で完結する、国内唯一のテクノロジーカンパニー。</p>
   </div>
   <div class="pillars">
-    <div class="row"><span class="k">ドローン技術</span><span class="v">国産機体開発から大規模運用まで</span></div>
+    <div class="row core"><span class="k">ドローン技術<span class="chip">CORE</span></span><span class="v">国産機体開発から<br>大規模運用まで</span></div>
     <div class="row"><span class="k">ロボティクス</span><span class="v">話し、歌い、踊るロボットIP</span></div>
     <div class="row"><span class="k">AI・デジタルツイン</span><span class="v">防災PF・XR・シミュレーション</span></div>
   </div>

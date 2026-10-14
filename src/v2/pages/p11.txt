@@ -33,7 +33,7 @@
   <div class="init">
     <span class="lbl">Main Initiatives / 主な取り組み</span>
     <div class="row"><span class="n">01</span><span class="k">迅速な情報収集体制</span><span class="v">団体でライセンスを取得。発災直後から、外部に依存せず自律展開。</span></div>
-    <div class="row"><span class="n">02</span><span class="k">統合PF「SENRIGAN」</span><span class="v">映像・位置情報を一元管理し、対策本部と現場を繋ぐ。 <b>→ P.14</b></span></div>
+    <div class="row"><span class="n">02</span><span class="k">統合PF「SENRIGAN」</span><span class="v">映像・位置情報を一元管理し、対策本部と現場を繋ぐ。 <b>→ {{ref:p12}}</b></span></div>
     <div class="row"><span class="n">03</span><span class="k">継続的シミュレーション<br>＆訓練</span><span class="v">平時から地域特性を熟知する実践訓練で、確実に「動ける」体制を構築。</span></div>
   </div>
 </div></body></html>

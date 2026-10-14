@@ -12,7 +12,7 @@
 .p .ph.fb img{object-position:100% 0%;transform:scale(1.4);transform-origin:100% 0}
 .p .ph.fc img{object-position:56% 100%;transform:scale(1.12);transform-origin:50% 100%}
 .p .ph.fd img{object-position:12% 0%;transform:scale(1.4);transform-origin:50% 0}
-.p .ph.fe img{object-position:50% 20%}
+.p .ph.fe img{position:absolute;left:-339px;top:-28px;width:724px;height:483px;max-width:none;object-fit:fill}
 .p .nm{margin-top:12px;font-size:30px;font-weight:900;line-height:1.1;letter-spacing:.01em}
 .p .ro{margin-top:6px;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--mute);white-space:nowrap}
 .p .rl span{display:inline-block}.p .rl b{font-weight:500;color:var(--mute);margin:0 3px}
@@ -39,7 +39,7 @@
       <div class="nm">門前 龍汰</div><div class="ro">Ryota Monzen</div>
       <div class="rl"><span>執行役員<b>｜</b></span><span>チーフメカニック</span></div>
       <p class="bio">27歳で国産唯一のドローンショー専用機体「unika」を発案・設計・開発。2017年JAPRADARにパイロット兼開発者として参画し、ドローンショー・ジャパンを経て2024年にVISIONOIDへ。</p></div>
-    <div class="p"><div class="ph mono-img fe" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/face_ito.jpg" alt=""></div>
+    <div class="p"><div class="ph mono-img fe" data-object-type="image" id="v2p05-img-e"><img src="genspark_images/vn_ito_full.jpg" alt=""></div>
       <div class="nm">伊藤 修儀</div><div class="ro">Nobuyoshi Ito</div>
       <div class="rl"><span>執行役員<b>｜</b></span><span>営業戦略統括</span></div>
       <p class="bio">1992年大広入社。2016年に営業局長としてナショナルクライアントのトータル・ソリューションを統括。新市場の「最初の一社」を獲り切ることを30年続けた事業開拓のプロ。2024年参画。</p></div>
