@@ -258,7 +258,7 @@ async function bakeImageEdits(html, pageId) {
   return out;
 }
 
-export default function RawSlide({ id, html, editMode, pageNumber, displayNumber, totalPages, lang = 'ja' }) {
+export default function RawSlide({ id, html, editMode, pageNumber, displayNumber, totalPages, lang = 'ja', presenting = false }) {
   const wrapRef = useRef(null);
   const innerRef = useRef(null);
   const iframeRef = useRef(null);
@@ -827,7 +827,7 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
   }, [editMode, id, handleFileReplace]);
 
   return (
-    <div ref={wrapRef} className="slide-frame" id={`page-${String(id).padStart(2, '0')}`}>
+    <div ref={wrapRef} className="slide-frame" id={presenting ? undefined : `page-${String(id).padStart(2, '0')}`}>
       <div ref={innerRef} className="slide-frame-inner" style={{ height: SLIDE_H * scale, position: 'relative' }}>
         {effectiveHtml ? (
           <iframe

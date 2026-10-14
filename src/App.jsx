@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import RawSlide from './components/RawSlide';
 import { useEditStore, exportEdits, importEdits } from './utils/editStore';
 
@@ -94,6 +94,7 @@ import v2p28 from 'bundle-text:./v2/pages/p28.txt';
 import v2p29 from 'bundle-text:./v2/pages/p29.txt';
 import v2p30 from 'bundle-text:./v2/pages/p30.txt';
 import v2p31 from 'bundle-text:./v2/pages/p31.txt';
+import v2p32 from 'bundle-text:./v2/pages/p32.txt';
 import v2p01en from 'bundle-text:./v2/pages_en/p01.txt';
 import v2p02en from 'bundle-text:./v2/pages_en/p02.txt';
 import v2p03en from 'bundle-text:./v2/pages_en/p03.txt';
@@ -125,6 +126,7 @@ import v2p28en from 'bundle-text:./v2/pages_en/p28.txt';
 import v2p29en from 'bundle-text:./v2/pages_en/p29.txt';
 import v2p30en from 'bundle-text:./v2/pages_en/p30.txt';
 import v2p31en from 'bundle-text:./v2/pages_en/p31.txt';
+import v2p32en from 'bundle-text:./v2/pages_en/p32.txt';
 
 // Indexed by pageId - 1. A page's id is permanent: edits live in the store
 // under `p<id>:...`, so ids must never shift when the deck is reordered.
@@ -148,14 +150,207 @@ const FINANCE_IDS = new Set([23, 24, 25]);
 // keys (`p<id>:...`). Display order = file order.
 const V2_HEAD_INJECT = V2HEAD + '<style>' + V2CSS + '</style>';
 const injectV2 = (html) => html.replace('<!--V2HEAD-->', () => V2_HEAD_INJECT);
-const V2_PAGES_JA = [v2p01,v2p02,v2p03,v2p04,v2p05,v2p06,v2p07,v2p08,v2p09,v2p10,v2p11,v2p12,v2p13,v2p14,v2p15,v2p16,v2p17,v2p18,v2p19,v2p20,v2p21,v2p22,v2p23,v2p24,v2p25,v2p26,v2p27,v2p28,v2p29,v2p30,v2p31].map(injectV2);
+const V2_PAGES_JA = [v2p01,v2p02,v2p03,v2p04,v2p05,v2p06,v2p07,v2p08,v2p09,v2p10,v2p11,v2p12,v2p13,v2p14,v2p15,v2p16,v2p17,v2p18,v2p19,v2p20,v2p21,v2p22,v2p23,v2p24,v2p25,v2p26,v2p27,v2p28,v2p29,v2p30,v2p31,v2p32].map(injectV2);
 // English Ver.2 pages, same order as V2_PAGES_JA.
-const V2_PAGES_EN = [v2p01en,v2p02en,v2p03en,v2p04en,v2p05en,v2p06en,v2p07en,v2p08en,v2p09en,v2p10en,v2p11en,v2p12en,v2p13en,v2p14en,v2p15en,v2p16en,v2p17en,v2p18en,v2p19en,v2p20en,v2p21en,v2p22en,v2p23en,v2p24en,v2p25en,v2p26en,v2p27en,v2p28en,v2p29en,v2p30en,v2p31en].map(injectV2);
+const V2_PAGES_EN = [v2p01en,v2p02en,v2p03en,v2p04en,v2p05en,v2p06en,v2p07en,v2p08en,v2p09en,v2p10en,v2p11en,v2p12en,v2p13en,v2p14en,v2p15en,v2p16en,v2p17en,v2p18en,v2p19en,v2p20en,v2p21en,v2p22en,v2p23en,v2p24en,v2p25en,v2p26en,v2p27en,v2p28en,v2p29en,v2p30en,v2p31en,v2p32en].map(injectV2);
 const V2_ID_BASE = 100;
-// Ver.2 display order by index+1 (page id = 100 + n). p31 (DisneySea results) sits right after p08.
-const V2_PAGE_ORDER = [1,2,3,4,5,6,7,8,31,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+// Ver.2 display order by index+1 (page id = 100 + n). p31 (DisneySea results) sits right after p08; p32 right after p09.
+const V2_PAGE_ORDER = [1,2,3,4,5,6,7,8,31,9,32,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 // Finance pages of Ver.2 (hidden in Member variant).
 const V2_FINANCE_IDS = new Set([125, 126, 127]);
+
+// ---------------------------------------------------------------------------
+// Presentation ("発表") mode: fixed black full-viewport overlay that shows one
+// slide at a time, 16:9 contain. Renders the current slide plus a window of
+// neighbours (kept mounted via stable keys) so navigation never flashes white.
+// ---------------------------------------------------------------------------
+const PRESENT_PRELOAD = 2;
+
+function PresentMode({ pages, startIndex, lang, onClose }) {
+  const total = pages.length;
+  const [idx, setIdx] = useState(() => Math.max(0, Math.min(total - 1, startIndex)));
+  const [hud, setHud] = useState(true);
+  const [fit, setFit] = useState(() => {
+    if (typeof window === 'undefined') return 1;
+    return Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+  });
+  const overlayRef = useRef(null);
+  const idxRef = useRef(idx);
+  idxRef.current = idx;
+  const closedRef = useRef(false);
+  const enteredFsRef = useRef(false);
+  const hudTimer = useRef(null);
+  const touchRef = useRef(null);
+  const swipedAt = useRef(0);
+
+  const go = useCallback((n) => {
+    setIdx((cur) => Math.max(0, Math.min(total - 1, typeof n === 'function' ? n(cur) : n)));
+  }, [total]);
+
+  const close = useCallback(() => {
+    if (closedRef.current) return;
+    closedRef.current = true;
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+    if (fsEl) {
+      try {
+        const p = (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        if (p && p.catch) p.catch(() => {});
+      } catch (e) {}
+    }
+    onClose(pages[idxRef.current]?.pageId);
+  }, [onClose, pages]);
+
+  // Mount: enter fullscreen (best effort), lock body scroll, grab focus so
+  // Space/Enter don't re-activate the toolbar button that opened us.
+  useEffect(() => {
+    const el = overlayRef.current;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    if (el) el.focus({ preventScroll: true });
+    try {
+      const req = el && (el.requestFullscreen || el.webkitRequestFullscreen);
+      if (req) {
+        const p = req.call(el);
+        if (p && p.catch) p.catch(() => {});
+      }
+    } catch (e) {}
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fsEl) {
+        try {
+          const p = (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+          if (p && p.catch) p.catch(() => {});
+        } catch (e) {}
+      }
+    };
+  }, []);
+
+  // Fullscreen exit (e.g. user pressed Esc, which the browser consumes) closes the overlay.
+  useEffect(() => {
+    const onFs = () => {
+      const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fsEl === overlayRef.current) enteredFsRef.current = true;
+      else if (!fsEl && enteredFsRef.current) close();
+      setFit(Math.min(window.innerWidth / 1280, window.innerHeight / 720));
+    };
+    document.addEventListener('fullscreenchange', onFs);
+    document.addEventListener('webkitfullscreenchange', onFs);
+    return () => {
+      document.removeEventListener('fullscreenchange', onFs);
+      document.removeEventListener('webkitfullscreenchange', onFs);
+    };
+  }, [close]);
+
+  useEffect(() => {
+    const onResize = () => setFit(Math.min(window.innerWidth / 1280, window.innerHeight / 720));
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Keyboard.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      let handled = true;
+      switch (e.key) {
+        case 'ArrowRight': case 'ArrowDown': case ' ': case 'Spacebar':
+        case 'PageDown': case 'Enter':
+          go((c) => c + 1); break;
+        case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace':
+          go((c) => c - 1); break;
+        case 'Home': go(0); break;
+        case 'End': go(total - 1); break;
+        case 'Escape': close(); break;
+        default: handled = false;
+      }
+      if (handled) { e.preventDefault(); e.stopPropagation(); }
+    };
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
+  }, [go, close, total]);
+
+  // HUD + cursor auto-hide after 1.5s without mouse movement.
+  const poke = useCallback(() => {
+    setHud(true);
+    clearTimeout(hudTimer.current);
+    hudTimer.current = setTimeout(() => setHud(false), 1500);
+  }, []);
+  useEffect(() => {
+    poke();
+    return () => clearTimeout(hudTimer.current);
+  }, [poke]);
+
+  const onClick = (e) => {
+    if (Date.now() - swipedAt.current < 400) return; // click synthesized after a swipe
+    const r = e.currentTarget.getBoundingClientRect();
+    if (e.clientX - r.left < r.width / 3) go((c) => c - 1);
+    else go((c) => c + 1);
+  };
+  const onTouchStart = (e) => {
+    const t = e.touches[0];
+    touchRef.current = t ? { x: t.clientX, y: t.clientY } : null;
+  };
+  const onTouchEnd = (e) => {
+    const s = touchRef.current;
+    touchRef.current = null;
+    const t = e.changedTouches[0];
+    if (!s || !t) return;
+    const dx = t.clientX - s.x;
+    const dy = t.clientY - s.y;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      swipedAt.current = Date.now();
+      go((c) => c + (dx < 0 ? 1 : -1));
+    }
+  };
+
+  const lo = Math.max(0, idx - PRESENT_PRELOAD);
+  const hi = Math.min(total - 1, idx + PRESENT_PRELOAD);
+  const visible = pages.slice(lo, hi + 1);
+  const cur = pages[idx];
+  const pct = total > 1 ? ((idx + 1) / total) * 100 : 100;
+
+  return (
+    <div
+      ref={overlayRef}
+      className={`present-overlay${hud ? '' : ' idle'}`}
+      tabIndex={-1}
+      role="dialog"
+      aria-label={lang === 'ja' ? '発表モード' : 'Presentation mode'}
+      onMouseMove={poke}
+      onClick={onClick}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      <div className="present-stage" style={{ transform: `translate(-50%, -50%) scale(${fit})` }}>
+        {visible.map((p) => (
+          <div
+            key={`${p.pageId}-${lang}`}
+            className={`present-slot${p.pageId === cur.pageId ? ' current' : ''}`}
+            aria-hidden={p.pageId === cur.pageId ? undefined : true}
+          >
+            <RawSlide
+              id={p.pageId}
+              html={p.html}
+              lang={lang}
+              editMode={false}
+              pageNumber={p.pageId}
+              displayNumber={p.displayNumber}
+              totalPages={total}
+              presenting
+            />
+          </div>
+        ))}
+      </div>
+      <div className="present-hud">
+        <span className="present-hint">Esc</span>
+        <span className="present-counter">{String(cur.displayNumber).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
+        <div className="present-progress"><div style={{ width: `${pct}%` }} /></div>
+      </div>
+    </div>
+  );
+}
 
 function readQuery() {
   if (typeof window === 'undefined') return { variant: 'board', share: false, lang: 'ja', ver: '1' };
@@ -181,6 +376,8 @@ export default function App() {
   // deck and the PDF download.
   const isShareView = useMemo(() => readQuery().share, []);
   const store = useEditStore();
+  const [presentStart, setPresentStart] = useState(null); // index into filteredPages while presenting
+  const [navVisible, setNavVisible] = useState(false);
 
   // Build the page list for the current variant + language. Each entry keeps
   // its original 1-based pageId so edits stored under `p<id>:...` continue
@@ -255,6 +452,47 @@ export default function App() {
     document.querySelectorAll('.slide-frame').forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, [variant, ver, lang]);
+
+  // Page-number sidebar auto-hide: shown while scrolling, hidden 1s after the
+  // last scroll event; stays up while the pointer is over it.
+  const navRef = useRef(null);
+  useEffect(() => {
+    let timer = null;
+    let hovered = false;
+    const arm = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { if (!hovered) setNavVisible(false); }, 1000);
+    };
+    const onScroll = () => { setNavVisible(true); arm(); };
+    const el = navRef.current;
+    const onEnter = () => { hovered = true; clearTimeout(timer); setNavVisible(true); };
+    const onLeave = () => { hovered = false; arm(); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (el) { el.addEventListener('mouseenter', onEnter); el.addEventListener('mouseleave', onLeave); }
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+      if (el) { el.removeEventListener('mouseenter', onEnter); el.removeEventListener('mouseleave', onLeave); }
+    };
+  }, []);
+
+  const startPresent = useCallback(() => {
+    const i = filteredPages.findIndex((p) => p.pageId === active);
+    setPresentStart(i >= 0 ? i : 0);
+  }, [filteredPages, active]);
+
+  const endPresent = useCallback((lastPageId) => {
+    setPresentStart(null);
+    if (lastPageId == null) return;
+    // Wait for the overlay to unmount / fullscreen layout to settle, then jump
+    // (instantly) to the last slide that was shown.
+    const jump = () => {
+      const el = document.getElementById(`page-${String(lastPageId).padStart(2, '0')}`);
+      if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+    setTimeout(jump, 60);
+    setTimeout(jump, 350);
+  }, []);
 
   const scrollTo = useCallback((n) => {
     const el = document.getElementById(`page-${String(n).padStart(2, '0')}`);
@@ -487,7 +725,7 @@ export default function App() {
               <button
                 className={variant === 'board' ? 'active' : ''}
                 onClick={() => switchVariant('board')}
-                title={lang === 'ja' ? `Board: Financeページ有り (${ver === '2' ? 'P.26-28' : 'P.23-25'})` : `Board: includes Finance pages (${ver === '2' ? 'P.26–28' : 'P.23–25'})`}
+                title={lang === 'ja' ? `Board: Financeページ有り (${ver === '2' ? 'P.27-29' : 'P.23-25'})` : `Board: includes Finance pages (${ver === '2' ? 'P.27–29' : 'P.23–25'})`}
               >
                 Board
               </button>
@@ -520,6 +758,10 @@ export default function App() {
           <button onClick={handleShare} title={lang === 'ja' ? 'この版の共有リンクをコピー' : 'Copy share link for this version'}>
             <span className="btn-icon">🔗</span><span className="btn-label">Share</span>
           </button>
+          <button className="present-btn" onClick={startPresent} disabled={exporting || presentStart !== null} title={lang === 'ja' ? '発表モード（全画面スライドショー）' : 'Present (fullscreen slideshow)'}>
+            <span className="btn-icon">▶</span>
+            <span className="btn-label">{lang === 'ja' ? '発表' : 'Present'}</span>
+          </button>
           <button onClick={handleExportPdf} disabled={exporting} title={lang === 'ja' ? 'PDF出力' : 'Export PDF'}>
             <span className="btn-icon">📄</span>
             <span className="btn-label">{exporting ? (exportProgress || (lang === 'ja' ? '準備中…' : 'Preparing…')) : 'PDF'}</span>
@@ -527,7 +769,7 @@ export default function App() {
         </div>
       </div>
 
-      <div className="nav-sidebar">
+      <div ref={navRef} className={`nav-sidebar${navVisible ? ' visible' : ''}`}>
         {filteredPages.map((p) => (
           <button
             key={p.pageId}
@@ -553,6 +795,10 @@ export default function App() {
           />
         ))}
       </div>
+
+      {presentStart !== null && (
+        <PresentMode pages={filteredPages} startIndex={presentStart} lang={lang} onClose={endPresent} />
+      )}
     </div>
   );
 }

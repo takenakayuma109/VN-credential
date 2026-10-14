@@ -52,7 +52,7 @@
       <li class="big">4月時点で<br>売上<b>2億円</b>確定</li>
       <li>キラナガーデン豊洲（常設）</li>
       <li>SENRIGAN 3〜5自治体</li>
-      <li style="border-top-color:transparent;color:var(--mute)">数値は → P.26</li>
+      <li style="border-top-color:transparent;color:var(--mute)">数値は → P.27</li>
     </ul>
   </div>
   <div class="col c3">

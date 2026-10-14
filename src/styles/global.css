@@ -165,7 +165,7 @@ body { overflow-x: hidden; }
 }
 
 /* Share view: hide layout chrome that recipients shouldn't interact with */
-.share-view .nav-sidebar { opacity: 0.85; }
+.share-view .nav-sidebar.visible { opacity: 0.85; }
 
 .top-toolbar .controls {
   display: flex;
@@ -236,6 +236,101 @@ body { overflow-x: hidden; }
   .top-toolbar .controls::-webkit-scrollbar { display: none; }
 }
 
+/* ===== PRESENT BUTTON ===== */
+.top-toolbar button.present-btn {
+  background: #FF4A1C;
+  border-color: #FF4A1C;
+  color: #fff;
+  font-weight: 700;
+}
+.top-toolbar button.present-btn:hover { background: #ff6238; border-color: #ff6238; }
+.top-toolbar button.present-btn:disabled { opacity: 0.6; }
+
+/* ===== PRESENTATION MODE OVERLAY ===== */
+.present-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #000;
+  overflow: hidden;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+.present-overlay.idle { cursor: none; }
+.present-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1280px;
+  height: 720px;
+  transform-origin: center center;
+  pointer-events: none;
+  background: #000;
+}
+.present-slot {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 720px;
+  visibility: hidden;
+  pointer-events: none;
+}
+.present-slot.current { visibility: visible; z-index: 1; }
+.present-slot .slide-frame { width: 1280px; max-width: none; margin: 0; }
+.present-slot .slide-frame-inner {
+  width: 1280px;
+  height: 720px !important;
+  box-shadow: none;
+  border-radius: 0;
+}
+.present-slot iframe { pointer-events: none !important; }
+.present-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+.present-overlay.idle .present-hud { opacity: 0; }
+.present-counter {
+  position: absolute;
+  right: 20px;
+  bottom: 14px;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.45);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.present-hint {
+  position: absolute;
+  left: 20px;
+  bottom: 14px;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.present-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.12);
+}
+.present-progress > div {
+  height: 100%;
+  background: #FF4A1C;
+  transition: width 0.25s ease;
+}
+
 /* ===== SIDE NAV (page numbers) ===== */
 .nav-sidebar {
   position: fixed;
@@ -252,6 +347,17 @@ body { overflow-x: hidden; }
   border-radius: 8px;
   max-height: 80vh;
   overflow-y: auto;
+  /* auto-hide: fades out, then becomes non-interactive */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.nav-sidebar.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease, visibility 0s;
 }
 .nav-sidebar button {
   width: 24px;
@@ -402,6 +508,7 @@ body { overflow-x: hidden; }
 /* ===== EXPORT MODE ===== */
 .exporting .top-toolbar,
 .exporting .nav-sidebar,
+.exporting .present-overlay,
 .exporting .edit-toolbar { display: none !important; }
 
 /* Page card defaults */
@@ -447,6 +554,7 @@ body { overflow-x: hidden; }
   }
   .top-toolbar,
   .nav-sidebar,
+  .present-overlay,
   .vn-edit-overlay {
     display: none !important;
   }

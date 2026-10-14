@@ -28,23 +28,23 @@
     <div class="dm"><span class="n">02</span>
       <div class="nm"><div class="xl">Public Safety</div><div class="jp">防災・安全</div></div>
       <div class="info"><div class="d">次世代防災情報統合プラットフォーム「SENRIGAN」。エリア全体の「今」を5分で把握する。</div><div class="it"><span>SENRIGAN</span><span>デジタル防災レジリエンス事業</span><span>防災ドローン設備導入・支援</span></div></div>
-      <span class="ref">P.12</span></div>
+      <span class="ref">P.13</span></div>
     <div class="dm"><span class="n">03</span>
       <div class="nm"><div class="xl">Industrial</div><div class="jp">産業ドローン事業</div></div>
       <div class="info"><div class="it"><span>外壁調査・インフラ点検・測量</span></div></div>
-      <span class="ref">P.14</span></div>
+      <span class="ref">P.15</span></div>
     <div class="dm"><span class="n">04</span>
       <div class="nm"><div class="xl">Advertising</div><div class="jp">ドローン屋外広告事業</div></div>
       <div class="info"><div class="d">空が広告メディアになる。新しい Sky OOH フォーマット。</div><div class="it"><span>ドローンショー広告運用</span></div></div>
-      <span class="ref">P.16</span></div>
+      <span class="ref">P.17</span></div>
     <div class="dm"><span class="n">05</span>
       <div class="nm"><div class="xl">Education</div><div class="jp">教育・人材育成</div></div>
       <div class="info"><div class="it"><span>ドローン国家資格スクール</span></div></div>
-      <span class="ref">P.17</span></div>
+      <span class="ref">P.18</span></div>
     <div class="dm"><span class="n">06</span>
       <div class="nm"><div class="xl">IP <span class="sig">×</span> R&amp;D</div><div class="jp">ロボティクス・IP開発</div></div>
       <div class="info"><div class="d">Physical AI × オリジナル IP。動くキャラクター開発の最前線。</div><div class="it"><span>アニマロイド "FOX"</span></div></div>
-      <span class="ref">P.18</span></div>
+      <span class="ref">P.19</span></div>
     <div class="dm"><span class="n">07</span>
       <div class="nm"><div class="xl">Consulting</div><div class="jp">事業設計・支援</div></div>
       <div class="info"><div class="it"><span>ドローン事業開発・支援</span></div></div>

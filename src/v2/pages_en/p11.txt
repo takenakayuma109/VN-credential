@@ -33,7 +33,7 @@
   <div class="init">
     <span class="lbl">Main Initiatives</span>
     <div class="row"><span class="n">01</span><span class="k">Rapid Information Gathering</span><span class="v">City-held licenses; deploys on its own the moment a disaster strikes.</span></div>
-    <div class="row"><span class="n">02</span><span class="k">Integrated Platform “SENRIGAN”</span><span class="v">Unifies video and location data across HQ and field teams. <b>→ P.13</b></span></div>
+    <div class="row"><span class="n">02</span><span class="k">Integrated Platform “SENRIGAN”</span><span class="v">Unifies video and location data across HQ and field teams. <b>→ P.14</b></span></div>
     <div class="row"><span class="n">03</span><span class="k">Ongoing Simulation &amp; Training</span><span class="v">Peacetime training on local terrain builds a team that acts decisively.</span></div>
   </div>
 </div></body></html>

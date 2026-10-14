@@ -12,6 +12,7 @@
 .col .fg.s{font-size:92px}
 .info{position:absolute;left:24px;right:24px;top:278px}
 .info .d{display:flex;align-items:center;gap:12px}
+.info .d .ref{margin-left:auto;font-family:var(--f-m);font-size:15px;font-weight:500;letter-spacing:.04em;color:var(--mute)}
 .info .t{margin-top:8px;font-size:26px;font-weight:900;line-height:1.3}
 .info .t span{display:block;font-size:20px;font-weight:700;color:var(--txt);margin-top:2px}
 .info .b{margin-top:8px;font-size:17px;font-weight:500;line-height:1.6;color:var(--txt)}
@@ -32,7 +33,7 @@
   <div class="col c2">
     <div class="ph" data-object-type="image" id="v2p09-img-b"><img src="genspark_images/vn_enoshima26_08.jpg" alt=""><div class="scrim-b"></div><div class="fg fig">62,000<small>people</small></div></div>
     <div class="info">
-      <div class="d"><span class="lbl">2026.08.18</span></div>
+      <div class="d"><span class="lbl">2026.08.18</span><span class="ref">→ P.11</span></div>
       <div class="t">Enoshima Beach<br>Special Drone Show<span>“Prayer Bell of the Three Goddesses”</span></div>
       <div class="b">Told through the legend of Enoshima’s three goddesses, with messages for Noto and Kumamoto’s recovery drawn across the night sky.</div>
     </div>
