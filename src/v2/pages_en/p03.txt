@@ -5,7 +5,7 @@
 .top .title{font-size:50px;line-height:1}
 .top .kicker{margin-top:14px}
 .map{position:absolute;left:0;top:0;width:1280px;height:720px}
-.map .orb{fill:none;stroke:rgba(247,246,242,.16);stroke-width:1}
+.map .orb{fill:none;stroke:rgba(247,246,242,.10);stroke-width:1}
 .map .ln line{stroke:rgba(255,74,28,.6);stroke-width:1.5}
 .map .dt circle{fill:var(--signal)}
 .core{position:absolute;left:525px;top:245px;width:230px;height:230px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2}
@@ -20,8 +20,10 @@
 .nd .ref{color:var(--mute);font-weight:500}
 .nd .xl{margin-top:8px;font-size:25px;color:var(--white);white-space:nowrap}
 .nd .jp{margin-top:9px;font-size:17px;font-weight:900;line-height:1.25;color:var(--white);letter-spacing:.02em}
-.nd .it{margin-top:7px;font-size:16px;font-weight:500;line-height:1.4;color:var(--mute)}
-.nd .it span{display:block}
+.nd .it{margin-top:6px;font-size:18px;font-weight:700;line-height:1.36;color:#ECEAE4}
+.nd .it span{display:table;background:var(--ink);padding:0 6px;margin:1px -6px;white-space:nowrap}
+.nd.L .it span{margin-left:auto;margin-right:-6px}.nd.B .it span{margin:1px auto}
+.nd .jp,.nd .xl{background:var(--ink);display:table;padding:0 6px;margin-left:-6px}.nd.L .jp,.nd.L .xl{margin-left:auto;margin-right:-6px}.nd.B .jp,.nd.B .xl{margin-left:auto;margin-right:auto}
 .nd.mid{max-width:232px}
 </style></head>
 <body><div class="slide en-p">
@@ -39,8 +41,8 @@
   <div class="pill">× ROBOTICS · AI · DIGITAL TWIN</div>
   <div class="nd L" style="right:839px;top:150px;text-align:right"><div class="mt"><span class="n">01</span><span class="ref">{{ref:p07}}</span></div><div class="xl">ENTERTAINMENT</div><div class="jp">Shows &amp; Events</div><div class="it"><span>Drone Shows</span><span>Show Production &amp; Aircraft Development</span><span>Aerial Filming &amp; Video Production</span></div></div>
   <div class="nd R" style="left:839px;top:150px;text-align:left"><div class="mt"><span class="n">02</span><span class="ref">{{ref:p11}}</span></div><div class="xl">PUBLIC SAFETY</div><div class="jp">Disaster Prevention</div><div class="it"><span>SENRIGAN</span><span>Digital Disaster Resilience</span><span>Disaster Drone Support</span></div></div>
-  <div class="nd L mid" style="right:1000px;top:320px;text-align:right"><div class="mt"><span class="n">03</span><span class="ref">{{ref:p13}}</span></div><div class="xl">INDUSTRIAL</div><div class="jp">Drone Operations</div><div class="it"><span>Exterior Wall Diagnostics, Infrastructure Inspection &amp; Surveying</span></div></div>
-  <div class="nd R mid" style="left:1000px;top:320px;text-align:left"><div class="mt"><span class="n">04</span><span class="ref">{{ref:p15}}</span></div><div class="xl">ADVERTISING</div><div class="jp">Outdoor Media</div><div class="it"><span>Drone Show Advertising Operations</span></div></div>
+  <div class="nd L mid" style="right:1000px;top:320px;text-align:right"><div class="mt"><span class="n">03</span><span class="ref">{{ref:p13}}</span></div><div class="xl">INDUSTRIAL</div><div class="jp">Drone Operations</div><div class="it"><span>Exterior Wall Diagnostics</span><span>Infrastructure Inspection</span><span>Surveying</span></div></div>
+  <div class="nd R mid" style="left:1000px;top:320px;text-align:left"><div class="mt"><span class="n">04</span><span class="ref">{{ref:p15}}</span></div><div class="xl">ADVERTISING</div><div class="jp">Outdoor Media</div><div class="it"><span>Drone Show</span><span>Advertising Operations</span></div></div>
   <div class="nd L" style="right:839px;top:490px;text-align:right"><div class="mt"><span class="n">05</span><span class="ref">{{ref:p16}}</span></div><div class="xl">EDUCATION</div><div class="jp">Talent Development</div><div class="it"><span>National Drone License School</span></div></div>
   <div class="nd R" style="left:839px;top:490px;text-align:left"><div class="mt"><span class="n">06</span><span class="ref">{{ref:p17}}</span></div><div class="xl">IP <span class="sig">×</span> R&amp;D</div><div class="jp">Robotics Development</div><div class="it"><span>ANIMAROID "FOX"</span></div></div>
   <div class="nd B" style="left:470px;width:340px;top:576px;text-align:center"><div class="mt"><span class="n">07</span></div><div class="xl">CONSULTING</div><div class="jp">Business Design</div><div class="it"><span>Drone Business Development &amp; Support</span></div></div>
