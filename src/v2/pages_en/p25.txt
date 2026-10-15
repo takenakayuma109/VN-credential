@@ -29,7 +29,7 @@ svg text{font-family:var(--f-jp);fill:var(--white)}
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">25 / 26</span></header>
   <span class="bar"></span>
   <h1 class="title s ttl" style="font-size:34px">Performance &amp; Growth Plan</h1>
-  <p class="hl">Building on the track record and earnings base from entertainment, we will expand in disaster prevention and industrial markets, targeting ¥4.0B in revenue and <span class="sg">enterprise value above ¥10B</span> in FY7 (Year 6 of operations).</p>
+  <p class="hl">Building on the track record and earnings base from entertainment, we will expand in disaster prevention and industrial markets,<br>targeting ¥4.0B in revenue and <span class="sg">enterprise value above ¥10B</span> in FY7 (Year 6 of operations).</p>
   <svg class="ch" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
 <line x1="178" x2="994" y1="412.0" y2="412.0" stroke="rgba(247,246,242,.14)" stroke-width="1"/>
 <text x="168" y="417.0" text-anchor="end" class="gl">¥1.0B</text>
