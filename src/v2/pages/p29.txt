@@ -25,15 +25,15 @@
   <div class="ph sh" data-object-type="image" id="v2p29-img-c"><img src="https://www.visionoid.co/locations/shonan-terrace.webp" alt=""><div class="cty"><b>03</b>SHONAN, KANAGAWA</div></div>
   <div class="ph to" data-object-type="image" id="v2p29-img-d"><img src="https://www.visionoid.co/locations/tokorozawa-studio.webp" alt=""><div class="cty"><b>04</b>TOKOROZAWA, SAITAMA</div></div>
   <div class="tx" style="left:48px"><div class="nm"><span class="chip">01</span>本社</div><span class="en">Headquarters</span>
-    <div class="role">経営・事業統括／<br>江戸川区災害協定対応</div>
+    <div class="role">経営・事業統括<br>江戸川区災害協定対応</div>
     <div class="adr">〒134-0083<br>東京都江戸川区中葛西5-41-10<br>BPRプレイス葛西6F・7F</div></div>
   <div class="tx" style="left:348px"><div class="nm"><span class="chip">02</span>日比谷オフィス</div><span class="en">Business Meetings</span>
-    <div class="role">ビジネスミーティング・来客対応</div>
+    <div class="role">ビジネスミーティング<br>来客対応</div>
     <div class="adr">〒100-0006<br>東京都千代田区有楽町1丁目13-2<br>第一生命日比谷ファースト 12F</div></div>
   <div class="tx" style="left:648px"><div class="nm"><span class="chip">03</span>湘南オフィス</div><span class="en">Tourism &amp; Public Safety</span>
-    <div class="role">江の島観光事業／<br>藤沢市防災事業対応</div>
+    <div class="role">江の島観光事業<br>藤沢市防災事業対応</div>
     <div class="adr">〒251-0035<br>神奈川県藤沢市片瀬海岸2-18-21<br>リードシー片瀬江ノ島ビル3F</div></div>
   <div class="tx" style="left:948px"><div class="nm"><span class="chip">04</span>所沢スタジオ</div><span class="en">Technology &amp; Operations</span>
-    <div class="role">技術開発／機材整備・保管</div>
+    <div class="role">技術開発<br>機材整備・保管</div>
     <div class="adr">〒359-1167<br>埼玉県所沢市林2-477-1</div></div>
 </div></body></html>

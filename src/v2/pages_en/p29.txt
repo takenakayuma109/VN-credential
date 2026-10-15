@@ -25,15 +25,15 @@
   <div class="ph sh" data-object-type="image" id="v2p29-img-c"><img src="https://www.visionoid.co/locations/shonan-terrace.webp" alt=""><div class="cty"><b>03</b>SHONAN, KANAGAWA</div></div>
   <div class="ph to" data-object-type="image" id="v2p29-img-d"><img src="https://www.visionoid.co/locations/tokorozawa-studio.webp" alt=""><div class="cty"><b>04</b>TOKOROZAWA, SAITAMA</div></div>
   <div class="tx" style="left:48px"><div class="nm"><span class="chip">01</span>Headquarters</div><span class="en">Corporate Management</span>
-    <div class="role">Executive &amp; business operations /<br>Edogawa Ward disaster agreement</div>
+    <div class="role">Executive &amp; business operations<br>Edogawa Ward disaster agreement</div>
     <div class="adr">BPR Place Kasai 6F–7F<br>5-41-10 Nakakasai, Edogawa-ku<br>Tokyo 134-0083</div></div>
   <div class="tx" style="left:348px"><div class="nm"><span class="chip">02</span>Hibiya Office</div><span class="en">Business Meetings</span>
-    <div class="role">Client visits &amp; reception</div>
+    <div class="role">Business meetings<br>Client reception</div>
     <div class="adr">Dai-ichi Life Hibiya First 12F<br>1-13-2 Yurakucho, Chiyoda-ku<br>Tokyo 100-0006</div></div>
   <div class="tx" style="left:648px"><div class="nm"><span class="chip">03</span>Shonan Office</div><span class="en">Tourism &amp; Public Safety</span>
-    <div class="role">Enoshima tourism /<br>Fujisawa City disaster response</div>
+    <div class="role">Enoshima tourism<br>Fujisawa City disaster response</div>
     <div class="adr">Lead Sea Katase-Enoshima Bldg. 3F<br>2-18-21 Katasekaigan, Fujisawa<br>Kanagawa 251-0035</div></div>
   <div class="tx" style="left:948px"><div class="nm"><span class="chip">04</span>Tokorozawa Studio</div><span class="en">Technology &amp; Operations</span>
-    <div class="role">R&amp;D /<br>Equipment maintenance &amp; storage</div>
+    <div class="role">R&amp;D<br>Equipment maintenance &amp; storage</div>
     <div class="adr">2-477-1 Hayashi, Tokorozawa<br>Saitama 359-1167</div></div>
 </div></body></html>
