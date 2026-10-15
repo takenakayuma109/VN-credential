@@ -19,7 +19,7 @@
 .init .v b{font-family:var(--f-m);color:var(--signal);font-weight:700;white-space:nowrap}
 </style></head>
 <body><div class="slide">
-  <div class="ph hero" data-object-type="image" id="v2p11-img-a"><img src="genspark_images/201afc12eb933a681180d4d52ba743f1.webp" alt="">
+  <div class="ph hero" data-object-type="image" id="v2p11-img-a"><img src="genspark_images/vn_edogawa_signing.jpg" alt="" style="object-position:17% 50%">
     <div class="scrim-t"></div><div class="scrim-b"></div>
     <div class="cap">右：江戸川区長 斉藤猛 ／ 左：VISIONOID代表 竹中悠満</div></div>
   <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span style="margin-left:0">02 / Public Safety</span><span class="pg">11 / 26</span></header>
