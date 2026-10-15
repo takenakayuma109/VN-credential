@@ -1,61 +1,68 @@
 <!DOCTYPE html>
-<html lang="ja"><head><meta charset="utf-8"><title>財務・保有資産</title><!--V2HEAD-->
+<html lang="ja"><head><meta charset="utf-8"><title>決算実績・企業価値目標</title><!--V2HEAD-->
 <style>
-.head{position:absolute;left:48px;right:48px;top:76px;display:flex;align-items:flex-end}
-.head .title{margin-top:10px}
-.head .note{margin-left:auto;padding-bottom:10px;text-align:right;line-height:1.7}
-.figs{position:absolute;left:48px;right:48px;top:162px;display:flex;gap:24px}
-.fg{width:378px;border-top:2px solid var(--ink);padding-top:12px}
-.fg .nm{display:flex;align-items:baseline;gap:12px}
-.fg .nm b{font-size:22px;font-weight:900}
-.fg .nm span{font-family:var(--f-m);font-size:15px;letter-spacing:.06em;color:var(--pmute)}
-.fg .fig{font-size:74px;margin-top:20px;white-space:nowrap;color:var(--ink)}
-.fg .fig small{font-size:.34em}
-.fg:first-child .fig small:last-child{color:var(--signal)}
-.assets{position:absolute;left:48px;top:350px;width:560px}
-.assets .list{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-top:8px}
-.assets .it{border-top:1px solid var(--pline);padding:11px 0 11px;font-size:18px;font-weight:700;line-height:1.35;min-height:56px}
-.assets .it i{display:block;font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal);margin-bottom:2px}
-.pics{position:absolute;left:660px;top:350px;width:572px;height:184px}
-.pics .ph{top:0;height:184px;width:184px}
-.band{position:absolute;left:0;right:0;bottom:0;height:164px;background:var(--ink);color:var(--white)}
-.band .st{position:absolute;left:48px;top:26px;font-size:34px;font-weight:900;line-height:1.3}
-.band .st2{position:absolute;left:48px;top:122px;font-size:17px;font-weight:500;color:var(--txt)}
-.band .cl{position:absolute;left:700px;right:48px;top:30px;font-size:22px;font-weight:700;line-height:1.55;color:var(--white)}
-.band .cl .chip{margin-top:14px;font-size:16px;padding:6px 12px}
-.band .vrule{position:absolute;left:660px;top:30px;height:104px;background:var(--line)}
+.bar{position:absolute;left:48px;top:68px}
+.ttl{position:absolute;left:48px;top:80px;white-space:nowrap}
+table.ac{position:absolute;left:48px;top:134px;width:560px;border-collapse:collapse;table-layout:fixed}
+.ac th{text-align:right;vertical-align:bottom;padding:0 0 8px;border-bottom:2px solid var(--white);font-weight:700}
+.ac th b{display:block;font-size:19px;font-weight:900;line-height:1.25}
+.ac th b span{font-size:15px;font-weight:500;color:var(--mute);margin-left:8px}
+.ac th em{display:block;font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--mute);line-height:1.4}
+.ac tr.g td{padding:14px 0 6px;font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--signal);border-bottom:1px solid var(--line)}
+.ac td{border-bottom:1px solid var(--line);vertical-align:middle;padding:0}
+.ac td.k{font-size:17px;font-weight:500;color:var(--txt);height:37px}
+.ac td.v{text-align:right;line-height:1.2}
+.ac td.v b{font-family:var(--f-jp);font-size:21px;font-weight:900;font-variant-numeric:tabular-nums lining-nums;color:var(--white)}
+.ac td.v i{display:block;font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--mute);margin-top:1px}
+.nt{position:absolute;left:48px;top:640px;font-size:15px;font-weight:500;line-height:1.5;color:var(--mute)}
+.rt{position:absolute;left:672px;right:48px;top:70px}
+.rt .k{font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
+.rt .fig{font-size:118px;margin-top:10px;color:var(--white);white-space:nowrap}
+.rt .fig small{font-size:.34em;margin-left:.1em}
+.sg{color:var(--signal)}
+.rt .sub{margin-top:8px;font-size:18px;font-weight:700;line-height:1.4}
+.eq{margin-top:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0 6px}
+.el,.er{display:grid;grid-template-columns:210px 36px 96px 36px 1fr;align-items:baseline}
+.el{font-size:15px;font-weight:500;color:var(--mute)}
+.el span:nth-child(1){grid-column:1}.el span:nth-child(2){grid-column:3}.el span:nth-child(3){grid-column:5}
+.er{margin-top:4px}
+.er span{font-family:var(--f-x);font-stretch:112%;font-weight:900;font-size:36px;letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;line-height:1.2;white-space:nowrap}
+.er u{text-decoration:none;font-family:var(--f-jp);font-stretch:100%;font-size:.5em;font-weight:900;margin-left:2px;letter-spacing:0}
+.er .op{color:var(--signal);font-weight:700;text-align:center;font-size:28px}
+.er .o{color:var(--white)}
+.cav{margin-top:10px;font-size:15px;font-weight:500;line-height:1.5;color:var(--txt)}
+.as{margin-top:12px}
+.as .lbl{display:block;margin-bottom:4px}
+.as ul{list-style:none}
+.as li{font-size:15px;font-weight:500;line-height:1.45;color:var(--mute);padding:2px 0 2px 14px;position:relative}
+.as li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--signal)}
 </style></head>
-<body><div class="slide paper">
+<body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">27 / 26</span></header>
-  <div class="head">
-    <div><span class="bar"></span><h1 class="title m">財務・保有資産</h1></div>
-    <div class="note lbl">Financial Summary<br>※ 2025年度決算報告書より</div>
-  </div>
-  <div class="figs">
-    <div class="fg"><div class="nm"><b>現金・預金</b><span>2025年度末</span></div><div class="fig"><small>約</small>1.27<small>億円</small></div></div>
-    <div class="fg"><div class="nm"><b>売掛金</b><span>主要取引先含む</span></div><div class="fig"><small>約</small>1,070<small>万円</small></div></div>
-    <div class="fg"><div class="nm"><b>固定資産</b><span>機材・ソフト・設備</span></div><div class="fig"><small>約</small>8,315<small>万円</small></div></div>
-  </div>
-  <div class="assets">
-    <div class="lbl">保有資産（抜粋）</div>
-    <div class="list">
-      <div class="it">四足歩行ロボット（Unitree）</div>
-      <div class="it">映像機材</div>
-      <div class="it">ドローン機体（複数）</div>
-      <div class="it">イベント設備</div>
-      <div class="it">VTOL型ドローン</div>
-      <div class="it">ソフトウェア（運用システム）</div>
-    </div>
-  </div>
-  <div class="pics">
-    <div class="ph" data-object-type="image" id="v2p27-img-a" style="left:0"><img src="genspark_images/991760199348ec4dec77f6985ee36c6b.webp" alt="" style="object-position:50% 60%"></div>
-    <div class="ph" data-object-type="image" id="v2p27-img-b" style="left:194px"><img src="genspark_images/ngd_frame_hero.jpg" alt=""></div>
-    <div class="ph" data-object-type="image" id="v2p27-img-c" style="left:388px"><img src="genspark_images/eIhLFv07.png" alt=""></div>
-  </div>
-  <div class="band">
-    <div class="st">VISIONOIDは企画会社ではない。<br><span class="sig">実装会社</span>である。</div>
-    <div class="st2">技術・機材・実績、すべてを既に持っている。</div>
-    <div class="vrule"></div>
-    <div class="cl">これは単なる資金調達ではなく、<br>社会インフラを作る企業に参加すること。<br><span class="chip">2028年、明確なExitを持つ投資</span></div>
+  <span class="bar"></span>
+  <h1 class="title s ttl">決算実績・企業価値目標</h1>
+  <table class="ac">
+    <colgroup><col style="width:150px"><col><col></colgroup>
+    <tr><th></th><th><b>第2期<span>実質1年目</span></b><em>2024.08–2025.07</em></th><th><b>第3期<span>実質2年目</span></b><em>2025.08–2026.07</em></th></tr>
+    <tr class="g"><td colspan="3">損益</td></tr>
+<tr><td class="k">売上高</td><td class="v"><b>3,974万円</b><i>39,742,325円</i></td><td class="v"><b>2億1,105万円</b><i>211,049,724円</i></td></tr>
+<tr><td class="k">売上総利益</td><td class="v"><b>619万円</b></td><td class="v"><b>5,617万円</b></td></tr>
+<tr><td class="k">営業損益</td><td class="v"><b>▲8,265万円</b></td><td class="v"><b>▲8,432万円</b></td></tr>
+<tr><td class="k">当期純損益</td><td class="v"><b>▲8,613万円</b></td><td class="v"><b>▲1億466万円</b></td></tr>
+<tr class="g"><td colspan="3">期末残高</td></tr>
+<tr><td class="k">現金及び預金</td><td class="v"><b>1億2,737万円</b></td><td class="v"><b>41万円</b></td></tr>
+<tr><td class="k">売掛金</td><td class="v"><b>1,071万円</b></td><td class="v"><b>3,359万円</b></td></tr>
+<tr><td class="k">総資産</td><td class="v"><b>2億3,444万円</b></td><td class="v"><b>1億2,981万円</b></td></tr>
+<tr><td class="k">純資産</td><td class="v"><b>2億850万円</b></td><td class="v"><b>1億384万円</b></td></tr>
+<tr><td class="k">資本金</td><td class="v"><b>1億5,000万円</b></td><td class="v"><b>9,600万円</b></td></tr>
+  </table>
+  <p class="nt">※第1期は2024年7月5日設立・7月決算のため1ヶ月未満につき割愛<br>※第2期・第3期は決算報告書より</p>
+  <div class="rt">
+    <div class="k">企業価値目標</div>
+    <div class="fig">100<small>億円</small><span class="sg">+</span></div>
+    <div class="sub">目標は100億円以上（10倍・125億円シナリオも想定）</div>
+    <div class="eq"><div class="el"><span>第7期 EBITDA</span><span>想定倍率</span><span>企業価値</span></div><div class="er"><span class="a">12.5<u>億円</u></span><span class="op">×</span><span class="m">8<u>倍</u></span><span class="op">=</span><span class="o">100<u>億円</u></span></div><div class="er"><span class="a">12.5<u>億円</u></span><span class="op">×</span><span class="m">10<u>倍</u></span><span class="op">=</span><span class="o">125<u>億円</u></span></div></div>
+    <p class="cav">倍率は市場評価が確約されたものではなく、成長性・継続収益・顧客分散・自社IPなどを基に検証する。</p>
+    <div class="as"><span class="lbl">前提・注記</span><ul><li>各期の営業利益率を全事業に共通適用した目標配分</li><li>営業利益は本社人件費・営業費・開発費などを差し引いた後の水準</li><li>純利益は営業利益の約3分の2で概算（税金・支払利息など未精査）</li><li>第7期の減価償却・償却費5,000万円を仮定しEBITDAを算出</li><li>企業価値はEV（株式価値は純有利子負債などを調整）</li><li>産業とロボティクス、エンタメと広告の売上は重複計上しない</li><li>計画値は経営目標であり実績ではない</li></ul></div>
   </div>
 </div></body></html>

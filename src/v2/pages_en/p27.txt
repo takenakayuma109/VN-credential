@@ -1,61 +1,68 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>Financials &amp; Assets</title><!--V2HEAD-->
+<html lang="en"><head><meta charset="utf-8"><title>Actuals &amp; Valuation Target</title><!--V2HEAD-->
 <style>
-.head{position:absolute;left:48px;right:48px;top:76px;display:flex;align-items:flex-end}
-.head .title{margin-top:10px}
-.head .note{margin-left:auto;padding-bottom:10px;text-align:right;line-height:1.7}
-.figs{position:absolute;left:48px;right:48px;top:162px;display:flex;gap:24px}
-.fg{width:378px;border-top:2px solid var(--ink);padding-top:12px}
-.fg .nm{display:flex;align-items:baseline;gap:12px}
-.fg .nm b{font-size:22px;font-weight:900}
-.fg .nm span{font-family:var(--f-m);font-size:15px;letter-spacing:.06em;color:var(--pmute)}
-.fg .fig{font-size:74px;margin-top:20px;white-space:nowrap;color:var(--ink)}
-.fg .fig small{font-size:.34em}
-.fg:first-child .fig small:last-child{color:var(--signal)}
-.assets{position:absolute;left:48px;top:350px;width:560px}
-.assets .list{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-top:8px}
-.assets .it{border-top:1px solid var(--pline);padding:11px 0 11px;font-size:18px;font-weight:700;line-height:1.35;min-height:56px}
-.assets .it i{display:block;font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--signal);margin-bottom:2px}
-.pics{position:absolute;left:660px;top:350px;width:572px;height:184px}
-.pics .ph{top:0;height:184px;width:184px}
-.band{position:absolute;left:0;right:0;bottom:0;height:164px;background:var(--ink);color:var(--white)}
-.band .st{position:absolute;left:48px;top:26px;font-size:28px;font-weight:900;line-height:1.3;white-space:nowrap}
-.band .st2{position:absolute;left:48px;top:122px;font-size:17px;font-weight:500;color:var(--txt)}
-.band .cl{position:absolute;left:700px;right:48px;top:30px;font-size:19px;font-weight:700;line-height:1.5;color:var(--white)}
-.band .cl .chip{margin-top:12px;font-size:16px;padding:6px 12px}
-.band .vrule{position:absolute;left:660px;top:30px;height:104px;background:var(--line)}
+.bar{position:absolute;left:48px;top:68px}
+.ttl{position:absolute;left:48px;top:80px;white-space:nowrap}
+table.ac{position:absolute;left:48px;top:134px;width:560px;border-collapse:collapse;table-layout:fixed}
+.ac th{text-align:right;vertical-align:bottom;padding:0 0 8px;border-bottom:2px solid var(--white);font-weight:700}
+.ac th b{display:block;font-size:19px;font-weight:900;line-height:1.25}
+.ac th b span{font-size:15px;font-weight:500;color:var(--mute);margin-left:8px}
+.ac th em{display:block;font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--mute);line-height:1.4}
+.ac tr.g td{padding:14px 0 6px;font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--signal);border-bottom:1px solid var(--line)}
+.ac td{border-bottom:1px solid var(--line);vertical-align:middle;padding:0}
+.ac td.k{font-size:17px;font-weight:500;color:var(--txt);height:37px}
+.ac td.v{text-align:right;line-height:1.2}
+.ac td.v b{font-family:var(--f-jp);font-size:21px;font-weight:900;font-variant-numeric:tabular-nums lining-nums;color:var(--white)}
+.ac td.v i{display:block;font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--mute);margin-top:1px}
+.nt{position:absolute;left:48px;top:640px;font-size:15px;font-weight:500;line-height:1.5;color:var(--mute)}
+.rt{position:absolute;left:672px;right:48px;top:70px}
+.rt .k{font-family:var(--f-m);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
+.rt .fig{font-size:100px;margin-top:10px;color:var(--white);white-space:nowrap}
+.rt .fig small{font-size:.34em;margin-left:.1em}
+.sg{color:var(--signal)}
+.rt .sub{margin-top:8px;font-size:18px;font-weight:700;line-height:1.4}
+.eq{margin-top:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0 6px}
+.el,.er{display:grid;grid-template-columns:150px 36px 140px 36px 1fr;align-items:baseline}
+.el{font-size:15px;font-weight:500;color:var(--mute)}
+.el span:nth-child(1){grid-column:1}.el span:nth-child(2){grid-column:3}.el span:nth-child(3){grid-column:5}
+.er{margin-top:4px}
+.er span{font-family:var(--f-x);font-stretch:112%;font-weight:900;font-size:36px;letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;line-height:1.2;white-space:nowrap}
+.er u{text-decoration:none;font-family:var(--f-jp);font-stretch:100%;font-size:.5em;font-weight:900;margin-left:2px;letter-spacing:0}
+.er .op{color:var(--signal);font-weight:700;text-align:center;font-size:28px}
+.er .o{color:var(--white)}
+.cav{margin-top:10px;font-size:15px;font-weight:500;line-height:1.5;color:var(--txt)}
+.as{margin-top:12px}
+.as .lbl{display:block;margin-bottom:4px}
+.as ul{list-style:none}
+.as li{font-size:15px;font-weight:500;line-height:1.45;color:var(--mute);padding:2px 0 2px 14px;position:relative}
+.as li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--signal)}
 </style></head>
-<body><div class="slide paper">
+<body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">27 / 26</span></header>
-  <div class="head">
-    <div><span class="bar"></span><h1 class="title m">Financials &amp; Assets</h1></div>
-    <div class="note lbl">Financial Summary<br>※ Source: FY2025 financial statements</div>
-  </div>
-  <div class="figs">
-    <div class="fg"><div class="nm"><b>Cash &amp; deposits</b><span>FY2025 year-end</span></div><div class="fig"><small>~</small>¥127<small>M</small></div></div>
-    <div class="fg"><div class="nm"><b>Receivables</b><span>Incl. major clients</span></div><div class="fig"><small>~</small>¥10.7<small>M</small></div></div>
-    <div class="fg"><div class="nm"><b>Fixed assets</b><span>Equipment &amp; facilities</span></div><div class="fig"><small>~</small>¥83.15<small>M</small></div></div>
-  </div>
-  <div class="assets">
-    <div class="lbl">Key assets (selected)</div>
-    <div class="list">
-      <div class="it">Quadruped robot (Unitree)</div>
-      <div class="it">Video production equipment</div>
-      <div class="it">Drone fleet (multiple units)</div>
-      <div class="it">Event infrastructure</div>
-      <div class="it">VTOL drone</div>
-      <div class="it">Operations software</div>
-    </div>
-  </div>
-  <div class="pics">
-    <div class="ph" data-object-type="image" id="v2p27-img-a" style="left:0"><img src="genspark_images/991760199348ec4dec77f6985ee36c6b.webp" alt="" style="object-position:50% 60%"></div>
-    <div class="ph" data-object-type="image" id="v2p27-img-b" style="left:194px"><img src="genspark_images/ngd_frame_hero.jpg" alt=""></div>
-    <div class="ph" data-object-type="image" id="v2p27-img-c" style="left:388px"><img src="genspark_images/eIhLFv07.png" alt=""></div>
-  </div>
-  <div class="band">
-    <div class="st">VISIONOID is not a planning firm.<br>It is an <span class="sig">execution company</span>.</div>
-    <div class="st2">Technology, equipment, and track record — we already have it all.</div>
-    <div class="vrule"></div>
-    <div class="cl">This is more than a funding round.<br>Join the company building tomorrow’s social infrastructure.<br><span class="chip">2028: Investment with a defined exit</span></div>
+  <span class="bar"></span>
+  <h1 class="title s ttl">Actuals &amp; Valuation Target</h1>
+  <table class="ac">
+    <colgroup><col style="width:196px"><col><col></colgroup>
+    <tr><th></th><th><b>FY2<span>Year 1 of operations</span></b><em>2024.08–2025.07</em></th><th><b>FY3<span>Year 2 of operations</span></b><em>2025.08–2026.07</em></th></tr>
+    <tr class="g"><td colspan="3">Profit & loss</td></tr>
+<tr><td class="k">Revenue</td><td class="v"><b>¥39.74M</b><i>¥39,742,325</i></td><td class="v"><b>¥211.05M</b><i>¥211,049,724</i></td></tr>
+<tr><td class="k">Gross profit</td><td class="v"><b>¥6.19M</b></td><td class="v"><b>¥56.17M</b></td></tr>
+<tr><td class="k">Operating income (loss)</td><td class="v"><b>▲¥82.65M</b></td><td class="v"><b>▲¥84.32M</b></td></tr>
+<tr><td class="k">Net income (loss)</td><td class="v"><b>▲¥86.13M</b></td><td class="v"><b>▲¥104.66M</b></td></tr>
+<tr class="g"><td colspan="3">Balance at year-end</td></tr>
+<tr><td class="k">Cash and deposits</td><td class="v"><b>¥127.37M</b></td><td class="v"><b>¥0.41M</b></td></tr>
+<tr><td class="k">Accounts receivable</td><td class="v"><b>¥10.71M</b></td><td class="v"><b>¥33.59M</b></td></tr>
+<tr><td class="k">Total assets</td><td class="v"><b>¥234.44M</b></td><td class="v"><b>¥129.81M</b></td></tr>
+<tr><td class="k">Net assets</td><td class="v"><b>¥208.50M</b></td><td class="v"><b>¥103.84M</b></td></tr>
+<tr><td class="k">Capital stock</td><td class="v"><b>¥150.00M</b></td><td class="v"><b>¥96.00M</b></td></tr>
+  </table>
+  <p class="nt">* FY1 is omitted: founded July 5, 2024 with a July year-end, so FY1 was under one month.<br>* FY2 and FY3 are from the financial statements.</p>
+  <div class="rt">
+    <div class="k">Enterprise value target</div>
+    <div class="fig">¥10.0<small>B</small><span class="sg">+</span></div>
+    <div class="sub">Target: ¥10B or more (a 10x, ¥12.5B scenario is also considered)</div>
+    <div class="eq"><div class="el"><span>FY7 EBITDA</span><span>Assumed multiple</span><span>Enterprise value</span></div><div class="er"><span class="a">¥1.25<u>B</u></span><span class="op">×</span><span class="m">8<u>x</u></span><span class="op">=</span><span class="o">¥10.0<u>B</u></span></div><div class="er"><span class="a">¥1.25<u>B</u></span><span class="op">×</span><span class="m">10<u>x</u></span><span class="op">=</span><span class="o">¥12.5<u>B</u></span></div></div>
+    <p class="cav">Multiples are not a guaranteed market valuation; they are tested against growth, recurring revenue, customer diversification and proprietary IP.</p>
+    <div class="as"><span class="lbl">Assumptions and notes</span><ul><li>Each year's operating margin is applied uniformly across businesses.</li><li>Operating income is after HQ personnel, sales and development costs.</li><li>Net income ≈ two-thirds of operating income (taxes, interest not yet reviewed).</li><li>EBITDA assumes FY7 depreciation and amortization of ¥50M.</li><li>Enterprise value is EV; equity value adjusts for net interest-bearing debt.</li><li>No double counting between Industrial and Robotics, or Entertainment and Ads.</li><li>Plan figures are management targets, not actual results.</li></ul></div>
   </div>
 </div></body></html>

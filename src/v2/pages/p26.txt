@@ -1,69 +1,64 @@
 <!DOCTYPE html>
-<html lang="ja"><head><meta charset="utf-8"><title>成長トラジェクトリー</title><!--V2HEAD-->
+<html lang="ja"><head><meta charset="utf-8"><title>事業別計画（第4期〜第7期）</title><!--V2HEAD-->
 <style>
-.head{position:absolute;left:48px;top:74px;right:48px;display:flex;align-items:flex-end;gap:40px}
-.head .title{margin-top:10px}
-.head .close{margin-left:auto;text-align:right;font-size:20px;font-weight:700;line-height:1.55;padding-bottom:6px}
-.line{position:absolute;left:48px;right:48px;top:162px;height:1px;background:var(--line)}
-.col{position:absolute;top:150px}
-.col .dot{position:absolute;left:0;top:-5px;width:11px;height:11px;background:var(--signal);z-index:3}
-.col .ph{position:relative;left:auto;top:auto;width:100%;height:140px;margin-top:16px}
-.col .ph img{opacity:.9}
-.c1{left:48px;width:520px}.c2{left:592px;width:340px}.c3{left:956px;width:276px}
-.col .lbl{display:block;margin-top:12px;line-height:1}
-.col .yr{margin-top:8px;font-size:60px;color:var(--white);white-space:nowrap}
-.col .ph-t{margin-top:10px;font-size:22px;font-weight:900;line-height:1.3}
-.col ul{list-style:none;margin-top:10px}
-.col li{font-size:16px;font-weight:500;line-height:1.45;color:var(--txt);padding:4px 0;border-top:1px solid var(--line)}
-.col li.big{font-size:22px;font-weight:900;color:var(--white);padding:8px 0 8px}
-.col li b{color:var(--signal);font-weight:900}
-.c3 li,.c2 li{font-size:17px;padding:6px 0}
-.c3 li.big,.c2 li.big{font-size:22px}
-.cap2{position:absolute;right:48px;bottom:24px}
+.bar{position:absolute;left:48px;top:68px}
+.ttl{position:absolute;left:48px;top:80px;white-space:nowrap}
+.pol{position:absolute;right:48px;top:70px;width:640px;text-align:right;line-height:1.5}
+.pol b{display:block;font-size:17px;font-weight:700;color:var(--ink)}
+.pol span{display:block;font-size:15px;font-weight:500;color:var(--pmute)}
+table.tb{position:absolute;left:48px;top:134px;width:1184px;border-collapse:collapse;table-layout:fixed}
+.tb th{text-align:left;font-weight:700;vertical-align:bottom;padding:0 0 6px;border-bottom:2px solid var(--ink)}
+.tb th.u{padding-bottom:6px}
+.tb th.n{padding-left:8px}
+.tb th b{display:block;font-size:19px;font-weight:900;line-height:1.2}
+.tb th span{display:block;font-size:15px;font-weight:500;color:var(--pmute);line-height:1.3}
+.tb th.u{font-size:15px;font-weight:500;color:var(--pmute);line-height:1.35}
+.tb td{border-bottom:1px solid var(--pline);vertical-align:middle;padding:0}
+.tb tr.row7 td{height:40px}
+.tb td.nm{font-size:17px;font-weight:900;line-height:1.2}
+.tb td.n{padding-left:8px}
+.tb td.n div{display:grid;grid-template-columns:1fr 12px 1fr;align-items:baseline;width:130px;font-family:var(--f-x);font-stretch:88%;font-weight:700;font-size:17px;font-variant-numeric:tabular-nums lining-nums}
+.tb td.n b{text-align:right;font-weight:800}
+.tb td.n i{font-style:normal;text-align:center;color:var(--pmute);font-weight:400}
+.tb td.n s{text-decoration:none;color:var(--pmute);font-weight:600}
+.tb td.r div{display:block;font-weight:700;font-size:17px;text-align:right;width:130px}
+.tb td.sc{font-size:15px;font-weight:500;line-height:1.35;color:var(--ptxt);padding-left:20px;word-break:auto-phrase;text-wrap:pretty;}
+.tb tr.hl td{background:rgba(255,74,28,.10)}
+.tb tr.hl td.nm{box-shadow:inset 4px 0 0 var(--signal);padding-left:12px}
+.tb tr.hl td.n b{color:var(--ink)}
+.tb tr.tot td{border-top:2px solid var(--ink);border-bottom:1px solid var(--pline);height:46px;font-weight:900}
+.tb tr.tot td.nm{font-size:18px}
+.tb tr.tot td.n div{font-size:17px}
+.tb tr.sub td{height:30px}
+.tb tr.sub td.nm{font-size:15px;font-weight:700;color:var(--pmute)}
+.tb tr.sub td.sc{font-size:15px;color:var(--pmute)}
+.sg{color:var(--signal)}
+.tb td.r .sg{font-weight:900}
+.strip{position:absolute;left:48px;right:48px;top:612px;height:100px;display:flex;gap:16px}
+.fc{flex:1;border-top:2px solid var(--ink);padding-top:8px}
+.fl{font-size:16px;font-weight:900;line-height:1.3}
+.fl em{font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--pmute);margin-left:8px;letter-spacing:0}
+.fc p{margin-top:5px;font-size:16px;font-weight:700;line-height:1.45;color:var(--ptxt);word-break:auto-phrase}
 </style></head>
-<body><div class="slide">
+<body><div class="slide paper">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">26 / 26</span></header>
-  <div class="head">
-    <div><span class="bar"></span><h1 class="title m">成長トラジェクトリー</h1></div>
-    <div class="close">VISIONOIDは既に立ち上がっており、<br>2026年に一気に<span class="sig">拡大フェーズ</span>へ入る。</div>
-  </div>
-  <div class="reg" style="left:40px;top:142px"></div>
-  <div class="col c1">
-    <div class="ph" data-object-type="image" id="v2p26-img-a"><img src="genspark_images/U2x8pQPF.png" alt=""></div>
-    <span class="lbl">FOUNDATION</span>
-    <div class="fig yr">2024–2025</div>
-    <div class="ph-t">基盤創造・実績づくり</div>
-    <ul>
-      <li>ディズニーシー Fantasy Springs 開業前夜ドローンショー</li>
-      <li>乃木坂46 真夏の全国ツアーファイナル</li>
-      <li>江の島「天女と龍神」</li>
-      <li>サントリーグローバルカンファレンスOP演出</li>
-      <li>ハウステンボス 常設ドローンショー</li>
-      <li>産業点検・防災サービス開発</li>
-      <li style="font-size:15px;letter-spacing:-.01em">設備投資（ドローン機材・ロボット・イベント設備・ソフトウェア開発等）</li>
-    </ul>
-  </div>
-  <div class="col c2">
-    <div class="ph" data-object-type="image" id="v2p26-img-b"><img src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp" alt=""></div>
-    <span class="lbl sig" style="color:var(--signal)">TURNING POINT</span>
-    <div class="fig yr">2026</div>
-    <div class="ph-t">「一気に跳ねる年」</div>
-    <ul>
-      <li class="big">4月時点で<br>売上<b>2億円</b>確定</li>
-      <li>キラナガーデン豊洲（常設）</li>
-      <li>SENRIGAN 3〜5自治体</li>
-      <li style="border-top-color:transparent;color:var(--mute)">数値は → {{ref:p25}}</li>
-    </ul>
-  </div>
-  <div class="col c3">
-    <div class="ph" data-object-type="image" id="v2p26-img-c"><img src="genspark_images/zZ83U5rP.png" alt=""></div>
-    <span class="lbl">SCALE PHASE</span>
-    <div class="fig yr">2027</div>
-    <div class="ph-t">「再現性が証明される年」</div>
-    <ul>
-      <li>常設拠点：複数化</li>
-      <li>自治体：追加導入・拡大</li>
-      <li>民間インフラ案件拡大</li>
-    </ul>
-  </div>
+  <span class="bar"></span>
+  <h1 class="title s ttl">事業別計画（第4期〜第7期）</h1>
+  <div class="pol"><b>利益率を一定程度下げながら成長投資を増やし、利益額そのものを拡大</b><span>計画値（本社コスト配分後）。経営目標であり実績ではない。</span></div>
+  <table class="tb">
+    <colgroup><col style="width:158px"><col style="width:142px"><col style="width:142px"><col style="width:142px"><col style="width:142px"><col></colgroup>
+    <tr><th class="u">単位：万円<br>売上 ／ 営業利益</th><th class="n"><b>第4期</b><span>実質3年目</span></th><th class="n"><b>第5期</b><span>実質4年目</span></th><th class="n"><b>第6期</b><span>実質5年目</span></th><th class="n"><b>第7期</b><span>実質6年目</span></th><th class="u" style="padding-left:20px">成長シナリオ</th></tr>
+    <tr class="row7"><td class="nm">エンタメ</td><td class="n"><div><b>25,000</b><i>/</i><s>10,000</s></div></td><td class="n"><div><b>45,000</b><i>/</i><s>16,200</s></div></td><td class="n"><div><b>70,000</b><i>/</i><s>23,100</s></div></td><td class="n"><div><b>80,000</b><i>/</i><s>24,000</s></div></td><td class="sc">大型・継続案件で実績・信用・収益基盤を形成し、制作・運航体制を拡充→安定した中核事業へ</td></tr>
+<tr class="row7"><td class="nm">教育・人材育成</td><td class="n"><div><b>5,500</b><i>/</i><s>2,200</s></div></td><td class="n"><div><b>5,500</b><i>/</i><s>1,980</s></div></td><td class="n"><div><b>5,500</b><i>/</i><s>1,815</s></div></td><td class="n"><div><b>5,500</b><i>/</i><s>1,650</s></div></td><td class="sc">操縦・安全運用の教育体制で防災・産業への展開を支える</td></tr>
+<tr class="hl row7"><td class="nm">防災・安全</td><td class="n"><div><b>12,000</b><i>/</i><s>4,800</s></div></td><td class="n"><div><b>40,000</b><i>/</i><s>14,400</s></div></td><td class="n"><div><b>100,000</b><i>/</i><s>33,000</s></div></td><td class="n"><div><b>170,000</b><i>/</i><s>51,000</s></div></td><td class="sc">SENRIGANの導入実績→複数自治体で標準化→継続運用契約・追加導入を拡大</td></tr>
+<tr class="hl row7"><td class="nm">産業ドローン</td><td class="n"><div><b>3,000</b><i>/</i><s>1,200</s></div></td><td class="n"><div><b>20,000</b><i>/</i><s>7,200</s></div></td><td class="n"><div><b>58,000</b><i>/</i><s>19,140</s></div></td><td class="n"><div><b>110,000</b><i>/</i><s>33,000</s></div></td><td class="sc">関西電力との共同開発を起点に警備・点検の統合運用→多拠点・他業種へ、重要施設の継続運用サービス</td></tr>
+<tr class="row7"><td class="nm">事業設計・支援</td><td class="n"><div><b>1,000</b><i>/</i><s>400</s></div></td><td class="n"><div><b>1,000</b><i>/</i><s>360</s></div></td><td class="n"><div><b>1,500</b><i>/</i><s>495</s></div></td><td class="n"><div><b>2,500</b><i>/</i><s>750</s></div></td><td class="sc">企画・事業設計の知見で協業機会を創出</td></tr>
+<tr class="row7"><td class="nm">ロボティクス・IP</td><td class="n"><div><b>500</b><i>/</i><s>200</s></div></td><td class="n"><div><b>2,500</b><i>/</i><s>900</s></div></td><td class="n"><div><b>5,000</b><i>/</i><s>1,650</s></div></td><td class="n"><div><b>12,000</b><i>/</i><s>3,600</s></div></td><td class="sc">FOXチームを中心に独自技術・製品・IPを開発→外部販売・ライセンスで収益化</td></tr>
+<tr class="row7"><td class="nm">ドローン屋外広告</td><td class="n"><div><b>3,000</b><i>/</i><s>1,200</s></div></td><td class="n"><div><b>6,000</b><i>/</i><s>2,160</s></div></td><td class="n"><div><b>10,000</b><i>/</i><s>3,300</s></div></td><td class="n"><div><b>20,000</b><i>/</i><s>6,000</s></div></td><td class="sc">豊洲を起点に運用・販売モデルを構築→継続出稿で媒体収益を確立</td></tr>
+    <tr class="tot"><td class="nm">合計</td><td class="n"><div><b>50,000</b><i>/</i><s>20,000</s></div></td><td class="n"><div><b>120,000</b><i>/</i><s>43,200</s></div></td><td class="n"><div><b>250,000</b><i>/</i><s>82,500</s></div></td><td class="n"><div><b>400,000</b><i>/</i><s>120,000</s></div></td><td class="sc" style="font-weight:700">売上 5億→12億→25億→40億円<br>営業利益 2億→4.32億→8.25億→12億円</td></tr>
+    <tr class="sub"><td class="nm">営業利益率</td><td class="n r"><div>40%</div></td><td class="n r"><div>36%</div></td><td class="n r"><div>33%</div></td><td class="n r"><div>30%</div></td><td class="sc"></td></tr>
+    <tr class="sub"><td class="nm">純利益（概算）</td><td class="n r"><div>約1.33億円</div></td><td class="n r"><div>約2.88億円</div></td><td class="n r"><div>約5.5億円</div></td><td class="n r"><div>約8億円</div></td><td class="sc">純利益は営業利益の約3分の2で概算</td></tr>
+    <tr class="sub"><td class="nm">防災・産業 売上比率</td><td class="n r"><div class="sg">30%</div></td><td class="n r"><div class="sg">50%</div></td><td class="n r"><div class="sg">63.2%</div></td><td class="n r"><div class="sg">70%</div></td><td class="sc">防災・安全＋産業ドローンの売上比率</td></tr>
+  </table>
+  <div class="strip"><div class="fc"><div class="fl"><span class="sg">第4期</span> 重点<em>2026.08–2027.07</em></div><p>高収益な事業基盤の確立と新規事業の立ち上げ</p></div><div class="fc"><div class="fl"><span class="sg">第5期</span> 重点<em>2027.08–2028.07</em></div><p>防災・産業を売上の50%へ、採用・開発・営業に投資</p></div><div class="fc"><div class="fl"><span class="sg">第6期</span> 重点<em>2028.08–2029.07</em></div><p>防災・産業が売上の63.2%を占める体制へ</p></div><div class="fc"><div class="fl"><span class="sg">第7期</span> 重点<em>2029.08–2030.07</em></div><p>防災・産業を売上の70%へ、継続収益と独自技術を成長の柱に</p></div></div>
 </div></body></html>

@@ -1,69 +1,64 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>Growth Trajectory</title><!--V2HEAD-->
+<html lang="en"><head><meta charset="utf-8"><title>Segment Plan, FY4–FY7</title><!--V2HEAD-->
 <style>
-.head{position:absolute;left:48px;top:74px;right:48px;display:flex;align-items:flex-end;gap:40px}
-.head .title{margin-top:10px}
-.head .close{margin-left:auto;text-align:right;font-size:20px;font-weight:700;line-height:1.55;padding-bottom:6px}
-.line{position:absolute;left:48px;right:48px;top:162px;height:1px;background:var(--line)}
-.col{position:absolute;top:150px}
-.col .dot{position:absolute;left:0;top:-5px;width:11px;height:11px;background:var(--signal);z-index:3}
-.col .ph{position:relative;left:auto;top:auto;width:100%;height:140px;margin-top:16px}
-.col .ph img{opacity:.9}
-.c1{left:48px;width:520px}.c2{left:592px;width:340px}.c3{left:956px;width:276px}
-.col .lbl{display:block;margin-top:12px;line-height:1}
-.col .yr{margin-top:8px;font-size:60px;color:var(--white);white-space:nowrap}
-.col .ph-t{margin-top:10px;font-size:22px;font-weight:900;line-height:1.3}
-.col ul{list-style:none;margin-top:10px}
-.col li{font-size:16px;font-weight:500;line-height:1.45;color:var(--txt);padding:4px 0;border-top:1px solid var(--line)}
-.col li.big{font-size:22px;font-weight:900;color:var(--white);padding:8px 0 8px}
-.col li b{color:var(--signal);font-weight:900}
-.c3 li,.c2 li{font-size:17px;padding:6px 0}
-.c3 li.big,.c2 li.big{font-size:22px}
-.cap2{position:absolute;right:48px;bottom:24px}
+.bar{position:absolute;left:48px;top:68px}
+.ttl{position:absolute;left:48px;top:80px;white-space:nowrap}
+.pol{position:absolute;right:48px;top:70px;width:640px;text-align:right;line-height:1.5}
+.pol b{display:block;font-size:17px;font-weight:700;color:var(--ink)}
+.pol span{display:block;font-size:15px;font-weight:500;color:var(--pmute)}
+table.tb{position:absolute;left:48px;top:134px;width:1184px;border-collapse:collapse;table-layout:fixed}
+.tb th{text-align:left;font-weight:700;vertical-align:bottom;padding:0 0 6px;border-bottom:2px solid var(--ink)}
+.tb th.u{padding-bottom:6px}
+.tb th.n{padding-left:8px}
+.tb th b{display:block;font-size:19px;font-weight:900;line-height:1.2}
+.tb th span{display:block;font-size:15px;font-weight:500;color:var(--pmute);line-height:1.3;font-family:var(--f-x);font-stretch:80%;white-space:nowrap}
+.tb th.u{font-size:15px;font-weight:500;color:var(--pmute);line-height:1.35}
+.tb td{border-bottom:1px solid var(--pline);vertical-align:middle;padding:0}
+.tb tr.row7 td{height:40px}
+.tb td.nm{font-size:17px;font-weight:900;line-height:1.2}
+.tb td.n{padding-left:8px}
+.tb td.n div{display:grid;grid-template-columns:1fr 12px 1fr;align-items:baseline;width:122px;font-family:var(--f-x);font-stretch:88%;font-weight:700;font-size:17px;font-variant-numeric:tabular-nums lining-nums}
+.tb td.n b{text-align:right;font-weight:800}
+.tb td.n i{font-style:normal;text-align:center;color:var(--pmute);font-weight:400}
+.tb td.n s{text-decoration:none;color:var(--pmute);font-weight:600}
+.tb td.r div{display:block;font-weight:700;font-size:17px;text-align:right;width:122px}
+.tb td.sc{font-size:15px;font-weight:500;line-height:1.35;color:var(--ptxt);padding-left:20px;font-stretch:92%;}
+.tb tr.hl td{background:rgba(255,74,28,.10)}
+.tb tr.hl td.nm{box-shadow:inset 4px 0 0 var(--signal);padding-left:12px}
+.tb tr.hl td.n b{color:var(--ink)}
+.tb tr.tot td{border-top:2px solid var(--ink);border-bottom:1px solid var(--pline);height:46px;font-weight:900}
+.tb tr.tot td.nm{font-size:18px}
+.tb tr.tot td.n div{font-size:17px}
+.tb tr.sub td{height:30px}
+.tb tr.sub td.nm{font-size:15px;font-weight:700;color:var(--pmute)}
+.tb tr.sub td.sc{font-size:15px;color:var(--pmute)}
+.sg{color:var(--signal)}
+.tb td.r .sg{font-weight:900}
+.strip{position:absolute;left:48px;right:48px;top:612px;height:100px;display:flex;gap:16px}
+.fc{flex:1;border-top:2px solid var(--ink);padding-top:8px}
+.fl{font-size:16px;font-weight:900;line-height:1.3}
+.fl em{font-style:normal;font-family:var(--f-m);font-size:15px;font-weight:500;color:var(--pmute);margin-left:8px;letter-spacing:0}
+.fc p{margin-top:5px;font-size:16px;font-weight:700;line-height:1.45;color:var(--ptxt);font-stretch:92%;font-size:15px}
 </style></head>
-<body><div class="slide">
+<body><div class="slide paper">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>Finance</span><span class="pg">26 / 26</span></header>
-  <div class="head">
-    <div><span class="bar"></span><h1 class="title m">Growth Trajectory</h1></div>
-    <div class="close">VISIONOID is already operational and will accelerate<br>into <span class="sig">full-scale expansion</span> in 2026.</div>
-  </div>
-  <div class="reg" style="left:40px;top:142px"></div>
-  <div class="col c1">
-    <div class="ph" data-object-type="image" id="v2p26-img-a"><img src="genspark_images/U2x8pQPF.png" alt=""></div>
-    <span class="lbl">FOUNDATION</span>
-    <div class="fig yr">2024–2025</div>
-    <div class="ph-t">Building the foundation &amp; track record</div>
-    <ul>
-      <li>Tokyo DisneySea Fantasy Springs pre-opening drone show</li>
-      <li>Nogizaka46 Midsummer National Tour Final</li>
-      <li>Enoshima “Tennyo &amp; Ryujin”</li>
-      <li>Suntory Global Conference opening production</li>
-      <li>Huis Ten Bosch permanent drone show</li>
-      <li>Industrial inspection &amp; disaster-response service development</li>
-      <li style="font-size:15px;letter-spacing:-.01em">CapEx (drones, robotics, event equipment, software development)</li>
-    </ul>
-  </div>
-  <div class="col c2">
-    <div class="ph" data-object-type="image" id="v2p26-img-b"><img src="genspark_images/4f21af214dd3f1010372af68fff39c7b.webp" alt=""></div>
-    <span class="lbl sig" style="color:var(--signal)">TURNING POINT</span>
-    <div class="fig yr">2026</div>
-    <div class="ph-t">“The Breakout Year”</div>
-    <ul>
-      <li class="big"><b>¥200M</b> revenue<br>locked in as of April</li>
-      <li>Kirana Garden Toyosu (permanent)</li>
-      <li>SENRIGAN: 3–5 municipalities</li>
-      <li style="border-top-color:transparent;color:var(--mute)">Figures → {{ref:p25}}</li>
-    </ul>
-  </div>
-  <div class="col c3">
-    <div class="ph" data-object-type="image" id="v2p26-img-c"><img src="genspark_images/zZ83U5rP.png" alt=""></div>
-    <span class="lbl">SCALE PHASE</span>
-    <div class="fig yr">2027</div>
-    <div class="ph-t">“Proving Repeatability”</div>
-    <ul>
-      <li>Multiple permanent venues</li>
-      <li>Additional municipal deployments</li>
-      <li>Growing private infrastructure projects</li>
-    </ul>
-  </div>
+  <span class="bar"></span>
+  <h1 class="title s ttl">Segment Plan, FY4–FY7</h1>
+  <div class="pol"><b>Margins ease as growth investment rises, expanding absolute profit.</b><span>Plan values after HQ cost allocation; management targets, not actual results.</span></div>
+  <table class="tb">
+    <colgroup><col style="width:172px"><col style="width:136px"><col style="width:136px"><col style="width:136px"><col style="width:136px"><col></colgroup>
+    <tr><th class="u">Unit: ¥M<br>Revenue / Op. income</th><th class="n"><b>FY4</b><span>Year 3 of operations</span></th><th class="n"><b>FY5</b><span>Year 4 of operations</span></th><th class="n"><b>FY6</b><span>Year 5 of operations</span></th><th class="n"><b>FY7</b><span>Year 6 of operations</span></th><th class="u" style="padding-left:20px">Growth scenario</th></tr>
+    <tr class="row7"><td class="nm">Entertainment</td><td class="n"><div><b>250</b><i>/</i><s>100</s></div></td><td class="n"><div><b>450</b><i>/</i><s>162</s></div></td><td class="n"><div><b>700</b><i>/</i><s>231</s></div></td><td class="n"><div><b>800</b><i>/</i><s>240</s></div></td><td class="sc">Large, recurring projects build track record and earnings; expand production and flight capacity into a stable core business.</td></tr>
+<tr class="row7"><td class="nm">Education & Training</td><td class="n"><div><b>55</b><i>/</i><s>22</s></div></td><td class="n"><div><b>55</b><i>/</i><s>19.8</s></div></td><td class="n"><div><b>55</b><i>/</i><s>18.15</s></div></td><td class="n"><div><b>55</b><i>/</i><s>16.5</s></div></td><td class="sc">Pilot and safe-operations training underpins expansion into disaster prevention and industrial markets.</td></tr>
+<tr class="hl row7"><td class="nm">Disaster & Safety</td><td class="n"><div><b>120</b><i>/</i><s>48</s></div></td><td class="n"><div><b>400</b><i>/</i><s>144</s></div></td><td class="n"><div><b>1,000</b><i>/</i><s>330</s></div></td><td class="n"><div><b>1,700</b><i>/</i><s>510</s></div></td><td class="sc">SENRIGAN deployments → standardization across municipalities → more recurring operation contracts and add-on installations.</td></tr>
+<tr class="hl row7"><td class="nm">Industrial Drones</td><td class="n"><div><b>30</b><i>/</i><s>12</s></div></td><td class="n"><div><b>200</b><i>/</i><s>72</s></div></td><td class="n"><div><b>580</b><i>/</i><s>191.4</s></div></td><td class="n"><div><b>1,100</b><i>/</i><s>330</s></div></td><td class="sc">Kansai Electric Power co-development → integrated security and inspection → multi-site, cross-industry recurring facility services.</td></tr>
+<tr class="row7"><td class="nm">Business Design</td><td class="n"><div><b>10</b><i>/</i><s>4</s></div></td><td class="n"><div><b>10</b><i>/</i><s>3.6</s></div></td><td class="n"><div><b>15</b><i>/</i><s>4.95</s></div></td><td class="n"><div><b>25</b><i>/</i><s>7.5</s></div></td><td class="sc">Planning and business-design expertise creates collaboration opportunities.</td></tr>
+<tr class="row7"><td class="nm">Robotics & IP</td><td class="n"><div><b>5</b><i>/</i><s>2</s></div></td><td class="n"><div><b>25</b><i>/</i><s>9</s></div></td><td class="n"><div><b>50</b><i>/</i><s>16.5</s></div></td><td class="n"><div><b>120</b><i>/</i><s>36</s></div></td><td class="sc">FOX team develops proprietary technology, products and IP, monetized through external sales and licensing.</td></tr>
+<tr class="row7"><td class="nm">Drone Outdoor Ads</td><td class="n"><div><b>30</b><i>/</i><s>12</s></div></td><td class="n"><div><b>60</b><i>/</i><s>21.6</s></div></td><td class="n"><div><b>100</b><i>/</i><s>33</s></div></td><td class="n"><div><b>200</b><i>/</i><s>60</s></div></td><td class="sc">Build an operating and sales model from Toyosu, then establish media revenue through recurring bookings.</td></tr>
+    <tr class="tot"><td class="nm">Total</td><td class="n"><div><b>500</b><i>/</i><s>200</s></div></td><td class="n"><div><b>1,200</b><i>/</i><s>432</s></div></td><td class="n"><div><b>2,500</b><i>/</i><s>825</s></div></td><td class="n"><div><b>4,000</b><i>/</i><s>1,200</s></div></td><td class="sc" style="font-weight:700">Revenue ¥500M → ¥1.2B → ¥2.5B → ¥4.0B<br>Operating income ¥200M → ¥432M → ¥825M → ¥1.2B</td></tr>
+    <tr class="sub"><td class="nm">Operating margin</td><td class="n r"><div>40%</div></td><td class="n r"><div>36%</div></td><td class="n r"><div>33%</div></td><td class="n r"><div>30%</div></td><td class="sc"></td></tr>
+    <tr class="sub"><td class="nm">Net income (est.)</td><td class="n r"><div>~¥133M</div></td><td class="n r"><div>~¥288M</div></td><td class="n r"><div>~¥550M</div></td><td class="n r"><div>~¥800M</div></td><td class="sc">Net income estimated at about two-thirds of operating income</td></tr>
+    <tr class="sub"><td class="nm">Disaster &amp; Ind. share</td><td class="n r"><div class="sg">30%</div></td><td class="n r"><div class="sg">50%</div></td><td class="n r"><div class="sg">63.2%</div></td><td class="n r"><div class="sg">70%</div></td><td class="sc">Share of revenue: Disaster Prevention + Industrial Drones</td></tr>
+  </table>
+  <div class="strip"><div class="fc"><div class="fl"><span class="sg">FY4</span> Focus<em>2026.08–2027.07</em></div><p>Establish a high-margin business base and launch new businesses</p></div><div class="fc"><div class="fl"><span class="sg">FY5</span> Focus<em>2027.08–2028.07</em></div><p>Raise Disaster &amp; Industrial to 50% of revenue; invest in hiring, development and sales</p></div><div class="fc"><div class="fl"><span class="sg">FY6</span> Focus<em>2028.08–2029.07</em></div><p>Disaster &amp; Industrial reach 63.2% of revenue</p></div><div class="fc"><div class="fl"><span class="sg">FY7</span> Focus<em>2029.08–2030.07</em></div><p>Disaster &amp; Industrial at 70% of revenue; recurring revenue and proprietary technology as growth pillars</p></div></div>
 </div></body></html>
