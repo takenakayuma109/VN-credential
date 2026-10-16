@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="col c3">
-    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/vn_minions_goomy.webp" alt=""><div class="scrim-b"></div><div class="fg fig">800<small>機＋花火300発</small></div></div>
+    <div class="ph" data-object-type="image" id="v2p09-img-c"><img src="genspark_images/vn_minions_goomy.webp" alt="" style="transform:scale(1.6) translate(1%,-6%);transform-origin:48% 50%"><div class="scrim-b"></div><div class="fg fig">800<small>機＋花火300発</small></div></div>
     <div class="info">
       <div class="d"><span class="lbl">2026.08.08</span></div>
       <div class="t">神宮外苑花火大会<span>『ミニオンズ＆モンスターズ』スペシャルコラボドローンショー</span></div>
