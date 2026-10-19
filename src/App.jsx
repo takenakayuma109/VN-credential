@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import RawSlide from './components/RawSlide';
 import { useEditStore, exportEdits, importEdits } from './utils/editStore';
+import ogConfig from '../og.config.json';
 
 // Parcel bundles each HTML file as a string at build time.
 import p01 from 'bundle-text:./genspark_pages/page01.txt';
@@ -380,6 +381,11 @@ export default function App() {
   // deck and the PDF download.
   const isShareView = useMemo(() => readQuery().share, []);
   const store = useEditStore();
+  // Keep the tab title in sync with version/lang (same source as the OGP middleware).
+  useEffect(() => {
+    const label = (ogConfig.versions[ver] || ogConfig.versions[ogConfig.default]).label;
+    document.title = ogConfig.title[lang].replace(/\{label\}/g, label);
+  }, [ver, lang]);
   const [presentStart, setPresentStart] = useState(null); // index into filteredPages while presenting
   const [navVisible, setNavVisible] = useState(false);
 

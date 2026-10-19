@@ -1,0 +1,35 @@
+{
+  "_doc": "Single source of truth for link-preview (OGP) metadata and the browser tab title. Used by middleware.js (edge), src/App.jsx (document.title) and scripts/og/render_covers.py (cover images). See scripts/og/README.md.",
+  "default": "1",
+  "siteName": "VISIONOID",
+  "title": {
+    "ja": "VISIONOID｜会社紹介資料 {label}",
+    "en": "VISIONOID | Company Credential {label}"
+  },
+  "description": {
+    "ja": "VISIONOID 会社紹介資料（Credential 2026）｜ドローンを軸に、エンターテインメントから防災・産業まで。",
+    "en": "VISIONOID Company Credential 2026 | Built on drones, from entertainment to disaster prevention and industry."
+  },
+  "imageAlt": {
+    "ja": "VISIONOID 会社紹介資料 {label} 表紙",
+    "en": "VISIONOID Company Credential {label} cover"
+  },
+  "versions": {
+    "1": {
+      "label": "Ver.1",
+      "cover": {
+        "ja": "src/genspark_pages/page01.txt",
+        "en": "src/genspark_pages/page01_en.txt"
+      },
+      "v2head": false
+    },
+    "2": {
+      "label": "Ver.2",
+      "cover": {
+        "ja": "src/v2/pages/p01.txt",
+        "en": "src/v2/pages_en/p01.txt"
+      },
+      "v2head": true
+    }
+  }
+}

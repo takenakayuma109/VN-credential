@@ -18,9 +18,13 @@ if (!fs.existsSync(SRC)) {
 for (const dest of DESTS) {
   fs.mkdirSync(dest, { recursive: true });
   let n = 0;
-  for (const f of fs.readdirSync(SRC)) {
-    fs.copyFileSync(path.join(SRC, f), path.join(dest, f));
-    n++;
-  }
+  const copyDir = (from, to) => {
+    fs.mkdirSync(to, { recursive: true });
+    for (const e of fs.readdirSync(from, { withFileTypes: true })) {
+      if (e.isDirectory()) copyDir(path.join(from, e.name), path.join(to, e.name));
+      else { fs.copyFileSync(path.join(from, e.name), path.join(to, e.name)); n++; }
+    }
+  };
+  copyDir(SRC, dest);
   console.log(`✓ copied ${n} files → ${path.relative(process.cwd(), dest)}`);
 }
