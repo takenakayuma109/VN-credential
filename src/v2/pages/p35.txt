@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>ポジション｜トータルマネジメント・ドローンカンパニー</title><!--V2HEAD-->
+<style>
+.top{position:absolute;left:48px;top:66px}
+.top .title{font-size:40px;line-height:1.1;white-space:nowrap}
+.top .bar{margin-bottom:12px}
+.colh{position:absolute;top:138px;height:54px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;font-size:20px;line-height:1.2;font-weight:900;color:var(--white);border-bottom:1px solid var(--white);white-space:nowrap}
+.colh small{font-size:15px;font-weight:500;color:var(--mute)}
+.rw{position:absolute;left:158px;width:640px;height:54px;border-top:1px solid var(--line)}
+.rw .pn2{position:absolute;left:0;top:0;width:112px;height:54px;display:flex;align-items:center;font-size:16px;font-weight:900;line-height:1.2;color:var(--white)}
+.rw .c{position:absolute;top:0;height:54px;display:flex;align-items:center;font-size:16px;font-weight:500;line-height:1.3;color:var(--txt)}
+.rw .a{left:124px;width:236px}.rw .b{left:372px;width:230px}
+.phs{position:absolute;left:90px;width:68px;border-top:1px solid var(--white);padding-top:8px;display:flex;flex-direction:column;gap:2px}
+.phs b{font-size:18px;font-weight:900;color:var(--white)}
+.phs i{font-style:normal;font-family:var(--f-m);font-size:15px;letter-spacing:.04em;color:var(--mute)}
+.one{position:absolute;left:48px;width:34px;background:var(--signal);display:flex;align-items:center;justify-content:center}
+.one span{writing-mode:vertical-rl;font-family:var(--f-x);font-stretch:125%;font-weight:900;font-size:17px;letter-spacing:.14em;color:#fff;white-space:nowrap}
+.sp{position:absolute;left:810px;width:96px;display:flex;align-items:center;justify-content:flex-start;border-top:1px solid transparent}
+.sp span{display:inline-block;border:1px dashed rgba(247,246,242,.45);padding:3px 8px;font-size:15px;font-weight:500;color:var(--mute);white-space:nowrap;letter-spacing:0}
+.sph{position:absolute;left:810px;top:150px;height:42px;display:flex;align-items:flex-end;padding-bottom:6px;font-family:var(--f-m);font-size:15px;letter-spacing:.06em;color:var(--mute);border-bottom:1px solid var(--line);width:96px}
+.msg{position:absolute;left:940px;top:140px;width:292px}
+.msg .st{font-size:32px;font-weight:900;line-height:1.2;letter-spacing:-.01em;color:var(--white)}
+.msg .st2{margin-top:14px;font-size:20px;font-weight:900;line-height:1.5;color:var(--white)}
+.msg .rl{height:1px;background:var(--line);margin:16px 0}
+.msg .p{font-size:15.5px;font-weight:500;line-height:1.7;color:var(--txt)}
+.msg .me{margin-top:18px;padding-left:14px;border-left:3px solid var(--signal);font-size:16px;font-weight:700;line-height:1.55;color:var(--white)}
+</style></head>
+<body><div class="slide">
+  <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>About</span><span class="pg">04 / 26</span></header>
+  <div class="top"><span class="bar"></span><h1 class="title">ポジション｜トータルマネジメント・ドローンカンパニー</h1></div>
+  <div class="colh" style="left:282px;width:236px">エンタメ<small>ドローンショー</small></div>
+  <div class="colh" style="left:530px;width:240px">産業<small>警備・点検・防災</small></div>
+  <div class="rw" style="top:196px"><div class="pn2">企画制作</div><div class="c a">イベント・クリエイティブ企画</div><div class="c b">課題からソリューションを発掘</div></div>
+<div class="rw" style="top:250px"><div class="pn2">市場リサーチ</div><div class="c a">広告効果・価値換算設計</div><div class="c b">国内外の市場調査・ROI測定</div></div>
+<div class="rw" style="top:304px"><div class="pn2">事業開発</div><div class="c a">常設ショー・ショー広告</div><div class="c b">サービス設計・マネタイズ</div></div>
+<div class="rw" style="top:358px"><div class="pn2">実証実験</div><div class="c a">テストフライト</div><div class="c b">サービスPoC</div></div>
+<div class="rw" style="top:412px"><div class="pn2">調達</div><div class="c a">機体などの調達最適化</div><div class="c b">機体・周辺機材の調達最適化</div></div>
+<div class="rw" style="top:466px"><div class="pn2">機体開発</div><div class="c a">ショー機体開発</div><div class="c b">専用機体開発</div></div>
+<div class="rw" style="top:520px"><div class="pn2">AIソフトウェア開発</div><div class="c a">ショーオペレーションアプリ</div><div class="c b">フロントUI・システム開発</div></div>
+<div class="rw" style="top:574px"><div class="pn2">運用</div><div class="c a">現場進行・安全管理</div><div class="c b">サービス現場運用</div></div>
+<div class="rw" style="top:628px"><div class="pn2">教育</div><div class="c a">子どもたちとのワークショップ</div><div class="c b">ドローン国家資格スクール</div></div>
+<div class="phs" style="top:196px;height:270px"><b>設計</b><i>DESIGN</i></div>
+<div class="phs" style="top:466px;height:108px"><b>開発</b><i>BUILD</i></div>
+<div class="phs" style="top:574px;height:108px"><b>運用</b><i>OPERATE</i></div>
+<div class="one" style="top:196px;height:486px"><span>VISIONOID — ONE STOP</span></div>
+<div class="sp" style="top:574px;height:54px"><span>運用専業</span></div>
+<div class="sp" style="top:520px;height:54px"><span>ソフト専業</span></div>
+<div class="sp" style="top:628px;height:54px"><span>スクール専業</span></div>
+<div class="sp" style="top:466px;height:54px"><span>機体専業</span></div>
+  <div class="msg"><div class="st">想像し、設計し、<br>実現する。</div><div class="st2">設計から運用まで、<br>ワンストップで担うのは<br><span class="sig">VISIONOID</span>だけ。</div><div class="rl"></div><div class="p">課題もソリューションも千差万別。運用だけの会社に頼めば「飛ばして終わり」になる。どんな課題を解き、どう事業へ発展させ、世界中のドローンから何を選び、どんなシステム・人材・ロボットで、どう安全に運用するか。そのすべてを、想像し、設計し、実現する。</div><div class="me">既製服ではなく、<br>課題に合わせて仕立てる<br>オーダーメイドスーツ<br>（オートクチュール）。</div></div>
+</div></body></html>
