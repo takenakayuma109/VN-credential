@@ -18,7 +18,7 @@
   <div class="ph hero" data-object-type="image" id="v2p08-img-hero"><img src="genspark_images/2314f63a8202e86415bbb7f542ce75c7.webp" alt=""><div class="scrim-t"></div><div class="scrim-l"></div></div>
   <div class="ttl">
     <h1 class="title">東京ディズニーシー｜<br>Fantasy Springs<br>開業前夜イベント</h1>
-    <div class="meta"><span class="chip">CONFIDENTIAL —<br>社内実績掲載のみ可 / SNS・Web公開不可</span></div>
+    <div class="meta"><span class="chip" style="display:inline-block;line-height:1.45">CONFIDENTIAL —<br>社内実績掲載のみ可 / SNS・Web公開不可</span></div>
     <div class="meta" style="margin-top:8px"><b>株式会社オリエンタルランド</b><span class="lbl">2024.06.05</span></div>
     <div class="scope"><div class="lbl" style="color:rgba(255,255,255,.75)">Responsible Scope</div><div class="t">ドローンショー企画 / 制作 / 実行<br>+ 空撮 + 安全管理</div></div>
   </div>

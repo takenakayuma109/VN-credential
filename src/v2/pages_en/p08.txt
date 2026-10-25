@@ -18,7 +18,7 @@
   <div class="ph hero" data-object-type="image" id="v2p08-img-hero"><img src="genspark_images/2314f63a8202e86415bbb7f542ce75c7.webp" alt=""><div class="scrim-t"></div><div class="scrim-l"></div></div>
   <div class="ttl">
     <h1 class="title">Tokyo DisneySea |<br>Fantasy Springs<br>Pre-Opening Event</h1>
-    <div class="meta"><span class="chip">CONFIDENTIAL —<br>Internal portfolio only / No SNS or web</span></div>
+    <div class="meta"><span class="chip" style="display:inline-block;line-height:1.45">CONFIDENTIAL —<br>Internal portfolio only / No SNS or web</span></div>
     <div class="meta" style="margin-top:8px"><b>Oriental Land Co., Ltd.</b><span class="lbl">2024.06.05</span></div>
     <div class="scope"><div class="lbl" style="color:rgba(255,255,255,.75)">Responsible Scope</div><div class="t">Planning, production &amp; execution<br>+ Aerial filming + Safety management</div></div>
   </div>

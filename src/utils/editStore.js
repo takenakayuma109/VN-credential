@@ -110,6 +110,22 @@ function applyP02OneShotReset() {
 // touch their browser state at all.
 if (!isShareView()) applyP02OneShotReset();
 
+// One-shot: undo an accidental image move on Ver.2 P08 (Tokyo DisneySea hero,
+// pageId 108) — drops only its image transform/fit entries, keeps everything else.
+const P108_RESET_FLAG = 'visionoid_p108_imgxform_reset_v1';
+function applyP108ImageReset() {
+  try {
+    if (localStorage.getItem(P108_RESET_FLAG) === '1') return;
+    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    for (const k of Object.keys(raw)) {
+      if (k.startsWith('p108:imgxform:') || k.startsWith('p108:imgfit:')) delete raw[k];
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(raw));
+    localStorage.setItem(P108_RESET_FLAG, '1');
+  } catch {}
+}
+if (!isShareView()) applyP108ImageReset();
+
 const cache = load();
 
 export function useEditStore() {
