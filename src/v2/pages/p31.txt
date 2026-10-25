@@ -23,7 +23,7 @@
   <div class="figs">
     <div class="cell hot"><div class="fig sig">1<small>位</small></div><div class="k"><b>X(Twitter)トレンド &amp;<br>YouTube急上昇</b>同時1位</div></div>
     <div class="cell"><div class="fig">10<small>万+</small></div><div class="k"><b>いいね</b>RT 3.5万件超</div></div>
-    <div class="cell"><div class="fig">40<small>万人</small></div><div class="k"><b>生配信 同時接続</b>2日で120万回再生</div></div>
+    <div class="cell"><div class="fig">40<small>万人</small></div><div class="k"><b>生配信 同時接続</b>1週間で300万回再生</div></div>
     <div class="cell"><div class="fig"><small style="font-size:.6em;margin-left:0">全キー局</small></div><div class="k"><b>ニュース報道</b></div></div>
   </div>
   <div class="cap lbl"><span>TV NEWS — 全キー局で報道</span><i></i></div>

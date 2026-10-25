@@ -23,7 +23,7 @@
   <div class="figs">
     <div class="cell hot"><div class="fig sig">1<small>st</small></div><div class="k"><b>X (Twitter) &amp;<br>YouTube Trending</b>at once</div></div>
     <div class="cell"><div class="fig">100<small>K+</small></div><div class="k"><b>Likes</b>35K+ reposts</div></div>
-    <div class="cell"><div class="fig">400<small>K</small></div><div class="k"><b>Live concurrent viewers</b>1.2M views in 2 days</div></div>
+    <div class="cell"><div class="fig">400<small>K</small></div><div class="k"><b>Live concurrent viewers</b>3M views in 1 week</div></div>
     <div class="cell"><div class="fig">All<small>Networks</small></div><div class="k"><b>National TV news coverage</b></div></div>
   </div>
   <div class="cap lbl"><span>TV NEWS — Covered by all networks</span><i></i></div>

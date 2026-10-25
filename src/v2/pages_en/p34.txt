@@ -12,16 +12,16 @@
 .ttl .title{font-size:29px;line-height:1.18;margin-top:12px}
 .meta{margin-top:16px;display:flex;align-items:center;gap:14px}
 .meta b{font-size:18px;font-weight:700;line-height:1.4}
-.angel{position:absolute;left:48px;top:322px;width:344px;padding-top:16px;border-top:1px solid var(--line)}
-.angel .nm{margin-top:8px;font-size:34px;font-weight:900;line-height:1.15;color:#fff}
+.angel{position:absolute;left:48px;top:392px;width:344px;padding-top:16px;border-top:1px solid var(--line)}
+.angel .nm{margin-top:6px;font-size:30px;font-weight:900;line-height:1.15;color:#fff}
 .angel .nm i{font-style:normal;color:var(--signal)}
-.angel .b{margin-top:12px;font-size:18px;font-weight:500;line-height:1.7;color:var(--txt)}
+.angel .b{margin-top:10px;font-size:17px;font-weight:500;line-height:1.7;color:var(--txt)}
 .facts{position:absolute;left:48px;bottom:34px;width:344px}
 .facts .row{padding:11px 0;gap:14px}
 .facts .row .k{font-size:17px;font-weight:700;line-height:1.45}
 </style></head>
 <body><div class="slide">
-  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>01 / Entertainment</span><span class="pg">16 / 26</span></header>
+  <header class="hd on-photo"><span>01 / Entertainment</span><span class="pg">16 / 26</span></header>
   <div class="ph g2" data-object-type="image" id="v2p34-img-b"><img src="genspark_images/vn_asiangames_2.jpg" alt=""></div>
   <div class="ph g3" data-object-type="image" id="v2p34-img-c"><img src="genspark_images/vn_asiangames_3.jpg" alt=""><div class="scrim-t"></div></div>
   <div class="ph g1" data-object-type="image" id="v2p34-img-a"><img src="genspark_images/vn_asiangames_1.jpg" alt=""></div>
@@ -29,7 +29,7 @@
   <div class="ttl">
     <span class="bar"></span>
     <h1 class="title">Original Drone Performance | Aichi-Nagoya Asian Games Opening Ceremony</h1>
-    <div class="meta"><span class="chip">VISIONOID ORIGINAL</span><span class="lbl">2026.09</span></div>
+    <div class="meta"><span class="lbl">2026.09</span></div><div class="chip" style="display:inline-block;margin-top:12px;line-height:1.45">CONFIDENTIAL —<br>Internal use only / No SNS·Web</div><div style="margin-top:12px;font-size:18px;font-weight:700">VISIONOID co-founder Kamizeki's work</div>
   </div>
   <div class="angel">
     <span class="kicker">Featured Act</span>
@@ -37,7 +37,6 @@
     <p class="b">Small drones carrying a glowing orb and flowing translucent fabric, flying like angels over the performers.</p>
   </div>
   <div class="facts">
-    <div class="row"><span class="n">01</span><span class="k">Aichi-Nagoya 2026 Asian Games<br>Opening Ceremony (Sept. 2026)</span></div>
-    <div class="row"><span class="n">02</span><span class="k">Performed with live performers inside the stadium</span></div>
+    <div class="row"><span class="n">—</span><span class="k">Performed with live performers inside the stadium</span></div>
   </div>
 </div></body></html>
