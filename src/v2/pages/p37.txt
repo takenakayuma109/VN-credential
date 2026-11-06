@@ -27,14 +27,14 @@
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>04 / Advertising</span><span class="pg">17 / 26</span></header>
   <h1 class="title ttl"><b>TOKYO BAY DRONE SHOW</b><span class="s">｜</span>東京湾内港地区 初の海上ドローンショー</h1>
-  <div class="ph hero" data-object-type="image" id="v2p37-img-a"><img src="genspark_images/vn_tbds_1.jpg" alt=""><div class="scrim-b"></div><span class="chip">2026.11.03 文化の日</span><div class="cap"><span>江東区ロゴ × 東京湾の夜空</span><span>Photos by Masahiro Miyakawa</span></div></div>
+  <div class="ph hero" data-object-type="image" id="v2p37-img-a"><img src="genspark_images/vn_tbds_1.jpg" alt=""><div class="scrim-b"></div><span class="chip">2026.11.03 文化の日｜後援：江東区</span><div class="cap"><span>江東区ロゴ × 東京湾の夜空</span><span>Photos by Masahiro Miyakawa</span></div></div>
   <div class="ph c" style="left:598px;top:108px" data-object-type="image" id="v2p37-img-b"><img src="genspark_images/vn_tbds_2.jpg" alt="" style="object-position:50% 50%"></div>
   <div class="ph c" style="left:918px;top:108px" data-object-type="image" id="v2p37-img-c"><img src="genspark_images/vn_tbds_3.jpg" alt="" style="object-position:50% 50%"></div>
   <div class="ph c" style="left:598px;top:291px" data-object-type="image" id="v2p37-img-d"><img src="genspark_images/vn_tbds_4.jpg" alt="" style="object-position:50% 30%"><div class="scrim-b"></div><div class="cap">「江東すぐく」</div></div>
   <div class="ph c" style="left:918px;top:291px" data-object-type="image" id="v2p37-img-e"><img src="genspark_images/vn_tbds_6.jpg" alt="" style="object-position:50% 30%"><div class="scrim-b"></div><div class="cap">QRコード</div></div>
-  <div class="col" style="left:48px;width:350px"><span class="lbl">概要</span><p class="big">キラナガーデン豊洲目前の海上で実施。</p><p>後援：江東区。飛行エリアを海上に広げ、演出規模と視認範囲が拡大。豊洲ぐるり公園・対岸を含む湾岸の広範囲から視認。</p></div>
+  <div class="col" style="left:48px;width:350px"><span class="lbl">広告媒体の進化｜実施事例</span><p class="big">陸上から、東京湾の海上へ。</p><p>3月は施設直上（陸上）。今回は海上へ飛び出し、飛行エリアと演出規模が拡大。湾岸全域から見える、より価値の高い媒体に。</p></div>
   <div class="col" style="left:430px;width:400px"><span class="lbl">目的</span><p class="big">常設型ドローンショー事業に向けた検証。</p><p>海上での飛行・安全管理・会場運営を検証。<b>常設型</b>＝同一エリアで反復開催できる体制で、準備工数とコストを大幅削減。</p></div>
-  <div class="col" style="left:862px;width:370px"><span class="lbl">参考｜3月 RIP SLYMEショー実績</span>
+  <div class="col" style="left:862px;width:370px"><span class="lbl">前回｜3月 RIP SLYME（陸上）実績</span>
     <div class="st"><div class="fig">446<small>件</small></div><span class="l">メディア露出</span></div>
     <div class="st"><div class="fig">2,209,877</div><span class="l">Xリーチ</span></div>
     <div class="st"><div class="fig">1.5〜3<small>億円</small></div><span class="l">広告価値換算</span></div></div>

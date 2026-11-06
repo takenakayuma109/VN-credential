@@ -27,14 +27,14 @@
 <body><div class="slide">
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>04 / Advertising</span><span class="pg">17 / 26</span></header>
   <h1 class="title ttl"><b>TOKYO BAY DRONE SHOW</b><span class="s">|</span>First Over-Water Show in Tokyo Bay’s Inner Harbor</h1>
-  <div class="ph hero" data-object-type="image" id="v2p37-img-a"><img src="genspark_images/vn_tbds_1.jpg" alt=""><div class="scrim-b"></div><span class="chip">2026.11.03 Culture Day</span><div class="cap"><span>Koto City logo</span><span>Photos by Masahiro Miyakawa</span></div></div>
+  <div class="ph hero" data-object-type="image" id="v2p37-img-a"><img src="genspark_images/vn_tbds_1.jpg" alt=""><div class="scrim-b"></div><span class="chip">2026.11.03 Culture Day | Supported by Koto City</span><div class="cap"><span>Koto City logo</span><span>Photos by Masahiro Miyakawa</span></div></div>
   <div class="ph c" style="left:598px;top:108px" data-object-type="image" id="v2p37-img-b"><img src="genspark_images/vn_tbds_2.jpg" alt="" style="object-position:50% 50%"></div>
   <div class="ph c" style="left:918px;top:108px" data-object-type="image" id="v2p37-img-c"><img src="genspark_images/vn_tbds_3.jpg" alt="" style="object-position:50% 50%"></div>
   <div class="ph c" style="left:598px;top:291px" data-object-type="image" id="v2p37-img-d"><img src="genspark_images/vn_tbds_4.jpg" alt="" style="object-position:50% 30%"><div class="scrim-b"></div><div class="cap">“江東すぐく”</div></div>
   <div class="ph c" style="left:918px;top:291px" data-object-type="image" id="v2p37-img-e"><img src="genspark_images/vn_tbds_6.jpg" alt="" style="object-position:50% 30%"><div class="scrim-b"></div><div class="cap">QR code</div></div>
-  <div class="col" style="left:48px;width:350px"><span class="lbl">Overview</span><p class="big">Held off Kirana Garden Toyosu.</p><p>Supported by Koto City. An offshore flight area widened scale and visibility, seen from Toyosu Gururi Park to the opposite shore.</p></div>
+  <div class="col" style="left:48px;width:350px"><span class="lbl">The medium, evolved | Case</span><p class="big">From land to over the bay.</p><p>March flew above the venue. Going offshore widened the flight area and scale — visible across the waterfront, a more valuable medium.</p></div>
   <div class="col" style="left:430px;width:400px"><span class="lbl">Purpose</span><p class="big">Validating a permanent drone show business.</p><p>Tested over-water flight, safety and venue operations. <b>Permanent</b> = repeatable in one area, sharply cutting organizers’ prep effort and cost.</p></div>
-  <div class="col" style="left:862px;width:370px"><span class="lbl">Reference | March RIP SLYME Show</span>
+  <div class="col" style="left:862px;width:370px"><span class="lbl">Previous | March RIP SLYME (on land)</span>
     <div class="st"><div class="fig">446<small></small></div><span class="l">Media mentions</span></div>
     <div class="st"><div class="fig">2,209,877</div><span class="l">X reach</span></div>
     <div class="st"><div class="fig">¥150–300<small>M</small></div><span class="l">ad-value equivalent</span></div></div>
