@@ -21,8 +21,8 @@
 </style></head>
 <body><div class="slide">
   <div class="ph room" data-object-type="image" id="v2p36-img-a"><img src="genspark_images/vn_hw_room.jpg" alt=""></div>
-  <div class="ph map" data-object-type="image" id="v2p36-img-b"><img src="genspark_images/vn_hw_map.jpg" alt=""></div>
-  <div class="ph cross" data-object-type="image" id="v2p36-img-c"><img src="genspark_images/vn_hw_crossing.jpg" alt=""></div>
+  <div class="ph map" data-object-type="image" id="v2p36-img-b"><img src="genspark_images/vn_hw_crossing.jpg" alt=""></div>
+  <div class="ph cross" data-object-type="image" id="v2p36-img-c"><img src="genspark_images/vn_hw_map.jpg" alt=""></div>
   <div class="ph hq" data-object-type="image" id="v2p36-img-d"><img src="genspark_images/vn_hw_hq.jpg" alt=""></div>
   <div class="ph guard" data-object-type="image" id="v2p36-img-e"><img src="genspark_images/vn_hw_guard.jpg" alt=""></div>
   <div class="ph street" data-object-type="image" id="v2p36-img-f"><img src="genspark_images/vn_hw_street.jpg" alt="" style="object-position:10% 25%"></div>
