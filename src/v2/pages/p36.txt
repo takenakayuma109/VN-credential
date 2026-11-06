@@ -25,7 +25,7 @@
   <div class="ph cross" data-object-type="image" id="v2p36-img-c"><img src="genspark_images/vn_hw_map.jpg" alt=""></div>
   <div class="ph hq" data-object-type="image" id="v2p36-img-d"><img src="genspark_images/vn_hw_hq.jpg" alt=""></div>
   <div class="ph guard" data-object-type="image" id="v2p36-img-e"><img src="genspark_images/vn_hw_guard.jpg" alt=""></div>
-  <div class="ph street" data-object-type="image" id="v2p36-img-f"><img src="genspark_images/vn_hw_street.jpg" alt="" style="object-position:10% 25%"></div>
+  <div class="ph street" data-object-type="image" id="v2p36-img-f"><img src="genspark_images/vn_hw_street.jpg" alt="" style="object-position:10% 25%;transform:scale(1.8);transform-origin:22% 24%"></div>
   <div class="scrim-t"></div>
   <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>02 / Public Safety</span><span class="pg">13 / 26</span></header>
   <div class="txt">

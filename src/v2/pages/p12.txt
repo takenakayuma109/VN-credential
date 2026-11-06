@@ -10,7 +10,7 @@
 .feat .row:last-child{border-bottom:1px solid var(--pline)}
 .feat .v{font-size:16px;font-weight:700;line-height:1.5;color:var(--ink)}
 .shot{left:496px;top:158px;width:784px;height:439px;border-left:1px solid var(--ink)}
-.shot img{object-fit:cover}
+.shot img{object-fit:contain}
 .shot .lg{position:absolute;right:16px;bottom:16px;width:240px;height:auto;object-fit:contain;box-shadow:0 6px 24px rgba(0,0,0,.5)}
 .bottom{position:absolute;left:496px;right:48px;top:624px;display:flex;align-items:center;gap:24px}
 .mark{position:relative;width:76px;height:76px;flex:none;background:#0A1226}
@@ -31,7 +31,7 @@
     <div class="row"><span class="n">06</span><span class="v">ドローン・街中カメラ・スマホ全カメラの<br>位置情報取得と相互映像中継</span></div>
     <div class="row"><span class="n">07</span><span class="v">緊急地震速報・SIP4D連携</span></div>
   </div>
-  <div class="ph shot" data-object-type="image" id="v2p12-img-a" style="background:#0a0e17"><img src="genspark_images/vn_senrigan_wall.jpg" alt=""><img class="lg" src="genspark_images/sKKYS0iv.png" alt="SENRIGAN"></div>
+  <div class="ph shot" data-object-type="image" id="v2p12-img-a" style="background:#0a0e17"><img src="genspark_images/vn_senrigan_ui_shibuya.jpg" alt=""></div>
   <div class="reg" style="left:488px;top:150px"></div>
   <div class="bottom">
     <div class="ph mark" data-object-type="image" id="v2p12-img-b" style="position:relative"><img src="genspark_images/sKKYS0iv.png" alt=""></div>
