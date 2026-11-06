@@ -158,6 +158,7 @@ const IFRAME_BRIDGE_SCRIPT = `
     var t = e.target;
     var w = t && t.closest && t.closest('[data-object-type="image"]');
     if (!w) return;
+    if (t.closest('[data-object-type="textbox"]')) return;
     e.preventDefault();
     e.stopPropagation();
     try { parent.postMessage({type:'vn-image-click', wrapId: w.id || ''}, '*'); } catch(err){}
@@ -405,7 +406,22 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
           if (!el.id) el.id = `auto-tb-${counter}`;
           counter++;
         }
-        console.log(`[VN auto-tag] page=${id}: tagged ${counter} text elements`);
+        // Second pass: text that sits inside a photo wrapper (captions,
+        // overlaid profiles). Separate id prefix so first-pass ids — and the
+        // edits saved against them — never shift.
+        let c2 = 0;
+        doc.body.querySelectorAll('[data-object-type="image"] *').forEach((el) => {
+          if (el.hasAttribute('data-object-type')) return;
+          if (el.closest('[data-object-type="textbox"]')) return;
+          if (el.matches('img,svg,path,script,style') ) return;
+          const text = el.textContent && el.textContent.trim();
+          if (!text) return;
+          if (el.querySelector(BLOCK_DESCENDANT.replace(',[data-object-type="image"]', ''))) return;
+          el.setAttribute('data-object-type', 'textbox');
+          if (!el.id) el.id = `auto-tbi-${c2}`;
+          c2++;
+        });
+        console.log(`[VN auto-tag] page=${id}: tagged ${counter}+${c2} text elements`);
       }
 
       // Restore persisted edits. Text edits are language-scoped (`p<id>:<lang>:text:<objId>`)
@@ -897,6 +913,28 @@ export default function RawSlide({ id, html, editMode, pageNumber, displayNumber
               <div
                 onMouseDown={(e) => {
                   if (e.button !== 0) return;
+                  // Text overlaid on a photo (captions, profiles…) must stay
+                  // editable: if the point under the cursor is a textbox inside
+                  // the iframe, hand the click to it instead of the image tools.
+                  try {
+                    const ifr = iframeRef.current;
+                    const d = ifr && ifr.contentDocument;
+                    if (d) {
+                      const r = ifr.getBoundingClientRect();
+                      const px = (e.clientX - r.left) / scale;
+                      const py = (e.clientY - r.top) / scale;
+                      const hit = d.elementFromPoint(px, py);
+                      const tb = hit && hit.closest && hit.closest('[data-object-type="textbox"]');
+                      if (tb && tb.isContentEditable) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        tb.focus();
+                        const rng = d.caretRangeFromPoint ? d.caretRangeFromPoint(px, py) : null;
+                        if (rng) { const sel = d.getSelection(); sel.removeAllRanges(); sel.addRange(rng); }
+                        return;
+                      }
+                    }
+                  } catch (err) { /* fall through to image tools */ }
                   e.preventDefault();
                   e.stopPropagation();
                   const xfKey = `p${id}:imgxform:${t.key}`;
