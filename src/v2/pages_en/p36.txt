@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>SENRIGAN in Action | Shibuya Halloween 2026 Security</title><!--V2HEAD-->
+<style>
+.ph img{object-fit:cover}
+.room{left:400px;top:0;width:560px;height:288px}
+.map{left:400px;top:288px;width:560px;height:432px}
+.cross{left:960px;top:0;width:320px;height:240px}
+.hq{left:960px;top:240px;width:320px;height:240px}
+.guard{left:960px;top:480px;width:160px;height:240px}
+.street{left:1120px;top:480px;width:160px;height:240px}
+.street img{position:absolute;width:400px;height:auto;max-width:none;left:-120px;bottom:0}
+.txt{position:absolute;left:48px;top:88px;width:340px}
+.txt .title{font-size:27px;line-height:1.25;margin-top:12px}
+.txt .title .en{font-size:27px;font-stretch:125%;font-weight:900}
+.txt .bar{margin-top:18px}
+.txt p{margin-top:18px;font-size:16px;font-weight:500;line-height:1.6;color:var(--txt)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.hub{margin-top:12px}
+.logo{left:48px;top:628px;width:200px;height:57px;background:#0A1226}
+.logo img{object-fit:contain}
+</style></head>
+<body><div class="slide">
+  <div class="ph room" data-object-type="image" id="v2p36-img-a"><img src="genspark_images/vn_hw_room.jpg" alt=""></div>
+  <div class="ph map" data-object-type="image" id="v2p36-img-b"><img src="genspark_images/vn_hw_map.jpg" alt=""></div>
+  <div class="ph cross" data-object-type="image" id="v2p36-img-c"><img src="genspark_images/vn_hw_crossing.jpg" alt=""></div>
+  <div class="ph hq" data-object-type="image" id="v2p36-img-d"><img src="genspark_images/vn_hw_hq.jpg" alt=""></div>
+  <div class="ph guard" data-object-type="image" id="v2p36-img-e"><img src="genspark_images/vn_hw_guard.jpg" alt=""></div>
+  <div class="ph street" data-object-type="image" id="v2p36-img-f"><img src="genspark_images/vn_hw_street.jpg" alt=""></div>
+  <div class="scrim-t"></div>
+  <header class="hd on-photo"><span class="wm">VISIONOID<i>.</i></span><span>02 / Public Safety</span><span class="pg">13 / 26</span></header>
+  <div class="txt">
+    <div class="kicker">2026.10 / Shibuya</div>
+    <h1 class="title">SENRIGAN in Action<br>Shibuya Halloween 2026 Security</h1>
+    <span class="bar"></span>
+    <p>Implemented in the Shibuya Halloween security operation, October 2026. Guards’ body cameras, existing surveillance cameras and a live camera over the scramble crossing feed video and location data onto the command room’s big screen for real-time awareness and direction.</p>
+    <div class="chips"><span class="tag">Body cams</span><span class="tag">Existing CCTV</span><span class="tag">Live camera</span><span class="tag">Location data</span></div>
+    <div class="chips hub"><span class="tag solid">↓ Unified at HQ</span></div>
+  </div>
+  <div class="ph logo" data-object-type="image" id="v2p36-img-g"><img src="genspark_images/sKKYS0iv.png" alt=""></div>
+</div></body></html>
