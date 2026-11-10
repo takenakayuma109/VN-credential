@@ -28,7 +28,7 @@
   <header class="hd"><span class="wm">VISIONOID<i>.</i></span><span>04 / Advertising</span><span class="pg">17 / 26</span></header>
   <h1 class="title ttl"><b>TOKYO BAY DRONE SHOW</b><span class="s">|</span>First Over-Water Show in Tokyo Bay’s Inner Harbor</h1>
   <div class="ph hero" data-object-type="image" id="v2p37-img-a"><img src="genspark_images/vn_tbds_1.jpg" alt=""><div class="scrim-b"></div><span class="chip">2026.11.03 Culture Day | Supported by Koto City</span><div class="cap"><span>Koto City logo</span><span>Photos by Masahiro Miyakawa</span></div></div>
-  <div class="ph c" style="left:598px;top:108px" data-object-type="image" id="v2p37-img-b"><img src="genspark_images/vn_tbds_2.jpg" alt="" style="object-position:50% 50%"></div>
+  <div class="ph c" style="left:598px;top:108px" data-object-type="image" id="v2p37-img-b"><img src="genspark_images/vn_tbds_map2.jpg" alt="" style="object-position:50% 50%"></div>
   <div class="ph c" style="left:918px;top:108px" data-object-type="image" id="v2p37-img-c"><img src="genspark_images/vn_tbds_3.jpg" alt="" style="object-position:50% 50%"></div>
   <div class="ph c" style="left:598px;top:291px" data-object-type="image" id="v2p37-img-d"><img src="genspark_images/vn_tbds_4.jpg" alt="" style="object-position:50% 30%"><div class="scrim-b"></div><div class="cap">“江東すぐく”</div></div>
   <div class="ph c" style="left:918px;top:291px" data-object-type="image" id="v2p37-img-e"><img src="genspark_images/vn_tbds_6.jpg" alt="" style="object-position:50% 30%"><div class="scrim-b"></div><div class="cap">QR code</div></div>
